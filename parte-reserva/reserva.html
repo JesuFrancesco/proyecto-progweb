@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/estailo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Reserva</title>
+</head>
+<body class="container">
+    <div class="header1 d-flex align-items-center justify-content-between">
+        <span id="cabecera">
+            <img src="/MenuFilled (1).png" id="hamburguesa">
+            Salas de Cine Ulima
+        </span>
+        <span id="Estrellas" style="margin-right: 10px;">
+            <span><img src="/estreblanca.png"></span>
+            <span><img src="/estreblanca.png"></span>
+            <span><img src="/estreblanca.png"></span>
+            <span><img src="/estreblanca.png"></span>
+            <span><img src="/estreblanca.png"></span>
+        </span>
+    </div>
+    <div class="row mt-4 ">
+        <div class="col-md-2" >
+            <div class="text-center">
+                <img src="/logo.png" id="logo">
+                <div >
+                    <input type="text" class=" mb-4 mt-3" placeholder="Busca" id="buscador">
+                </div>
+            </div>
+            <div>
+                <ul >
+                    <li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Películas</li>
+                    <li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Sala</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-10 ">
+            <div class="border-bottom">
+                <h2>Reserva</h2>
+            </div>
+            <div id="jul">
+                <div class="mt-5" >
+                    <h2>Juler's Adventures: The Life & Passion of Juler </h2>
+                </div>
+                <div class="mb-3">
+                    <span>
+                        <img src="/LocationOnFilled.png">
+                        xhrs xmin
+                    </span>
+                    <span>
+                        <img src="/LocationOnFilled.png">
+                        Sala x
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card p-4 mt-2" style="width: 33rem;">
+                            <h6>Información de Reseva</h6>
+                            <div class="border-bottom mt-2">
+                                Fecha - Hora hrs
+                            </div>
+                            <div class="borde-top mt-4">
+                                <input type="text" class="form-control mb-3" placeholder="Nombre" disabled>
+                                <input type="text" class="form-control mb-3" placeholder="Apellido" disabled>
+                                <input type="text" class="form-control mb-3" placeholder="Código" disabled>
+                                <input type="text" class="form-control mb-3" placeholder="Cantidad" disabled>
+                            </div>
+                            <button type="button" id="botore" data-bs-toggle="modal" data-bs-target="#exampleModal">RESERVAR</button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="/F-_8BIHWUAAZ9-l.jpg" id="portadapeli">
+                    </div>
+                </div> 
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                        <div class="modal-dialog" style="box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.20), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);">
+                        <div class="modal-content p-3">
+                            <h1 class="modal-title fs-5 mb-3" id="exampleModalLabel" style="padding-left: 20px;">Reserva confirmada</h1> 
+                                <div id="confir">
+                                    Juler </br>
+                                    Hermitaño </br>
+                                    20210983</br>
+                                    2 pases</br>
+                                </div>     
+                            <button type="button" id="botonmodal" data-bs-dismiss="modal" class="mt-5" style="margin-right: 5px;"><h6>ENTENDIDO</h6></button>
+                        </div>
+                        </div>
+                    </div> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
