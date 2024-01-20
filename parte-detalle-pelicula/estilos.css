@@ -1,0 +1,34 @@
+.header1 {
+    background-color: #FA7525;
+    padding: 10px 20px; 
+    width: 100%;
+}
+
+#Titulo {
+    font-size: 20px;
+    color: aliceblue;
+    padding-left:80px ;
+}
+
+#Estrellas {
+    color: aliceblue;
+    /* Eliminado el margin-left excesivo */
+}
+
+/* Tus otros estilos... */
+.fondo_orange img{
+    width: 128px;
+    height: 126.95px;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+
+
+.titu{
+    padding-left: 30px;
+}
+
+.sinopsis{
+    margin-left: 5px;
+    margin-right: 70px;
+}
