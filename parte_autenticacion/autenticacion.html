@@ -21,28 +21,39 @@
 </head>
 <body>
   
-<h1 id="titulo_front">SALAS DE CINE ULIMA</h1>
-<form class="form">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Usuario</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  <div class="container">
+    <h1 id="titulo_front">SALAS DE CINE ULIMA</h1>
+
+
+    <div class="formulario">
+      <form class="form">
+        
+          <!-- input ususario -->
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+
+          <!-- input contraseña -->
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+
+          <!-- botones -->
+          <center>
+              <a id="boton_especial" class="btn btn-primary" href="../menu_hamburguesa/menu_hamburguesa.html">Ingresar</a>
+              <a class="btn btn-light" href="#">Registrarse</a>
+          </center>
+      
+          <!-- restaurar contraseña -->
+          <center>
+            <p class="links"><a href="#" class="text-decoration-none">¿Te olvidaste tu contraseña?</a></p>
+          </center>
+      
+      </form>
     </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <center>
-        <button class="btn btn-primary" id="boton_especial" href="#">Ingresar</button>
-        <button class="btn btn-light" href="#">Registrarse</button>
-    </center>
-    
-    <center><p class="links"><a href="#">¿Te olvidaste tu contraseña?</a></p>  </center>
-  
-  </form>
-
-  
-
-
+  </div>
     
 </body>
 </html>

@@ -18,17 +18,24 @@ label{
     font-family: 'Patrick Hand' ;
     color:rgb(255, 81, 0);
 }
+
+.formulario{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
 .form{
-    margin-left:500px;
+
     padding: 50px;
     border: solid 1px;
     border-radius: 15px;
     background-color: rgba(231, 218, 218, 0.943);
-    width: 500px;
 
 }
 .form-control{
-    width:350px;
+    /* width:80%; */
     border: solid 1px  ;
 }
 p{
