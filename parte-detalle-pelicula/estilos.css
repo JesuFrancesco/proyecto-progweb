@@ -17,8 +17,9 @@
 .fondo_orange img{
     width: 128px;
     height: 126.95px;
-    margin-left: 60px;
+    margin-left: 90px;
     margin-top: 10px;
+    padding-left: 0px;
 }
 
 
@@ -27,6 +28,33 @@
 }
 
 .sinopsis{
-    margin-left: 5px;
-    margin-right: 70px;
+    margin-left: 1px;
+    margin-right: 80px;
+}
+
+.boton_sinop{
+    background: #00000014;
+    border-radius: 100px;
+    margin-right: 8px;
+}
+
+.contenido{
+    padding-left: 10px;
+}
+
+.horarios{
+    border: 1px dashed #9747FF;
+    border-radius: 5px;
+    background: #9747FF0A;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: #9747FF;
+}
+
+.contenido_salas{
+    padding-left: 25px;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
