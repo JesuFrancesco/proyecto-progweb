@@ -1,7 +1,28 @@
 .header1 {
-    background-color: #FA7525;
-    padding: 10px 20px; 
+    background-color: rgb(250, 121, 0);
+    padding: 16px; 
     width: 100%;
+    box-shadow: 0px 0px 5px;
+}
+
+.cabecera{
+    background-color: rgb(250, 121, 0); 
+    color: white;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500px;
+    line-height: 32px;
+    letter-spacing: 0.15px;
+    word-wrap: break-word;
+}
+
+.logo{
+    width: 128px;
+    height: 127px;
+}
+
+.hamburguesa{
+    margin-bottom: 5px;
 }
 
 #Titulo {
@@ -12,23 +33,60 @@
 
 #Estrellas {
     color: aliceblue;
-    /* Eliminado el margin-left excesivo */
 }
 
-/* Tus otros estilos... */
-.fondo_orange img{
-    width: 128px;
-    height: 126.95px;
-    margin-left: 60px;
-    margin-top: 10px;
+ul{
+    list-style: none;
+    list-style-image: url(/parte-detalle-pelicula/estrellanegra.png);
+    margin-left: 40px;
+    padding-top: 5px;
 }
-
+.buscador{
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(216, 216, 216);
+    padding: 5px;
+    width: 80%;
+}
 
 .titu{
     padding-left: 30px;
 }
 
 .sinopsis{
-    margin-left: 5px;
-    margin-right: 70px;
+    margin-left: 1px;
+    margin-right: 80px;
 }
+
+.boton_sinop{
+    background: #00000014;
+    border-radius: 100px;
+    margin-right: 8px;
+}
+
+.contenido{
+    padding-left: 10px;
+}
+
+.ubi{
+    color: #2196F3;
+}
+
+.horarios{
+    border: 1px dashed #9747FF;
+    border-radius: 5px;
+    background: #9747FF0A;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: #9747FF;
+}
+
+.contenido_salas{
+    padding-left: 25px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
