@@ -105,18 +105,24 @@ ul{
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.card-title{
-    border: 0px dotted;
+.card-deck .card-title{
+    font-weight: 550;
+    /* border: 0px dotted; */
 }
 
 .horario{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    color: rgb(35, 193, 255);
+    color: rgb(23, 162, 255)
 }
 
 .btn{
     background-color: rgb(228, 228, 228);
     margin: 3px;
     /* border: 1px solid black; */
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }

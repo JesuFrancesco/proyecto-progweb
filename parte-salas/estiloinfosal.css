@@ -91,3 +91,21 @@ ul{
 #imagensala{
     border-radius: 7px;
 }
+
+/**/
+
+.horarios{
+    border: 1px dashed #9747FF;
+    border-radius: 5px;
+    background: #9747FF0A;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: #9747FF;
+}
+
+.pelicula{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
