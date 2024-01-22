@@ -49,11 +49,11 @@ let cards = document.getElementById("tarjetas").getElementsByClassName("card");
     crearCards();
 
     // test
-    let divTest = document.createElement("div");
-    divTest.innerHTML = "test";
-    divTest.setAttribute("class", "card");
-    divTest.setAttribute("style", "font-size: 36pt; background-color: yellow; text-align: center");
+    // let divTest = document.createElement("div");
+    // divTest.innerHTML = "test";
+    // divTest.setAttribute("class", "card");
+    // divTest.setAttribute("style", "font-size: 36pt; background-color: yellow; text-align: center");
     
-    root.appendChild(divTest);
-    console.log("test");
+    // root.appendChild(divTest);
+    // console.log("test");
 })();
