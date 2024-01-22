@@ -1,6 +1,6 @@
 body
 {
-    background-size: auto 800px;
+    background-size: auto 900px;
     background-image:
         url(https://orientacion.universia.edu.pe/imgs2011/imagenes/4-2019_10_30_093553@2x.jpg);
 
@@ -23,7 +23,7 @@ label{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width:30%;
 }
 
 .form{
@@ -34,6 +34,7 @@ label{
     background-color: rgba(231, 218, 218, 0.943);
 
 }
+
 .form-control{
     /* width:80%; */
     border: solid 1px  ;
