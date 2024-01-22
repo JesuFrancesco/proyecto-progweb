@@ -16,8 +16,11 @@ const teclaEvt = (evt) => {
     let valor = inputBuscador.value;
     if(!esVacio(valor)) {
         // console.log(valor);
-        filtrarCartas(valor);
+        for(let i = 0; i < listaCards.length; i++){
+            listaCards[i]["showCard"] = true;
+        }
     }
+    filtrarCartas(valor);
 }
 inputBuscador.addEventListener("keyup", teclaEvt)
 
