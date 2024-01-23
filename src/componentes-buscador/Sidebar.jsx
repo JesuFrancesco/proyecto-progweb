@@ -1,4 +1,4 @@
-import logo from './media/logo.png'
+import logo from './assets/logo.png'
 
 const Sidebar = () => {
     return <>

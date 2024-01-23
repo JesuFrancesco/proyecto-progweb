@@ -1,5 +1,5 @@
-import estrella from './media/estreblanca.png'
-import menuHam from './media/menuHambur.png'
+import estrella from './assets/estreblanca.png'
+import menuHam from './assets/menuHambur.png'
 
 import MenuHamburguesa from './MenuHamburguesa'
 
