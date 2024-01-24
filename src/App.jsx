@@ -1,26 +1,38 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import BuscadorSalaIndex from "./BuscadorSalaIndex"
+
+// Import de los react de otras paginas
+import SalaIndexPage from "./SalaIndexPage"
+import PeliculasIndexPage from "./PeliculasIndexPage"
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <BuscadorSalaIndex />
+        // element: <AutenticacionPage /> ?? un redirect a la pagina de autenticacion antes de ir al menu (o al reves)
+        element: <SalaIndexPage />
     },
     {
-        path: "/salas",
-        element: <BuscadorSalaIndex />
+        path: "/salas-index",
+        element: <SalaIndexPage />
     },
+    // {
+    //     path: "/salas",
+    //     element: <SalasItemPage /> ??
+    // },
     {
-        path: "/peliculas",
-        element: <BuscadorSalaIndex />
+        path: "/peliculas-index",
+        element: <PeliculasIndexPage />
     },
+    // {
+    //     path: "/peliculas",
+    //     element: <PeliculasItemPage /> ??
+    // },
     {
         path: "/autenticacion",
-        element: <BuscadorSalaIndex />
+        // element: <AutenticacionPage />
     },
     {
         path: "/menu",
-        element: <BuscadorSalaIndex />
+        // element: <MenuPage />
     }
 ])
 
