@@ -1,0 +1,34 @@
+.header1{
+ background-color: rgb(255, 121, 0);
+  height: 70px;
+}
+#hamburguesa{
+    width: 60px;
+    margin-left:10px;
+    margin-right: 10px;
+}
+#cabecera{
+   
+    background-color: rgb(250, 121, 0); 
+    color: white;
+    font-family: 'Luckiest guy';
+    font-size: 45px;
+    
+    
+}
+img{
+   width: 35px;
+}
+
+#menuHamburguesaLabel{
+    color: rgb(250, 121, 0);
+    font-family: 'Luckiest Guy' ;
+    font-size: 50px;
+    text-shadow: 1px 1px 1px black;
+    
+}
+#font-menu{
+    font-family: 'Patrick Hand';
+    font-size: 20px;
+  
+}
