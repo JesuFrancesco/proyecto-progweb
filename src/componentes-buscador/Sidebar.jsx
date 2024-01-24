@@ -1,8 +1,7 @@
 import logo from './assets/logo.png'
 
 const Sidebar = () => {
-    return <>
-        <div>
+    return <footer>
                 <div className="text-center">
                     <img src={ logo } id="logo" />
                     <div>
@@ -10,13 +9,12 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <div>
-                    <ul>
-                        <li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Películas</span></li>
-                        <li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sala</span></li>
+                    <ul className='link-lateral'>
+                        <li><span>Películas</span></li>
+                        <li><span>Sala</span></li>
                     </ul>
                 </div>
-        </div>
-    </>
+        </footer>
 }
 
 export default Sidebar

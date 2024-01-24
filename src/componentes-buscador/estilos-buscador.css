@@ -1,35 +1,72 @@
-.header1 {
+/* HEADER */
+.header-ulima {
     background-color: rgb(250, 121, 0);
     padding: 16px; 
     width: 100%;
     box-shadow: 0px 0px 5px;
 }
 
-#cabecera{
+#header-ulima-title{
     background-color: rgb(250, 121, 0); 
     color: white;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 500px;
-    line-height: 32px;
+
+    font-family: 'Luckiest guy', 'Arial';
+    font-size: 2em;
+
+    font-weight: 500;
+    /* line-height: 32px; */
     letter-spacing: 0.15px;
     word-wrap: break-word;
 }
 
-#Estrellas {
+.estrellas {
+    width: 2rem;
     color: aliceblue;
 }
 
+#hamburguesa{
+    width: 3rem;
+    margin-left:10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+#menuHamburguesaLabel{
+    color: rgb(250, 121, 0);
+    font-family: 'Luckiest Guy', 'Impact';
+    font-size: 3rem;
+    text-shadow: 1px 1px 1px black;
+    
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+.menu{
+    font-family: 'Patrick Hand', 'Arial';
+    font-size: 1em;
+}
+
+.offcanvas-body .nav-link{
+    background-color: #ffd1b5;
+}
+
+/* SIDEBAR */
 #logo{
     width: 128px;
     height: 127px;
 }
 
+
 #jul{
     margin-left: 55px;
 }
 
-#botore{
+.link-lateral{
+    text-indent: 30px;
+    line-height: 2rem;
+}
+
+/* #botore{
     border-radius: 5px;
     border: 0px;
     background-color: rgb(250, 121, 0);
@@ -38,7 +75,7 @@
     padding-top: 8px;
     padding-bottom: 8px;
     box-shadow: 0px 2px 5px -2px rgb(0, 0, 0,7);
-}
+} */
 
 #portadapeli{
     margin-left: 12px;
@@ -59,9 +96,6 @@
     color: rgb(0, 119, 255);
 }
 
-#hamburguesa{
-    margin-bottom: 5px;
-}
 
 #confir{
     border: 1px dashed #ff6200;
@@ -84,7 +118,7 @@
 
 ul{
     list-style: none;
-    list-style-image: url(./assets/estrenig.png);
+    list-style-image: url(./assets/estrenegra.png);
     margin-left: 40px;
 }
 
@@ -99,7 +133,7 @@ ul{
     width: 40%;
     margin-left: auto;
     margin-right: 30px;
-
+    
     margin-top: 30px;
     margin-bottom: 30px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -122,7 +156,12 @@ ul{
     /* border: 1px solid black; */
 }
 
-a{
+a {
     text-decoration: none;
     color: black;
 }
+
+/* xd */
+/* .contenido{
+    background-image: url("../../parte-reserva/F-_8BIHWUAAZ9-l.jpg");
+} */
