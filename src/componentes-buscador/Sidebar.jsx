@@ -1,11 +1,11 @@
 import logo from './assets/logo.png'
 
 const Sidebar = () => {
-    return <footer>
+    return <>
                 <div className="text-center">
                     <img src={ logo } id="logo" />
                     <div>
-                        <input type="text" className="mb-4 mt-3" placeholder="Filtrar" id="buscador" />
+                        <input type="text" className="mb-4 mt-3" placeholder="Buscar" id="buscador" />
                     </div>
                 </div>
                 <div>
@@ -14,7 +14,7 @@ const Sidebar = () => {
                         <li><span>Sala</span></li>
                     </ul>
                 </div>
-        </footer>
+        </>
 }
 
 export default Sidebar

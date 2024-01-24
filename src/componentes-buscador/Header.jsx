@@ -16,7 +16,7 @@ const Header = () => {
             </span>
 
             <span>
-                { Array(5).fill(<span><img className='estrellas' src={ estrella } style={ {"margin-right" : "10px"} }/></span>) }
+                { Array(5).fill(<span><img className='estrellas' src={ estrella } style={ {marginRight : "10px"} }/></span>) }
             </span>
         </div>
     </header>

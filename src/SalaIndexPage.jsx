@@ -13,12 +13,12 @@ import './componentes-buscador/estilos-buscador.css'
 const SalaIndexPage = () => {
     return <div className='container'>
         <Header />
-        <div className="contenido">
-            <div className='row mt-4'>
-                <div className="col-md-3"> <Sidebar/> </div>
-                <div className="col"> <SalaIndex/> </div>
-            </div>
+        
+        <div className='row mt-4'>
+            <div className="col-md-3"> <Sidebar/> </div>
+            <div className="col"> <SalaIndex/> </div>
         </div>
+        
         <Footer />
         
         {/* <script src= { filtroNombre } ></script> */}

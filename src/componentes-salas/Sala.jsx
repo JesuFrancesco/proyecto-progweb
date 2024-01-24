@@ -1,5 +1,5 @@
 const Sala = (props) => {
-    return <div className="card">
+    return <div className="card" id={ props.id }>
             <a href="#"><img src= {props.url} alt="portada-sala" className="card-img-top"/></a>
                 <div className="card-body">
                     <p className="horario">{props.salaSchedule}</p>
