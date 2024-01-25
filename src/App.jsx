@@ -1,14 +1,15 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { RouterProvider, createHashRouter } from "react-router-dom"
 
 // Import de los react de otras paginas
 import SalaIndexPage from "./SalaIndexPage"
 import PeliculasIndexPage from "./PeliculasIndexPage"
+import LinkTestPage from "./LinkTestPage"
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: "/",
         // element: <AutenticacionPage /> ?? un redirect a la pagina de autenticacion antes de ir al menu (o al reves)
-        element: <SalaIndexPage />
+        element: <LinkTestPage />
     },
     {
         path: "/salas-index",
