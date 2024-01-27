@@ -28,7 +28,7 @@ const Rutas = () => {
             element: <PeliculasIndexPage />
         },
         {
-            path: "/peliculas-detalle",
+            path: "/peliculas-detalle/:id",
             element: <PeliculasDetallePage />
         },
         {
