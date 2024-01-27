@@ -5,6 +5,7 @@ import SalaIndexPage from "./SalaIndexPage"
 import PeliculasIndexPage from "./PeliculasIndexPage"
 import PeliculasDetallePage from "./PeliculasDetallePage"
 import LinkTestPage from "./LinkTestPage"
+import MenuPage from "./MenuPage"
 
 const router = createHashRouter([
     {
@@ -29,13 +30,14 @@ const router = createHashRouter([
         element: <PeliculasDetallePage />
     },
     {
-        path: "/autenticacion",
-        // element: <AutenticacionPage />
+        path: "/menu",
+        element: <MenuPage/>
     },
     {
-        path: "/menu",
-        // element: <MenuPage />
+        path: "/autenticacion",
+        // element: <AutenticacionPage />
     }
+    
 ])
 
 const App = () => {
