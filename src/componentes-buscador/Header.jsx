@@ -1,6 +1,4 @@
 import estrella from './assets/estreblanca.png'
-import menuHam from './assets/menuHambur.png'
-
 import MenuHamburguesa from './MenuHamburguesa'
 
 const Header = () => {

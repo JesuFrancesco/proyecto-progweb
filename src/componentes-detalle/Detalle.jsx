@@ -3,13 +3,13 @@ const Detalle = (props) => {
   return (
     <div className="contenido_salas">
       <div className="mb-2">
-        <button type="button" className="btn btn-secondary">
+        <button type="button" className="boton_abre">
           {props.abrevia}
         </button>
         &nbsp;
-        <b>{props.sala}</b>
+        <b style={{fontSize: "20px", fontFamily:"Roboto"}}>{props.sala}</b>
       </div>
-      <p>{props.descripcion}</p>
+      <p style={{fontSize: "16px", fontFamily:"Roboto"}}>{props.descripcion}</p>
       <p>
         {props.horarios.map((horario, index) => (
           <button key={index} className="horarios">

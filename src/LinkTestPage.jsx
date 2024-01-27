@@ -15,7 +15,7 @@ const LinkTestPage = () => {
     });
 
     return <div style={ {textAlign: "center"} }>
-        <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" to={ "salas-index" }>
+        <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" to={ "sala" }>
             Salas index page
         </Link>
 
