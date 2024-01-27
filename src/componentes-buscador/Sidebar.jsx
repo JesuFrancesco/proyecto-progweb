@@ -17,7 +17,6 @@ const Sidebar = () => {
                         <li><Link to={ "/menu" }>Menu page</Link></li>
                         <li><Link to={ "/salas" }>Salas</Link></li>
                         <li><Link to={ "/peliculas-index" }>Películas</Link></li>
-                        <li><Link to={ "/peliculas-detalle" }>Películas item (prueba)</Link></li>
                     </ul>
                 </div>
         </>
