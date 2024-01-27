@@ -1,25 +1,53 @@
+import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Card, CardContent, CardActions } from "@mui/material"
+import { Container, ListItemIcon } from "@mui/material"
+import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import MenuIcon from '@mui/icons-material/Menu';
+import StarIcon from '@mui/icons-material/Star';
+import { useState } from "react";
+
+import Sidebar from "./Sidebar";
+// es con el componente de Side bar de jesu 
+// aun falta
 const MenuHamburguesa = () => {
-    return <>
-        <div className="menu offcanvas offcanvas-start" tabIndex="-1" id="menuHamburguesa" aria-labelledby="menuHamburguesaLabel">
-            <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="menuHamburguesaLabel">Cines ULIMA</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
+    const [drawerOpen, setDrawerOpen] = useState(false)
 
-            <div className="offcanvas-body">
-                <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li className="nav-item">
-                        <a className="nav-link btn" aria-current="page" href="#">Menu</a>
-                    </li>
+    const onMenuIconClick = () => {
+        setDrawerOpen(true)
+    }
 
-                    <li className="nav-item">
-                        <a className="nav-link btn" href="#">Link</a>
-                    </li>
-                </ul>
-            </div>
+    const onMenuClose = () => {
+        setDrawerOpen(false)
+    }
 
-        </div>
-    </>
+    return <Box sx={ {display: "inline-block"} }>
+        
+            <Toolbar>
+
+                <IconButton
+                    size="large"
+                    edge="start"
+                    aria-label="menu"
+                    sx={{ mr: 2, color: "white" }}
+                    onClick={ onMenuIconClick }
+                >
+                    <MenuIcon />
+                </IconButton>
+
+                <Typography id="header-ulima-title" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    Salas de Cine Ulima
+                </Typography>
+
+            </Toolbar>
+        
+        <Drawer
+            anchor="left"
+            open={drawerOpen}
+            onClose={onMenuClose}
+            size={'lg'}
+        >
+            <Sidebar/> 
+        </Drawer>
+    </Box>
 }
 
 export default MenuHamburguesa

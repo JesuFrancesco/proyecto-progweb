@@ -3,6 +3,7 @@ import { RouterProvider, createHashRouter } from "react-router-dom"
 // Import de los react de otras paginas
 import SalaIndexPage from "./SalaIndexPage"
 import PeliculasIndexPage from "./PeliculasIndexPage"
+import PeliculasDetallePage from "./PeliculasDetallePage"
 import LinkTestPage from "./LinkTestPage"
 
 const router = createHashRouter([
@@ -23,10 +24,10 @@ const router = createHashRouter([
         path: "/peliculas-index",
         element: <PeliculasIndexPage />
     },
-    // {
-    //     path: "/peliculas",
-    //     element: <PeliculasItemPage /> ??
-    // },
+    {
+        path: "/peliculas-detalle",
+        element: <PeliculasDetallePage />
+    },
     {
         path: "/autenticacion",
         // element: <AutenticacionPage />

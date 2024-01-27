@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Sala from "./Sala"
-import filterIcon from "./filter-icon.png"
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 const SalaIndex = () => {
     const salas = [
@@ -34,20 +34,20 @@ const SalaIndex = () => {
     const [filtro, setFiltro] = useState("");
 
     return <>
-        <div className="border-bottom">
-            <img src= { filterIcon } alt="filter" style={ {marginRight: "1em"} }/>
-            <input type="text" className="form-control my-3" style={ {display: "inline-block", width: "50%"} } placeholder="Filtrar por nombre" id="filtrarInput" 
-                    value={ filtro } onChange={ handleInputChange }/>
-            <h2>Salas</h2>
-            <div id="tarjetas" className="card-deck">
-                { 
-                    salas.map((sala, i) => 
-                        <Sala salaName={sala.salaName} salaSchedule={sala.salaSchedule} salaTimes={sala.salaTimes} url={ sala.url } id={ "sala_"+i }/>
-                    ) 
-                }
-            </div>
+            <div style={ {textAlign: "center"} }>
+                <h2>Salas</h2>
+                <FilterAltIcon style={ {marginRight: "0.5em"} }/>
+                <input type="text" className="form-control my-3" placeholder="Filtrar por nombre" id="filtrarInput"
+                value={ filtro } onChange={ handleInputChange } style={ { display: "inline-block", width: "80%"} }/>
 
-        </div>
+                <div id="tarjetas" className="card-deck">
+                    {
+                        salas.map((sala, i) =>
+                            <Sala salaName={sala.salaName} salaSchedule={sala.salaSchedule} salaTimes={sala.salaTimes} url={ sala.url } id={ "sala_"+i }/>
+                        )
+                    }
+                </div>
+            </div>
     </>
 }
 

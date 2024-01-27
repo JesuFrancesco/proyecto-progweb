@@ -14,9 +14,8 @@ const SalaIndexPage = () => {
     return <div className='container'>
         <Header />
         
-        <div className='row mt-4'>
-            <div className="col-md-3"> <Sidebar/> </div>
-            <div className="col"> <SalaIndex/> </div>
+        <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>  
+            <SalaIndex/> 
         </div>
         
         <Footer />

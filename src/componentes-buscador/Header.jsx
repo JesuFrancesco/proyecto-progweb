@@ -7,16 +7,12 @@ const Header = () => {
 
     return <header>
         <div className="header-ulima d-flex align-items-center justify-content-between">
-            <span id="header-ulima-title">
-                <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuHamburguesa" aria-controls="menuHamburguesa" aria-label="Toggle navigation">
-                    <img src={ menuHam } id="hamburguesa"/>
-                </button>
-
-                <MenuHamburguesa/> &nbsp; &nbsp; Salas de Cine Ulima
+            <span>
+                <MenuHamburguesa />
             </span>
 
             <span>
-                { Array(5).fill(<span><img className='estrellas' src={ estrella } style={ {marginRight : "10px"} }/></span>) }
+                { Array(5).fill(<span><img alt='' className='estrellas' src={ estrella } style={ {marginRight : "10px"} }/></span>) }
             </span>
         </div>
     </header>

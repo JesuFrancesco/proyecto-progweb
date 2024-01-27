@@ -1,17 +1,22 @@
 import logo from './assets/logo.png'
+import { Link } from 'react-router-dom'
+
 
 const Sidebar = () => {
     return <>
                 <div className="text-center">
-                    <img src={ logo } id="logo" />
+                    <img src={ logo } id="logo" alt='' className='mt-3'/>
                     <div>
-                        <input type="text" className="mb-4 mt-3" placeholder="Buscar" id="buscador" />
+                        <input type="text" className="my-4" placeholder="Buscar" id="buscador" />
                     </div>
                 </div>
+
                 <div>
                     <ul className='link-lateral'>
-                        <li><span>Películas</span></li>
-                        <li><span>Sala</span></li>
+                        <li><Link to={ "/peliculas-index" }>Películas</Link></li>
+                        <li><Link to={ "/peliculas-detalle" }>Películas item</Link></li>
+                        <li><Link to={ "/salas-index" }>Sala</Link></li>
+                        <li><Link to={ "/" }>Debug</Link></li>
                     </ul>
                 </div>
         </>
