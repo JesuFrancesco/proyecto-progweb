@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Pelicula from "./Pelicula"
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-
 const PeliculaIndex = () => {
     const peliculas = [
         {
@@ -14,19 +13,19 @@ const PeliculaIndex = () => {
             url: "https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00001906?referenceScheme=HeadOffice&allowPlaceHolder=true",
             peliHora: "1 hrs 20 min",
             peliName: "La super Familia",
-            peliTimes: ["Anime", "APT"]
+            peliTimes: ["Familiar", "APT"]
         },
         {
             url: "https://www.tvguide.com/a/img/catalog/provider/1/2/1-12343363937.jpg",
             peliHora: "2 hrs 10 min",
             peliName: "Aquaman y el Reino Perdido",
-            peliTimes: ["Terror", "+14"]
+            peliTimes: ["Acción", "+14"]
         },
         {
             url: "https://zonasyc.com/wp-content/uploads/2024/01/nino-garza-1.jpg",
             peliHora: "2 hrs 10 min",
             peliName: "El Niño y la Garza",
-            peliTimes: ["Familiar", "APT"]
+            peliTimes: ["Anime", "APT"]
         },
         {
             url: "https://image.tmdb.org/t/p/original/c2ELoYcSis0HYMyDPGPfk8eVsen.jpg",
@@ -50,7 +49,7 @@ const PeliculaIndex = () => {
             url: "https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00001881?referenceScheme=HeadOffice&allowPlaceHolder=true",
             peliHora: "1 hrs 50 min",
             peliName: "Alice: La Gemela del Diablo",
-            peliTimes: ["Suspenso", "+14"]
+            peliTimes: ["Terror", "+14"]
         },
         {
             url: "https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00001895?referenceScheme=HeadOffice&allowPlaceHolder=true",
@@ -94,7 +93,9 @@ const PeliculaIndex = () => {
             <div id="tarjetas" className="row row-cols-1 row-cols-md-3 g-4">
                 {peliculas.map((peli, i) => (
                     <div key={i} className="col">
-                        <Pelicula peliName={peli.peliName} peliHora={peli.peliHora} peliTimes={peli.peliTimes} url={peli.url} id={"peli_" + i} />
+                        <div key={i} className="col">
+                            <Pelicula peliName={peli.peliName} peliHora={peli.peliHora} peliTimes={peli.peliTimes} url={peli.url} id={"peli_" + i} />
+                        </div>
                     </div>
                 ))}
             </div>
