@@ -3,11 +3,6 @@ import Header from './componentes-buscador/Header.jsx'
 import Footer from './componentes-buscador/Footer.jsx'
 import Sidebar from './componentes-buscador/Sidebar.jsx'
 
-// Pelicula index
-
-
-// import filtroNombre from './componentes-salas/FiltrarSalas.js'
-
 import './componentes-buscador/estilos-buscador.css'
 
 const PeliculaIndexPage = () => {
@@ -21,7 +16,6 @@ const PeliculaIndexPage = () => {
         </div>
         <Footer />
         
-        {/* <script src= { filtroNombre } ></script> */}
     </div>
 }
 
