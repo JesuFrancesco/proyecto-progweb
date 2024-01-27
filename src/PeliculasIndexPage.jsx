@@ -4,17 +4,15 @@ import Footer from './componentes-buscador/Footer.jsx'
 import Sidebar from './componentes-buscador/Sidebar.jsx'
 
 import './componentes-buscador/estilos-buscador.css'
+import PeliculaIndex from './componentes-peliculas/PeliculaIndex.jsx'
 
 const PeliculaIndexPage = () => {
     return <div className='container'>
         <Header />
-        <div className="contenido">
-            <div className='row mt-4'>
-                <div className="col-md-3"> <Sidebar/> </div>
-                <div className="col"> peliculaaaaaaaaas </div>
-            </div>
+        <div className="mt-4 mx-auto mb-4" style={ {margin: "0 auto", float: "none"} }>  
+           <PeliculaIndex/> 
         </div>
-        <Footer />
+        <Footer/>
         
     </div>
 }
