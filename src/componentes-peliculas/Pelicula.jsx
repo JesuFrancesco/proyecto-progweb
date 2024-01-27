@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-
+import Chip from "@mui/material/Chip";
 const Pelicula = (props) => {
+    const rutaDetalles = `/peliculas-detalle/${props.id}`;
+
     return (
         <div className="card" id={props.id} style={{ textAlign: "inherit" }}>
-            <Link to="#">
+            <Link to={rutaDetalles}>
                 <img
                     src={props.url}
                     alt="portada-peli"
@@ -13,14 +15,10 @@ const Pelicula = (props) => {
             </Link>
             <div className="card-body">
                 <p className="horario">{props.peliHora}</p>
-                <Link to="#">
                     <h4 className="card-title mb-3">{props.peliName}</h4>
-                </Link>
                 <div className="card-footer">
                     {props.peliTimes.map((time, index) => (
-                        <button key={index} className="btn rounded-pill py-0">
-                            {time}
-                        </button>
+                        <Chip label= {time} key={index}/>
                     ))}
                 </div>
             </div>
