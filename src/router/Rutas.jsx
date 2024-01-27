@@ -6,6 +6,7 @@ import SalaItemPage from "../SalaItemPage"
 import PeliculasIndexPage from "../PeliculasIndexPage"
 import PeliculasDetallePage from "../PeliculasDetallePage"
 import LinkTestPage from "../LinkTestPage"
+import MenuPage from "../MenuPage"
 
 const Rutas = () => {
     return createHashRouter([
@@ -36,7 +37,7 @@ const Rutas = () => {
         },
         {
             path: "/menu",
-            // element: <MenuPage />
+            element: <MenuPage/>
         }
     ])
 }
