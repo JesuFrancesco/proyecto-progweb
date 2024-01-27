@@ -15,15 +15,18 @@ const LinkTestPage = () => {
     });
 
     return <div style={ {textAlign: "center"} }>
-        <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" to={ "sala" }>
+        <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" 
+        to={ "salas" }>
             Salas index page
         </Link>
 
-        <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" to={ "peliculas-index" }>
+        <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" 
+        to={ "peliculas-index" }>
             Peliculas index page
         </Link>
 
-        <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" to={ "peliculas-detalle" }>
+        <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" 
+        to={ "peliculas-detalle" }>
             Peliculas detalle page
         </Link>
     </div>

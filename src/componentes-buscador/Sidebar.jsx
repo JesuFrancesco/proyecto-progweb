@@ -14,7 +14,7 @@ const Sidebar = () => {
                 <div>
                     <ul className='link-lateral'>
                         <li><Link to={ "/" }>Debug</Link></li>
-                        <li><Link to={ "/sala" }>Sala</Link></li>
+                        <li><Link to={ "/salas" }>Salas</Link></li>
                         <li><Link to={ "/peliculas-index" }>Películas</Link></li>
                         <li><Link to={ "/peliculas-detalle" }>Películas item (prueba)</Link></li>
                     </ul>
