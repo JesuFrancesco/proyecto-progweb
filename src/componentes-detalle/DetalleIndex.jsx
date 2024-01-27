@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import Detalle from "./Detalle";
-import ubi from "./ubicacion.png";
+import { Link } from "react-router-dom";
+
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
+
+import Detalle from "./Detalle";
+import ubi from "./ubicacion.png";
 
 const DetalleIndex = () => {
   const [filtro] = useState("");
@@ -27,17 +30,18 @@ const DetalleIndex = () => {
             <div className="ubi">
               <img src={ubi} alt="ubicacion" />
               &nbsp;
-              <a>1hrs 50min</a>
+              <Link>1hrs 50min</Link>
               &nbsp;&nbsp;
               <img src={ubi} alt="ubicacion" />
               &nbsp;
-              <a>David Ayer</a>
+              <Link>David Ayer</Link>
             </div>
           </div>
         </div>
       <div className="col sinopsis" style={{paddingLeft: "30px"}}>
         <div className="card" style={{ width: "546px",height:"286px"}}>
           <iframe
+            title="video"
             height="286"
             src="https://www.youtube.com/embed/J2pWkhP3ou0"
             allowFullScreen

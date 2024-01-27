@@ -1,8 +1,5 @@
-import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Card, CardContent, CardActions } from "@mui/material"
-import { Container, ListItemIcon } from "@mui/material"
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import { Box, Toolbar, IconButton, Typography, Drawer } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
-import StarIcon from '@mui/icons-material/Star';
 import { useState } from "react";
 
 import Sidebar from "./Sidebar";
