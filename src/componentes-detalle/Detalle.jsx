@@ -7,9 +7,9 @@ const Detalle = (props) => {
           {props.abrevia}
         </button>
         &nbsp;
-        <b style={{fontSize: "20px", fontFamily:"Roboto"}}>{props.sala}</b>
+        <b style={{fontSize: "30px", fontFamily:"Roboto"}}>{props.sala}</b>
       </div>
-      <p style={{fontSize: "16px", fontFamily:"Roboto"}}>{props.descripcion}</p>
+      <p style={{fontSize: "20px", fontFamily:"Roboto"}}>{props.descripcion}</p>
       <p>
         {props.horarios.map((horario) => (
           <button className="horarios">
