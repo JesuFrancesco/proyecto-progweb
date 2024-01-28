@@ -39,7 +39,7 @@ const DetalleIndex = () => {
     <div className="row contenido">
       <div style={{ borderBottom: "solid 2px rgb(196, 196, 196)", width: "1180px" }}>
         <Typography variant="h1" className="mt-3" style={{ fontFamily: "Roboto", fontSize: "45px" }}>
-          Películas
+          <b>Películas</b>
         </Typography>
       </div>
       <div className="mt-4 titu">
@@ -79,7 +79,7 @@ const DetalleIndex = () => {
       <p></p>
       <div style={{ paddingLeft: "30px" }}>
         <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
-          Salas disponibles
+          <b>Salas disponibles</b>
         </Typography>
       </div>
       <div className="col-6">
@@ -92,3 +92,4 @@ const DetalleIndex = () => {
 };
 
 export default DetalleIndex;
+
