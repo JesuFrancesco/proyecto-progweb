@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { LocationCity } from "@mui/icons-material"
-import { useState } from "react";
 
 const SalaItem = (props) => {
     // dependiendo de la sala que mediante el params proporcionado por el componente padre
