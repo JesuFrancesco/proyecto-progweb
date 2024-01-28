@@ -83,8 +83,8 @@ const DetalleIndex = () => {
         </Typography>
       </div>
       <div className="col-6">
-        {Salas_dispo.map((detalle, i) => (
-          <Detalle key={i} abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} />
+        {Salas_dispo.map((detalle) => (
+          <Detalle abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} />
         ))}
       </div>
     </div>
@@ -92,3 +92,4 @@ const DetalleIndex = () => {
 };
 
 export default DetalleIndex;
+
