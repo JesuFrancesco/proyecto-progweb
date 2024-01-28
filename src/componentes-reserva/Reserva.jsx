@@ -12,7 +12,7 @@ function Reserva(props)
         boxShadow: "0px 2px 5px -2px"
     }
 
-    return <div>
+    return <div id="todo">
         <h2 className="border-bottom">Reserva</h2>
         <div className="row">
             <div className="col-8 mt-4">
