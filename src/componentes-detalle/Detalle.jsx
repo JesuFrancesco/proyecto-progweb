@@ -1,6 +1,9 @@
 
+import { Link } from "react-router-dom";
 const Detalle = (props) => {
+  const rutaReserva = `/reserva`;
   return (
+    <Link to={rutaReserva}>
     <div className="contenido_salas">
       <div className="mb-2">
         <button type="button" className="boton_abre">
@@ -18,6 +21,7 @@ const Detalle = (props) => {
         ))}
       </p>
     </div>
+    </Link>
   );
 };
 
