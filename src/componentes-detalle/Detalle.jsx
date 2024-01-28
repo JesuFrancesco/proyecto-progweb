@@ -11,8 +11,8 @@ const Detalle = (props) => {
       </div>
       <p style={{fontSize: "16px", fontFamily:"Roboto"}}>{props.descripcion}</p>
       <p>
-        {props.horarios.map((horario, index) => (
-          <button key={index} className="horarios">
+        {props.horarios.map((horario) => (
+          <button className="horarios">
             {horario}
           </button>
         ))}
