@@ -1,16 +1,15 @@
 /* HEADER */
 .header-ulima {
-    background-color: rgb(250, 121, 0);
-    padding: 16px; 
+    background: #FA7525;
+    padding: 5px; 
     width: 100%;
     box-shadow: 0px 0px 5px;
 }
 
 #header-ulima-title{
-    background-color: rgb(250, 121, 0); 
+    background: #FA7525;
     color: white;
-
-    font-family: 'Luckiest guy', 'Arial';
+    font-family: 'Roboto';
     font-size: 2em;
 
     font-weight: 500;
@@ -33,8 +32,8 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
 #menuHamburguesaLabel{
-    color: rgb(250, 121, 0);
-    font-family: 'Luckiest Guy', 'Impact';
+    background: #FA7525;
+    font-family: 'Roboto';
     font-size: 3rem;
     text-shadow: 1px 1px 1px black;
     
@@ -42,7 +41,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 .menu{
-    font-family: 'Patrick Hand', 'Arial';
+    font-family: 'Roboto';
     font-size: 1em;
 }
 
