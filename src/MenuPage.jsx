@@ -24,7 +24,7 @@ const MenuPage = () => {
           }}
         >
           <h2 style=
-          {{ margin:"10px" ,fontFamily: "Road Rage",fontSize: "64px"}}>EL NIÑO Y LA GARZA</h2>
+          {{ margin:"10px", fontFamily: "Road Rage, Roboto", fontSize: "64px"}}>EL NIÑO Y LA GARZA</h2>
         </div>
         <div
           style={{
@@ -36,9 +36,9 @@ const MenuPage = () => {
         >
           <Button variant="outlined" 
           style={{ margin:"10px" ,width: '230px',
-           fontSize: '16px', color: 'white' ,
-           borderColor: "white",  
-         borderWidth: "2px",}}>
+            fontSize: '16px', color: 'white' ,
+            borderColor: "white",  
+            borderWidth: "2px",}}>
             comprar tickets
           </Button>
         </div>
