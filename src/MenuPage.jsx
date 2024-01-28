@@ -34,13 +34,16 @@ const MenuPage = () => {
             color: 'white',
           }}
         >
-          <Button variant="outlined" 
-          style={{ margin:"10px" ,width: '230px',
-            fontSize: '16px', color: 'white' ,
-            borderColor: "white",  
-            borderWidth: "2px",}}>
-            comprar tickets
-          </Button>
+          <Link to="/reserva">
+            <Button
+            variant="outlined"
+            style={{ margin:"10px" ,width: '230px',
+              fontSize: '16px', color: 'white' ,
+              borderColor: "white",
+              borderWidth: "2px",}}>
+              comprar tickets
+            </Button>
+          </Link>
         </div>
       </div>
 

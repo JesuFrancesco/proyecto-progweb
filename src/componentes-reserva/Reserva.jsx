@@ -1,5 +1,4 @@
 import ReservaMod from "./ReservaMod"
-import { Link } from "react-router-dom"
 import imagen from "./ubicacion.png";
 
 function Reserva(props)

@@ -11,8 +11,8 @@ function ReservaPage()
     <Header/>
     
     <div className="mt-4 mx-auto mb-4" style={ {margin: "0 auto", float: "none"} }>  
-            <ReservaIndex/>
-        </div>
+        <ReservaIndex/>
+    </div>
     
     <Footer/>
 </div>
