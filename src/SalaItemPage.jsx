@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom'
 const error = <><img src="https://http.cat/images/404.jpg" alt="" /></>
 
 const SalaItemPage = () => {
-    let { id } = useParams();
+    const { id } = useParams();
     const idNum = Number.parseInt(id);
     // console.log(idNum)
 
