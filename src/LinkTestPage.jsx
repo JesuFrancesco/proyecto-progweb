@@ -25,10 +25,6 @@ const LinkTestPage = () => {
             Peliculas index page
         </Link>
 
-        <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" 
-        to={ "peliculas-detalle" }>
-            Peliculas detalle page
-        </Link>
         <Link onClick={ ()=> document.body.setAttribute("style", "") } style={ {backgroundColor: "blue"} } className="btn btn-primary" to={ "menu" }>
             Menu page
         </Link>
