@@ -51,9 +51,9 @@ const SalaItem = (props) => {
 
 
                                     <div className="border-top movie-footer">
-                                        {(movie.schedules.length < 5)? movie.schedules.map(time => 
-                                            <button className="boton-hora btn rounded-pill">{time}</button>
-                                        ) : <button className="boton-hora btn rounded-pill">{movie.schedules.length} horarios</button>}
+                                        {movie.schedules.map(time => 
+                                            <Link to="/reserva"><button className="boton-hora btn rounded-pill">{time}</button></Link>
+                                        )}
                                     </div>
                                 </div>
                             )
