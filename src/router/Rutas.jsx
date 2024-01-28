@@ -14,13 +14,11 @@ const Rutas = () => {
     return createHashRouter([
         {
             path: "/",
-            // element: <AutenticacionPage /> ?? un redirect a la pagina de autenticacion antes de ir al menu (o al reves)
             element: <LoginPage />
         },
         {
             path: "/registro",
             element: <RegistroPage />
-
         },
         {
             path: "/salas",

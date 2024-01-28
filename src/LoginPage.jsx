@@ -64,12 +64,12 @@ const LoginPage = () => {
           <center>
             <button
               id="boton_especial"
-              className="btn btn-primary"
+              className="btn btn-primary boton-form"
               onClick={handleLogin}
             >
               Ingresar
             </button>
-            <Link to="/registro" className="btn btn-light">
+            <Link to="/registro" className="boton-form btn btn-light">
               Registrarse
             </Link>
           </center>

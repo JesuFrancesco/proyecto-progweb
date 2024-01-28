@@ -5,7 +5,7 @@ import Footer from './componentes-buscador/Footer.jsx'
 // Sala index
 import SalaIndex from './componentes-salas/SalaIndex.jsx'
 import './componentes-buscador/estilos-buscador.css'
-import './componentes-salas/estilos.css'
+import './componentes-salas/estilos_salas.css'
 
 const SalaIndexPage = () => {
     return <div className='container'>

@@ -88,7 +88,7 @@ const RegistroPage = () => {
           <center>
             <button
               type="button"
-              className="btn btn-outline-warning"
+              className="boton-form btn btn-outline-warning"
               onClick={handleRegistrarse}
             >
               Registrarse
