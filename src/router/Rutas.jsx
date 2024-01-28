@@ -5,7 +5,7 @@ import SalaIndexPage from "../SalaIndexPage"
 import SalaItemPage from "../SalaItemPage"
 import PeliculasIndexPage from "../PeliculasIndexPage"
 import PeliculasDetallePage from "../PeliculasDetallePage"
-import LinkTestPage from "../LinkTestPage"
+
 import MenuPage from "../MenuPage"
 import LoginPage from "../LoginPage"
 import RegistroPage from "../RegistroPage"
