@@ -9,8 +9,8 @@ const Header = () => {
                 <MenuHamburguesa />
             </span>
 
-            <span>
-                { Array(5).fill(<span><img alt='' className='estrellas' src={ estrella } style={ {marginRight : "10px"} }/></span>) }
+            <span style={{marginRight: "10px"}}>
+                { Array(5).fill(<span><img alt='' className='estrellas' src={ estrella } style={ {marginRight : "15px"} }/></span>) }
             </span>
         </div>
     </header>
