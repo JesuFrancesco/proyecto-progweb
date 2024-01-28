@@ -9,6 +9,24 @@ const salas = [
         salaSchedule: "John Doe • 4 Feb 2024",
         salaTimes: ["08:00", "10:00", "12:00", "14:00"],
         salaMapsRelativeLocation: "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
+        salaMovies: [
+            {
+                title: "Beekeper sentencia de muerte",
+                schedules: ["15:00", "17:00"],
+                synopsis: "Adam Clay se embarca en la misión de matar a los estafadores que provocaron que su casera se suicidara tras robarle dinero para la beneficencia. Verona, la hija de la casera y agente del FBI, sospecha que el enigmático Adam no es quien asegura ser."
+                
+            },
+            {
+                title: "Jack en la maldita caja 3",
+                schedules: ["15:00", "17:00", "19:00", "21:00"],
+                synopsis: "Cuando una adolescente estadounidense accede a un internado femenino del Reino Unido, sus compañeras no tardan en darse cuenta de que ha ido a buscar una misteriosa caja de juguetes escondida en el patio del colegio. Tras encontrarla y abrirla, seis alumnos se lanzan a una lucha por la supervivencia contra un demonio que escapa de su interior. ¿Lograrán salir con vida de la escuela, o el demonio cobrará las víctimas que necesita para seguir vivo?"
+            },
+            {
+                title: "El niño y la garza",
+                schedules: ["11:00","13:00", "15:00", "17:00", "19:00", "21:00"],
+                synopsis: "Mahito, un joven de 12 años, lucha por asentarse en una nueva ciudad tras la muerte de su madre. Sin embargo, cuando una garza parlante informa a Mahito de que su madre sigue viva, entra en una torre abandonada en su busca, lo que le lleva a otro mundo."
+            }
+        ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/gallery/pabellon_f1_y_f2_vista_aerea.jpg?itok=YC6gGsby"
     },
     {
@@ -16,8 +34,25 @@ const salas = [
         salaLocation: "Pabellon B - ULIMA",
         salaHistory: "mi casa tio !!!!!!!!!!!!!!!!!!!!!!!!!!",
         salaSchedule: "John Doe • 4 Feb 2024",
-        salaTimes: ["08:00", "10:00", "12:00", "14:00"],
+        salaTimes: ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"],
         salaMapsRelativeLocation: "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+B",
+        salaMovies: [
+            {
+                title: "Beekeper sentencia de muerte",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout",
+            },
+            {
+                title: "Jack en la maldita caja 3",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            },
+            {
+                title: "El niño y la garza",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            }
+        ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/ulima_para_ranking_1.jpg?itok=-duMkaQJ"
     },
     {
@@ -27,6 +62,23 @@ const salas = [
         salaSchedule: "John Doe • 4 Feb 2024",
         salaTimes: ["08:00", "10:00", "12:00", "14:00"],
         salaMapsRelativeLocation: "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+C",
+        salaMovies: [
+            {
+                title: "Beekeper sentencia de muerte",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            },
+            {
+                title: "Jack en la maldita caja 3",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            },
+            {
+                title: "El niño y la garza",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            }
+        ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/page/gallery/w.jpg?itok=vDEBxmDd"
     },
     {
@@ -36,6 +88,23 @@ const salas = [
         salaSchedule: "John Doe • 4 Feb 2024",
         salaTimes: ["08:00", "10:00", "12:00", "14:00"],
         salaMapsRelativeLocation: "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+D",
+        salaMovies: [
+            {
+                title: "Beekeper sentencia de muerte",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            },
+            {
+                title: "Jack en la maldita caja 3",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            },
+            {
+                title: "El niño y la garza",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            }
+        ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/gallery/pabellon_f1_y_f2_interior.jpg?itok=ihKBqH3G"
     },
     {
@@ -45,6 +114,23 @@ const salas = [
         salaSchedule: "John Doe • 4 Feb 2024",
         salaTimes: ["08:00", "10:00", "12:00", "14:00"],
         salaMapsRelativeLocation: "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+E",
+        salaMovies: [
+            {
+                title: "Beekeper sentencia de muerte",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            },
+            {
+                title: "Jack en la maldita caja 3",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            },
+            {
+                title: "El niño y la garza",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            }
+        ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/_mg_5142-hdr-edit.jpg?itok=fFkits6x"
     },
     {
@@ -54,6 +140,23 @@ const salas = [
         salaSchedule: "John Doe • 4 Feb 2024",
         salaTimes: ["08:00", "10:00", "12:00", "14:00"],
         salaMapsRelativeLocation: "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+F",
+        salaMovies: [
+            {
+                title: "Beekeper sentencia de muerte",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            },
+            {
+                title: "Jack en la maldita caja 3",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            },
+            {
+                title: "El niño y la garza",
+                schedules: ["15:00", "17:00"],
+                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+            }
+        ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/poste_energia_solar-1707.jpg?itok=v1SsErgL"
     }
     

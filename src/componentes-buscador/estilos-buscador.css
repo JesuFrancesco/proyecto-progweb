@@ -55,25 +55,10 @@
     width: 50%;
 }
 
-#jul{
-    margin-left: 2em;
-}
-
 .link-lateral{
     text-indent: 1em;
     line-height: 3rem;
 }
-
-/* #botore{
-    border-radius: 5px;
-    border: 0px;
-    background-color: rgb(250, 121, 0);
-    color: white;
-    font-family: Arial;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    box-shadow: 0px 2px 5px -2px rgb(0, 0, 0,7);
-} */
 
 #portadapeli{
     margin-left: 12px;
@@ -93,7 +78,6 @@
 #ubi{
     color: rgb(0, 119, 255);
 }
-
 
 #confir{
     border: 1px dashed #ff6200;
@@ -124,42 +108,9 @@ ul{
     border-radius: 7px;
 }
 
-/**/
 
-.card-deck .card{
-    display: inline-block;
-    width: 40%;
-    margin-left: auto;
-    margin-right: 30px;
-    
-    margin-top: 30px;
-    margin-bottom: 30px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-
-.card-deck .card-title{
-    font-weight: 550;
-    /* border: 0px dotted; */
-}
-
-.horario{
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    color: rgb(23, 162, 255)
-}
-
-.btn{
-    background-color: rgb(228, 228, 228);
-    margin: 3px;
-    /* border: 1px solid black; */
-}
 
 a {
     text-decoration: none;
     color: black;
 }
-
-/* xd */
-/* .contenido{
-    background-image: url("../../parte-reserva/F-_8BIHWUAAZ9-l.jpg");
-} */

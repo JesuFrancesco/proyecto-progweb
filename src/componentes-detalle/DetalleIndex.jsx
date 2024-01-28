@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Detalle from "./Detalle";
 import ubi from "./ubicacion.png";
 import Chip from "@mui/material/Chip";
@@ -66,17 +66,17 @@ const Salas_dispo = [
           <div className="ubi">
             <img src={ubi} alt="ubicacion" />
             &nbsp;
-            <a>{hora}</a>
+            <Link>{hora}</Link>
             &nbsp;&nbsp;
             <img src={ubi} alt="ubicacion" />
             &nbsp;
-            <a>{director}</a>
+            <Link>{director}</Link>
           </div>
         </div>
       </div>
       <div className="col sinopsis" style={{ paddingLeft: "30px" }}>
         <div className="card" style={{ width: "546px", height: "286px" }}>
-          <iframe height="286" src={trailer} allowFullScreen />
+          <iframe title="trailer" height="286" src={trailer} allowFullScreen />
         </div>
       </div>
       <div className="col">

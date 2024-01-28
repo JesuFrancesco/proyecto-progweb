@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { LocationCity } from "@mui/icons-material"
+import { useState } from "react";
 
 const SalaItem = (props) => {
     // dependiendo de la sala que mediante el params proporcionado por el componente padre
@@ -8,7 +9,7 @@ const SalaItem = (props) => {
     return (
         <div className="row">
     
-            <div className="jul">
+            <div className="indent">
                 {/* titulo y banner */}
                 <div>
                     <h2 style={ {fontWeight: "600"} }>{sala.salaName}</h2>
@@ -25,7 +26,7 @@ const SalaItem = (props) => {
             </div>
 
             <div className="col-md-8">
-                <div className="jul">
+                <div className="indent">
                     <div style={ {textAlign: "center"} } className="mb-5">
                         <img src={sala.url} style={ {borderRadius: "7px", width: "100%"} } alt="" />
                     </div>
@@ -33,65 +34,31 @@ const SalaItem = (props) => {
                     {/* peliculas */}
                     <div id="peliculas" className="my-3">
                         <h3 className="mb-3" style={ {fontWeight: "600"} }>Películas disponibles</h3>
+                        {
+                            sala.salaMovies.map((movie, index) => 
+                                <div id={"pelicula_"+index} className="pelicula mb-3 card">
+                                    <div className="card-body">
+                                        <button type="button" className="boton-index btn rounded">
+                                            {index + 1}
+                                        </button>
+                                        <b>{movie.title}</b>
 
-                        <div className="pelicula">
-                            <div className="mb-2">
-                                <button type="button" className="btn btn-secondary">
-                                    SA
-                                </button>
-                                &nbsp; <b>Beekeper Sentencia de Muerte</b>
-                            </div>
+                                        <div className="movie-sinapsis">
+                                            {
+                                                movie.synopsis
+                                            }
+                                        </div>
+                                    </div>
 
-                            <p>
-                                It is a long established fact that a reader will be distracted by
-                                the readable content of a page when a looking at is layout
-                            </p>
 
-                            <p>
-                                <button className="btn btn-primary rounded-pill">15:00</button>
-                                <button className="btn btn-primary rounded-pill">17:00</button>
-                            </p>
-                        </div>
-
-                        <div className="pelicula">
-                            <div className="mb-2">
-                                <button type="button" className="btn btn-secondary">
-                                    SA
-                                </button>
-                                &nbsp; <b>jack y la maldita caja 3</b>
-                            </div>
-
-                            <p>
-                                It is a long established fact that a reader will be distracted by
-                                the readable content of a page when a looking at is layout
-                            </p>
-
-                            <p>
-                                <button className="btn btn-primary rounded-pill">15:00</button>
-                                <button className="btn btn-primary rounded-pill">17:00</button>
-                            </p>
-                        </div>
-
-                        <div className="pelicula">
-                            <div className="mb-2">
-                                <button type="button" className="btn btn-secondary">
-                                    SA
-                                </button>
-                                &nbsp; <b>el niño y la fgarza</b>
-                            </div>
-
-                            <p>
-                                It is a long established fact that a reader will be distracted by
-                                the readable content of a page when a looking at is layout
-                            </p>
-
-                            <p>
-                                <button className="btn btn-primary rounded-pill">15:00</button>
-                                <button className="btn btn-primary rounded-pill">17:00</button>
-                            </p>
-                        </div>
-
-                        
+                                    <div className="border-top movie-footer">
+                                        {(movie.schedules.length < 5)? movie.schedules.map(time => 
+                                            <button className="boton-hora btn rounded-pill">{time}</button>
+                                        ) : <button className="boton-hora btn rounded-pill">{movie.schedules.length} horarios</button>}
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
 
@@ -99,7 +66,7 @@ const SalaItem = (props) => {
 
             {/* panel historia */}
             <div className="col-md">
-                <div className="card p-4" style={ {backgroundColor: "rgb(255,235,215)"} }>
+                <div className="card p-4" style={ {backgroundColor: "white"} }>
                     <h4 className="card-title" style={{ fontWeight: 600 }}> Historia </h4>
                     <p style={{ textAlign: "left" }}>
                         {sala.salaHistory}
