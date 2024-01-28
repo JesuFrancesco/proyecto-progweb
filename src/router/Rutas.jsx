@@ -40,6 +40,10 @@ const Rutas = () => {
             path: "/menu",
             element: <MenuPage/>
         },
+        {
+            path : "/reserva",
+            element: <ReservaPage/>
+        }
     ])
 }
 export default Rutas
