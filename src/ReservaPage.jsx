@@ -4,6 +4,7 @@ import Header from "./componentes-buscador/Header"
 
 //Reserva
 import ReservaIndex from "./componentes-reserva/ReservaIndex"
+import './componentes-reserva/estilorese.css'
 
 function ReservaPage()
 {
