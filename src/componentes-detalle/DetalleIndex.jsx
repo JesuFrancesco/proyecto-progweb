@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Detalle from "./Detalle";
 import ubi from "./ubicacion.png";
 import Chip from "@mui/material/Chip";
@@ -17,53 +17,74 @@ const DetalleIndex = () => {
     etiqueta2: "",
   });
 
-  const rutaActual = location.pathname;
-
   useEffect(() => {
+    const rutaActual = location.pathname;
+
     for (let i = 0; i < peliculas.length; i++) {
       if (rutaActual.includes(`/peli_${i}`)) {
         setPeliculaActual({
           titulo: peliculas[i].peliName,
           hora: peliculas[i].peliHora,
-          etiqueta1: peliculas[i].peliGenres[0],
-          etiqueta2: peliculas[i].peliGenres[1],
+          etiqueta1: peliculas[i].peliEtiqueta[0],
+          etiqueta2: peliculas[i].peliEtiqueta[1],
           trailer: peliculas[i].trailer,
           director: peliculas[i].director,
         });
         break;
       }
     }
-  }, [location.pathname, rutaActual]);
-  // peliculas
+  }, [location.pathname, peliculas]);
 
   return (
-    <div className="row" style={{paddingLeft: "30px", paddingRight: "30px"}}>
-      <div style={{ borderBottom: "solid 2px rgb(196, 196, 196)", width: "1180px" }}>
-        <Typography className="mt-3" style={{ fontFamily: "Roboto", fontSize: "45px" }}>
-          Películas
-        </Typography>
+    <div className="row">
+      
+      <div className="peli">
+        <div style={{ borderBottom: "solid 2px rgb(196, 196, 196)", width: "96%" }}>
+          <Typography className="mt-3" style={{ fontFamily: "Roboto", fontSize: "45px" }}>
+            Películas
+          </Typography>
+        </div>
       </div>
+
       <div className="mt-4 titu">
+        <div className="peli">
         <div style={{ fontSize: "40px", fontFamily: "Roboto" }}>{peliculaActual.titulo}</div>
-        <div className="mb-3">
-          <div className="ubi">
-            <img src={ubi} alt="ubicacion" />
-            &nbsp;
-            <Link>{peliculaActual.hora}</Link>
-            &nbsp;&nbsp;
-            <img src={ubi} alt="ubicacion" />
-            &nbsp;
-            <Link>{peliculaActual.director}</Link>
+          <div className="mb-3">
+            <div className="ubi">
+              <img src={ubi} alt="ubicacion" />
+              &nbsp;
+              <a>{peliculaActual.hora}</a>
+              &nbsp;&nbsp;
+              <img src={ubi} alt="ubicacion" />
+              &nbsp;
+              <a>{peliculaActual.director}</a>
+            </div>
           </div>
         </div>
       </div>
-      <div className="col sinopsis" style={{ paddingLeft: "30px" }}>
-        <div className="card" style={{ width: "700px", height: "400px" }}>
-          <iframe title="video-trailer" height="400" src={peliculaActual.trailer} allowFullScreen />
+      
+      <div className="col-md-7">
+        <div className="trailer">
+          <div className="card" style={{ width: "700px", height: "400px" }}>
+            <iframe height="400" src={peliculaActual.trailer} allowFullScreen />
+          </div>
         </div>
+        <p></p>
+          <div className="peli">
+            <div style={{ paddingLeft: "30px" }}>
+              <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
+                <b>Salas disponibles</b>
+              </Typography>
+            </div>
+            {Salas_dispo.map((detalle) => (
+              <Detalle abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} />
+            ))}
+          </div>
       </div>
-      <div className="col">
-        <div className="card" style={{ width: "300px", height: "400px" }}>
+
+
+      <div className="col-md">
+        <div className="card" style={{ width: "300px", height: "400px", marginLeft: "130px"}}>
           <div className="card-body">
             <Typography variant="h5" className="card-title mb-3" style={{ fontSize: "30px" }}>
               Sinopsis
@@ -77,17 +98,7 @@ const DetalleIndex = () => {
           </div>
         </div>
       </div>
-      <p></p>
-      <div style={{ paddingLeft: "30px" }}>
-        <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
-          <b>Salas disponibles</b>
-        </Typography>
-      </div>
-      <div className="col-7">
-        {Salas_dispo.map((detalle) => (
-          <Detalle abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} />
-        ))}
-      </div>
+
     </div>
   );
 };
