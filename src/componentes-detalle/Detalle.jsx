@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const Detalle = (props) => {
   const rutaReserva = `/reserva`;
   return (
-    <Link to={rutaReserva}>
     <div className="contenido_salas">
       <div className="mb-2">
         <button type="button" className="boton_abre">
@@ -15,13 +14,14 @@ const Detalle = (props) => {
       <p style={{fontSize: "20px", fontFamily:"Roboto"}}>{props.descripcion}</p>
       <p>
         {props.horarios.map((horario) => (
+          <Link to={rutaReserva}>
           <button className="horarios">
             {horario}
           </button>
+          </Link>
         ))}
       </p>
     </div>
-    </Link>
   );
 };
 
