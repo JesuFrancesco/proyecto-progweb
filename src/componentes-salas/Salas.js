@@ -32,7 +32,7 @@ const salas = [
     {
         salaName: "Sala B",
         salaLocation: "Pabellon B - ULIMA",
-        salaHistory: "mi casa tio !!!!!!!!!!!!!!!!!!!!!!!!!!",
+        salaHistory: "b !!!!!!!!!!!!!!!!!!!!!!!!!!",
         salaSchedule: "John Doe • 4 Feb 2024",
         salaTimes: ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"],
         salaMapsRelativeLocation: "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+B",
@@ -40,17 +40,17 @@ const salas = [
             {
                 title: "Beekeper sentencia de muerte",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout",
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!",
             },
             {
                 title: "Jack en la maldita caja 3",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             },
             {
                 title: "El niño y la garza",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             }
         ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/ulima_para_ranking_1.jpg?itok=-duMkaQJ"
@@ -66,17 +66,17 @@ const salas = [
             {
                 title: "Beekeper sentencia de muerte",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             },
             {
                 title: "Jack en la maldita caja 3",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             },
             {
                 title: "El niño y la garza",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             }
         ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/page/gallery/w.jpg?itok=vDEBxmDd"
@@ -84,7 +84,7 @@ const salas = [
     {
         salaName: "Sala D",
         salaLocation: "Pabellon D - ULIMA",
-        salaHistory: "pabellon d de doofenszmirtzs",
+        salaHistory: "pabellon d",
         salaSchedule: "John Doe • 4 Feb 2024",
         salaTimes: ["08:00", "10:00", "12:00", "14:00"],
         salaMapsRelativeLocation: "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+D",
@@ -92,17 +92,17 @@ const salas = [
             {
                 title: "Beekeper sentencia de muerte",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             },
             {
                 title: "Jack en la maldita caja 3",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             },
             {
                 title: "El niño y la garza",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             }
         ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/gallery/pabellon_f1_y_f2_interior.jpg?itok=ihKBqH3G"
@@ -118,17 +118,17 @@ const salas = [
             {
                 title: "Beekeper sentencia de muerte",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             },
             {
                 title: "Jack en la maldita caja 3",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             },
             {
                 title: "El niño y la garza",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             }
         ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/_mg_5142-hdr-edit.jpg?itok=fFkits6x"
@@ -144,17 +144,17 @@ const salas = [
             {
                 title: "Beekeper sentencia de muerte",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             },
             {
                 title: "Jack en la maldita caja 3",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             },
             {
                 title: "El niño y la garza",
                 schedules: ["15:00", "17:00"],
-                synopsis: "It is a long established fact that a reader will be distracted by the readable content of a page when a looking at is layout"
+                synopsis: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nihil ratione, aperiam sequi corporis cumque? Perferendis itaque provident necessitatibus voluptates corrupti! Quasi vel rem ipsum fugit corporis reprehenderit, reiciendis dolorem. Eveniet id adipisci fugiat rerum quibusdam officia. Magni molestias reprehenderit facere, accusamus delectus in ad expedita aspernatur autem possimus quod tempora soluta laudantium, iste mollitia! Necessitatibus officiis consectetur totam natus!"
             }
         ],
         url: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/poste_energia_solar-1707.jpg?itok=v1SsErgL"
