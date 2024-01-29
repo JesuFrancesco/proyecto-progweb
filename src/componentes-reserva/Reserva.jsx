@@ -31,10 +31,10 @@ function Reserva(props)
                             <div >fecha</div>
                             <div className="border-bottom mb-4 mt-2"></div>
                             <div className="card-text">
-                                <input type="text" className="form-control mb-3" id="sebas" placeholder="Nombre"  />
-                                <input type="text" className="form-control mb-3" id="sebas" placeholder="Apellido"  />
-                                <input type="text" className="form-control mb-3" id="sebas" placeholder="Código"  />
-                                <input type="text" className="form-control " id="sebas" placeholder="Cantidad"  />
+                                <input type="text" className="form-control mb-3" id="cajate" placeholder="Nombre"  />
+                                <input type="text" className="form-control mb-3" id="cajate" placeholder="Apellido"  />
+                                <input type="text" className="form-control mb-3" id="cajate" placeholder="Código"  />
+                                <input type="text" className="form-control " id="cajate" placeholder="Cantidad"  />
                                  <ReservaMod/> 
                             </div>
                         </div>
