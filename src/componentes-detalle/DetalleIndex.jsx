@@ -36,7 +36,7 @@ const DetalleIndex = () => {
   }, [location.pathname, peliculas]);
 
   return (
-    <div className="row">
+    <div className="row" style={{paddingLeft: "30px", paddingRight: "30px"}}>
       <div style={{ borderBottom: "solid 2px rgb(196, 196, 196)", width: "1180px" }}>
         <Typography variant="h1" className="mt-3" style={{ fontFamily: "Roboto", fontSize: "45px" }}>
           <b>Películas</b>
@@ -82,7 +82,7 @@ const DetalleIndex = () => {
           <b>Salas disponibles</b>
         </Typography>
       </div>
-      <div className="col">
+      <div className="col-7">
         {Salas_dispo.map((detalle) => (
           <Detalle abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} />
         ))}
