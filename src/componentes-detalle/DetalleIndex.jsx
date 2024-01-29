@@ -73,7 +73,7 @@ const DetalleIndex = () => {
           <div className="peli">
             <div style={{ paddingLeft: "30px" }}>
               <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
-                <b>Salas disponibles</b>
+                <b style={{marginLeft:"10px"}}>Salas disponibles</b>
               </Typography>
             </div>
             {Salas_dispo.map((detalle) => (
