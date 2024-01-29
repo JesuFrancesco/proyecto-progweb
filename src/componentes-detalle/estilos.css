@@ -1,20 +1,14 @@
 
 .titu{
-    padding-left: 50px;
+    padding-left: 75px;
 }
 
-.sinopsis{
-    margin-right: 50px;
+.trailer{
+    padding-left: 70px;
 }
 
-.boton_sinop{
-    background: #00000014;
-    border-radius: 100px;
-    margin-right: 5px;
-}
-
-.contenido{
-    padding-left: 10px;
+.peli{
+    margin-left: 2em;
 }
 
 .ubi{
@@ -34,14 +28,11 @@
 }
 
 .contenido_salas{
-    padding-left: 65px;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    padding-left: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.contenido{
-    margin-left: 50px;
-}
 
 .boton_abre{
     background: #BDBDBD;
@@ -53,4 +44,3 @@
     border-radius: 4px;
     font-size: 20px;
 }
-
