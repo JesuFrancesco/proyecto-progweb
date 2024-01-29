@@ -61,7 +61,7 @@ const DetalleIndex = () => {
           <iframe height="400" src={peliculaActual.trailer} allowFullScreen />
         </div>
       </div>
-      <div className="col-4">
+      <div className="col">
         <div className="card" style={{ width: "300px", height: "400px" }}>
           <div className="card-body">
             <Typography variant="h5" className="card-title mb-3" style={{ fontSize: "30px" }}>
@@ -82,7 +82,7 @@ const DetalleIndex = () => {
           <b>Salas disponibles</b>
         </Typography>
       </div>
-      <div className="col-6">
+      <div className="col">
         {Salas_dispo.map((detalle) => (
           <Detalle abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} />
         ))}
