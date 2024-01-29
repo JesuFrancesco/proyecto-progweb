@@ -36,7 +36,7 @@ const DetalleIndex = () => {
   }, [location.pathname, peliculas]);
 
   return (
-    <div className="row contenido">
+    <div className="row">
       <div style={{ borderBottom: "solid 2px rgb(196, 196, 196)", width: "1180px" }}>
         <Typography variant="h1" className="mt-3" style={{ fontFamily: "Roboto", fontSize: "45px" }}>
           <b>Películas</b>
