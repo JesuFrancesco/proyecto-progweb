@@ -54,7 +54,7 @@ const MenuPage = () => {
           className="form-control my-3"
           placeholder="Busca por título, actores, actrices, género, etc"
           style={{width:"700px"}}
-        />;
+        />
 
 
         </div>
