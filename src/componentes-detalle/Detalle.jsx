@@ -11,8 +11,7 @@ const Detalle = (props) => {
         &nbsp;
         <b style={{fontSize: "30px", fontFamily:"Roboto"}}>{props.sala}</b>
       </div>
-      <p style={{fontSize: "20px", fontFamily:"Roboto"}}>{props.descripcion}</p>
-      <p>
+      <div style={{fontSize: "20px", fontFamily:"Roboto"}}>{props.descripcion}</div>
         {props.horarios.map((horario) => (
           <Link to={rutaReserva}>
           <button className="horarios">
@@ -20,7 +19,6 @@ const Detalle = (props) => {
           </button>
           </Link>
         ))}
-      </p>
     </div>
   );
 };
