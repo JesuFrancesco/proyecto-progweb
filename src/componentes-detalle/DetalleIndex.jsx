@@ -38,8 +38,8 @@ const DetalleIndex = () => {
   return (
     <div className="row" style={{paddingLeft: "30px", paddingRight: "30px"}}>
       <div style={{ borderBottom: "solid 2px rgb(196, 196, 196)", width: "1180px" }}>
-        <Typography variant="h1" className="mt-3" style={{ fontFamily: "Roboto", fontSize: "45px" }}>
-          <b>Películas</b>
+        <Typography className="mt-3" style={{ fontFamily: "Roboto", fontSize: "45px" }}>
+          Películas
         </Typography>
       </div>
       <div className="mt-4 titu">
