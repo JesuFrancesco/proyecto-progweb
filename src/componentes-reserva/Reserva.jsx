@@ -3,7 +3,7 @@ import imagen from "./ubicacion.png";
 
 function Reserva(props)
 {
-    const quintase ={
+    const qx ={
         marginLeft : "60px"
     }
 
@@ -16,7 +16,7 @@ function Reserva(props)
         <h2 className="border-bottom">Reserva</h2>
         <div className="row">
             <div className="col-8 mt-4">
-                <div style={ quintase }>
+                <div style={ qx }>
                     <div style={ {marginLeft : "20px", marginBottom : "10px"} }>
                         <h2>NOMBRE</h2>
                         <div>
