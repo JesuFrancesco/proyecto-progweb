@@ -23,13 +23,13 @@ const cuadro ={
   paddingLeft: "40px",
   paddingTop: "8px",
   paddingBottom: "8px",
-  color: "#FA7525",
+  color: "#FA7525"
 };
 
 const botoni={
   borderRadius: "5px",
   border: "0px",
-  backgroundColor: "rgb(250, 121, 0)",
+  backgroundColor: "#FA7525",
   color: "white",
   fontFamily: "Arial",
   paddingTop: "8px",
@@ -55,7 +55,7 @@ export default function ReservaMod() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h5" component="h1">
+          <Typography id="modal-modal-title" variant="h6" className='mb-3'>
             <b>Reserva Confirmada</b>
           </Typography>
           <Typography id="modal-modal-description" >

@@ -1,5 +1,6 @@
 import ReservaMod from "./ReservaMod"
 import imagen from "./ubicacion.png";
+import poraho from "./imagenporahora.png"
 
 function Reserva(props)
 {
@@ -19,23 +20,22 @@ function Reserva(props)
                 <div style={ qx }>
                     <div style={ {marginLeft : "20px", marginBottom : "10px"} }>
                         <h2>NOMBRE</h2>
-                        <div>
-                            <img src={imagen} alt="ubicacion"/>duracion
-                            <img src={imagen} alt="ubicacion"/>sala
+                        <div >
+                            <img src={imagen} alt="ubicacion"/><span id="sali">duracion</span>
+                            <img src={imagen} alt="ubicacion"/><span id="sali">sala</span>
                         </div>
                     </div>
                     <div className="card" style={carta}>
                         <div className="card-body">
                             <h6 className="card-title">Información de Reserva</h6>
-                            <div className="border-bottom mb-4">fecha</div>
+                            <div >fecha</div>
+                            <div className="border-bottom mb-4 mt-2"></div>
                             <div className="card-text">
-                                <input type="text" className="form-control mb-3" placeholder="Nombre"  />
-                                <input type="text" className="form-control mb-3" placeholder="Apellido"  />
-                                <input type="text" className="form-control mb-3" placeholder="Código"  />
-                                <input type="text" className="form-control mb-3" placeholder="Cantidad"  />
-                               
-                                    <ReservaMod/>
-                                
+                                <input type="text" className="form-control mb-3" id="sebas" placeholder="Nombre"  />
+                                <input type="text" className="form-control mb-3" id="sebas" placeholder="Apellido"  />
+                                <input type="text" className="form-control mb-3" id="sebas" placeholder="Código"  />
+                                <input type="text" className="form-control " id="sebas" placeholder="Cantidad"  />
+                                 <ReservaMod/> 
                             </div>
                         </div>
                     </div>
@@ -46,8 +46,7 @@ function Reserva(props)
             </div>
             <div className="col-4">
                 <div style={{marginTop:"100px"}}>
-                    IMAGEN
-                    <img src="#" alt="#" />
+                    <img src={poraho} id="img" alt="imagenporahora" />
                 </div>
             </div>
         </div>
@@ -55,3 +54,4 @@ function Reserva(props)
 }
 
 export default Reserva
+
