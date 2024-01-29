@@ -12,3 +12,6 @@ Integrantes:
 - Leon, Patrick
 - Fernández, Italo
 - Taype, Daniel
+
+# Deployment (Github Pages)
+- https://jesufrancesco.github.io/proyecto-progweb/
