@@ -75,9 +75,9 @@ const LoginPage = () => {
           </center>
           <center>
             <p className="links">
-              <a href="#" className="text-decoration-none">
+              <Link className="text-decoration-none">
                 ¿Te olvidaste tu contraseña?
-              </a>
+              </Link>
             </p>
           </center>
         </form>
