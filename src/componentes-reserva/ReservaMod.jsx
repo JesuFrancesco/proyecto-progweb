@@ -37,7 +37,7 @@ const botoni={
   boxShadow: "0px 2px 5px -2px rgb(0, 0, 0,7)"
 };
 
-export default function ReservaMod() {
+export default function ReservaMod(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -60,10 +60,10 @@ export default function ReservaMod() {
           </Typography>
           <Typography id="modal-modal-description" >
             <div style={ cuadro }>
-              <div>Nombre</div>
-              <div>Apellidos</div>
-              <div>Codigo</div>
-              <div>Cantidad de Pases</div>
+              <div>{props.nombrese}</div>
+              <div>{props.apellidose}</div>
+              <div>{props.codigose}</div>
+              <div>{props.cantidadse}</div>
             </div>
             <Button style={{marginLeft : "auto"}} variant="text" onClick={handleClose}>ENTENDIDO</Button>
           </Typography>

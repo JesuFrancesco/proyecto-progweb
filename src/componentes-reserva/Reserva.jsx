@@ -1,9 +1,32 @@
 import ReservaMod from "./ReservaMod"
 import imagen from "./ubicacion.png";
 import poraho from "./imagenporahora.png"
+import { useState } from "react";
 
 function Reserva(props)
 {
+    const [nombre,setNombre] = useState("")
+    const [apellido,setApellido] = useState("")
+    const [codigo,setCodigo] = useState("")
+    const [cantidad,setCantidad] = useState("")
+
+    function InsertarNombre(event)
+    {
+        setNombre(event.target.value)
+    }
+    function InsertarApellido(event)
+    {
+        setApellido(event.target.value)
+    }
+    function InsertarCodigo(event)
+    {
+        setCodigo(event.target.value)
+    }
+    function InsertarCantidad(event)
+    {
+        setCantidad(event.target.value)
+    }
+
     const qx ={
         marginLeft : "60px"
     }
@@ -31,11 +54,35 @@ function Reserva(props)
                             <div >fecha</div>
                             <div className="border-bottom mb-4 mt-2"></div>
                             <div className="card-text">
-                                <input type="text" className="form-control mb-3" id="cajate" placeholder="Nombre"  />
-                                <input type="text" className="form-control mb-3" id="cajate" placeholder="Apellido"  />
-                                <input type="text" className="form-control mb-3" id="cajate" placeholder="Código"  />
-                                <input type="text" className="form-control " id="cajate" placeholder="Cantidad"  />
-                                 <ReservaMod/> 
+                                <input type="text" 
+                                    className="form-control mb-3" 
+                                    id="cajate" 
+                                    placeholder="Nombre" 
+                                    value={nombre}
+                                    onChange={InsertarNombre}/>
+                                <input type="text" 
+                                    className="form-control mb-3" 
+                                    id="cajate" 
+                                    placeholder="Apellido"
+                                    value={apellido}
+                                    onChange={InsertarApellido}/>
+                                <input type="text" 
+                                    className="form-control mb-3" 
+                                    id="cajate" 
+                                    placeholder="Código"
+                                    value={codigo}
+                                    onChange={InsertarCodigo}/>
+                                <input type="text" 
+                                    className="form-control " 
+                                    id="cajate" 
+                                    placeholder="Cantidad"
+                                    value={cantidad}
+                                    onChange={InsertarCantidad}/>
+                                 <ReservaMod 
+                                    nombrese={nombre}
+                                    apellidose={apellido}
+                                    codigose={codigo}
+                                    cantidadse={cantidad}/> 
                             </div>
                         </div>
                     </div>
@@ -54,4 +101,3 @@ function Reserva(props)
 }
 
 export default Reserva
-
