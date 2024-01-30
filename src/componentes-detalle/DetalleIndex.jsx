@@ -1,39 +1,66 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Detalle from "./Detalle";
-import ubi from "./ubicacion.png";
+
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import PersonIcon from '@mui/icons-material/Person';
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
-import { peliculas, Salas_dispo } from "./Detalles";
+
+import Detalle from "./Detalle";
+import { Salas_dispo } from "./Detalles";
 
 const DetalleIndex = () => {
+  const errorComponent = <>
+    <img src="https://http.cat/images/404.jpg" alt="" />
+  </>
+
   const location = useLocation();
   const [peliculaActual, setPeliculaActual] = useState({
+    id: "",
+    path: "",
     titulo: "",
-    hora: "",
-    director: "",
+    year: "",
+    cast: [],
     trailer: "",
-    etiqueta1: "",
-    etiqueta2: "",
+    extract: "",
+    generos: [],
+    url: []
   });
+  const [error, setError] = useState(false);
 
-  useEffect(() => {
+  const buscarPeliculasHTTP = async () => {
+    const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
+    const peliculas = await response.json();
+
     const rutaActual = location.pathname;
-
-    for (let i = 0; i < peliculas.length; i++) {
-      if (rutaActual.includes(`/peli_${i}`)) {
-        setPeliculaActual({
-          titulo: peliculas[i].peliName,
-          hora: peliculas[i].peliHora,
-          etiqueta1: peliculas[i].peliGenres[0],
-          etiqueta2: peliculas[i].peliGenres[1],
-          trailer: peliculas[i].trailer,
-          director: peliculas[i].director,
-        });
-        break;
-      }
+    const path = rutaActual.split("/")[2]
+    
+    const peliculaActual = peliculas.find((pelicula) => pelicula.path === path);
+    if(peliculaActual){
+      setPeliculaActual({
+        id: peliculaActual.id,
+        path: peliculaActual.path,
+        titulo: peliculaActual.title,
+        year: peliculaActual.year,
+        cast: peliculaActual.cast,
+        trailer: peliculaActual.thumbnail,
+        extract: peliculaActual.extract,
+        generos: peliculaActual.genres,
+        url: peliculaActual.thumbnail
+      })
+    } else {
+      setError(true);
     }
-  }, [location.pathname]);
+  }
+
+  // Buscar peliculas...
+  useEffect(() => {
+    buscarPeliculasHTTP();
+  }, []);
+
+  if(error === true){
+    return errorComponent
+  }
 
   return (
     <div className="row">
@@ -51,13 +78,11 @@ const DetalleIndex = () => {
         <div style={{ fontSize: "40px", fontFamily: "Roboto" }}>{peliculaActual.titulo}</div>
           <div className="mb-3">
             <div className="ubi">
-              <img src={ubi} alt="ubicacion" />
-              &nbsp;
-              <Link>{peliculaActual.hora}</Link>
-              &nbsp;&nbsp;
-              <img src={ubi} alt="ubicacion" />
-              &nbsp;
-              <Link>{peliculaActual.director}</Link>
+            <DateRangeIcon />
+            <Link style={ {marginRight: "1em"} }>&nbsp; {peliculaActual.year}</Link>
+
+            <PersonIcon />
+            <Link>&nbsp; {peliculaActual.cast[0]}</Link>
             </div>
           </div>
         </div>
@@ -65,36 +90,43 @@ const DetalleIndex = () => {
       
       <div className="col-md-7">
         <div className="trailer">
-          <div className="card" style={{ width: "700px", height: "400px" }}>
-            <iframe title="trailer" height="400" src={peliculaActual.trailer} allowFullScreen />
-          </div>
+          <img src={peliculaActual.url} alt="" 
+          className='w-100' style={ {height: "500px", overflow: "hidden", objectFit: "contain"} }/>
         </div>
         <p></p>
           <div className="peli">
-            <div style={{ paddingLeft: "30px" }}>
+            
               <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
                 <b style={{marginLeft:"10px"}}>Salas disponibles</b>
               </Typography>
-            </div>
+            
             {Salas_dispo.map((detalle) => (
               <Detalle abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} />
             ))}
           </div>
       </div>
 
-
+      {/* columna de sinopsis */}
       <div className="col-md">
-        <div className="card" style={{ width: "300px", height: "400px", marginLeft: "130px"}}>
+
+        <div className="card" style={{ marginLeft: "130px"}}>
           <div className="card-body">
             <Typography variant="h5" className="card-title mb-3" style={{ fontSize: "30px" }}>
               Sinopsis
             </Typography>
+
+            {/* la sinopsis */}
             <Typography variant="body1" className="card-text" style={{ fontSize: "20px", fontFamily: "Roboto", marginBottom: "15px" }}>
-              La brutal campaña de venganza de un hombre adquiere dimensiones nacionales cuando se descubre que es un antiguo agente de una poderosa organización clandestina conocida como "Los apicultores"
+              {
+                peliculaActual.extract
+              }
             </Typography>
-            <Chip label={peliculaActual.etiqueta1} />
-            &nbsp;
-            <Chip label={peliculaActual.etiqueta2} />
+            
+            {/* los chip */}
+            {
+              peliculaActual.generos.map( tag => <Chip label={tag} />)
+            }
+            
           </div>
         </div>
       </div>

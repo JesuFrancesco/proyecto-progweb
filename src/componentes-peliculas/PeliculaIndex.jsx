@@ -100,7 +100,7 @@ const PeliculaIndex = () => {
                 {peliculas.map((peli, i) => (
                     <div key={i} className="col">
                         <div key={i} className="col">
-                            <Pelicula peliName={peli.peliName} peliHora={peli.peliHora} peliGenres={peli.peliGenres} url={peli.url} id={"peli_" + i} />
+                            <Pelicula peliName={peli.peliName} peliHora={peli.peliHora} peliGenres={peli.peliGenres} url={peli.url} id={"the-grudge"} />
                         </div>
                     </div>
                 ))}
