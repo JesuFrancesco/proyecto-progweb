@@ -9,14 +9,16 @@ import DetalleIndex from './componentes-detalle/DetalleIndex.jsx'
 import './componentes-detalle/estilos.css'
 
 const PeliculasDetallePage = () => {
-    return <div className='container'>
+    return <>
         <Header />
-        <div className="mt-4 mx-auto" style={ {marginLeft: "100", float: "none"} }>  
-            <DetalleIndex/> 
-        </div>
-        <Footer />
+        <div className='container'>
+            <div className="mt-4 mx-auto" style={ {marginLeft: "100", float: "none"} }>
+                <DetalleIndex/>
+            </div>
+            <Footer />
         
-    </div>
+        </div>
+    </>
 }
 
 export default PeliculasDetallePage

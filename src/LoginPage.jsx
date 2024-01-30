@@ -7,10 +7,11 @@ const LoginPage = () => {
   const [contrasena, setContrasena] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
+  document.body.classList.add("fondo-body")
 
   const handleLogin = (event) => {
     event.preventDefault()
-
+    
     try {
       const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || { users: [] }
       const usuariosJSON = require('./data/usuarios.json');
@@ -19,6 +20,7 @@ const LoginPage = () => {
 
       if (user) {
         navigate('/menu')
+        document.body.classList.remove("fondo-body")
       } else {
         setError('Usuario o contraseña incorrectos')
       }

@@ -7,14 +7,16 @@ import PeliculaIndex from './componentes-peliculas/PeliculaIndex.jsx'
 import './componentes-peliculas/estilopeli.css'
 
 const PeliculaIndexPage = () => {
-    return <div className='container'>
-        <Header />
-        <div className="mt-4 mx-auto mb-4" style={ {margin: "0 auto", float: "none"} }>  
-            <PeliculaIndex/> 
-        </div>
-        <Footer/>
+    return <>
+            <Header />
+        <div className='container'>
+            <div className="mt-4 mx-auto mb-4" style={ {margin: "0 auto", float: "none"} }>
+                <PeliculaIndex/>
+            </div>
+            <Footer/>
         
-    </div>
+        </div>
+    </>
 }
 
 export default PeliculaIndexPage

@@ -8,15 +8,17 @@ import './componentes-buscador/estilos-buscador.css'
 import './componentes-salas/estilos_salas.css'
 
 const SalaIndexPage = () => {
-    return <div className='container'>
+    return <>
         <Header />
+        <div className='container'>
         
-        <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>  
-            <SalaIndex/> 
+            <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>
+                <SalaIndex/>
+            </div>
+        
+            <Footer />
         </div>
-        
-        <Footer />
-    </div>
+    </>
 }
 
 export default SalaIndexPage

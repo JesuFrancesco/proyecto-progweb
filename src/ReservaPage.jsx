@@ -8,15 +8,17 @@ import './componentes-reserva/estilorese.css'
 
 function ReservaPage()
 {
-    return <div className='container'>
-    <Header/>
-    
-    <div className="mt-4 mx-auto mb-4" style={ {margin: "0 auto", float: "none"} }>  
-        <ReservaIndex/>
-    </div>
-    
-    <Footer/>
-</div>
+    return <>
+        <Header/>
+        <div className='container'>
+        
+            <div className="mt-4 mx-auto mb-4" style={ {margin: "0 auto", float: "none"} }>
+                <ReservaIndex/>
+            </div>
+        
+        <Footer/>
+        </div>
+    </>
 }
 
 export default ReservaPage

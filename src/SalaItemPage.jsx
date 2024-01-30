@@ -24,16 +24,17 @@ const SalaItemPage = () => {
 
     const sala = salas[id-1];
 
-    return <div className='container'>
+    return <>
         <Header />
+        <div className='container'>
         
-        <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>  
-            <SalaItem sala={ sala }/>
+            <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>
+                <SalaItem sala={ sala }/>
+            </div>
+        
+            <Footer />
         </div>
-        
-        <Footer />
-
-    </div>
+    </>
 
 }
 

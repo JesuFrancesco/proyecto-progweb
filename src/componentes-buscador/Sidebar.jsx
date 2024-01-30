@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Sidebar = () => {
     return <>
                 <div className="text-center">
-                    <img src={ logo } id="logo" alt='' className='mt-3'/>
+                    <a href='https://www.ulima.edu.pe/'><img src={ logo } id="logo" alt='' className='mt-3'/></a>
                     <div>
                         <input type="text" className="my-4" placeholder="Buscar" id="buscador" />
                     </div>

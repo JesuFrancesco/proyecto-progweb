@@ -21,7 +21,7 @@ const MenuPage = () => {
 
           className="form-control my-3"
           placeholder="Busca por título, actores, actrices, género, etc"
-          style={{width:"700px"}}/>
+          style={{width:"80%"}}/>
         </div>
       
         {/* botones */}
@@ -29,13 +29,13 @@ const MenuPage = () => {
           <Stack spacing={14} direction="row">
 
             <Link to="/peliculas-index">
-              <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '230px' }}>
+              <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
                 Películas
               </Button>
             </Link>
 
             <Link to="/salas">
-              <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '230px' }}>
+              <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
                 Salas
               </Button>
             </Link>
