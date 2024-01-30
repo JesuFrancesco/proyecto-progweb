@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Detalle from "./Detalle";
 import ubi from "./ubicacion.png";
 import Chip from "@mui/material/Chip";
@@ -25,15 +25,15 @@ const DetalleIndex = () => {
         setPeliculaActual({
           titulo: peliculas[i].peliName,
           hora: peliculas[i].peliHora,
-          etiqueta1: peliculas[i].peliEtiqueta[0],
-          etiqueta2: peliculas[i].peliEtiqueta[1],
+          etiqueta1: peliculas[i].peliGenres[0],
+          etiqueta2: peliculas[i].peliGenres[1],
           trailer: peliculas[i].trailer,
           director: peliculas[i].director,
         });
         break;
       }
     }
-  }, [location.pathname, peliculas]);
+  }, [location.pathname]);
 
   return (
     <div className="row">
@@ -53,11 +53,11 @@ const DetalleIndex = () => {
             <div className="ubi">
               <img src={ubi} alt="ubicacion" />
               &nbsp;
-              <a>{peliculaActual.hora}</a>
+              <Link>{peliculaActual.hora}</Link>
               &nbsp;&nbsp;
               <img src={ubi} alt="ubicacion" />
               &nbsp;
-              <a>{peliculaActual.director}</a>
+              <Link>{peliculaActual.director}</Link>
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@ const DetalleIndex = () => {
       <div className="col-md-7">
         <div className="trailer">
           <div className="card" style={{ width: "700px", height: "400px" }}>
-            <iframe height="400" src={peliculaActual.trailer} allowFullScreen />
+            <iframe title="trailer" height="400" src={peliculaActual.trailer} allowFullScreen />
           </div>
         </div>
         <p></p>
