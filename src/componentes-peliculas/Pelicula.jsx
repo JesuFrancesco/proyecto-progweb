@@ -9,7 +9,7 @@ const Pelicula = (props) => {
                 <img
                     src={props.url}
                     alt="portada-peli"
-                    className="card-img-top"
+                    className="card-img-top w-100"
                     style={{ width: "415px", height: "400px" }} 
                 />
             </Link>

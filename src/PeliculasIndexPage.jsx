@@ -4,6 +4,7 @@ import Footer from './componentes-buscador/Footer.jsx'
 
 import './componentes-buscador/estilos-buscador.css'
 import PeliculaIndex from './componentes-peliculas/PeliculaIndex.jsx'
+import './componentes-peliculas/estilopeli.css'
 
 const PeliculaIndexPage = () => {
     return <div className='container'>

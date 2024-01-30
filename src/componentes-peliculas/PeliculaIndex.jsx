@@ -63,11 +63,14 @@ const PeliculaIndex = () => {
     // ];
     
     const filtrarCartas = (keyword) => {
-        const esVacio = (valor) => typeof valor === "string" && valor.length === 0;
         for (let i = 0; i < peliculas.length; i++) {
             const coincide = new RegExp(keyword, 'i').test(peliculas[i]["peliName"]);
-            document.getElementById("peli_" + i)
-                .setAttribute("style", `display: ${coincide ? "inline-block" : esVacio(keyword) ? "inline-block" : "none"};`);
+            const tarjeta = document.getElementById("peli_" + i);
+
+            if (tarjeta) {
+                // Usa classList para agregar o quitar la clase 'hidden'
+                tarjeta.classList.toggle("hidden", !(coincide || keyword === ""));
+            }
         }
     };
 
