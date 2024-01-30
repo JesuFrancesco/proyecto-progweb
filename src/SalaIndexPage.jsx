@@ -8,6 +8,7 @@ import './componentes-buscador/estilos-buscador.css'
 import './componentes-salas/estilos_salas.css'
 
 const SalaIndexPage = () => {
+    
     return <>
         <Header />
         <div className='container'>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import PersonIcon from '@mui/icons-material/Person';
@@ -14,7 +14,7 @@ const DetalleIndex = () => {
     <img src="https://http.cat/images/404.jpg" alt="" />
   </>
 
-  const location = useLocation();
+  const location = useParams();
   const [peliculaActual, setPeliculaActual] = useState({
     id: "",
     path: "",
@@ -32,8 +32,11 @@ const DetalleIndex = () => {
     const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
     const peliculas = await response.json();
 
-    const rutaActual = location.pathname;
-    const path = rutaActual.split("/")[2]
+    // const rutaActual = location.pathname;
+    // const path = rutaActual.split("/")[2]
+
+    const path = location.id
+    // console.log(path.id)
     
     const peliculaActual = peliculas.find((pelicula) => pelicula.path === path);
     if(peliculaActual){
@@ -56,7 +59,7 @@ const DetalleIndex = () => {
   // Buscar peliculas...
   useEffect(() => {
     buscarPeliculasHTTP();
-  }, []);
+  }, [peliculaActual]);
 
   if(error === true){
     return errorComponent

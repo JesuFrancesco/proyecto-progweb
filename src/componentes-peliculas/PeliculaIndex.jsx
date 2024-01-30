@@ -1,86 +1,61 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pelicula from "./Pelicula"
+
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { peliculas } from "../componentes-detalle/Detalles";
+import Pagination from '@mui/material/Pagination';
+import { Typography } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PeliculaIndex = () => {
-    
-    // const peliculas = [
-    //     {
-    //         url: "https://teinvitoalcine.com/download/multimedia.normal.82ab3bd8d57ac9aa.QmVla2VlcGVyIFNlbnRlbmNpYSBkZSBNdWVydGUgSmFfbm9ybWFsLndlYnA%3D.webp",
-    //         peliHora: "1 hrs 50 min",
-    //         peliName: "Beekeper Sentencia de Muerte",
-    //         peliCategories: ["Acción", "+14"]
-    //     },
-    //     {
-    //         url: "https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00001906?referenceScheme=HeadOffice&allowPlaceHolder=true",
-    //         peliHora: "1 hrs 20 min",
-    //         peliName: "La super Familia",
-    //         peliTimes: ["Familiar", "APT"]
-    //     },
-    //     {
-    //         url: "https://www.tvguide.com/a/img/catalog/provider/1/2/1-12343363937.jpg",
-    //         peliHora: "2 hrs 10 min",
-    //         peliName: "Aquaman y el Reino Perdido",
-    //         peliTimes: ["Acción", "+14"]
-    //     },
-    //     {
-    //         url: "https://zonasyc.com/wp-content/uploads/2024/01/nino-garza-1.jpg",
-    //         peliHora: "2 hrs 10 min",
-    //         peliName: "El Niño y la Garza",
-    //         peliTimes: ["Anime", "APT"]
-    //     },
-    //     {
-    //         url: "https://image.tmdb.org/t/p/original/c2ELoYcSis0HYMyDPGPfk8eVsen.jpg",
-    //         peliHora: "1 hrs 40 min",
-    //         peliName: "Soul",
-    //         peliTimes: ["Animación", "APT"]
-    //     },
-    //     {
-    //         url: "https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00001866?referenceScheme=HeadOffice&allowPlaceHolder=true",
-    //         peliHora: "1 hrs 40 min",
-    //         peliName: "El juego de la Muerte",
-    //         peliTimes: ["Terror", "+14"]
-    //     },
-    //     {
-    //         url: "https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00001897?referenceScheme=HeadOffice&allowPlaceHolder=true",
-    //         peliHora: "1 hrs 40 min",
-    //         peliName: "Jack en la Caja Maldita 3",
-    //         peliTimes: ["Terror", "+14"]
-    //     },
-    //     {
-    //         url: "https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00001881?referenceScheme=HeadOffice&allowPlaceHolder=true",
-    //         peliHora: "1 hrs 50 min",
-    //         peliName: "Alice: La Gemela del Diablo",
-    //         peliTimes: ["Terror", "+14"]
-    //     },
-    //     {
-    //         url: "https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00001895?referenceScheme=HeadOffice&allowPlaceHolder=true",
-    //         peliHora: "1 hrs",
-    //         peliName: "Hablando Huevadas: Hijo D...",
-    //         peliTimes: ["Comedia", "+14"]
-    //     }
-    // ];
-    
-    const filtrarCartas = (keyword) => {
-        for (let i = 0; i < peliculas.length; i++) {
-            const coincide = new RegExp(keyword, 'i').test(peliculas[i]["peliName"]);
-            const tarjeta = document.getElementById("peli_" + i);
+    const navegar = useNavigate();
 
-            if (tarjeta) {
-                // Usa classList para agregar o quitar la clase 'hidden'
-                tarjeta.classList.toggle("hidden", !(coincide || keyword === ""));
-            }
-        }
+    let { pagina: page } = useParams();
+    // console.log(page)
+    
+
+    const [filtro, setFiltro] = useState("");
+    const [pagina, setPagina] = useState(1);
+    const [peliculasJSON, setPeliculasJSON] = useState([]);
+
+    const filtrarCartas = (keyword) => {
+        // TODO: CAMBIAR LA LOGICA DEL FILTRAR CARTAS
+
+        // for (let i = 0; i < peliculasJSON.length; i++) {
+        //     const coincide = (new RegExp(keyword, 'i').test(peliculasJSON[i]["title"]))? true : false;
+        //     document.getElementsByClassName(`peli_${i}`)[0].setAttribute("style", `display: ${coincide? "inline-block" : keyword === ""? "inline-block" : "none"};`);
+        // }
     };
 
     const handleInputChange = (evt) => {
         evt.preventDefault();
+
         setFiltro(evt.target.value);
+
         filtrarCartas(evt.target.value);
     };
 
-    const [filtro, setFiltro] = useState("");
+    const handlePageChange = (_, valor) => {        
+        setPagina(valor)
+        navegar(`/peliculas-index/${valor}`)
+    }
+
+    const obtenerPeliculasPaginadas = () => {
+        const startIndex = pagina * 12 - 12
+        const endIndex = startIndex + 12
+        return peliculasJSON.slice(startIndex, endIndex)
+    }
+    
+    const buscarPeliculasHTTP = async () => {
+        const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
+        const json = await response.json();
+        setPeliculasJSON(json);
+    }
+    
+    useEffect(() => {
+        buscarPeliculasHTTP();
+        if(isNaN(page)) page = 1;
+        else setPagina(Number.parseInt(page));
+    }, [])
 
     return (
         <div style={{ textAlign: "center" }}>
@@ -97,14 +72,22 @@ const PeliculaIndex = () => {
             />
 
             <div id="tarjetas" className="row row-cols-1 row-cols-md-3 g-4">
-                {peliculas.map((peli, i) => (
-                    <div key={i} className="col">
-                        <div key={i} className="col">
-                            <Pelicula peliName={peli.peliName} peliHora={peli.peliHora} peliGenres={peli.peliGenres} url={peli.url} id={"the-grudge"} />
-                        </div>
-                    </div>
-                ))}
+                {
+                    (() => {
+                        return obtenerPeliculasPaginadas().map((peli, i) => (
+                            <div key={i} className="col">
+                                <div key={i} className={`col`}>
+                                    <Pelicula peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.genres} url={peli.thumbnail} id={peli.path} />
+                                </div>
+                            </div>
+                            )
+                        )
+                    })()
+                }
             </div>
+
+            <Typography style={ {marginTop: "1em"} }>Pagina: {pagina}</Typography>
+            <Pagination count={Math.ceil(peliculasJSON.length/12)} page={pagina} onChange={ handlePageChange } />
         </div>
     );
 };

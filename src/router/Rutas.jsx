@@ -29,7 +29,11 @@ const Rutas = () => {
             element: <SalaItemPage />
         },
         {
-            path: "/peliculas-index",
+            path: "/peliculas-index/",
+            element: <PeliculasIndexPage />
+        },
+        {
+            path: "/peliculas-index/:pagina",
             element: <PeliculasIndexPage />
         },
         {
