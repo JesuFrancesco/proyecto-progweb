@@ -7,6 +7,7 @@ import './index.css';
 import App from './App.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// El React.StrictMode fuerza el renderizado doble de la página
 root.render(
   <React.StrictMode>
     <App/>

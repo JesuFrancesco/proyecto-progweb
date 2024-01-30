@@ -21,13 +21,13 @@ const FormularioRegister = () => {
   const navigate = useNavigate()
 
   const obtenerUsuarios = async () => {    
-    const response = await fetch("http://localhost:3000/usuarios.json")
+    const response = await fetch("http://localhost:3000/proyecto-progweb/usuarios.json")
     const data = await response.json()
     setUsuariosData(data)
-    console.log("data: " + data)
   }
 
   const handleRegistrarse = () => {
+    // validaciones
     if (!usuarioRegister.nombre || !usuarioRegister.apellido || !usuarioRegister.codigo || !usuarioRegister.contrasena) {
       setError('Por favor, completa todos los campos.')
       return
@@ -43,6 +43,7 @@ const FormularioRegister = () => {
       return
     }
     
+    // si el usuario es válido, guardar en el navegador el nuevo usuario
     const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || { users: [] }
     const nuevosUsuarios = { users: [...usuariosGuardados.users, usuarioRegister] }
     localStorage.setItem('usuarios', JSON.stringify(nuevosUsuarios))
@@ -52,7 +53,7 @@ const FormularioRegister = () => {
   }
 
   // llamada http
-  useEffect(() => {obtenerUsuarios()}, [])
+  useEffect(() => {obtenerUsuarios();}, [])
 
   return <div className="formulario">
           <form className="form">
@@ -61,15 +62,16 @@ const FormularioRegister = () => {
           <InputFormulario title={"Codigo"} objeto={usuarioRegister} llave={"codigo"} setFn={setusuarioRegister} />
           <InputFormulario title={"Contraseña"} objeto={usuarioRegister} llave={"contrasena"} setFn={setusuarioRegister} />
       
-          {error && (() => {
-        if (error) {
-          return <Alert severity="error" sx={{
-            mt: 2
-          }}>
-                    {error}
-                </Alert>;
-        }
-      })()}
+          {error && (
+            () => {
+            if (error) {
+              return <Alert severity="error" 
+              sx={{mt: 2}}>
+                {error}
+              </Alert>;
+            }}
+            )()
+          }
 
           <center>
             <Button variant='contained' onClick={handleRegistrarse}>
