@@ -47,9 +47,10 @@ const MenuPage = () => {
                 variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
                 Películas
               </Button>
-           
 
-            <Link to="/salas">
+            <Link to="/salas" state={{
+              usuario_codigo: ruta.state.usuario_obj
+            }}>
               <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
                 Salas
               </Button>

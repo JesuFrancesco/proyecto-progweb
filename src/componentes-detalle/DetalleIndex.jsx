@@ -27,39 +27,39 @@ const DetalleIndex = (props) => {
     url: []
   });
   const [error, setError] = useState(false);
-
-  const buscarPeliculasHTTP = async () => {
-    const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
-    const peliculas = await response.json();
-
-    // const rutaActual = location.pathname;
-    // const path = rutaActual.split("/")[2]
-
-    const path = location.id
-    // console.log(path.id)
-    
-    const peliculaActual = peliculas.find((pelicula) => pelicula.path === path);
-    if(peliculaActual){
-      setPeliculaActual({
-        id: peliculaActual.id,
-        path: peliculaActual.path,
-        titulo: peliculaActual.title,
-        year: peliculaActual.year,
-        cast: peliculaActual.cast,
-        trailer: peliculaActual.thumbnail,
-        extract: peliculaActual.extract,
-        generos: peliculaActual.genres,
-        url: peliculaActual.thumbnail
-      })
-    } else {
-      setError(true);
-    }
-  }
-
+  
+  
   // Buscar peliculas...
   useEffect(() => {
+    const buscarPeliculasHTTP = async () => {
+      const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
+      const peliculas = await response.json();
+      const path = location.id
+  
+      // const rutaActual = location.pathname;
+      // const path = rutaActual.split("/")[2]
+  
+      // console.log(path.id)
+      
+      const peliculaActual = peliculas.find((pelicula) => pelicula.path === path);
+      if(peliculaActual){
+        setPeliculaActual({
+          id: peliculaActual.id,
+          path: peliculaActual.path,
+          titulo: peliculaActual.title,
+          year: peliculaActual.year,
+          cast: peliculaActual.cast,
+          trailer: peliculaActual.thumbnail,
+          extract: peliculaActual.extract,
+          generos: peliculaActual.genres,
+          url: peliculaActual.thumbnail
+        })
+      } else {
+        setError(true);
+      }
+    }
     buscarPeliculasHTTP();
-  }, [peliculaActual]);
+  }, [location.id]);
 
   if(error === true){
     return errorComponent

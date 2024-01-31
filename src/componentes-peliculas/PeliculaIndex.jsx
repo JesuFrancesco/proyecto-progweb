@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Pelicula from "./Pelicula"
 
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
@@ -10,12 +10,13 @@ import { useNavigate, useParams } from "react-router-dom";
 const PeliculaIndex = (props) => {
     const navegar = useNavigate();
 
-    let { pagina: page } = useParams();
     // console.log(page)
     
-
     const [filtro, setFiltro] = useState("");
     const [pagina, setPagina] = useState(1);
+    const { pagina: paginaParam } = useParams();
+    const pageRef = useRef(paginaParam);
+
     const [peliculasJSON, setPeliculasJSON] = useState([]);
     const [peliS,setPeli]=useState([]) // esta cosa es para mantener la lista origianl siempre 
 
@@ -38,7 +39,11 @@ const PeliculaIndex = (props) => {
 
     const handlePageChange = (_, valor) => {        
         setPagina(valor)
-        navegar(`/peliculas-index/${valor}`,)
+        navegar(`/peliculas-index/${valor}`, {
+            state: {
+                pagina: valor
+            }
+        })
     }
 
     const obtenerPeliculasPaginadas = () => {
@@ -56,7 +61,8 @@ const PeliculaIndex = (props) => {
     
     useEffect(() => {
         buscarPeliculasHTTP();
-        if(isNaN(page)) page = 1;
+        const page = pageRef.current;
+        if(isNaN(page)) setPagina(1);
         else setPagina(Number.parseInt(page));
     }, [])
     

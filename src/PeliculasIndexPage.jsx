@@ -13,7 +13,7 @@ const PeliculaIndexPage = () =>
 {
     const ruta = useLocation();
     
-    console.log(`Codigoo peli: ${ruta.state.usuario_obj2}`)
+    console.log(`Codigoo peli: ${(ruta.state.usuario_obj2)? ruta.state.usuario_obj2 : "no hayyy"}`)
     return <>
             <Header />
         <div className='container'>

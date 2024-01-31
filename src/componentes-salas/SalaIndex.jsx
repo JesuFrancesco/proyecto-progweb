@@ -56,7 +56,7 @@ const SalaIndex = () => {
 
                 <div id="tarjetas" className="card-deck">
                     {
-                        salas.map((sala, i) =>
+                        salas.map(sala =>
                             <Sala salaName={sala.salaName} 
                                 salaAddress={sala.salaAddress} // cambiar por salaAddress
                                 salaTimes={sala.salaTimes} 

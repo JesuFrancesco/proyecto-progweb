@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Chip from "@mui/material/Chip";
 const Pelicula = (props) => {
     //const rutaDetalles = `/peliculas-detalle/${props.id}`;

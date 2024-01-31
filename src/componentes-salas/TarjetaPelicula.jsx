@@ -1,15 +1,16 @@
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const TarjetaPelicula = (props) => 
 {
-    console.log(props.sala_obj)
-    console.log(props.schedules)
     const navigate = useNavigate();
+    const ruta = useLocation();
+    console.log(ruta.state)
 
     const botonReserva = (time) => {
         navigate(`/reserva/${props.id}`, {
             state : {
                 sala : props.sala_obj.salaName,
+                codigoalu : ruta.state.usuario_codigo,
                 hora : time,
                 titulo : props.title,
                 imagen : props.thumbnail
