@@ -11,7 +11,7 @@ function Reserva(props)
     const [nombre,setNombre] = useState("TARTARIANIEL")
     const [apellido,setApellido] = useState("Taype Rojas")
     const [codigo,setCodigo] = useState("20210983")
-    const [cantidad,setCantidad] = useState("1")
+    const [cantidad,setCantidad] = useState(1)
 
 
     const location = useLocation()

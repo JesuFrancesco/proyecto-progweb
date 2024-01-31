@@ -35,7 +35,13 @@ export default function ReservaDialog(props)
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    if(props.nombrese !== "" && props.apellidose !== "" && props.codigose !== "" && (props.cantidadse  > 0 ))
+    {
+        setOpen(true);
+    }
+    else{
+        alert("Rellenar todo los datos")
+    }
   };
 
   const handleClose = () => {
