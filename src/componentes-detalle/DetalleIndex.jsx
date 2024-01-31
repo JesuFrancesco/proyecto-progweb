@@ -111,7 +111,7 @@ const DetalleIndex = () => {
                 horarios={detalle.horarios} 
                 titulo = {peliculaActual.titulo}
                 id = {peliculaActual.path}
-                imagen ={peliculaActual.thumbnail}/>
+                imagen ={peliculaActual.url}/>
             ))}
           </div>
       </div>

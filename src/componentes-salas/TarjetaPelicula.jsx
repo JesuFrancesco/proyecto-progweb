@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
-const TarjetaPelicula = (props) => {
+const TarjetaPelicula = (props) => 
+{
+    const navigate = useNavigate()
+
+    function botonreser()
+    {
+        navigate(`/reserva/${props.id}`)
+    }
     return <>
         <div id={"pelicula_" + props.index} className="pelicula mb-3 card">
             <div className="card-body">
@@ -11,7 +18,10 @@ const TarjetaPelicula = (props) => {
                 <div className="movie-sinapsis">{props.synopsis}</div>
             </div>
             <div className="border-top movie-footer">
-                {props.schedules.map(time => <Link to="/reserva"><button className="boton-hora btn rounded-pill">{time}</button></Link>)}
+                {props.schedules.map(time => 
+                <button className="boton-hora btn rounded-pill" onClick={botonreser}>
+                    {time}
+                </button>)}
             </div>
         </div>;
     </>

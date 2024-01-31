@@ -39,7 +39,11 @@ const SalaItem = (props) => {
                         </h3>
                         {
                             sala.salaMovies.map((movie, index) => 
-                                <TarjetaPelicula index={index} title={movie.title} synopsis={movie.synopsis} schedules={movie.schedules} />
+                                <TarjetaPelicula 
+                                    index={index} 
+                                    title={movie.title} 
+                                    synopsis={movie.synopsis} 
+                                    schedules={movie.schedules} />
                             )
                         }
                     </div>

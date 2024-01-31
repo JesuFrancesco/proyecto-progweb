@@ -1,18 +1,24 @@
 import ReservaMod from "./ReservaMod"
-import imagen from "./ubicacion.png";
+import imag from "./ubicacion.png";
 import poraho from "./imagenporahora.png"
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Button } from "@mui/material";
 
 function Reserva(props)
 {
-    const [nombre,setNombre] = useState("")
-    const [apellido,setApellido] = useState("")
-    const [codigo,setCodigo] = useState("")
+    
+    const [nombre,setNombre] = useState("Tartarianiel")
+    const [apellido,setApellido] = useState("Taype Rojas")
+    const [codigo,setCodigo] = useState("20210983")
     const [cantidad,setCantidad] = useState("")
 
-    const location = useLocation()
+    function EditarTextos(){
 
+    }
+
+    const location = useLocation()
+    console.log(location.state.imagen)
     function InsertarNombre(event)
     {
         setNombre(event.target.value)
@@ -47,8 +53,8 @@ function Reserva(props)
                     <div style={ {marginLeft : "20px", marginBottom : "10px"} }>
                         <h2>{location.state.titulo}</h2>
                         <div >
-                            <img src={imagen} alt="ubicacion"/><span id="sali">duracion</span>
-                            <img src={imagen} alt="ubicacion"/><span id="sali">{location.state.sala}</span>
+                            <img src={imag} alt="ubicacion"/><span id="sali">1hrs 30min</span>
+                            <img src={imag} alt="ubicacion"/><span id="sali">{location.state.sala}</span>
                         </div>
                     </div>
                     <div className="card" style={carta}>
@@ -57,28 +63,33 @@ function Reserva(props)
                             <div >{location.state.hora}</div>
                             <div className="border-bottom mb-4 mt-2"></div>
                             <div className="card-text">
-                                <input type="text" 
-                                    className="form-control mb-3" 
+                                    <input type="text" 
+                                    className="form-control mb-3 d-grid gap-2" 
                                     id="cajate" 
-                                    placeholder="Nombre" 
+                                    placeholder="Nombre"
+                                    disabled readonly  
                                     value={nombre}
                                     onChange={InsertarNombre}/>
                                 <input type="text" 
                                     className="form-control mb-3" 
                                     id="cajate" 
                                     placeholder="Apellido"
+                                    disabled readonly
                                     value={apellido}
                                     onChange={InsertarApellido}/>
                                 <input type="text" 
                                     className="form-control mb-3" 
                                     id="cajate" 
                                     placeholder="Código"
+                                    disabled readonly
                                     value={codigo}
                                     onChange={InsertarCodigo}/>
-                                <input type="text" 
+                                    <Button onClick={EditarTextos}>+</Button>
+                                <input type="number" 
                                     className="form-control " 
                                     id="cajate" 
                                     placeholder="Cantidad"
+                                    
                                     value={cantidad}
                                     onChange={InsertarCantidad}/>
                                  <ReservaMod 
@@ -96,7 +107,7 @@ function Reserva(props)
             </div>
             <div className="col-4">
                 <div style={{marginTop:"100px"}}>
-                    <img src={poraho} id="img" alt="imagenporahora" />
+                    <img src={location.state.imagen} id="img" alt=""/>
                 </div>
             </div>
         </div>
