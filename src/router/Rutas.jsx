@@ -45,7 +45,7 @@ const Rutas = () => {
             element: <MenuPage/>
         },
         {
-            path : "/reserva",
+            path : "/reserva/:id",
             element: <ReservaPage/>
         }
     ])
