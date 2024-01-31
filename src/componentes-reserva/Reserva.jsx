@@ -1,21 +1,18 @@
-import ReservaMod from "./ReservaMod"
 import imag from "./ubicacion.png";
 import poraho from "./imagenporahora.png"
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
+import ReservaDialog from "./ReservaDialog";
 
 function Reserva(props)
 {
     
-    const [nombre,setNombre] = useState("Tartarianiel")
+    const [nombre,setNombre] = useState("TARTARIANIEL")
     const [apellido,setApellido] = useState("Taype Rojas")
     const [codigo,setCodigo] = useState("20210983")
-    const [cantidad,setCantidad] = useState("")
+    const [cantidad,setCantidad] = useState("1")
 
-    function EditarTextos(){
-
-    }
 
     const location = useLocation()
     console.log(location.state.imagen)
@@ -67,24 +64,23 @@ function Reserva(props)
                                     className="form-control mb-3 d-grid gap-2" 
                                     id="cajate" 
                                     placeholder="Nombre"
-                                    disabled readonly  
+                                    //disabled readonly  
                                     value={nombre}
                                     onChange={InsertarNombre}/>
                                 <input type="text" 
                                     className="form-control mb-3" 
                                     id="cajate" 
                                     placeholder="Apellido"
-                                    disabled readonly
+                                    //disabled readonly
                                     value={apellido}
                                     onChange={InsertarApellido}/>
                                 <input type="text" 
                                     className="form-control mb-3" 
                                     id="cajate" 
                                     placeholder="Código"
-                                    disabled readonly
+                                    //disabled readonly
                                     value={codigo}
                                     onChange={InsertarCodigo}/>
-                                    <Button onClick={EditarTextos}>+</Button>
                                 <input type="number" 
                                     className="form-control " 
                                     id="cajate" 
@@ -92,7 +88,7 @@ function Reserva(props)
                                     
                                     value={cantidad}
                                     onChange={InsertarCantidad}/>
-                                 <ReservaMod 
+                                 <ReservaDialog
                                     nombrese={nombre}
                                     apellidose={apellido}
                                     codigose={codigo}
