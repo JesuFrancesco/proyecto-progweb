@@ -38,7 +38,7 @@ const PeliculaIndex = (props) => {
 
     const handlePageChange = (_, valor) => {        
         setPagina(valor)
-        navegar(`/peliculas-index/${valor}`,)
+        navegar(`/peliculas-index/${valor}`,{state:{usuario_obj2:props.usuario_obj3}})
     }
 
     const obtenerPeliculasPaginadas = () => {
