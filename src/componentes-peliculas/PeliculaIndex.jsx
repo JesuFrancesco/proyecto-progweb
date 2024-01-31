@@ -5,12 +5,14 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Pagination from '@mui/material/Pagination';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import { Typography } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-const PeliculaIndex = (props) => {
+const PeliculaIndex = () => {
     const navegar = useNavigate();
-
-    // console.log(page)
+    const ruta = useLocation();
+    
+    console.log("--- PeliculaIndex.jsx")
+    console.log(ruta.state.usuario_obj)
     
     const [filtro, setFiltro] = useState("");
     const [pagina, setPagina] = useState(1);
@@ -41,7 +43,7 @@ const PeliculaIndex = (props) => {
         setPagina(valor)
         navegar(`/peliculas-index/${valor}`, {
             state: {
-                usuario_obj2: props.usuario_obj3,
+                usuario_obj: ruta.state.usuario_obj,
                 pagina: valor
             }
         })
@@ -90,7 +92,7 @@ const PeliculaIndex = (props) => {
                             <div key={i} className="col">
                                 <div key={i} className={`col`}>
                                     <Pelicula
-                                        usuario_obj4 ={props.usuario_obj3}
+                                        // usuario_obj4 = { ruta.state.usuario_obj }
                                         peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.genres} url={peli.thumbnail} id={peli.path} />
                                 </div>
                             </div>

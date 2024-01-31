@@ -50,7 +50,7 @@ const Rutas = () => {
             element: <MenuPage/>
         },
         {
-            path : "/reserva",
+            path : "/reserva/:movie",
             element: <ReservaPage/>
         }
     ])

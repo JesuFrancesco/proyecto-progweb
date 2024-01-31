@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import PersonIcon from '@mui/icons-material/Person';
@@ -9,23 +9,29 @@ import Typography from "@mui/material/Typography";
 import Detalle from "./Detalle";
 import { Salas_dispo } from "./Detalles";
 
-const DetalleIndex = (props) => {
+const DetalleIndex = () => {
+  const ruta = useLocation();
+  console.log("--- DetalleIndex.jsx")
+  console.log(ruta.state.usuario_obj)
+  
   const errorComponent = <>
     <img src="https://http.cat/images/404.jpg" alt="" />
   </>
 
-  const location = useParams();
-  const [peliculaActual, setPeliculaActual] = useState({
-    id: "",
-    path: "",
-    titulo: "",
-    year: "",
-    cast: [],
-    trailer: "",
-    extract: "",
-    generos: [],
-    url: []
-  });
+const movie = useParams();
+console.log("pelicula: ")
+console.log(movie.id)
+const [peliculaActual, setPeliculaActual] = useState({
+  id: "",
+  path: "",
+  titulo: "",
+  year: "",
+  cast: [],
+  trailer: "",
+  extract: "",
+  generos: [],
+  url: []
+});
   const [error, setError] = useState(false);
   
   
@@ -34,7 +40,7 @@ const DetalleIndex = (props) => {
     const buscarPeliculasHTTP = async () => {
       const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
       const peliculas = await response.json();
-      const path = location.id
+      const path = movie.id
   
       // const rutaActual = location.pathname;
       // const path = rutaActual.split("/")[2]
@@ -59,7 +65,7 @@ const DetalleIndex = (props) => {
       }
     }
     buscarPeliculasHTTP();
-  }, [location.id]);
+  }, [movie]);
 
   if(error === true){
     return errorComponent
@@ -111,8 +117,7 @@ const DetalleIndex = (props) => {
                 horarios={detalle.horarios} 
                 titulo = {peliculaActual.titulo}
                 id = {peliculaActual.path}
-                imagen ={peliculaActual.url}
-                usuario_obj7={props.usuario_obj6}/>
+                imagen ={peliculaActual.url}/>
             ))}
           </div>
       </div>

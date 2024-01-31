@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Stack, Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -15,14 +15,6 @@ const MenuPage = () => {
   console.log("--- MenuPage.jsx");
   console.log(usuario);
 
-  const navigate = useNavigate()
-  function Clicklink(){
-    navigate('/peliculas-index', {
-      state : {
-          usuario_obj2: ruta.state.usuario_obj
-      }
-  })
-  }
   return <>
     <Header title={"Bienvenido " + ruta.state.usuario_obj.nombre} />
     <div>
@@ -45,11 +37,12 @@ const MenuPage = () => {
           <Stack spacing={14} direction="row">
 
             
-              <Button 
-                onClick={Clicklink}
-                variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
-                Películas
-              </Button>
+              <Link to={"/peliculas-index"} state = { {usuario_obj: ruta.state.usuario_obj}}>
+                <Button
+                  variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
+                  Películas
+                </Button>
+              </Link>
 
             <Link to="/salas" state={{
               usuario_obj: ruta.state.usuario_obj

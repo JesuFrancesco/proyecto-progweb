@@ -1,5 +1,4 @@
 // Cabecera y Pie de Pagina
-import { useLocation } from "react-router-dom"
 import Footer from "./componentes-buscador/Footer"
 import Header from "./componentes-buscador/Header"
 

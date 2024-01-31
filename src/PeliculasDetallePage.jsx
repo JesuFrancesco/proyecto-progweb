@@ -12,11 +12,13 @@ import { useLocation } from 'react-router-dom'
 const PeliculasDetallePage = () => 
 {
     const ruta = useLocation();
+    console.log("--- PeliculasDetallePage.jsx")
+    console.log(ruta.state.usuario_obj)
     return <>
         <Header />
         <div className='container'>
             <div className="mt-4 mx-auto" style={ {marginLeft: "100", float: "none"} }>
-                <DetalleIndex usuario_obj6={ruta.state.usuario_obj5}/>
+                <DetalleIndex />
             </div>
             <Footer />
         

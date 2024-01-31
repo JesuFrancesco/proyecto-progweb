@@ -8,7 +8,7 @@ const TarjetaPelicula = (props) =>
     console.log(ruta.state.usuario_obj)
 
     const botonReserva = (time) => {
-        navigate(`/reserva`, {
+        navigate(`/reserva/${props.title.replace(/\s/g, "-")}`, {
             state : {
                 usuario_obj: ruta.state.usuario_obj,
                 

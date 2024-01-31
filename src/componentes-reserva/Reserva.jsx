@@ -14,6 +14,7 @@ export default function Reserva(props)
     console.log("--- Reserva.jsx")
     console.log(ruta.state.usuario_obj)
     const usuario = ruta.state.usuario_obj;
+
     const [reserva, setReserva] = useState({
         nombre: usuario.nombre,
         apellido: usuario.apellido,
@@ -21,14 +22,6 @@ export default function Reserva(props)
         cantidad: 1,
     })
     
-    // const [nombre,setNombre] = useState("TARTARIANIEL")
-    // const [apellido,setApellido] = useState("Taype Rojas")
-    // const [codigo,setCodigo] = useState("20210983")
-    // const [cantidad,setCantidad] = useState(1)
-
-    
-    // console.log(ruta.state)
-
     const InsertarNombre = (event) => {
         setReserva({...reserva, nombre: event.target.value})
     }
