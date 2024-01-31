@@ -2,6 +2,7 @@ import ReservaMod from "./ReservaMod"
 import imagen from "./ubicacion.png";
 import poraho from "./imagenporahora.png"
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 function Reserva(props)
 {
@@ -9,6 +10,8 @@ function Reserva(props)
     const [apellido,setApellido] = useState("")
     const [codigo,setCodigo] = useState("")
     const [cantidad,setCantidad] = useState("")
+
+    const location = useLocation()
 
     function InsertarNombre(event)
     {
@@ -42,16 +45,16 @@ function Reserva(props)
             <div className="col-8 mt-4">
                 <div style={ qx }>
                     <div style={ {marginLeft : "20px", marginBottom : "10px"} }>
-                        <h2>NOMBRE</h2>
+                        <h2>{location.state.titulo}</h2>
                         <div >
                             <img src={imagen} alt="ubicacion"/><span id="sali">duracion</span>
-                            <img src={imagen} alt="ubicacion"/><span id="sali">sala</span>
+                            <img src={imagen} alt="ubicacion"/><span id="sali">{location.state.sala}</span>
                         </div>
                     </div>
                     <div className="card" style={carta}>
                         <div className="card-body">
                             <h6 className="card-title">Información de Reserva</h6>
-                            <div >fecha</div>
+                            <div >{location.state.hora}</div>
                             <div className="border-bottom mb-4 mt-2"></div>
                             <div className="card-text">
                                 <input type="text" 

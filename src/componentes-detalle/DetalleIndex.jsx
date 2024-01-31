@@ -104,7 +104,14 @@ const DetalleIndex = () => {
               </Typography>
             
             {Salas_dispo.map((detalle) => (
-              <Detalle abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} id = {peliculaActual.path}/>
+              <Detalle 
+                abrevia={detalle.abrevia} 
+                sala={detalle.sala} 
+                descripcion={detalle.descripcion} 
+                horarios={detalle.horarios} 
+                titulo = {peliculaActual.titulo}
+                id = {peliculaActual.path}
+                imagen ={peliculaActual.thumbnail}/>
             ))}
           </div>
       </div>
