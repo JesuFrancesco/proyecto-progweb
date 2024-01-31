@@ -78,4 +78,10 @@
     height: 250px;
     overflow: hidden;
     object-fit: cover;
+    transition: 0.5s;
+}
+
+.pelicula:hover > .carta-img {
+    height: 500px;
+    transition: 0.3s;
 }
