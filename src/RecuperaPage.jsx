@@ -1,7 +1,7 @@
 import PantallaRecupera from './componentes-recuperarContra/PantallaRecupera'
 import React from 'react'
 
-import './componentes-login/estilos_login.css'
+import './componentes-formulario/estilos_login.css'
 
 const RecuperaPage = () => {
 

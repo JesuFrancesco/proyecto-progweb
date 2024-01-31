@@ -16,7 +16,7 @@ const PantallaRecupera = () => {
     })
 
     const [formEnviado, setFormEnviado] = useState(false); // Nuevo estado para controlar si el formulario ya se ha enviado
-    const [error, setError] = useState('')
+    const [error, setAlerta] = useState('')
     const [aviso, setAviso] = useState('')
     const [usuariosJSON, setUsuariosJSON] = useState([])
 
@@ -30,22 +30,23 @@ const PantallaRecupera = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        setFormEnviado(true); 
-
+        
         try {
             const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || { users: [] }
             const todosLosUsuarios = [...usuariosGuardados.users, ...usuariosJSON]
-
+            
             const user = todosLosUsuarios.find((u) => u.codigo === usuario.codigo)
-
+            
             if (user) {
-                setError("Se ha enviado un correo a " + usuario.codigo + "@aloe.ulima.edu.pe");
+                // TODO: logica para la recuperacion
+                setFormEnviado(true); 
+                setAlerta("Se ha enviado un correo a " + usuario.codigo + "@aloe.ulima.edu.pe");
             } else {
-                setError('Usuario o contraseña incorrectos');
+                setAlerta('Usuario o contraseña incorrectos');
             }
         } catch (error) {
             console.error('Error al procesar el inicio de sesión:', error)
-            setError('Error al procesar el inicio de sesión')
+            setAlerta('Error al procesar el inicio de sesión')
         }
     }
 
@@ -72,7 +73,7 @@ const PantallaRecupera = () => {
 
                     <center className='mt-3'>
                         <Button variant='contained' sx={{ mr: "2em" }} style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }}
-                            onClick={handleLogin} disabled={formEnviado}>Enviar</Button>
+                            onClick={handleLogin} disabled={formEnviado} hidden={formEnviado}>Enviar</Button>
 
                         <Link to={"/registro"}>
                             <Button variant='contained' style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }} disabled={formEnviado}>Volver</Button>

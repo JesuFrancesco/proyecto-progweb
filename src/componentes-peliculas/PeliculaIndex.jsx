@@ -3,6 +3,7 @@ import Pelicula from "./Pelicula"
 
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Pagination from '@mui/material/Pagination';
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import { Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -62,6 +63,7 @@ const PeliculaIndex = () => {
 
     return (
         <div style={{ textAlign: "center" }}>
+            <LocalMoviesIcon />
             <h2>Peliculas</h2>
             <FilterAltIcon style={{ marginRight: "0.5em" }} />
             <input

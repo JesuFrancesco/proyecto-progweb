@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Stack, Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import Header from './componentes-buscador/Header'
 
 import { peliculas } from './componentes-detalle/Detalles';
 import Carrusel from './componentes-menu/Carrusel';
 
 const MenuPage = () => {
-  return (
-      <div className='container'>
+  const ruta = useLocation();
+  console.log(ruta.state.usuario_obj);
+  return <>
+    <Header title={"Bienvenido " + ruta.state.usuario_obj.nombre} />
+    <div>
 
       {/* carrusel de banners */}
       <Carrusel peliculas={peliculas} />
@@ -44,7 +48,7 @@ const MenuPage = () => {
         </Box>
       </div>
     </div>
-  );
+    </>
 };
 
 export default MenuPage;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Sala from "./Sala"
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 // import { salas } from "./Salas.js"; 
 
 const SalaIndex = () => {
@@ -39,6 +40,7 @@ const SalaIndex = () => {
 
     return <>
             <div style={ {textAlign: "center"} }>
+                <LocationCityIcon />
                 <h2>Salas</h2>
                 <FilterAltIcon style={ {marginRight: "0.5em"} }/>
                 <input type="text" className="form-control my-3" placeholder="Filtrar por nombre" id="filtrarInput"

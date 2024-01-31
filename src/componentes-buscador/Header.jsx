@@ -1,12 +1,12 @@
 import estrella from './assets/estreblanca.png'
 import MenuHamburguesa from './MenuHamburguesa'
 
-const Header = () => {
+const Header = (props) => {
 
     return <header>
         <div className="header-ulima d-flex align-items-center justify-content-between">
             <span>
-                <MenuHamburguesa />
+                <MenuHamburguesa title={(props.title)? props.title : null}/>
             </span>
 
             <span style={{marginRight: "10px"}}>

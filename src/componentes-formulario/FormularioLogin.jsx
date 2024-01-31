@@ -39,7 +39,11 @@ const FormularioLogin = () => {
 
             if (user) {
                 document.body.classList.remove("fondo-body")
-                navigate('/menu')
+                navigate('/menu', {
+                    state : {
+                        usuario_obj: user
+                    }
+                })
             } else {
                 setError('Usuario o contraseña incorrectos')
             }
@@ -74,14 +78,14 @@ const FormularioLogin = () => {
                 }
             })()}
         
-            <center className='mt-3'>
-                <Button variant='contained' sx={ {mr: "2em"} } style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }} 
+            <div className='botones mt-3' style={ {textAlign: "center"} }>
+                <Button className='boton' variant='contained' sx={ {mr: "2em"} }  
                 onClick={ handleLogin }>Iniciar sesion</Button>
                 
                 <Link to={"/registro"}>
-                    <Button variant='contained' style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white'}}>Registrarse</Button>
+                    <Button className='boton' variant='contained' >Registrarse</Button>
                 </Link>
-            </center>
+            </div>
         </form>
     </div>
     </>
