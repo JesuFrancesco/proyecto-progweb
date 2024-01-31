@@ -39,9 +39,10 @@ const FormularioLogin = () => {
 
             if (user) {
                 document.body.classList.remove("fondo-body")
+                console.log(`ola${usuario.codigo}`)
                 navigate('/menu', {
                     state : {
-                        usuario_obj: user
+                        usuario_obj: usuario.codigo
                     }
                 })
             } else {

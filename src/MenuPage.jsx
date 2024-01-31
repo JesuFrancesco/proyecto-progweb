@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { Stack, Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -11,8 +11,17 @@ import Carrusel from './componentes-menu/Carrusel';
 const MenuPage = () => {
   const ruta = useLocation();
   console.log(`CODIGO: ${ruta.state.usuario_obj}`);
+
+  const navigate = useNavigate()
+  function Clicklink(){
+    navigate('/peliculas-index', {
+      state : {
+          usuario_obj2: ruta.state.usuario_obj
+      }
+  })
+  }
   return <>
-    <Header title={"Bienvenido " + ruta.state.usuario_obj.nombre} />
+    <Header title={"Bienvenido " + ruta.state.usuario_obj} />
     <div>
 
       {/* carrusel de banners */}
@@ -32,11 +41,13 @@ const MenuPage = () => {
         <Box display="flex" justifyContent="center">
           <Stack spacing={14} direction="row">
 
-            <Link to="/peliculas-index">
-              <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
+            
+              <Button 
+                onClick={Clicklink}
+                variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
                 Películas
               </Button>
-            </Link>
+           
 
             <Link to="/salas">
               <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
