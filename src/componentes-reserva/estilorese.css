@@ -2,7 +2,7 @@
     padding-left: 10px;
 }
 
-#cajate{
+.cajate{
     background-color: rgb(224, 224, 224);
     border: 0px;
     border-radius: 3px;
@@ -10,10 +10,9 @@
     padding-bottom: 10px;
 }
 
-#sali{
-    color: blue;
-    margin-left: 10px;
-    margin-right: 10px;    
+.sali{
+    color: blue;    
+    margin-right: 2em;    
 }
 
 #img{

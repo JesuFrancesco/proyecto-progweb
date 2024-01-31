@@ -6,6 +6,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 
 const SalaIndex = () => {
     const [salas, setSalas] = useState([]);
+    const [salasExtra, setSalasExtra] = useState([]);
 
     const obtenerSalasHTTP = async () => {
         const response = await fetch("https://raw.githubusercontent.com/JesuFrancesco/proyecto-progweb/main/public/salas.json");
@@ -13,8 +14,15 @@ const SalaIndex = () => {
         setSalas(json);
     }
 
+    const obtenerSalasExtraHTTP = async () => {
+        const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/salas.json");
+        const json = await response.json();
+        setSalasExtra(json.buildings);
+    }
+
     useEffect(() => {
         obtenerSalasHTTP();
+        obtenerSalasExtraHTTP();
     }, []);
 
     const filtrarCartas = (keyword) => {
@@ -50,10 +58,20 @@ const SalaIndex = () => {
                     {
                         salas.map((sala, i) =>
                             <Sala salaName={sala.salaName} 
-                                salaSchedule={sala.salaSchedule} 
+                                salaAddress={sala.salaAddress} // cambiar por salaAddress
                                 salaTimes={sala.salaTimes} 
                                 url={ sala.url } 
                                 id={ sala.salaName.replace(/\s/g, "-") }
+                            />
+                        )
+                    }
+                    {
+                        salasExtra.map(sala =>
+                            <Sala salaName={sala.name} 
+                                salaAddress={sala.address} 
+                                salaTimes={sala.available_times} 
+                                url={ "https://placehold.co/600x400" } 
+                                id={ sala.name.replace(/\s/g, "-") }
                             />
                         )
                     }

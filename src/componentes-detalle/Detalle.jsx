@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 const Detalle = (props) => 
 {
-
   const navigate = useNavigate()
 
   function botonreser()

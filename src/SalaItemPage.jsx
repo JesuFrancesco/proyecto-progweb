@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react'
 const SalaItemPage = () => {
     const { id: salaName } = useParams();
     const [salas, setSalas] = useState([]);
+    const [peliculas, setPeliculas] = useState([]);
 
     const obtenerSalasHTTP = async () => {
         const response = await fetch("https://raw.githubusercontent.com/JesuFrancesco/proyecto-progweb/main/public/salas.json");
@@ -22,8 +23,15 @@ const SalaItemPage = () => {
         setSalas(json);
     }
 
+    const obtenerPeliculasHTTP = async () => {
+        const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
+        const json = await response.json();
+        setPeliculas(json);
+    }
+
     useEffect(() => {
         obtenerSalasHTTP();
+        obtenerPeliculasHTTP();
     }, []);
     
     const sala = salas.find(sala => sala.salaName === salaName.replace(/-/g, " "));
@@ -33,8 +41,9 @@ const SalaItemPage = () => {
         <div className='container'>
         
             {
+                // si no encuentra deja un div en blanco
                 (sala)? <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>
-                    <SalaItem sala={ sala }/>
+                    <SalaItem sala={ sala } peliculas={ peliculas }/>
                 </div> : <div />   
             }
         

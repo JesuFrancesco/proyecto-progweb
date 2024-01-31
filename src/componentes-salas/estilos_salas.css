@@ -73,3 +73,9 @@
     background-color: antiquewhite;
     transition: background-color 0.3s;
 }
+
+.carta-img {
+    height: 250px;
+    overflow: hidden;
+    object-fit: cover;
+}
