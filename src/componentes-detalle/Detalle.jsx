@@ -11,7 +11,8 @@ const Detalle = (props) =>
       state : {
           sala : props.sala,
           hora : props.horarios,
-          titulo : props.titulo
+          titulo : props.titulo,
+          imagen : props.imagen
       }})
   }
   

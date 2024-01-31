@@ -1,18 +1,19 @@
 import ReservaMod from "./ReservaMod"
-import imagen from "./ubicacion.png";
+import imag from "./ubicacion.png";
 import poraho from "./imagenporahora.png"
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 function Reserva(props)
 {
+    
     const [nombre,setNombre] = useState("")
     const [apellido,setApellido] = useState("")
     const [codigo,setCodigo] = useState("")
     const [cantidad,setCantidad] = useState("")
 
     const location = useLocation()
-
+    console.log(location.state.imagen)
     function InsertarNombre(event)
     {
         setNombre(event.target.value)
@@ -47,8 +48,8 @@ function Reserva(props)
                     <div style={ {marginLeft : "20px", marginBottom : "10px"} }>
                         <h2>{location.state.titulo}</h2>
                         <div >
-                            <img src={imagen} alt="ubicacion"/><span id="sali">duracion</span>
-                            <img src={imagen} alt="ubicacion"/><span id="sali">{location.state.sala}</span>
+                            <img src={imag} alt="ubicacion"/><span id="sali">1hrs 30min</span>
+                            <img src={imag} alt="ubicacion"/><span id="sali">{location.state.sala}</span>
                         </div>
                     </div>
                     <div className="card" style={carta}>
@@ -96,7 +97,7 @@ function Reserva(props)
             </div>
             <div className="col-4">
                 <div style={{marginTop:"100px"}}>
-                    <img src={poraho} id="img" alt="imagenporahora" />
+                    <img src={location.state.imagen} id="img" alt=""/>
                 </div>
             </div>
         </div>
