@@ -13,8 +13,9 @@ const Pelicula = (props) => {
         })
     }
     return (
-        <div className="card" id={props.id} style={{ textAlign: "inherit" }} onClick={clickruta}>
+        <div className="card" id={props.id} style={{ textAlign: "inherit" }} >
                 <img 
+                    onClick={clickruta}
                     src={props.url}
                     alt="portada-peli"
                     className="card-img-top w-100"
