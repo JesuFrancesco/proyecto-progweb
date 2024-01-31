@@ -1,9 +1,8 @@
 [
     {
         "salaName": "Sala A",
-        "salaLocation": "Pabellon A - ULIMA",
+        "salaAddress": "Pabellon A - ULIMA",
         "salaHistory": "La Facultad de Comunicación tiene tres estudios, los cuales son sets profesionales que se utilizan para televisión, streaming y diversas realizaciones audiovisuales.\n Cada uno de ellos está equipado con tres cámaras de video digitales full HD, switcher digital, pantallas de monitoreo tanto en Control y Estudio, dos tituladores y grabadoras / reproductoras de video.\nEl sonido comprende: consola de audio, micrófonos de mano, de pecho, boom y de vincha.\nEl sistema de iluminación trabaja con control de iluminación, luces alógenas de varios tipos: Fresnel, Scoop, Broad, Cañón, además del rack de control técnico con instrumentos de medición.\n ",
-        "salaSchedule": "John Doe • 4 Feb 2024",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "salaMovies": [
@@ -28,9 +27,8 @@
     },
     {
         "salaName": "Sala B",
-        "salaLocation": "Pabellon B - ULIMA",
+        "salaAddress": "Pabellon B - ULIMA",
         "salaHistory": "b !!!!!!!!!!!!!!!!!!!!!!!!!!",
-        "salaSchedule": "John Doe • 4 Feb 2024",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "salaMovies": [
@@ -54,9 +52,8 @@
     },
     {
         "salaName": "Sala C",
-        "salaLocation": "Pabellon C - ULIMA",
+        "salaAddress": "Pabellon C - ULIMA",
         "salaHistory": "pabellon c como el lenguaje de programacion c",
-        "salaSchedule": "John Doe • 4 Feb 2024",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "salaMovies": [
@@ -80,9 +77,8 @@
     },
     {
         "salaName": "Sala D",
-        "salaLocation": "Pabellon D - ULIMA",
+        "salaAddress": "Pabellon D - ULIMA",
         "salaHistory": "pabellon d",
-        "salaSchedule": "John Doe • 4 Feb 2024",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "salaMovies": [
@@ -106,9 +102,8 @@
     },
     {
         "salaName": "Sala E",
-        "salaLocation": "Pabellon E - ULIMA",
+        "salaAddress": "Pabellon E - ULIMA",
         "salaHistory": "E",
-        "salaSchedule": "John Doe • 4 Feb 2024",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "salaMovies": [
@@ -132,9 +127,8 @@
     },
     {
         "salaName": "Sala F",
-        "salaLocation": "Pabellon F - ULIMA",
+        "salaAddress": "Pabellon F - ULIMA",
         "salaHistory": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos blanditiis ullam fugit, reprehenderit quidem, libero enim dicta aut praesentium explicabo exercitationem harum quibusdam, quos architecto temporibus consequatur nulla nihil corrupti.",
-        "salaSchedule": "John Doe • 4 Feb 2024",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "salaMovies": [
