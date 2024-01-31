@@ -81,7 +81,11 @@
     transition: 0.5s;
 }
 
+<<<<<<< HEAD
 .carta-img:hover{
+=======
+.pelicula:hover > .carta-img {
+>>>>>>> 6c40ad1d61b5a2385981b27372f5667b8ee268a1
     height: 500px;
     transition: 0.3s;
 }
