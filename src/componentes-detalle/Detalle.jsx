@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 const Detalle = (props) => {
-  const rutaReserva = `/reserva`;
+  const rutaReserva = `/reserva/${props.id}`;
   return (
     <div className="contenido_salas">
       <div className="mb-2">
