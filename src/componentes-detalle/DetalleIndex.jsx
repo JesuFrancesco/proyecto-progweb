@@ -104,7 +104,7 @@ const DetalleIndex = () => {
               </Typography>
             
             {Salas_dispo.map((detalle) => (
-              <Detalle abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} />
+              <Detalle abrevia={detalle.abrevia} sala={detalle.sala} descripcion={detalle.descripcion} horarios={detalle.horarios} id = {peliculaActual.path}/>
             ))}
           </div>
       </div>
@@ -129,7 +129,6 @@ const DetalleIndex = () => {
             {
               peliculaActual.generos.map( tag => <Chip label={tag} />)
             }
-            
           </div>
         </div>
       </div>
