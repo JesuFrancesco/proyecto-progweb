@@ -10,18 +10,8 @@ import Carrusel from './componentes-menu/Carrusel';
 
 const MenuPage = () => {
   const ruta = useLocation();
-  console.log(`CODIGO: ${ruta.state.usuario_obj}`);
-
-  const navigate = useNavigate()
-  function Clicklink(){
-    navigate('/peliculas-index', {
-      state : {
-          usuario_obj2: ruta.state.usuario_obj
-      }
-  })
-  }
   return <>
-    <Header title={"Bienvenido " + ruta.state.usuario_obj} />
+    <Header title={"Bienvenido " + ruta.state.usuario_obj}/>
     <div>
 
       {/* carrusel de banners */}
@@ -41,12 +31,12 @@ const MenuPage = () => {
         <Box display="flex" justifyContent="center">
           <Stack spacing={14} direction="row">
 
-            
-              <Button 
-                onClick={Clicklink}
-                variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
+            <Link to='/peliculas-index' 
+            state ={{usuario_codigo: ruta.state.usuario_obj}}>
+              <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
                 Películas
               </Button>
+            </Link>
 
             <Link to="/salas" state={{
               usuario_codigo: ruta.state.usuario_obj

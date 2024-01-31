@@ -17,7 +17,9 @@ const SalaIndexPage = () => {
         <div className='container'>
         
             <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>
-                <SalaIndex/>
+                <SalaIndex state={{
+              usuario_obj: ruta.state.usuario_codigo
+            }}/>
             </div>
         
             <Footer />

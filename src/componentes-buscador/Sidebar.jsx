@@ -2,7 +2,7 @@ import logo from './assets/logo.png'
 import { Link, useLocation } from 'react-router-dom'
 
 
-const Sidebar = () => {
+const Sidebar = (props) => {
     const ruta = useLocation();
     return <>
                 <div className="text-center">
@@ -16,7 +16,7 @@ const Sidebar = () => {
                     <ul className='link-lateral'>
                         <li><Link to={ "/menu" } state={ {usuario_obj: ruta.state.usuario_obj} }>Menu page</Link></li>
                         <li><Link to={ "/salas" } state={ {usuario_obj: ruta.state.usuario_obj} } >Salas</Link></li>
-                        <li><Link to={ "/peliculas-index" }>Películas</Link></li>
+                        <li><Link to={ "/peliculas-index" } state={ {usuario_obj: ruta.state.usuario_obj} }>Películas</Link></li>
                     </ul>
                 </div>
         </>

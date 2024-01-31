@@ -41,7 +41,7 @@ const PeliculaIndex = (props) => {
         setPagina(valor)
         navegar(`/peliculas-index/${valor}`, {
             state: {
-                usuario_obj2: props.usuario_obj3,
+                usuario_obj: props.usuario_obj,
                 pagina: valor
             }
         })
@@ -90,7 +90,7 @@ const PeliculaIndex = (props) => {
                             <div key={i} className="col">
                                 <div key={i} className={`col`}>
                                     <Pelicula
-                                        usuario_obj4 ={props.usuario_obj3}
+                                        usuario_obj ={props.usuario_obj}
                                         peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.genres} url={peli.thumbnail} id={peli.path} />
                                 </div>
                             </div>

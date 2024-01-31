@@ -4,10 +4,10 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 // import { salas } from "./Salas.js"; 
 
-const SalaIndex = () => {
+const SalaIndex = (props) => {
     const [salas, setSalas] = useState([]);
     const [salasExtra, setSalasExtra] = useState([]);
-
+    console.log("CODIGO"+props.usuario_obj)
     const obtenerSalasHTTP = async () => {
         const response = await fetch("https://raw.githubusercontent.com/JesuFrancesco/proyecto-progweb/main/public/salas.json");
         const json = await response.json();

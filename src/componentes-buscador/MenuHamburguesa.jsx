@@ -41,7 +41,7 @@ const MenuHamburguesa = (props) => {
             onClose={onMenuClose}
             size={'lg'}
         >
-            <Sidebar/> 
+            <Sidebar usuario_obj={props.usuario_obj}/> 
         </Drawer>
     </Box>
 }

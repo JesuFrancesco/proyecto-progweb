@@ -112,7 +112,7 @@ const DetalleIndex = (props) => {
                 titulo = {peliculaActual.titulo}
                 id = {peliculaActual.path}
                 imagen ={peliculaActual.url}
-                usuario_obj7={props.usuario_obj6}/>
+                usuario_obj={props.usuario_obj}/>
             ))}
           </div>
       </div>
