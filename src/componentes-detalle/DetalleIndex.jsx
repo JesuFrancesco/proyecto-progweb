@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import PersonIcon from '@mui/icons-material/Person';
@@ -13,7 +13,7 @@ const DetalleIndex = (props) => {
   const errorComponent = <>
     <img src="https://http.cat/images/404.jpg" alt="" />
   </>
-
+const ruta = useLocation()
   const location = useParams();
   const [peliculaActual, setPeliculaActual] = useState({
     id: "",
@@ -112,7 +112,7 @@ const DetalleIndex = (props) => {
                 titulo = {peliculaActual.titulo}
                 id = {peliculaActual.path}
                 imagen ={peliculaActual.url}
-                usuario_obj={props.usuario_obj}/>
+                /*state ={{usuario_codigo : ruta.state.usuario_codigo}}*//>
             ))}
           </div>
       </div>

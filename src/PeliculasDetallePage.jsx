@@ -16,7 +16,7 @@ const PeliculasDetallePage = () =>
         <Header />
         <div className='container'>
             <div className="mt-4 mx-auto" style={ {marginLeft: "100", float: "none"} }>
-                <DetalleIndex usuario_obj={ruta.state.usuario_obj}/>
+                <DetalleIndex /*state={{ usuario_codigo : ruta.state.usuario_codigo}}*//>
             </div>
             <Footer />
         

@@ -1,17 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const Detalle = (props) => 
 {
   const navigate = useNavigate()
-
+  const location = useLocation()
   function botonreser()
   {
+    
     navigate(`/reserva/${props.id}`, {
       state : {
           sala : props.sala,
           hora : props.horarios,
           titulo : props.titulo,
           imagen : props.imagen,
-          codigoalu : props.usuario_obj
+          codigoalu : 1 /*location.state.usuario_codigo*/
           
       }})
   }
