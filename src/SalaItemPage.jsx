@@ -4,35 +4,41 @@ import Footer from './componentes-buscador/Footer.jsx'
 
 // Sala item
 import SalaItem from './componentes-salas/SalaItem.jsx'
-import { salas } from './componentes-salas/Salas.js'
+// import { salas } from './componentes-salas/Salas.js'
 
 import './componentes-buscador/estilos-buscador.css'
 import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
-const error = <><img src="https://http.cat/images/404.jpg" alt="" /></>
+// const error = <><img src="https://http.cat/images/404.jpg" alt="" /></>
 
 const SalaItemPage = () => {
-    const { id } = useParams();
-    const idNum = Number.parseInt(id);
-    // console.log(idNum)
+    const { id: salaName } = useParams();
+    const [salas, setSalas] = useState([]);
 
-    if(isNaN(idNum)) 
-        return error;
+    const obtenerSalasHTTP = async () => {
+        const response = await fetch("https://raw.githubusercontent.com/JesuFrancesco/proyecto-progweb/main/public/salas.json");
+        const json = await response.json();
+        setSalas(json);
+    }
+
+    useEffect(() => {
+        obtenerSalasHTTP();
+    }, []);
     
-    if(salas[id - 1] === undefined)
-        return error;
-
-    const sala = salas[id-1];
-
+    const sala = salas.find(sala => sala.salaName === salaName.replace(/-/g, " "));
+    
     return <>
         <Header />
         <div className='container'>
         
-            <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>
-                <SalaItem sala={ sala }/>
-            </div>
+            {
+                (sala)? <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>
+                    <SalaItem sala={ sala }/>
+                </div> : <div />   
+            }
         
-            <Footer />
+        <Footer />
         </div>
     </>
 

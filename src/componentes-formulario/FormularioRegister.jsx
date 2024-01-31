@@ -74,7 +74,7 @@ const FormularioRegister = () => {
           }
 
           <center>
-            <Button variant='contained' onClick={handleRegistrarse}>
+            <Button variant='contained' style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }} onClick={handleRegistrarse}>
               Registrarse
             </Button>
           </center>

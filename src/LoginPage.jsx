@@ -1,7 +1,7 @@
 import FormularioLogin from './componentes-formulario/FormularioLogin'
 import React from 'react'
 
-import './componentes-login/estilos_a.css'
+import './componentes-login/estilos_login.css'
 
 const LoginPage = () => {
 

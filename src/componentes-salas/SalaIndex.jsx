@@ -1,16 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sala from "./Sala"
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { salas } from "./Salas.js"; // potencialmente cambiado por json (kms)
+// import { salas } from "./Salas.js"; 
 
 const SalaIndex = () => {
-    
+    const [salas, setSalas] = useState([]);
+
+    const obtenerSalasHTTP = async () => {
+        const response = await fetch("https://raw.githubusercontent.com/JesuFrancesco/proyecto-progweb/main/public/salas.json");
+        const json = await response.json();
+        setSalas(json);
+    }
+
+    useEffect(() => {
+        obtenerSalasHTTP();
+    }, []);
+
     const filtrarCartas = (keyword) => {
-        const esVacio = (valor) => typeof valor === "string" && valor.length === 0;
+        const esVacio = (valor) => valor.length === 0;
         for(let i = 0; i < salas.length; i++){
             const coincide = (new RegExp(keyword, 'i').test(salas[i]["salaName"]))? true : false;
-            // console.log(`sala ${salas[i]["salaName"]}: ${coincide}`)
-            document.getElementById("sala_"+i)
+            console.log(`sala ${salas[i]["salaName"].replace(/\s/g, "-")}: ${coincide}`)
+            document.getElementById(salas[i].salaName.replace(/\s/g, "-"))
             .setAttribute("style", `display: ${coincide? "inline-block" : esVacio(keyword)? "inline-block" : "none"};`);
             
         }
@@ -40,7 +51,7 @@ const SalaIndex = () => {
                                 salaSchedule={sala.salaSchedule} 
                                 salaTimes={sala.salaTimes} 
                                 url={ sala.url } 
-                                id={ i }
+                                id={ sala.salaName.replace(/\s/g, "-") }
                             />
                         )
                     }

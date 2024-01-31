@@ -1,5 +1,5 @@
 import React from 'react'
-import './componentes-registro/estilos.css'
+import './componentes-registro/estilos_registro.css'
 
 import FormularioRegister from './componentes-formulario/FormularioRegister';
 

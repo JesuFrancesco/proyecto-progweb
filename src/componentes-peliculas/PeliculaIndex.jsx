@@ -56,6 +56,7 @@ const PeliculaIndex = () => {
         if(isNaN(page)) page = 1;
         else setPagina(Number.parseInt(page));
     }, [])
+    
 
     return (
         <div style={{ textAlign: "center" }}>

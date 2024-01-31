@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 import { LocationCity } from "@mui/icons-material"
+import PanelHistoria from "./PanelHistoria";
+import TarjetaPelicula from './TarjetaPelicula';
 
 const SalaItem = (props) => {
     // dependiendo de la sala que mediante el params proporcionado por el componente padre
@@ -32,30 +34,12 @@ const SalaItem = (props) => {
 
                     {/* peliculas */}
                     <div id="peliculas" className="my-3">
-                        <h3 className="mb-3" style={ {fontWeight: "600"} }>Películas disponibles</h3>
+                        <h3 className="mb-3" style={ {fontWeight: "600"} }>
+                            Películas disponibles
+                        </h3>
                         {
                             sala.salaMovies.map((movie, index) => 
-                                <div id={"pelicula_"+index} className="pelicula mb-3 card">
-                                    <div className="card-body">
-                                        <button type="button" className="boton-index btn rounded">
-                                            {index + 1}
-                                        </button>
-                                        <b>{movie.title}</b>
-
-                                        <div className="movie-sinapsis">
-                                            {
-                                                movie.synopsis
-                                            }
-                                        </div>
-                                    </div>
-
-
-                                    <div className="border-top movie-footer">
-                                        {movie.schedules.map(time => 
-                                            <Link to="/reserva"><button className="boton-hora btn rounded-pill">{time}</button></Link>
-                                        )}
-                                    </div>
-                                </div>
+                                <TarjetaPelicula index={index} title={movie.title} synopsis={movie.synopsis} schedules={movie.schedules} />
                             )
                         }
                     </div>
@@ -65,12 +49,7 @@ const SalaItem = (props) => {
 
             {/* panel historia */}
             <div className="col-md">
-                <div className="card p-4" style={ {backgroundColor: "white"} }>
-                    <h4 className="card-title" style={{ fontWeight: 600 }}> Historia </h4>
-                    <p style={{ textAlign: "left" }}>
-                        {sala.salaHistory}
-                    </p>
-                </div>
+                <PanelHistoria texto={sala.salaHistory} />
             </div>
 
         </div>  

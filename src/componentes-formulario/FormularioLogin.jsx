@@ -75,8 +75,12 @@ const FormularioLogin = () => {
             })()}
         
             <center className='mt-3'>
-                <Button variant='contained' sx={ {mr: "2em"} } onClick={ handleLogin }>Iniciar sesion</Button>
-                <Link to={"/registro"}><Button variant='contained'>Registrarse</Button></Link>
+                <Button variant='contained' sx={ {mr: "2em"} } style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }} 
+                onClick={ handleLogin }>Iniciar sesion</Button>
+                
+                <Link to={"/registro"}>
+                    <Button variant='contained' style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white'}}>Registrarse</Button>
+                </Link>
             </center>
         </form>
     </div>
