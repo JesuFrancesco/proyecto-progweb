@@ -44,9 +44,7 @@ const MenuPage = () => {
                 </Button>
               </Link>
 
-            <Link to="/salas" state={{
-              usuario_obj: ruta.state.usuario_obj
-            }}>
+            <Link to="/salas" state={{ usuario_obj: ruta.state.usuario_obj }}>
               <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
                 Salas
               </Button>

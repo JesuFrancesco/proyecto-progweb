@@ -4,8 +4,8 @@ const Pelicula = (props) => {
 
     const ruta = useLocation();
     //const rutaDetalles = `/peliculas-detalle/${props.id}`;
-    console.log("--- Pelicula.jsx")
-    console.log(ruta.state.usuario_obj)
+    // console.log("--- Pelicula.jsx")
+    // console.log(ruta.state.usuario_obj)
 
     const navigate = useNavigate();
     function clickruta(){

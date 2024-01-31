@@ -1,18 +1,17 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-// import imag from "./ubicacion.png";
-import poraho from "./imagenporahora.png"
+// import poraho from "./imagenporahora.png"
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import ReservaDialog from "./ReservaDialog";
 
 export default function Reserva(props)
 {
     const ruta = useLocation();
 
-    console.log("--- Reserva.jsx")
-    console.log(ruta.state.usuario_obj)
+    // console.log("--- Reserva.jsx")
+    // console.log(ruta.state.usuario_obj)
     const usuario = ruta.state.usuario_obj;
 
     const [reserva, setReserva] = useState({

@@ -7,13 +7,9 @@ import Footer from './componentes-buscador/Footer.jsx'
 import './componentes-buscador/estilos-buscador.css'
 import DetalleIndex from './componentes-detalle/DetalleIndex.jsx'
 import './componentes-detalle/estilos.css'
-import { useLocation } from 'react-router-dom'
 
 const PeliculasDetallePage = () => 
 {
-    const ruta = useLocation();
-    console.log("--- PeliculasDetallePage.jsx")
-    console.log(ruta.state.usuario_obj)
     return <>
         <Header />
         <div className='container'>

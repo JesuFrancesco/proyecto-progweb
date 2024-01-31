@@ -1,23 +1,24 @@
 import { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+
 import Pelicula from "./Pelicula"
 
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Pagination from '@mui/material/Pagination';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import { Typography } from "@mui/material";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const PeliculaIndex = () => {
     const navegar = useNavigate();
     const ruta = useLocation();
     
-    console.log("--- PeliculaIndex.jsx")
-    console.log(ruta.state.usuario_obj)
-    
     const [filtro, setFiltro] = useState("");
     const [pagina, setPagina] = useState(1);
-    const { pagina: paginaParam } = useParams();
-    const pageRef = useRef(paginaParam);
+    
+    const id = useParams();
+    console.log("id:")
+    console.log(id)
+    const pageRef = useRef(id.pagina);
 
     const [peliculasJSON, setPeliculasJSON] = useState([]);
     const [peliS,setPeli]=useState([]) // esta cosa es para mantener la lista origianl siempre 
@@ -39,14 +40,14 @@ const PeliculaIndex = () => {
         
     };
 
-    const handlePageChange = (_, valor) => {        
-        setPagina(valor)
+    const handlePageChange = (_, valor) => {       
+        window.scrollTo(0, 0);
+        setPagina(valor);
         navegar(`/peliculas-index/${valor}`, {
             state: {
-                usuario_obj: ruta.state.usuario_obj,
-                pagina: valor
+                usuario_obj: ruta.state.usuario_obj
             }
-        })
+        });
     }
 
     const obtenerPeliculasPaginadas = () => {
@@ -63,12 +64,23 @@ const PeliculaIndex = () => {
     }
     
     useEffect(() => {
+        // verificar si no se puso input directo al link, sino que si se ha logeado y ha llegado ahi
+        // console.log("--- PeliculaIndex.jsx")
+        if(ruta.state == null) return;
+        // console.log(ruta.state.usuario_obj)
+
+        // peticion http
         buscarPeliculasHTTP();
+
         const page = pageRef.current;
+        console.log("page=" + page)
+        console.log(typeof page)
+
         if(isNaN(page)) setPagina(1);
-        else setPagina(Number.parseInt(page));
-    }, [])
+        
+    }, [ruta.state])
     
+    if(ruta.state == null) return <div>Se ha reiniciado la sesion! Volver a <Link to={"/"} style={ {backgroundColor: "orange"} }>login</Link></div>
 
     return (
         <div style={{ textAlign: "center" }}>

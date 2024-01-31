@@ -4,8 +4,8 @@ const TarjetaPelicula = (props) =>
 {
     const navigate = useNavigate();
     const ruta = useLocation();
-    console.log("--- TarjetaPelicula.jsx")
-    console.log(ruta.state.usuario_obj)
+    // console.log("--- TarjetaPelicula.jsx")
+    // console.log(ruta.state.usuario_obj)
 
     const botonReserva = (time) => {
         navigate(`/reserva/${props.title.replace(/\s/g, "-")}`, {
