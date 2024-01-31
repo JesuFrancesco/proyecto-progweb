@@ -7,7 +7,7 @@ import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import { Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 
-const PeliculaIndex = () => {
+const PeliculaIndex = (props) => {
     const navegar = useNavigate();
 
     let { pagina: page } = useParams();
@@ -38,7 +38,7 @@ const PeliculaIndex = () => {
 
     const handlePageChange = (_, valor) => {        
         setPagina(valor)
-        navegar(`/peliculas-index/${valor}`)
+        navegar(`/peliculas-index/${valor}`,)
     }
 
     const obtenerPeliculasPaginadas = () => {
@@ -82,7 +82,9 @@ const PeliculaIndex = () => {
                         return obtenerPeliculasPaginadas().map((peli, i) => (
                             <div key={i} className="col">
                                 <div key={i} className={`col`}>
-                                    <Pelicula peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.genres} url={peli.thumbnail} id={peli.path} />
+                                    <Pelicula
+                                        usuario_obj4 ={props.usuario_obj3}
+                                        peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.genres} url={peli.thumbnail} id={peli.path} />
                                 </div>
                             </div>
                             )

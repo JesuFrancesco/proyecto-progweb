@@ -10,7 +10,9 @@ const Detalle = (props) =>
           sala : props.sala,
           hora : props.horarios,
           titulo : props.titulo,
-          imagen : props.imagen
+          imagen : props.imagen,
+          codigoalu : props.usuario_obj7
+          
       }})
   }
   

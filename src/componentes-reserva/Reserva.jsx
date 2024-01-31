@@ -9,10 +9,11 @@ import ReservaDialog from "./ReservaDialog";
 
 export default function Reserva(props)
 {
+    const location = useLocation()
     const [reserva, setReserva] = useState({
         nombre: "Invitado",
         apellido: "",
-        codigo: "20210983",
+        codigo: location.state.codigoalu,
         cantidad: 1,
     })
     
@@ -21,7 +22,7 @@ export default function Reserva(props)
     // const [codigo,setCodigo] = useState("20210983")
     // const [cantidad,setCantidad] = useState(1)
 
-    const location = useLocation()
+    
     console.log(location.state)
 
     const InsertarNombre = (event) => {

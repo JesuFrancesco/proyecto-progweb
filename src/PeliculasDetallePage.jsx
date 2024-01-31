@@ -7,13 +7,16 @@ import Footer from './componentes-buscador/Footer.jsx'
 import './componentes-buscador/estilos-buscador.css'
 import DetalleIndex from './componentes-detalle/DetalleIndex.jsx'
 import './componentes-detalle/estilos.css'
+import { useLocation } from 'react-router-dom'
 
-const PeliculasDetallePage = () => {
+const PeliculasDetallePage = () => 
+{
+    const ruta = useLocation();
     return <>
         <Header />
         <div className='container'>
             <div className="mt-4 mx-auto" style={ {marginLeft: "100", float: "none"} }>
-                <DetalleIndex/>
+                <DetalleIndex usuario_obj6={ruta.state.usuario_obj5}/>
             </div>
             <Footer />
         

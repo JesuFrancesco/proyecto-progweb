@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Detalle from "./Detalle";
 import { Salas_dispo } from "./Detalles";
 
-const DetalleIndex = () => {
+const DetalleIndex = (props) => {
   const errorComponent = <>
     <img src="https://http.cat/images/404.jpg" alt="" />
   </>
@@ -111,7 +111,8 @@ const DetalleIndex = () => {
                 horarios={detalle.horarios} 
                 titulo = {peliculaActual.titulo}
                 id = {peliculaActual.path}
-                imagen ={peliculaActual.url}/>
+                imagen ={peliculaActual.url}
+                usuario_obj7={props.usuario_obj6}/>
             ))}
           </div>
       </div>
