@@ -10,25 +10,26 @@ const SalaItem = (props) => {
 
     return <>
         <div className="row">
+            {/* titulo y banner */}
+            <div>
+                <h2 style={ {fontWeight: "600"} }>{sala.salaName}</h2>
+            </div>
             
-                {/* titulo y banner */}
-                <div>
-                    <h2 style={ {fontWeight: "600"} }>{sala.salaName}</h2>
+            <div className="mb-3">
+                <div id="ubi">
+                    <LocationCity sx={ {mr: 1} }/>
+                    <Link className="text-decoration-none" to={ sala.salaMapsRelativeLocation }>
+                        {sala.salaAddress}
+                    </Link>
                 </div>
-                <div className="mb-3">
-                    <div id="ubi">
-                        <LocationCity sx={ {mr: 1} }/>
-                        <Link className="text-decoration-none" to={ sala.salaMapsRelativeLocation }>
-                            {sala.salaAddress}
-                        </Link>
-                    </div>
-                </div>
+            </div>
+
             <div className="col-md-8">
-                <div className="indent">
-                    <div style={ {textAlign: "center"} } className="mb-5">
-                        <img src={sala.url} style={ {borderRadius: "7px", width: "100%"} } alt="" />
-                    </div>
+                
+                <div style={ {textAlign: "center"} } className="mb-5">
+                    <img src={sala.url} className="w-100" style={ {borderRadius: "7px", width: "100%"} } alt="" />
                 </div>
+                
             
                 {/* peliculas */}
                 <h3 className="mb-3" style={ {fontWeight: "600"} }>
