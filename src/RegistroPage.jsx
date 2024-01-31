@@ -1,7 +1,7 @@
 import React from 'react'
-import './componentes-registro/estilos_registro.css'
-
+import './componentes-formulario/estilos_registro.css'
 import FormularioRegister from './componentes-formulario/FormularioRegister';
+
 
 const RegistroPage = () => {
   return <>

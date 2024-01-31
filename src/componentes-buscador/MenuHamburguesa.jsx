@@ -5,7 +5,7 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 // es con el componente de Side bar de jesu 
 // aun falta
-const MenuHamburguesa = () => {
+const MenuHamburguesa = (props) => {
     const [drawerOpen, setDrawerOpen] = useState(false)
 
     const onMenuIconClick = () => {
@@ -31,7 +31,7 @@ const MenuHamburguesa = () => {
                 </IconButton>
 
                 <Typography id="header-ulima-title" variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Salas de Cine Ulima
+                    {(props.title)? props.title : "Salas de Cine Ulima"}
                 </Typography>
 
             </Toolbar>

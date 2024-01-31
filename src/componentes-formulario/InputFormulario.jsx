@@ -9,10 +9,11 @@ const InputFormulario = (props) => {
     }
 
     return <>
-    <div className="mb-3">
-        <div className="form-label">{props.title}</div>
-        <TextField type={props.variante} fullWidth label={props.title} value={props.valor} variant="outlined" onChange={ handleInputChange } />
-    </div><div className="mb-3"></div>
+        <div className="mb-3">
+            <div className="form-label">{props.title}</div>
+            <TextField type={props.variante} fullWidth label={props.title} value={props.valor} variant="standard" onChange={ handleInputChange } />
+        </div>
+        <div className="mb-3" />
     </>
 }
 
