@@ -9,12 +9,17 @@ import ReservaPage from "../ReservaPage"
 import MenuPage from "../MenuPage"
 import LoginPage from "../LoginPage"
 import RegistroPage from "../RegistroPage"
+import RecuperaPage from "../RecuperaPage"
 
 const Rutas = () => {
     return createHashRouter([
         {
             path: "/",
             element: <LoginPage />
+        },
+        {
+            path: "/recuperacion-correo",
+            element: <RecuperaPage />
         },
         {
             path: "/registro",

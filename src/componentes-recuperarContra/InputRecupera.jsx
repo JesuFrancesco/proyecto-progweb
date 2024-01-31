@@ -1,0 +1,19 @@
+import { TextField } from '@mui/material'
+
+const InputRecupera = (props) => {
+    const handleInputChange = (event) => {
+        const nuevoObj = props.objeto
+        nuevoObj[props.llave] = event.target.value;
+        console.log(nuevoObj)
+        props.setFn(nuevoObj);
+    }
+
+    return <>
+    <div className="mb-3">
+        <div className="form-label">{props.title}</div>
+        <TextField type={props.variante} fullWidth label={props.title} value={props.valor} variant="outlined" onChange={ handleInputChange } />
+    </div><div className="mb-3"></div>
+    </>
+}
+
+export default InputRecupera
