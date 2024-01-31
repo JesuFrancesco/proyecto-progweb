@@ -10,7 +10,7 @@ import Carrusel from './componentes-menu/Carrusel';
 
 const MenuPage = () => {
   const ruta = useLocation();
-  console.log(ruta.state.usuario_obj);
+  console.log(`CODIGO: ${ruta.state.usuario_obj}`);
   return <>
     <Header title={"Bienvenido " + ruta.state.usuario_obj.nombre} />
     <div>

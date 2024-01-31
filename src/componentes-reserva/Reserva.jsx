@@ -24,7 +24,6 @@ export default function Reserva(props)
     const location = useLocation()
     console.log(location.state)
 
-    
     const InsertarNombre = (event) => {
         setReserva({...reserva, nombre: event.target.value})
     }
