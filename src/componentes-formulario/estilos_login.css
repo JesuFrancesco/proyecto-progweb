@@ -16,9 +16,9 @@
     color: rgb(255, 81, 0);
     text-shadow: 10px 10px 10px black;
 }
-#titulo_front:hover{
+/* #titulo_front:hover{
     font-size: 7em;
-}
+} */
 
 .form-label{
     font-size: 30px;
