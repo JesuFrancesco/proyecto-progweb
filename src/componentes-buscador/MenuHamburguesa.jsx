@@ -3,8 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
 
 import Sidebar from "./Sidebar";
-// es con el componente de Side bar de jesu 
-// aun falta
+
 const MenuHamburguesa = (props) => {
     const [drawerOpen, setDrawerOpen] = useState(false)
 

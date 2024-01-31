@@ -41,6 +41,7 @@ const PeliculaIndex = (props) => {
         setPagina(valor)
         navegar(`/peliculas-index/${valor}`, {
             state: {
+                usuario_obj2: props.usuario_obj3,
                 pagina: valor
             }
         })

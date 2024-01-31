@@ -18,8 +18,7 @@ const PeliculaIndexPage = () =>
             <Header />
         <div className='container'>
             <div className="mt-4 mx-auto mb-4" style={ {margin: "0 auto", float: "none"} }>
-                <PeliculaIndex
-                    usuario_obj3={ruta.state.usuario_obj2}/>
+                <PeliculaIndex usuario_obj3={ruta.state.usuario_obj2}/>
             </div>
             <Footer/>
         
