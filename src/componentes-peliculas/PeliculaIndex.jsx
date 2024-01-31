@@ -16,22 +16,23 @@ const PeliculaIndex = () => {
     const [filtro, setFiltro] = useState("");
     const [pagina, setPagina] = useState(1);
     const [peliculasJSON, setPeliculasJSON] = useState([]);
+    const [peliS,setPeli]=useState([]) // esta cosa es para mantener la lista origianl siempre 
 
-    const filtrarCartas = (keyword) => {
-        // TODO: CAMBIAR LA LOGICA DEL FILTRAR CARTAS
-
-        // for (let i = 0; i < peliculasJSON.length; i++) {
-        //     const coincide = (new RegExp(keyword, 'i').test(peliculasJSON[i]["title"]))? true : false;
-        //     document.getElementsByClassName(`peli_${i}`)[0].setAttribute("style", `display: ${coincide? "inline-block" : keyword === ""? "inline-block" : "none"};`);
-        // }
+    const filtrarPeliculas = (keyword) => {
+        const peliculasJSON = peliS //cada vez que se filtre lo hace desde la lista orginal ,de esta manera se vuelve a filtra cuando borras un caracter que ese era el problema xd
+        const peliculasFiltradas = peliculasJSON.filter(
+            peli => peli.title.toLowerCase().includes(keyword.toLowerCase())
+        );
+        return peliculasFiltradas;
     };
 
     const handleInputChange = (evt) => {
         evt.preventDefault();
-
-        setFiltro(evt.target.value);
-
-        filtrarCartas(evt.target.value);
+        const keyword = evt.target.value;
+        setFiltro(keyword);
+        const peliculasFiltradas = filtrarPeliculas(keyword);
+        setPeliculasJSON(peliculasFiltradas);
+        
     };
 
     const handlePageChange = (_, valor) => {        
@@ -49,6 +50,7 @@ const PeliculaIndex = () => {
         const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
         const json = await response.json();
         setPeliculasJSON(json);
+        setPeli(json);
     }
     
     useEffect(() => {
