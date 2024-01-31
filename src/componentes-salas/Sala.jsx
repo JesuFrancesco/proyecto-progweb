@@ -7,7 +7,7 @@ const Sala = (props) => {
         <div className="card" id={props.id} style={ {textAlign: "inherit"} }>
             {/* Imagen vinculada */}
             <Link to={ `./${props.id}` } state={{
-                usuario_codigo: ruta.state.usuario_codigo
+                usuario_obj: ruta.state.usuario_obj
             }}>
                 <img src= {props.url} alt="portada-sala" className="card-img-top" style={ {"maxHeight": "100%"} }/>
             </Link>

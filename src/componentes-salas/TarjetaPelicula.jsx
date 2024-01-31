@@ -4,13 +4,15 @@ const TarjetaPelicula = (props) =>
 {
     const navigate = useNavigate();
     const ruta = useLocation();
-    console.log(ruta.state)
+    console.log("--- TarjetaPelicula.jsx")
+    console.log(ruta.state.usuario_obj)
 
     const botonReserva = (time) => {
-        navigate(`/reserva/${props.id}`, {
+        navigate(`/reserva`, {
             state : {
+                usuario_obj: ruta.state.usuario_obj,
+                
                 sala : props.sala_obj.salaName,
-                codigoalu : ruta.state.usuario_codigo,
                 hora : time,
                 titulo : props.title,
                 imagen : props.thumbnail

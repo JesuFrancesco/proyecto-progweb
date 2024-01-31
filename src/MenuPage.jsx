@@ -10,7 +10,10 @@ import Carrusel from './componentes-menu/Carrusel';
 
 const MenuPage = () => {
   const ruta = useLocation();
-  console.log(`CODIGO: ${ruta.state.usuario_obj}`);
+  const usuario = ruta.state.usuario_obj;
+
+  console.log("--- MenuPage.jsx");
+  console.log(usuario);
 
   const navigate = useNavigate()
   function Clicklink(){
@@ -21,7 +24,7 @@ const MenuPage = () => {
   })
   }
   return <>
-    <Header title={"Bienvenido " + ruta.state.usuario_obj} />
+    <Header title={"Bienvenido " + ruta.state.usuario_obj.nombre} />
     <div>
 
       {/* carrusel de banners */}
@@ -49,7 +52,7 @@ const MenuPage = () => {
               </Button>
 
             <Link to="/salas" state={{
-              usuario_codigo: ruta.state.usuario_obj
+              usuario_obj: ruta.state.usuario_obj
             }}>
               <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
                 Salas

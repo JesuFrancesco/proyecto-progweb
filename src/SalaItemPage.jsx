@@ -13,8 +13,6 @@ import { useEffect, useState } from 'react'
 // const error = <><img src="https://http.cat/images/404.jpg" alt="" /></>
 
 const SalaItemPage = () => {
-    
-
     const { id: salaName } = useParams();
     const [salas, setSalas] = useState([]);
     const [peliculas, setPeliculas] = useState([]);

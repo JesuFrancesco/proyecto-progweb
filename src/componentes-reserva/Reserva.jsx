@@ -9,11 +9,15 @@ import ReservaDialog from "./ReservaDialog";
 
 export default function Reserva(props)
 {
-    const location = useLocation()
+    const ruta = useLocation();
+
+    console.log("--- Reserva.jsx")
+    console.log(ruta.state.usuario_obj)
+    const usuario = ruta.state.usuario_obj;
     const [reserva, setReserva] = useState({
-        nombre: "Invitado",
-        apellido: "",
-        codigo: location.state.codigoalu,
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        codigo: usuario.codigo,
         cantidad: 1,
     })
     
@@ -23,7 +27,7 @@ export default function Reserva(props)
     // const [cantidad,setCantidad] = useState(1)
 
     
-    console.log(location.state)
+    // console.log(ruta.state)
 
     const InsertarNombre = (event) => {
         setReserva({...reserva, nombre: event.target.value})
@@ -54,16 +58,16 @@ export default function Reserva(props)
             <div className="col-8 mt-4">
                 <div style={ qx }>
                     <div style={ {marginLeft : "20px", marginBottom : "10px"} }>
-                        <h2>{location.state.titulo}</h2>
+                        <h2>{ruta.state.titulo}</h2>
                         <div >
                             <AccessTimeIcon /><span className="sali">&nbsp;1hrs 30min</span>
-                            <LocationOnIcon /><span className="sali">&nbsp;{location.state.sala}</span>
+                            <LocationOnIcon /><span className="sali">&nbsp;{ruta.state.sala}</span>
                         </div>
                     </div>
                     <div className="card" style={carta}>
                         <div className="card-body">
                             <h6 className="card-title">Información de Reserva</h6>
-                            <span>Hora: </span> <b>{location.state.hora}</b>
+                            <span>Hora: </span> <b>{ruta.state.hora}</b>
                             <div className="border-bottom mb-4 mt-2"></div>
                             <div className="card-text">
                                 <input type="text" 
@@ -105,7 +109,7 @@ export default function Reserva(props)
             </div>
             <div className="col-4">
                 <div style={{marginTop:"100px"}}>
-                    <img src={location.state.imagen} id="img" alt=""/>
+                    <img src={ruta.state.imagen} id="img" alt=""/>
                 </div>
             </div>
         </div>
