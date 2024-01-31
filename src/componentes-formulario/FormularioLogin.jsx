@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
+import { Typography, Container } from '@mui/material';
 
 import InputFormulario from './InputFormulario'
 
@@ -67,7 +68,14 @@ const FormularioLogin = () => {
             {/* Input */}
             <InputFormulario title={"Código"} objeto={usuario} llave={"codigo"} setFn={setUsuario} />
             <InputFormulario title={"Contraseña"} objeto={usuario} llave={"contrasena"} setFn={setUsuario} variante="password" />
-                
+            <Container className="text-center" style={{ marginTop: '40px' }}>
+                <Typography variant="body1" gutterBottom>
+                    <p>¿Olvidaste tu contraseña?</p>
+                </Typography>
+                <Link to={"/recuperacion-correo"} style={{ color: '#1976D2', textDecoration: 'none', fontWeight: 'bold' }}>
+                    Recuperación de Contraseña
+                </Link>
+            </Container>   
             {error && 
             (() => {
                 if (error) {

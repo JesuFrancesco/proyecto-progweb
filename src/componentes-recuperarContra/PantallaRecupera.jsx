@@ -75,7 +75,7 @@ const PantallaRecupera = () => {
                         <Button variant='contained' sx={{ mr: "2em" }} style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }}
                             onClick={handleLogin} disabled={formEnviado} hidden={formEnviado}>Enviar</Button>
 
-                        <Link to={"/registro"}>
+                        <Link to={"/"}>
                             <Button variant='contained' style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }} disabled={formEnviado}>Volver</Button>
                         </Link>
                     </center>
