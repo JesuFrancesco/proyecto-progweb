@@ -1,6 +1,5 @@
 import Reserva from "./Reserva"
 
-
 function ReservaIndex(){
     return <Reserva/>
 }

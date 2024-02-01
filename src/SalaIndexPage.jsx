@@ -10,7 +10,8 @@ import { useLocation } from 'react-router-dom'
 
 const SalaIndexPage = () => {
     const ruta = useLocation();
-    console.log((ruta.state.usuario_codigo)? ruta.state.usuario_codigo : "guest");
+    console.log("--- SalaIndexPage")
+    console.log((ruta.state.usuario_obj)? ruta.state.usuario_obj : "guest");
 
     return <>
         <Header />

@@ -5,8 +5,8 @@ const Detalle = (props) =>
 {
   const navigate = useNavigate();
   const ruta = useLocation();
-  // console.log("--- Detalle.jsx");
-  // console.log(ruta.state.usuario_obj);
+  console.log("--- Detalle.jsx");
+  console.log(ruta.state.usuario_obj);
 
   function botonreser(horario)
   {
@@ -21,7 +21,6 @@ const Detalle = (props) =>
           
       }})
   }
-  
 
   return (
     <div className="contenido_salas" style={{ marginBottom: "40px" }}>

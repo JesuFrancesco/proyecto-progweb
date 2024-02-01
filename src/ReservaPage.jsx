@@ -6,8 +6,8 @@ import Header from "./componentes-buscador/Header"
 import ReservaIndex from "./componentes-reserva/ReservaIndex"
 import './componentes-reserva/estilorese.css'
 
-function ReservaPage()
-{
+export default function ReservaPage() {
+    
     return <>
         <Header/>
         <div className='container'>
@@ -20,5 +20,3 @@ function ReservaPage()
         </div>
     </>
 }
-
-export default ReservaPage

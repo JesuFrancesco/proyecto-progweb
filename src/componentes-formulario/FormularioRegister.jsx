@@ -60,7 +60,7 @@ const FormularioRegister = () => {
           <InputFormulario title={"Nombre"} objeto={usuarioRegister} llave={"nombre"} setFn={setusuarioRegister} />
           <InputFormulario title={"Apellido"} objeto={usuarioRegister} llave={"apellido"} setFn={setusuarioRegister} />
           <InputFormulario title={"Codigo"} objeto={usuarioRegister} llave={"codigo"} setFn={setusuarioRegister} />
-          <InputFormulario variante="password" title={"Contraseña"} objeto={usuarioRegister} llave={"contrasena"} setFn={setusuarioRegister} />
+          <InputFormulario title={"Contraseña"} objeto={usuarioRegister} llave={"contrasena"} setFn={setusuarioRegister} variante="password" />
       
           {error && (
             () => {

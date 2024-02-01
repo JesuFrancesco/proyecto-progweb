@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import DetalleImagen from "./DetalleImagen";
 import DetalleTitulo from "./DetalleTitulo";

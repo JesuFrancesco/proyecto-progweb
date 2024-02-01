@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Stack, Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -10,8 +10,13 @@ import Carrusel from './componentes-menu/Carrusel';
 
 const MenuPage = () => {
   const ruta = useLocation();
+  const usuario = ruta.state.usuario_obj;
+
+  console.log("--- MenuPage.jsx");
+  console.log(usuario);
+
   return <>
-    <Header title={"Bienvenido " + ruta.state.usuario_obj}/>
+    <Header title={"Bienvenido " + ruta.state.usuario_obj.nombre} />
     <div>
 
       {/* carrusel de banners */}
@@ -31,16 +36,15 @@ const MenuPage = () => {
         <Box display="flex" justifyContent="center">
           <Stack spacing={14} direction="row">
 
-            <Link to='/peliculas-index' 
-            state ={{usuario_codigo: ruta.state.usuario_obj}}>
-              <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
-                Películas
-              </Button>
-            </Link>
+            
+              <Link to={"/peliculas-index"} state = { {usuario_obj: ruta.state.usuario_obj}}>
+                <Button
+                  variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
+                  Películas
+                </Button>
+              </Link>
 
-            <Link to="/salas" state={{
-              usuario_codigo: ruta.state.usuario_obj
-            }}>
+            <Link to="/salas" state={{ usuario_obj: ruta.state.usuario_obj }}>
               <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
                 Salas
               </Button>
