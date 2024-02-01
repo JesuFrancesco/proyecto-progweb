@@ -43,7 +43,7 @@ const MenuHamburguesa = (props) => {
             open={drawerOpen}
             onClose={onMenuClose}
         >
-            <Sidebar usuario_obj={props.usuario_obj}/> 
+            <Sidebar /> 
         </Drawer>
     </Box>
 }

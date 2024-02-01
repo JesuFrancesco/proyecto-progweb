@@ -5,8 +5,6 @@ import './componentes-buscador/estilos-buscador.css'
 import PeliculaIndex from './componentes-peliculas/PeliculaIndex.jsx'
 import './componentes-peliculas/estilopeli.css'
 
-// usuario_obj3={ruta.state.usuario_obj2}
-
 const PeliculaIndexPage = () => 
 {
     

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import DetalleImagen from "./DetalleImagen";
 import DetalleTitulo from "./DetalleTitulo";
@@ -7,9 +7,6 @@ import DetalleSala from "./DetalleSala";
 import DetalleSinopsis from "./DetalleSinopsis";
 
 const DetalleIndex = () => {
-  const ruta = useLocation();
-  console.log("--- DetalleIndex.jsx")
-  console.log(ruta.state.usuario_obj)
   
   const errorComponent = <>
     <img src="https://http.cat/images/404.jpg" alt="" />

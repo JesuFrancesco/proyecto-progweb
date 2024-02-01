@@ -1,14 +1,11 @@
 import { Chip } from "@mui/material";
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 const Sala = (props) => {
-    const ruta = useLocation();
 
     return <>
         <div className="card" id={props.id} style={ {textAlign: "inherit"} }>
             {/* Imagen vinculada */}
-            <Link to={ `./${props.id}` } state={{
-                usuario_obj: ruta.state.usuario_obj
-            }}>
+            <Link to={ `./${props.id}` } >
                 <img src= {props.url} alt="portada-sala" className="card-img-top" style={ {"maxHeight": "100%"} }/>
             </Link>
 

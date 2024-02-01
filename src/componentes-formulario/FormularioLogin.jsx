@@ -48,11 +48,7 @@ const FormularioLogin = () => {
                 console.log(user)
                 sessionStorage.setItem("usuario_objeto", JSON.stringify(user));
                 
-                navigate('/menu', {
-                    state : {
-                        usuario_obj: user
-                    }
-                })
+                navigate('/menu')
             } else {
                 setError('Usuario o contraseña incorrectos')
             }

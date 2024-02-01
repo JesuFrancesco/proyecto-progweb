@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
@@ -20,8 +20,6 @@ const PantallaRecupera = () => {
     const [error, setAlerta] = useState('')
     const [aviso, setAviso] = useState('')
     const [usuariosJSON, setUsuariosJSON] = useState([])
-
-    const navigate = useNavigate()
 
     const obtenerUsuarios = async () => {    
         const response = await fetch("http://localhost:3000/proyecto-progweb/usuarios.json")
@@ -63,27 +61,29 @@ const PantallaRecupera = () => {
 
     const enviarEmail = async (correoE) => {
         try {
-          const { data, error } = await resend.emails.send({
-            from: 'Acme <onboarding@resend.dev>',
-            to: [correoE],
-            subject: "asunto",
-            html: "contenido",
-          });
-      
-          if (error) {
+            // LOGICA DE API: TODO: CORS
+            const { data, error } = await resend.emails.send({
+                from: 'Acme <onboarding@resend.dev>',
+                to: [correoE],
+                subject: "asunto",
+                html: "contenido",
+            });
+
+            if (error) {
+                console.error('Error sending email:', error);
+                setAlerta('Error al enviar el correo');
+            } else {
+                console.log('Email sent successfully:', data);
+                setAviso('Correo enviado exitosamente');
+            }
+        } catch (error) {
             console.error('Error sending email:', error);
             setAlerta('Error al enviar el correo');
-          } else {
-            console.log('Email sent successfully:', data);
-            setAviso('Correo enviado exitosamente');
-          }
-        } catch (error) {
-          console.error('Error sending email:', error);
-          setAlerta('Error al enviar el correo');
         }
 
         console.log("envio realizado")
-      }
+    }
+
     return (
         <>
             <div id="formulario">
@@ -97,6 +97,14 @@ const PantallaRecupera = () => {
                             severity="error"
                             sx={{ mt: 2 }}>
                             {error}
+                        </Alert>
+                    )}
+
+                    {aviso && (
+                        <Alert
+                            severity="success"
+                            sx={{ mt: 2 }}>
+                            {aviso}
                         </Alert>
                     )}
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Pelicula from "./Pelicula"
 
@@ -10,7 +10,6 @@ import { Typography } from "@mui/material";
 
 const PeliculaIndex = () => {
     const navegar = useNavigate();
-    const ruta = useLocation();
     
     const [filtro, setFiltro] = useState("");
     const [pagina, setPagina] = useState(1);
@@ -41,11 +40,7 @@ const PeliculaIndex = () => {
     const handlePageChange = (_, valor) => {       
         // console.log("paginaState cambiando a " + valor + "...")
         setPagina(valor);
-        navegar(`/peliculas-index/${valor}`, {
-            state: {
-                usuario_obj: ruta.state.usuario_obj
-            }
-        });
+        navegar(`/peliculas-index/${valor}`);
         window.scrollTo(0,0)
     }
 
@@ -64,10 +59,6 @@ const PeliculaIndex = () => {
     
     useEffect(() => {
         // verificar si no se puso input directo al link, sino que si se ha logeado y ha llegado ahi
-        // console.log("--- PeliculaIndex.jsx")
-        console.log("--- Llamada useEffect (peliculaIndex.jsx")
-        if(ruta.state == null) return;
-        // console.log(ruta.state.usuario_obj)
         
         // peticion http
         buscarPeliculasHTTP();
@@ -79,15 +70,9 @@ const PeliculaIndex = () => {
         
         if(isNaN(page)) {
             console.log("indefinido, redirigiendo...")
-            navegar(`/peliculas-index/1`, {
-                state: {
-                    usuario_obj: ruta.state.usuario_obj
-                }
-            });
+            navegar(`/peliculas-index/1`);
         }
-    }, [navegar, pagina, ruta.state])
-    
-    if(ruta.state == null) return <div>Se ha reiniciado la sesion! Volver a <Link to={"/"} style={ {backgroundColor: "orange"} }>login</Link></div>
+    }, [navegar, pagina])
 
     return (
         <div style={{ textAlign: "center" }}>
@@ -111,7 +96,6 @@ const PeliculaIndex = () => {
                             <div key={i} className="col">
                                 <div key={i} className={`col`}>
                                     <Pelicula
-                                        // usuario_obj4 = { ruta.state.usuario_obj }
                                         peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.genres} url={peli.thumbnail} id={peli.path} />
                                 </div>
                             </div>

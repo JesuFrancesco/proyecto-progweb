@@ -1,19 +1,12 @@
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Chip from "@mui/material/Chip";
 
 const Pelicula = (props) => {
-
-    const ruta = useLocation();
-    //const rutaDetalles = `/peliculas-detalle/${props.id}`;
-    // console.log("--- Pelicula.jsx")
-    // console.log(ruta.state.usuario_obj)
-
     const destino = `/peliculas-detalle/${props.id}`
-    //const rutaDetalles = `/peliculas-detalle/${props.id}`;
 
     return (
         <div className="card" id={props.id} style={{ textAlign: "inherit" }} >
-            <Link to={destino} state={ {usuario_obj: ruta.state.usuario_obj} }>
+            <Link to={destino} >
                 <img 
                     src={props.url}
                     alt="portada-peli"

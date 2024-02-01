@@ -1,5 +1,5 @@
 import logo from './assets/logo.png'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState } from 'react';
 
 const Sidebar = () => {
@@ -9,9 +9,6 @@ const Sidebar = () => {
         {ruta: "/salas", label: "Salas"},
         {ruta: "/peliculas-index", label: "Peliculas"}
     ]
-
-    // obtiene el usuario_obj mediante 'ruta.state'
-    const ruta = useLocation();
 
     const [valorInput, setValorInput] = useState();
     const [enlacesVisibles, setEnlacesVisibles] = useState(enlaces);
@@ -47,7 +44,7 @@ const Sidebar = () => {
                 <ul className='link-lateral'>
                     {
                         enlacesVisibles.map((enlace, i) => 
-                            <li key={i} ><Link to={ enlace.ruta } state={ {usuario_obj: ruta.state.usuario_obj} }>{enlace.label}</Link></li>    
+                            <li key={i} ><Link to={ enlace.ruta } >{enlace.label}</Link></li>    
                         )
                     }
                 </ul>

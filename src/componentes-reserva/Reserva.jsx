@@ -1,21 +1,26 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-// import poraho from "./imagenporahora.png"
-import { useEffect } from 'react';
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
-// import { Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ReservaDialog from "./ReservaDialog";
+import { checkLogin } from '../util/CheckLogin';
 
 export default function Reserva()
 {
+    const navegacion = useNavigate();
     const ruta = useLocation();
 
-    console.log("--- Reserva.jsx")
-    console.log(sessionStorage.getItem("usuario_objeto"))
-    // console.log(ruta.state.usuario_obj)
-    // const usuario = ruta.state.usuario_obj;
-    const [usuario, setUsuario] = useState(sessionStorage.getItem("usuario_objeto")? JSON.parse(sessionStorage.getItem("usuario_objeto")) : {})
+    // console.log("--- debug: Reserva.jsx")
+    // console.log(ruta.state) // datos de la reserva
+    // console.log(sessionStorage.getItem("usuario_objeto")) // datos usuario
+
+    const usu = sessionStorage.getItem("usuario_objeto")
+    const usuario = (usu)? JSON.parse(usu) : {};
+
+    useEffect(() => {
+        if (!checkLogin(navegacion))
+            navegacion("/")
+    })
 
     const [reserva, setReserva] = useState({
         ...usuario,
