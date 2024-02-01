@@ -26,7 +26,7 @@ const TarjetaPelicula = (props) =>
             </div>
             <div className="border-top movie-footer">
                 {
-                    props.schedules.map((time) => 
+                    props.schedules.map(time => 
                         <button className="boton-hora btn rounded-pill" onClick={() => botonReserva(time)}>
                             {time}
                         </button>

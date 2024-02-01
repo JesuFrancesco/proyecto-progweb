@@ -16,7 +16,17 @@
 }
 
 #img{
-    border-radius:5px   ;
+    display: block;
+    align-items: center;
+    margin: 0 auto;
+    /* max-width:230px;
+    max-height:95px; */
+    border-radius:5px;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset;
+    width: 80%;
+    height: auto;
+    /*    ;
     background: var(--action-active, rgba(0, 0, 0, 0.56));
     display: flex;
     height: 286px;
@@ -26,5 +36,5 @@
     align-items: center;
     gap: var(--none, 0px);
     flex-shrink: 0;
-    align-self: stretch;
+    align-self: stretch; */
 }

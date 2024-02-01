@@ -3,10 +3,10 @@ import { Link } from "react-router-dom"
 const Sala = (props) => {
 
     return <>
-        <div className="card" id={props.id} style={ {textAlign: "inherit"} }>
+        <div className="index-card card" id={props.id} style={ {textAlign: "inherit"} }>
             {/* Imagen vinculada */}
             <Link to={ `./${props.id}` } >
-                <img src= {props.url} alt="portada-sala" className="card-img-top" style={ {"maxHeight": "100%"} }/>
+                <img src= {props.url} alt="" className="card-img-top" style={ {"maxHeight": "100%"} }/>
             </Link>
 
             {/* contenido */}

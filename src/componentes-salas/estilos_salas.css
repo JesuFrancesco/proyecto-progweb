@@ -74,6 +74,22 @@
     transition: background-color 0.3s;
 }
 
+.index-card .card-img-top{
+    height: 250px;
+    overflow: hidden;
+    object-fit: cover;
+    /* transition: 0.5s; */
+    transition: transform 0.3s, filter 0.3s ease-in-out;
+    transform-origin: center center;
+    filter: brightness(80%);
+}
+
+.index-card .card-img-top:hover{
+    transition: transform 0.3s, filter 0.3s ease-in-out;
+    transform-origin: center center;
+    filter: brightness(100%);
+}
+
 .carta-img {
     height: 250px;
     overflow: hidden;
@@ -82,6 +98,6 @@
 }
 
 .pelicula:hover > .carta-img {
-    height: 500px;
+    height: 400px;
     transition: 0.3s;
 }

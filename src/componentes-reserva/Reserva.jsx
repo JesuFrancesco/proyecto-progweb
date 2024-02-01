@@ -53,7 +53,7 @@ export default function Reserva()
     return <div id="todo">
         <h2 className="border-bottom">Reserva</h2>
         <div className="row">
-            <div className="col-8 mt-4">
+            <div className="col mt-4">
                 <div style={ qx }>
                     <div style={ {marginLeft : "20px", marginBottom : "10px"} }>
                         <h2>{ruta.state.titulo}</h2>
@@ -105,9 +105,9 @@ export default function Reserva()
                     </div>
                 </div>
             </div>
-            <div className="col-4">
+            <div className="col-md-4">
                 <div style={{marginTop:"100px"}}>
-                    <img src={ruta.state.imagen} id="img" alt=""/>
+                    <img style={ {} } src={ruta.state.imagen} id="img" alt=""/>
                 </div>
             </div>
         </div>

@@ -15,9 +15,9 @@ const SalaIndex = () => {
     }
 
     const obtenerSalasExtraHTTP = async () => {
-        const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/salas.json");
+        const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/salasv2.json");
         const json = await response.json();
-        setSalasExtra(json.buildings);
+        setSalasExtra(json);
     }
 
     useEffect(() => {
@@ -69,9 +69,9 @@ const SalaIndex = () => {
                         salasExtra.map(sala =>
                             <Sala salaName={sala.name} 
                                 salaAddress={sala.address} 
-                                salaTimes={sala.available_times} 
-                                url={ "https://placehold.co/600x400" } 
-                                id={ sala.name.replace(/\s/g, "-") }
+                                salaTimes={sala.formats} 
+                                url={ sala.img } 
+                                id={ sala.path }
                             />
                         )
                     }
