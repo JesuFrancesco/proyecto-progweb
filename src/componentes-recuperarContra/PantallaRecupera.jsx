@@ -81,6 +81,8 @@ const PantallaRecupera = () => {
           console.error('Error sending email:', error);
           setAlerta('Error al enviar el correo');
         }
+
+        console.log("envio realizado")
       }
     return (
         <>

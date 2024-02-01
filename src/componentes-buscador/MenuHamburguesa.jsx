@@ -16,9 +16,9 @@ const MenuHamburguesa = (props) => {
     }
 
     return <Box sx={ {display: "inline-block"} }>
-        
-            <Toolbar>
 
+            {/* boton del menu (---)  */}
+            <Toolbar>
                 <IconButton
                     size="large"
                     edge="start"
@@ -29,17 +29,19 @@ const MenuHamburguesa = (props) => {
                     <MenuIcon />
                 </IconButton>
 
+            {/* titulo: salas de cine ulima */}
                 <Typography id="header-ulima-title" variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {(props.title)? props.title : "Salas de Cine Ulima"}
                 </Typography>
 
             </Toolbar>
         
+        {/* contenido desplegado */}
         <Drawer
             anchor="left"
+            size={'lg'}
             open={drawerOpen}
             onClose={onMenuClose}
-            size={'lg'}
         >
             <Sidebar usuario_obj={props.usuario_obj}/> 
         </Drawer>

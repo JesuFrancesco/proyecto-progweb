@@ -15,20 +15,20 @@ const DetalleIndex = () => {
     <img src="https://http.cat/images/404.jpg" alt="" />
   </>
 
-const movie = useParams();
-console.log("pelicula: ")
-console.log(movie.id)
-const [peliculaActual, setPeliculaActual] = useState({
-  id: "",
-  path: "",
-  titulo: "",
-  year: "",
-  cast: [],
-  trailer: "",
-  extract: "",
-  generos: [],
-  url: []
-});
+  const movie = useParams();
+  console.log("pelicula: ")
+  console.log(movie.id)
+  const [peliculaActual, setPeliculaActual] = useState({
+    id: "",
+    path: "",
+    titulo: "",
+    year: "",
+    cast: [],
+    trailer: "",
+    extract: "",
+    generos: [],
+    url: []
+  });
   const [error, setError] = useState(false);
   
   

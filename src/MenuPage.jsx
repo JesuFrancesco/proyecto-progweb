@@ -36,7 +36,6 @@ const MenuPage = () => {
         <Box display="flex" justifyContent="center">
           <Stack spacing={14} direction="row">
 
-            
               <Link to={"/peliculas-index"} state = { {usuario_obj: ruta.state.usuario_obj}}>
                 <Button
                   variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
