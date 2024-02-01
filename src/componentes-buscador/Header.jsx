@@ -10,7 +10,9 @@ const Header = (props) => {
             </span>
 
             <span style={{marginRight: "10px"}}>
-                { Array(5).fill(<span><img alt='' className='estrellas' src={ estrella } style={ {marginRight : "15px"} }/></span>) }
+                { Array(5).fill("").map((_, index) => 
+                    <span key={index}><img alt='' className='estrellas' src={ estrella } style={ {marginRight : "15px"} }/></span>
+                ) }
             </span>
         </div>
     </header>

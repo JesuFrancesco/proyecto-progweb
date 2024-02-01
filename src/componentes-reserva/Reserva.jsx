@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 // import { Button } from "@mui/material";
 import ReservaDialog from "./ReservaDialog";
 
-export default function Reserva(props)
+export default function Reserva()
 {
     const ruta = useLocation();
 
@@ -20,6 +20,16 @@ export default function Reserva(props)
         codigo: usuario.codigo,
         cantidad: 1,
     })
+    
+    // const [usuario, setUsuario] = useState({})
+    // useEffect(() => {
+    //     if (sessionStorage.getItem("usuario_objeto")) {
+    //         // Restaura el contenido al campo de texto
+    //         // console.log("se encontro usuario")
+    //         // setUsuario(JSON.parse(sessionStorage.getItem("usuario_objeto")));
+    //         // console.log(usuario)
+    //     } else alert("no hay usuario")
+    // }, [])
     
     const InsertarNombre = (event) => {
         setReserva({...reserva, nombre: event.target.value})
@@ -77,7 +87,7 @@ export default function Reserva(props)
                                 <input type="text" 
                                     className="form-control mb-3 cajate" 
                                     placeholder="Código"
-                                    disabled readonly
+                                    disabled readOnly
                                     value={reserva.codigo}
                                     onChange={InsertarCodigo}/>
                                 <input type="number" 

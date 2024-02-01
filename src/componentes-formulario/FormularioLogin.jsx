@@ -32,16 +32,21 @@ const FormularioLogin = () => {
         
         try {
             const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || { users: [] }
+            console.log("usuariosLocalStorage: ")
+            console.log(usuariosGuardados.users)
+            console.log("usuariosJSON: ")
+            console.log(usuariosJSON)
             const todosLosUsuarios = [...usuariosGuardados.users, ...usuariosJSON]
 
             // console.log(todosLosUsuarios.forEach(e => console.log(e)))
 
-            const user = todosLosUsuarios.find((u) => u.codigo === usuario.codigo && u.contrasena === usuario.contrasena)
+            const user = todosLosUsuarios.find(usuActual => usuActual.codigo === usuario.codigo && usuActual.contrasena === usuario.contrasena)
 
             if (user) {
                 document.body.classList.remove("fondo-body")
                 // console.log(`ola: ${user.nombre}`)
                 console.log(user)
+                sessionStorage.setItem("usuario_objeto", JSON.stringify(user));
                 
                 navigate('/menu', {
                     state : {

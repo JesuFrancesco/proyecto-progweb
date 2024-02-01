@@ -48,8 +48,8 @@ export default function ReservaDialog(props)
   };
 
   return (
-    <React.Fragment sx={style}>
-    <div class="d-grid gap-2">
+    <div sx={style}>
+    <div className="d-grid gap-2">
       <button type= "button" onClick={handleClickOpen} style={botoni}>
           RESERVAR
         </button>
@@ -65,16 +65,18 @@ export default function ReservaDialog(props)
         </DialogTitle>
         <DialogContent>
         <div style={ cuadro }>
-              <div>{props.nombrese}</div>
-              <div>{props.apellidose}</div>
-              <div>{props.codigose}</div>
-              <div>{props.cantidadse}</div>
+              <div>Nombre: {props.nombrese}</div>
+              <div>Apellidos: {props.apellidose}</div>
+              <div>Codigo: {props.codigose}</div>
+              <div>Cantidad de entradas: {props.cantidadse}</div>
+              <div>---------------------</div>
+              <div>Precio: {props.cantidadse * 15}</div>
             </div>
         </DialogContent>
         <DialogActions>
             <Button style={{marginLeft : "auto"}} variant="text" onClick={handleClose}>ENTENDIDO</Button>
         </DialogActions>
       </Dialog>
-    </React.Fragment>
+    </div>
   );
 }

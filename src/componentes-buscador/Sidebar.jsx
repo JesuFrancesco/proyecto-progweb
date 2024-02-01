@@ -46,8 +46,8 @@ const Sidebar = () => {
             <div>
                 <ul className='link-lateral'>
                     {
-                        enlacesVisibles.map(enlace => 
-                            <li><Link to={ enlace.ruta } state={ {usuario_obj: ruta.state.usuario_obj} }>{enlace.label}</Link></li>    
+                        enlacesVisibles.map((enlace, i) => 
+                            <li key={i} ><Link to={ enlace.ruta } state={ {usuario_obj: ruta.state.usuario_obj} }>{enlace.label}</Link></li>    
                         )
                     }
                 </ul>
