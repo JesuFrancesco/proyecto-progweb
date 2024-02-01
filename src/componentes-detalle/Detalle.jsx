@@ -31,13 +31,12 @@ const Detalle = (props) =>
       <Typography variant="body1" fontFamily="Roboto" fontSize="20px" marginBottom="15px">
         {props.descripcion}
       </Typography>
-      {props.horarios.map((horario, index) => (
+      {props.horarios.map((horario) => (
         <Button
           style={{marginLeft: "5px"}}
-          key={index}
           className="horarios"
           variant="outlined"
-          onClick={botonreser}
+          onClick={()=>botonreser(horario)}
         >
           {horario}
         </Button>
