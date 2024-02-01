@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
+import { Resend } from 'resend'
 
 import InputRecupera from './InputRecupera'
 
@@ -41,6 +42,8 @@ const PantallaRecupera = () => {
                 // TODO: logica para la recuperacion
                 setFormEnviado(true); 
                 setAlerta("Se ha enviado un correo a " + usuario.codigo + "@aloe.ulima.edu.pe");
+                const correoE= usuario.codigo + "@aloe.ulima.edu.pe"
+                enviarEmail(correoE)
             } else {
                 setAlerta('Usuario o contraseña incorrectos');
             }
@@ -54,7 +57,31 @@ const PantallaRecupera = () => {
     useEffect(() => {
         obtenerUsuarios();
     }, []);
+    
 
+    const resend = new Resend('re_RjMkWQNV_L8YjouiyjHYix9kMBf28Bkuy');
+
+    const enviarEmail = async (correoE) => {
+        try {
+          const { data, error } = await resend.emails.send({
+            from: 'Acme <onboarding@resend.dev>',
+            to: [correoE],
+            subject: "asunto",
+            html: "contenido",
+          });
+      
+          if (error) {
+            console.error('Error sending email:', error);
+            setAlerta('Error al enviar el correo');
+          } else {
+            console.log('Email sent successfully:', data);
+            setAviso('Correo enviado exitosamente');
+          }
+        } catch (error) {
+          console.error('Error sending email:', error);
+          setAlerta('Error al enviar el correo');
+        }
+      }
     return (
         <>
             <div id="formulario">
