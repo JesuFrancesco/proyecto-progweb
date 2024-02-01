@@ -4,7 +4,6 @@ const Detalle = (props) =>
 {
   const navigate = useNavigate();
 
-
   function botonreser(horario)
   {
     navigate(`/reserva/${props.id}`, {
@@ -28,7 +27,7 @@ const Detalle = (props) =>
         </Typography>
       </div>
       <Typography variant="body1" fontFamily="Roboto" fontSize="20px" marginBottom="15px">
-        {props.descripcion}
+        Horarios disponibles:
       </Typography>
       {props.horarios.map((horario) => (
         <Button

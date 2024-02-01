@@ -1,25 +1,42 @@
-import Detalle from "./Detalle"
-import { Salas_dispo } from "./Detalles"
+import Detalle from "./Detalle";
 import Typography from "@mui/material/Typography";
-const Salas = (props) => {
-    return <div className="peli">
-            
-    <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
-      <b style={{marginLeft:"10px"}}>Salas disponibles</b>
-    </Typography>
-  
-    {Salas_dispo.map((detalle) => (
-        <Detalle 
-        abrevia={detalle.abrevia} 
-        sala={detalle.sala} 
-        descripcion={detalle.descripcion} 
-        horarios={detalle.horarios} 
-        titulo = {props.titulo}
-        id = {props.path}
-        imagen ={props.url}
-        usuario_obj7={props.usuario_obj6}/>
-    ))}
-</div>
-}
+import { useEffect, useState } from "react";
 
-export default Salas
+const Salas = (props) => {
+  const [salas, setSalas] = useState([]);
+  const [contadorSala] = useState(1);
+
+  const obtenerSalas = async () => {
+      const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/salas.json");
+      const data = await response.json();
+      setSalas(data.buildings);
+      
+  };
+
+  useEffect(() => {
+    obtenerSalas();
+  }, []);
+
+  return (
+    <div className="peli">
+      <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
+        <b style={{ marginLeft: "10px" }}>Salas disponibles</b>
+      </Typography>
+
+      {salas.map((detalle, index) => (
+        <Detalle
+          abrevia={`C${contadorSala + index}`}
+          key={index}
+          sala={detalle.name}
+          horarios={detalle.available_times}
+          titulo={props.titulo}
+          id={props.path}
+          imagen={props.url}
+          usuario_obj7={props.usuario_obj6}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default Salas;

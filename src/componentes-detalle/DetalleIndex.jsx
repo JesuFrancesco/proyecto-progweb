@@ -13,8 +13,6 @@ const DetalleIndex = () => {
   </>
 
   const movie = useParams();
-  console.log("pelicula: ")
-  console.log(movie.id)
   const [peliculaActual, setPeliculaActual] = useState({
     id: "",
     path: "",
@@ -35,11 +33,6 @@ const DetalleIndex = () => {
       const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
       const peliculas = await response.json();
       const path = movie.id
-  
-      // const rutaActual = location.pathname;
-      // const path = rutaActual.split("/")[2]
-  
-      // console.log(path.id)
       
       const peliculaActual = peliculas.find((pelicula) => pelicula.path === path);
       if(peliculaActual){
@@ -90,4 +83,3 @@ const DetalleIndex = () => {
 };
 
 export default DetalleIndex;
-
