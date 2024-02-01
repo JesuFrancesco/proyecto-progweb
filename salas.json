@@ -10,7 +10,7 @@
     {
         "salaName": "Sala B",
         "salaAddress": "Pabellon B - ULIMA",
-        "salaHistory": "b !!!!!!!!!!!!!!!!!!!!!!!!!!",
+        "salaHistory": "Pabellon B",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "url": "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/ulima_para_ranking_1.jpg?itok=-duMkaQJ"
@@ -18,7 +18,7 @@
     {
         "salaName": "Sala C",
         "salaAddress": "Pabellon C - ULIMA",
-        "salaHistory": "pabellon c como el lenguaje de programacion c",
+        "salaHistory": "Pabellon C",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "url": "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/page/gallery/w.jpg?itok=vDEBxmDd"
@@ -26,7 +26,7 @@
     {
         "salaName": "Sala D",
         "salaAddress": "Pabellon D - ULIMA",
-        "salaHistory": "pabellon d",
+        "salaHistory": "Pabellon D",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "url": "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/gallery/pabellon_f1_y_f2_interior.jpg?itok=ihKBqH3G"
@@ -34,7 +34,7 @@
     {
         "salaName": "Sala E",
         "salaAddress": "Pabellon E - ULIMA",
-        "salaHistory": "E",
+        "salaHistory": "Pabellon E",
         "salaTimes": ["08:00", "10:00", "12:00", "14:00"],
         "salaMapsRelativeLocation": "https://www.google.com/maps/search/?api=1&query=Universidad+Lima+Pabellon+A",
         "url": "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/_mg_5142-hdr-edit.jpg?itok=fFkits6x"
