@@ -19,20 +19,29 @@ const Detalle = (props) =>
   
 
   return (
-    <div className="contenido_salas">
-      <div className="mb-2">
-        <button type="button" className="boton_abre">
+    <div className="contenido_salas" style={{ marginBottom: "40px" }}>
+      <div className="mb-2" style={{ display: "flex", alignItems: "center" }}>
+        <Button variant="contained" color="primary">
           {props.abrevia}
-        </button>
-        &nbsp;
-        <b style={{fontSize: "30px", fontFamily:"Roboto"}}>{props.sala}</b>
+        </Button>
+        <Typography variant="h5" fontFamily="Roboto" style={{ marginLeft: "8px" }}>
+          {props.sala}
+        </Typography>
       </div>
-      <div style={{fontSize: "20px", fontFamily:"Roboto"}}>{props.descripcion}</div>
-        {props.horarios.map((horario) => (
-          <button className="horarios" onClick={botonreser}>
-            {horario}
-          </button>
-        ))}
+      <Typography variant="body1" fontFamily="Roboto" fontSize="20px" marginBottom="15px">
+        {props.descripcion}
+      </Typography>
+      {props.horarios.map((horario, index) => (
+        <Button
+          style={{marginLeft: "5px"}}
+          key={index}
+          className="horarios"
+          variant="outlined"
+          onClick={botonreser}
+        >
+          {horario}
+        </Button>
+      ))}
     </div>
   );
 };
