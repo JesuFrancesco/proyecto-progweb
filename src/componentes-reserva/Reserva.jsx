@@ -1,6 +1,7 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 // import poraho from "./imagenporahora.png"
+import { useEffect } from 'react';
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 // import { Button } from "@mui/material";
@@ -10,26 +11,16 @@ export default function Reserva()
 {
     const ruta = useLocation();
 
-    // console.log("--- Reserva.jsx")
+    console.log("--- Reserva.jsx")
+    console.log(sessionStorage.getItem("usuario_objeto"))
     // console.log(ruta.state.usuario_obj)
-    const usuario = ruta.state.usuario_obj;
+    // const usuario = ruta.state.usuario_obj;
+    const [usuario, setUsuario] = useState(sessionStorage.getItem("usuario_objeto")? JSON.parse(sessionStorage.getItem("usuario_objeto")) : {})
 
     const [reserva, setReserva] = useState({
-        nombre: usuario.nombre,
-        apellido: usuario.apellido,
-        codigo: usuario.codigo,
+        ...usuario,
         cantidad: 1,
     })
-    
-    // const [usuario, setUsuario] = useState({})
-    // useEffect(() => {
-    //     if (sessionStorage.getItem("usuario_objeto")) {
-    //         // Restaura el contenido al campo de texto
-    //         // console.log("se encontro usuario")
-    //         // setUsuario(JSON.parse(sessionStorage.getItem("usuario_objeto")));
-    //         // console.log(usuario)
-    //     } else alert("no hay usuario")
-    // }, [])
     
     const InsertarNombre = (event) => {
         setReserva({...reserva, nombre: event.target.value})
