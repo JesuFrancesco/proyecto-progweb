@@ -11,14 +11,11 @@ import { Typography } from "@mui/material";
 const PeliculaIndex = () => {
     const navegar = useNavigate();
     const ruta = useLocation();
-    console.log(ruta.state.usuario_obj)
     
     const [filtro, setFiltro] = useState("");
     const [pagina, setPagina] = useState(1);
     
     const id = useParams();
-    // console.log("id:")
-    // console.log(id)
     const pageRef = useRef(id.pagina);
 
     const [peliculasJSON, setPeliculasJSON] = useState([]);
@@ -42,13 +39,14 @@ const PeliculaIndex = () => {
     };
 
     const handlePageChange = (_, valor) => {       
-        window.scrollTo(0, 0);
+        // console.log("paginaState cambiando a " + valor + "...")
         setPagina(valor);
         navegar(`/peliculas-index/${valor}`, {
             state: {
                 usuario_obj: ruta.state.usuario_obj
             }
         });
+        window.scrollTo(0,0)
     }
 
     const obtenerPeliculasPaginadas = () => {
@@ -67,19 +65,27 @@ const PeliculaIndex = () => {
     useEffect(() => {
         // verificar si no se puso input directo al link, sino que si se ha logeado y ha llegado ahi
         // console.log("--- PeliculaIndex.jsx")
+        console.log("--- Llamada useEffect (peliculaIndex.jsx")
         if(ruta.state == null) return;
         // console.log(ruta.state.usuario_obj)
-
+        
         // peticion http
         buscarPeliculasHTTP();
-
-        const page = pageRef.current;
-        console.log("page=" + page)
-        console.log(typeof page)
-
-        if(isNaN(page)) setPagina(1);
         
-    }, [ruta.state])
+        const page = pageRef.current;
+        console.log("pageParam=" + page)
+        console.log("paginaState=" + pagina)
+        console.log(typeof page)
+        
+        if(isNaN(page)) {
+            console.log("indefinido, redirigiendo...")
+            navegar(`/peliculas-index/1`, {
+                state: {
+                    usuario_obj: ruta.state.usuario_obj
+                }
+            });
+        }
+    }, [navegar, pagina, ruta.state])
     
     if(ruta.state == null) return <div>Se ha reiniciado la sesion! Volver a <Link to={"/"} style={ {backgroundColor: "orange"} }>login</Link></div>
 

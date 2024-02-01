@@ -19,7 +19,7 @@ const SalaIndexPage = () => {
         
             <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>
                 <SalaIndex state={{
-              usuario_obj: ruta.state.usuario_codigo
+                usuario_obj: ruta.state.usuario_codigo
             }}/>
             </div>
         
