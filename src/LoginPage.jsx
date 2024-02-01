@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 const LoginPage = () => {
   const navegar = useNavigate()
   useEffect(() => {
-    document.body.classList.remove("fondo-body")
+    // document.body.classList.remove("fondo-body")
     if(checkLoginInForm()){
       navegar("/menu")
     }
