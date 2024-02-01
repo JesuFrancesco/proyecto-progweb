@@ -18,8 +18,10 @@ export default function Reserva()
     const usuario = (usu)? JSON.parse(usu) : {};
 
     useEffect(() => {
-        if (!checkLogin(navegacion))
+        if (!checkLogin(navegacion)) {
+            alert("No has iniciado sesión.")
             navegacion("/")
+        }
     })
 
     const [reserva, setReserva] = useState({

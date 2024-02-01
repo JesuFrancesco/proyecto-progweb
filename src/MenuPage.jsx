@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { checkLogin } from './util/CheckLogin';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Stack, Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Header from './componentes-buscador/Header'
@@ -17,10 +18,12 @@ const MenuPage = () => {
   console.log(usuario);
 
   useEffect(() => {
-    if (!checkLogin(navegacion))
-      alert("no has iniciado sesion")
-  }, [navegacion])
-  
+    if (!checkLogin()) {
+        // alert("No has iniciado sesión.");
+        navegacion("/");
+    }
+})
+
   return <>
     <Header title={"Bienvenido " + usuario.nombre} />
     <div>

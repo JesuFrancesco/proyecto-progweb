@@ -1,8 +1,10 @@
 import logo from './assets/logo.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 
 const Sidebar = () => {
+    const navegar = useNavigate();
+
     // enlaces a distintas secciones de la pagina web
     const enlaces = [
         {ruta: "/menu", label: "Menu page"},
@@ -26,30 +28,29 @@ const Sidebar = () => {
     }
 
     return <>
-            <div className="text-center">
-                {/* Logo */}
-                <a href='https://www.ulima.edu.pe/'>
-                    <img src={ logo } id="logo" alt='' className='mt-3'/>
-                </a>
-
-                {/* Buscador / filtro */}
-                <div>
-                    <input type="text" className="my-4" placeholder="Buscar" id="buscador" 
-                    value={ valorInput } onChange={ handleInputChange } />
-                </div>
-            </div>
-
-            {/* Conjunto de links */}
+        <div className="text-center">
+            {/* Logo */}
+            <a href='https://www.ulima.edu.pe/'>
+                <img src={ logo } id="logo" alt='' className='mt-3'/>
+            </a>
+            {/* Buscador / filtro */}
             <div>
-                <ul className='link-lateral'>
-                    {
-                        enlacesVisibles.map((enlace, i) => 
-                            <li key={i} ><Link to={ enlace.ruta } >{enlace.label}</Link></li>    
-                        )
-                    }
-                </ul>
+                <input type="text" className="my-4" placeholder="Buscar" id="buscador"
+                value={ valorInput } onChange={ handleInputChange } />
             </div>
-        </>
+        </div>
+        {/* Conjunto de links */}
+        <div>
+            <ul className='link-lateral'>
+                {
+                    enlacesVisibles.map((enlace, i) =>
+                        <li key={i} ><Link to={ enlace.ruta } >{enlace.label}</Link></li>
+                    )
+                }
+                <li key={"cerrar-sesion"} onClick={ () => {sessionStorage.clear(); navegar("/")} } ><Link>Logout</Link></li>
+            </ul>
+        </div>
+    </>
 }
 
 export default Sidebar

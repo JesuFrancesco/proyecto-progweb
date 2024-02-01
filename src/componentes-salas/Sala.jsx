@@ -13,7 +13,7 @@ const Sala = (props) => {
             <div className="card-body">
                 <div className="horario" style={ {marginBottom: "0.5em"} }>{props.salaAddress}</div>
                 <Link to={`./${props.id}`}>
-                    <h4 className="card-title mb-3">{props.salaName}</h4>
+                    <h4 className="card-title mb-1">{props.salaName}</h4>
                 </Link>
             </div>
 
