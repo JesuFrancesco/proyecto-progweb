@@ -1,18 +1,23 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Typography,Button  } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const Detalle = (props) => 
 {
-  const navigate = useNavigate()
-  const location = useLocation()
-  function botonreser()
+  const navigate = useNavigate();
+  const ruta = useLocation();
+  // console.log("--- Detalle.jsx");
+  // console.log(ruta.state.usuario_obj);
+
+  function botonreser(horario)
   {
-    
     navigate(`/reserva/${props.id}`, {
       state : {
+          usuario_obj: ruta.state.usuario_obj,
+
           sala : props.sala,
-          hora : props.horarios,
+          hora : horario,
           titulo : props.titulo,
           imagen : props.imagen,
-          codigoalu : 1 /*location.state.usuario_codigo*/
           
       }})
   }
