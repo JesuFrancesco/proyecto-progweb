@@ -27,10 +27,20 @@ const SalaIndex = () => {
 
     const filtrarCartas = (keyword) => {
         const esVacio = (valor) => valor.length === 0;
+        // const salaTotal = [...salas, ...salasExtra]
         for(let i = 0; i < salas.length; i++){
             const coincide = (new RegExp(keyword, 'i').test(salas[i]["salaName"]))? true : false;
+            // console.log(salaTotal[i])
             console.log(`sala ${salas[i]["salaName"].replace(/\s/g, "-")}: ${coincide}`)
             document.getElementById(salas[i].salaName.replace(/\s/g, "-"))
+            .setAttribute("style", `display: ${coincide? "inline-block" : esVacio(keyword)? "inline-block" : "none"};`);
+            
+        }
+        for(let i = 0; i < salasExtra.length; i++){
+            const coincide = (new RegExp(keyword, 'i').test(salasExtra[i]["path"]))? true : false;
+            // console.log(salaTotal[i])
+            console.log(`sala ${salasExtra[i].path}: ${coincide}`)
+            document.getElementById(salasExtra[i].path.replace(/\s/g, "-"))
             .setAttribute("style", `display: ${coincide? "inline-block" : esVacio(keyword)? "inline-block" : "none"};`);
             
         }

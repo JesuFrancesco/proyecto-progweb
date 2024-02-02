@@ -70,7 +70,7 @@ export default function ReservaDialog(props)
               <div>Codigo: {props.codigose}</div>
               <div>Cantidad de entradas: {props.cantidadse}</div>
               <div>---------------------</div>
-              <div>Precio: {props.cantidadse * 15}</div>
+              <div>Precio: {props.cantidadse * 15} soles</div>
             </div>
         </DialogContent>
         <DialogActions>

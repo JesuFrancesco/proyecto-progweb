@@ -54,7 +54,7 @@ const SalaItem = (props) => {
 
             {/* panel historia */}
             <div className="col-md">
-                <PanelHistoria texto={sala.salaHistory} />
+                <PanelHistoria texto={sala.salaHistory} chips={(sala.salaChips)? sala.salaChips : null}/>
             </div>
         </div>
     </>
