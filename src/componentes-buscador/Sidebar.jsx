@@ -63,18 +63,22 @@ const Sidebar = () => {
                     )
                 }
             </ul>
-            <div style={ {textAlign: "center"} } className='mb-5'>
-                <button style={ {backgroundColor: "rgb(255, 102, 102)", fontWeight: "bold"} } className='btn btn-danger' key={"cerrar-sesion"} onClick={ () => {sessionStorage.clear(); navegar("/")} } ><Link>Logout</Link></button>
+            <div style={ {textAlign: "center", display: "block"} } className='mb-5'>
+                <button style={ {backgroundColor: "rgb(255, 102, 102)", fontWeight: "600"} } className='btn btn-danger' key={"cerrar-sesion"} onClick={ () => {sessionStorage.clear(); navegar("/")} } ><Link>Logout</Link></button>
             </div>
         </div>
+
+        <div className='border mb-4'></div>
+
         <div style={ {textAlign: "center"} }>
-            <Fab color="info" aria-label="add" className='mb-4' onClick={() => setMostrarChat(!mostrarChat)} >
+            <div className='mb-2'><b>Chatbot</b></div>
+            <Fab style={ {backgroundColor: "orangered"} } color="primary" aria-label="add" className='mb-4' onClick={() => setMostrarChat(!mostrarChat)} >
                 <ChatIcon />
             </Fab>
         </div>
 
         {
-            (mostrarChat)? <ModalDialogChat/> : <div />
+            (mostrarChat)? <ModalDialogChat/> : <></>
         }
         
     </>
