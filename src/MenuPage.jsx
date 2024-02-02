@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { checkLogin } from './util/CheckLogin';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -12,11 +12,15 @@ import Carrusel from './componentes-menu/Carrusel';
 
 const MenuPage = () => {
   const navegacion = useNavigate();
+  const [busqueda, setBusqueda] = useState('');
   // const [usuario, setUsuario] = useState((sessionStorage.getItem('usuario_objeto')) ? JSON.parse(sessionStorage.getItem('usuario_objeto')): {});
   const usu = sessionStorage.getItem('usuario_objeto');
   const usuario = (usu)? JSON.parse(usu) : {};
   console.log("--- MenuPage.jsx");
   console.log(usuario);
+  const handleInputChange = (event) => {
+    setBusqueda(event.target.value);
+  };
 
   useEffect(() => {
     if (!checkLogin()) {
@@ -24,25 +28,28 @@ const MenuPage = () => {
         navegacion("/");
     }
 })
+  console.log(busqueda)
 
   return <>
     <Header title={"Bienvenido " + usuario.nombre} />
     <div className='py-5'>
 
-      {/* carrusel de banners */}
+
       <Carrusel peliculas={peliculas} />
 
       <div className='mt-3' style={{ textAlign: 'center' }}>
-        {/* input de busqueda */}
+        
         <div>
           <TextField label="Búsqueda" variant="standard" size="medium"
 
           className="form-control my-3"
           placeholder="Busca por título, actores, actrices, género, etc"
-          style={{width:"80%"}}/>
+          style={{width:"80%"}}
+          value={busqueda}
+          onChange={handleInputChange}/>
         </div>
       
-        {/* botones */}
+        
         <Box display="flex" justifyContent="center">
           <Stack spacing={14} direction="row">
 
