@@ -1,9 +1,10 @@
 import logo from './assets/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Fab from '@mui/material/Fab';
 import ChatIcon from '@mui/icons-material/Chat';
+import ModalDialogChat from '../componentes-chat/ModalDialogChat';
 
 const Sidebar = () => {
     const navegar = useNavigate();
@@ -17,6 +18,7 @@ const Sidebar = () => {
 
     const [valorInput, setValorInput] = useState();
     const [enlacesVisibles, setEnlacesVisibles] = useState(enlaces);
+    const [mostrarChat, setMostrarChat] = useState(false);
 
     const filtrarLinks = (keyword) => {
         // si es vacio muestra todo
@@ -29,6 +31,16 @@ const Sidebar = () => {
         setValorInput(evt.target.value);
         filtrarLinks(evt.target.value);
     }
+
+    const buscarPeliculasHTTP = async () => {
+        const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
+        const json = await response.json();
+        sessionStorage.setItem("peliculas", JSON.stringify(json))
+    }
+
+    useEffect(() => {
+        buscarPeliculasHTTP();
+    })
 
     return <>
         <div className="text-center">
@@ -54,10 +66,15 @@ const Sidebar = () => {
             </ul>
         </div>
         <div style={ {textAlign: "center"} }>
-            <Fab color="info" aria-label="add">
+            <Fab color="info" aria-label="add" className='mb-4' onClick={() => setMostrarChat(!mostrarChat)} >
                 <ChatIcon />
             </Fab>
         </div>
+
+        {
+            (mostrarChat)? <ModalDialogChat/> : <div />
+        }
+        
     </>
 }
 
