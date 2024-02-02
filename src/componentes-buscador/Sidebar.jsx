@@ -2,6 +2,9 @@ import logo from './assets/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 
+import Fab from '@mui/material/Fab';
+import ChatIcon from '@mui/icons-material/Chat';
+
 const Sidebar = () => {
     const navegar = useNavigate();
 
@@ -49,6 +52,11 @@ const Sidebar = () => {
                 }
                 <li key={"cerrar-sesion"} onClick={ () => {sessionStorage.clear(); navegar("/")} } ><Link>Logout</Link></li>
             </ul>
+        </div>
+        <div style={ {textAlign: "center"} }>
+            <Fab color="info" aria-label="add">
+                <ChatIcon />
+            </Fab>
         </div>
     </>
 }

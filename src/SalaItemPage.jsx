@@ -54,28 +54,11 @@ const SalaItemPage = () => {
             salaHistory: (`${s2.description}\nCelular: ${s2.phoneNumber}\nUbicacion: ${s2.city}`),
             url: s2.img
         }
-        // {
-        //     "ID": 1,
-        //     "name": "CP Alcazar",
-        //     "phoneNumber": "016194400",
-        //     "emailAddress": "",
-        //     "address": "Av. Santa Cruz 814-816",
-        //     "secondAddress": "Miraflores Lima Lima",
-        //     "city": "Lima",
-        //     "description": "CINEPLANET ALCAZAR",
-        //     "path": "cp-alcazar",
-        //     "formats": [
-        //         "2D",
-        //         "REGULAR",
-        //         "3D"
-        //     ],
-        //     "img": "https://cdn.cineplanet.com.pe/contentAsset/raw-data/b70aa8b9-f9f9-49c5-8f7e-28e6afd5646f"
-        // },
     }
     
     return <>
         <Header />
-        <div className='container'>
+        <div className='container' style={ { padding: "5em 0" } }>
         
             {
                 // si no encuentra deja un div en blanco

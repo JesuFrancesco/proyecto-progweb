@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Stack, Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Header from './componentes-buscador/Header'
+import Footer from './componentes-buscador/Footer';
 
 import { peliculas } from './componentes-detalle/Detalles';
 import Carrusel from './componentes-menu/Carrusel';
@@ -26,7 +27,7 @@ const MenuPage = () => {
 
   return <>
     <Header title={"Bienvenido " + usuario.nombre} />
-    <div>
+    <div className='py-5'>
 
       {/* carrusel de banners */}
       <Carrusel peliculas={peliculas} />
@@ -62,6 +63,7 @@ const MenuPage = () => {
         </Box>
       </div>
     </div>
+    <Footer />
     </>
 };
 

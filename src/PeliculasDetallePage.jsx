@@ -12,7 +12,7 @@ const PeliculasDetallePage = () =>
 {
     return <>
         <Header />
-        <div className='container'>
+        <div className='container' style={ { padding: "4em 0" }}>
             <div className="mt-4 mx-auto" style={ {marginLeft: "100", float: "none"} }>
                 <DetalleIndex />
             </div>

@@ -1,9 +1,16 @@
 import estrella from './assets/estreblanca.png'
 import MenuHamburguesa from './MenuHamburguesa'
 
+const estilos = {
+    position: "fixed",
+    top: "0",
+    width: "100%",
+    zIndex: "10"
+}
+
 const Header = (props) => {
 
-    return <header>
+    return <header style={estilos}>
         <div className="header-ulima d-flex align-items-center justify-content-between">
             <span>
                 <MenuHamburguesa title={(props.title)? props.title : null}/>

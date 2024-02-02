@@ -13,10 +13,10 @@ const SalaIndexPage = () => {
         <Header />
         <div className='container'>
         
-            <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>
+            <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none", paddingTop: "5em", paddingBottom: "5em"} }>
                 <SalaIndex />
             </div>
-        
+
             <Footer />
         </div>
     </>

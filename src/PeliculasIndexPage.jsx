@@ -10,7 +10,7 @@ const PeliculaIndexPage = () =>
     
     return <>
             <Header />
-        <div className='container'>
+        <div className='container' style={ { padding: "5em 0" } }>
             <div className="mt-4 mx-auto mb-4" style={ {margin: "0 auto", float: "none"} }>
                 <PeliculaIndex />
             </div>
