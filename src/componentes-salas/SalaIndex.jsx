@@ -77,7 +77,7 @@ const SalaIndex = () => {
                     }
                     {
                         salasExtra.map(sala =>
-                            <Sala salaName={sala.path.replace(/-/g, " ")} 
+                            <Sala salaName={sala.name} 
                                 salaAddress={sala.address} 
                                 salaTimes={sala.formats} 
                                 url={ sala.img } 

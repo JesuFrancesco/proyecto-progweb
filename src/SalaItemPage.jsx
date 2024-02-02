@@ -52,6 +52,7 @@ const SalaItemPage = () => {
             salaAddress: s2.address,
             salaTimes: ["11:00", "17:00", "18:00"],
             salaHistory: (`${s2.description}\nCelular: ${s2.phoneNumber}\nUbicacion: ${s2.city}`),
+            salaChips: s2.formats,
             url: s2.img
         }
     }

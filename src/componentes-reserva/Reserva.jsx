@@ -39,7 +39,7 @@ export default function Reserva()
         setReserva({...reserva, codigo: event.target.value})
     }
     const InsertarCantidad = (event) => {
-        if (event.target.value <= 0) return
+        if (event.target.value <= 0 || event.target.value >= 100) return
         setReserva({...reserva, cantidad: event.target.value})
     }
 
