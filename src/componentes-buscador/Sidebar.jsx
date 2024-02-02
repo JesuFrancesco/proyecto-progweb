@@ -62,8 +62,10 @@ const Sidebar = () => {
                         <li key={i} ><Link to={ enlace.ruta } >{enlace.label}</Link></li>
                     )
                 }
-                <li key={"cerrar-sesion"} onClick={ () => {sessionStorage.clear(); navegar("/")} } ><Link>Logout</Link></li>
             </ul>
+            <div style={ {textAlign: "center"} } className='mb-5'>
+                <button style={ {backgroundColor: "rgb(255, 102, 102)", fontWeight: "bold"} } className='btn btn-danger' key={"cerrar-sesion"} onClick={ () => {sessionStorage.clear(); navegar("/")} } ><Link>Logout</Link></button>
+            </div>
         </div>
         <div style={ {textAlign: "center"} }>
             <Fab color="info" aria-label="add" className='mb-4' onClick={() => setMostrarChat(!mostrarChat)} >
