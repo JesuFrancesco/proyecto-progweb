@@ -39,11 +39,12 @@ const PantallaRecupera = () => {
             if (user) {
                 // TODO: logica para la recuperacion
                 setFormEnviado(true); 
-                setAlerta("Se ha enviado un correo a " + usuario.codigo + "@aloe.ulima.edu.pe");
-                const correoE= usuario.codigo + "@aloe.ulima.edu.pe"
-                enviarEmail(correoE)
+                setAlerta('');
+                setAviso("Se ha enviado un correo a " + usuario.codigo + "@aloe.ulima.edu.pe");
+                //const correoE= usuario.codigo + "@aloe.ulima.edu.pe"
+                //enviarEmail(correoE)
             } else {
-                setAlerta('Usuario o contraseña incorrectos');
+                setAlerta('Usuario incorrecto');
             }
         } catch (error) {
             console.error('Error al procesar el inicio de sesión:', error)
@@ -58,7 +59,7 @@ const PantallaRecupera = () => {
     
 
     const resend = new Resend('re_RjMkWQNV_L8YjouiyjHYix9kMBf28Bkuy');
-
+    /*
     const enviarEmail = async (correoE) => {
         try {
             // LOGICA DE API: TODO: CORS
@@ -82,7 +83,7 @@ const PantallaRecupera = () => {
         }
 
         console.log("envio realizado")
-    }
+    }*/
 
     return (
         <>
@@ -91,20 +92,21 @@ const PantallaRecupera = () => {
 
                     {/* Input */}
                     <InputRecupera title={"Código para recuperación"} objeto={usuario} llave={"codigo"} setFn={setUsuario} disabled={formEnviado} />
+                    <InputRecupera title={"Ingrese contraseña nueva"} objeto={usuario} llave={"contrasena"} setFn={setUsuario} variante="password"  />
+                    {aviso && (
+                        <Alert
+                            severity="success"
+                            sx={{ mt: 2}}>
+                            {aviso}
+                        </Alert>
+                    )}
+                    
 
                     {error && (
                         <Alert
                             severity="error"
                             sx={{ mt: 2 }}>
                             {error}
-                        </Alert>
-                    )}
-
-                    {aviso && (
-                        <Alert
-                            severity="success"
-                            sx={{ mt: 2 }}>
-                            {aviso}
                         </Alert>
                     )}
 
