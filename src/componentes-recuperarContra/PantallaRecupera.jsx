@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
-import { Resend } from 'resend'
+// import { Resend } from 'resend'
 
 import InputRecupera from './InputRecupera'
 
@@ -22,7 +22,7 @@ const PantallaRecupera = () => {
     const [usuariosJSON, setUsuariosJSON] = useState([])
 
     const obtenerUsuarios = async () => {    
-        const response = await fetch("http://localhost:3000/proyecto-progweb/usuarios.json")
+        const response = await fetch("https://raw.githubusercontent.com/JesuFrancesco/proyecto-progweb/main/public/usuarios.json")
         const data = await response.json()
         setUsuariosJSON(data)
     }
@@ -58,7 +58,8 @@ const PantallaRecupera = () => {
     }, []);
     
 
-    const resend = new Resend('re_RjMkWQNV_L8YjouiyjHYix9kMBf28Bkuy');
+    // const apiKey = '' // poner api key
+    // const resend = new Resend(apiKey);
     /*
     const enviarEmail = async (correoE) => {
         try {
