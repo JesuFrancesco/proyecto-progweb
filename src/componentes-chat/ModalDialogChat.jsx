@@ -58,7 +58,7 @@ const ModalDialogChat = () => {
                     id: '6',
                     options: [
                         { value: 'sala', label: 'Okay', trigger: '7' },
-                        { value: 'peliculas', label: 'A ver llévame', trigger: '8' },
+                        { value: 'peliculas', label: 'Llévame ahí!', trigger: '8' },
                     ],
                 },
                 {
