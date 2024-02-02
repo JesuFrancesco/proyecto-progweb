@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react'
 import ChatBot from 'react-simple-chatbot'
 
 const ModalDialogChat = () => {
 
     const usuario = JSON.parse(sessionStorage.getItem("usuario_objeto"));
     const peliculas = JSON.parse(sessionStorage.getItem("peliculas"));
-    const rndIndex = Math.ceil(Math.random() * peliculas.length)
-    const peliRnd = peliculas[rndIndex]
     
     return <ChatBot
     steps={[

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
-import { Resend } from 'resend'
+// import { Resend } from 'resend'
 
 import InputRecupera from './InputRecupera'
 
@@ -58,7 +58,7 @@ const PantallaRecupera = () => {
     }, []);
     
 
-    const resend = new Resend('re_RjMkWQNV_L8YjouiyjHYix9kMBf28Bkuy');
+    // const resend = new Resend('re_RjMkWQNV_L8YjouiyjHYix9kMBf28Bkuy');
     /*
     const enviarEmail = async (correoE) => {
         try {
