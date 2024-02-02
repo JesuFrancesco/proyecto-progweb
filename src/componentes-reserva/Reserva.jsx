@@ -70,24 +70,28 @@ export default function Reserva()
                             <span>Hora: </span> <b>{ruta.state.hora}</b>
                             <div className="border-bottom mb-4 mt-2"></div>
                             <div className="card-text">
+                                <label>Nombre</label>
                                 <input type="text" 
                                     className="form-control mb-3 d-grid gap-2 cajate" 
                                     placeholder="Nombre"
                                     //disabled readonly  
                                     value={reserva.nombre}
                                     onChange={InsertarNombre}/>
+                                <label>Apellido</label>
                                 <input type="text" 
                                     className="form-control mb-3 cajate" 
                                     placeholder="Apellido"
                                     //disabled readonly
                                     value={reserva.apellido}
                                     onChange={InsertarApellido}/>
+                                <label>Código</label>
                                 <input type="text" 
                                     className="form-control mb-3 cajate" 
                                     placeholder="Código"
                                     disabled readOnly
                                     value={reserva.codigo}
                                     onChange={InsertarCodigo}/>
+                                <label>Cantidad</label>
                                 <input type="number" 
                                     className="form-control cajate" 
                                     placeholder="Cantidad"
