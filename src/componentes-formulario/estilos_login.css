@@ -1,12 +1,12 @@
 .fondo-body {
     background: linear-gradient(rgba(255, 255, 255, 0.048), rgba(255, 255, 255, 0.322)),
         url(https://orientacion.universia.edu.pe/imgs2011/imagenes/4-2019_10_30_093553@2x.jpg);
+    
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /* background-image:
-        url(https://orientacion.universia.edu.pe/imgs2011/imagenes/4-2019_10_30_093553@2x.jpg); */
+
 }
 
 /* .fondo-body:after{
@@ -15,6 +15,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 #titulo_front{
+    animation: slideUp 1.4s ease;
     font-size: 6em;
     font-family: 'Roboto';
     text-align: center;
@@ -22,6 +23,19 @@
     color: rgb(255, 81, 0);
     text-shadow: 10px 10px 10px black;
 }
+
+@keyframes slideUp {
+    /* 50% { */
+    0%{
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* #titulo_front:hover{
     font-size: 7em;
 } */

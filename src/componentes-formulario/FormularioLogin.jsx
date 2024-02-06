@@ -22,7 +22,8 @@ const FormularioLogin = () => {
     const navigate = useNavigate()
 
     const obtenerUsuarios = async () => {    
-        const response = await fetch("http://localhost:3000/proyecto-progweb/usuarios.json")
+        // const response = await fetch("http://localhost:3000/proyecto-progweb/usuarios.json")
+        const response = await fetch("https://raw.githubusercontent.com/JesuFrancesco/proyecto-progweb/main/public/usuarios.json")
         const data = await response.json()
         setUsuariosJSON(data)
     }
