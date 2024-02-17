@@ -1,3 +1,9 @@
+# modelo de database (sin confirmar)
+<p align="center">
+  <img src="modelo.png"/>
+</p>
+
+
 # proyecto-progweb
 Repositorio para el proyecto del curso de Programación Web del ciclo 2024-0 en la carrera de Ingeniería de Sistemas.
 
