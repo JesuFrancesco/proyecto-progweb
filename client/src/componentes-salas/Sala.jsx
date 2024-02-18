@@ -20,8 +20,8 @@ const Sala = (props) => {
             {/* horarios */}
             <div className="card-footer p-3">
                 { 
-                    (props.salaTimes.length < 5)?
-                    props.salaTimes.map(
+                    (props.salaFormats.length < 5)?
+                    props.salaFormats.map(
                         (time) => <Chip variant="filled" label={time} style={{backgroundColor: "rgb(255, 216, 159)", marginRight: "1em"}} /> 
                     ) : <Chip variant="filled" label={props.salaTimes.length + " horarios"} style={{backgroundColor: "rgb(255, 216, 159)", marginRight: "1em"}} />
                 }
