@@ -9,26 +9,34 @@ import Button from '@mui/material/Button'
 const FormularioRegister = () => {
   
   const [usuarioRegister, setusuarioRegister] = useState({
-    nombre: "",
-    apellido: "",
+    nombres: "",
+    apellidos: "",
     codigo: "",
     contrasena: "",
   })
+  const subirUsuario = async (usuario) => {
+    const res = await fetch("http://127.0.0.1:8000/api/register", {
+        method: "POST",
+        body: JSON.stringify(usuario)
+    });
+    const data = await res.json();
 
+    if(!data.msg){
+        alert("usuario registrado")
+      
+    } else {
+        alert(data.msg)
+    }
+}
   
   const [usuariosData, setUsuariosData] = useState([])
   const [error, setError] = useState("")
   const navigate = useNavigate()
+  
 
-  const obtenerUsuarios = async () => {    
-    const response = await fetch("http://localhost:3000/proyecto-progweb/usuarios.json")
-    const data = await response.json()
-    setUsuariosData(data)
-  }
-
-  const handleRegistrarse = () => {
+  const handleRegistrarse = async() => {
     // validaciones
-    if (!usuarioRegister.nombre || !usuarioRegister.apellido || !usuarioRegister.codigo || !usuarioRegister.contrasena) {
+    if (!usuarioRegister.nombres || !usuarioRegister.apellidos || !usuarioRegister.codigo || !usuarioRegister.contrasena) {
       setError('Por favor, completa todos los campos.')
       return
     }
@@ -43,22 +51,15 @@ const FormularioRegister = () => {
       return
     }
     
-    // si el usuario es válido, guardar en el navegador el nuevo usuario
-    const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || { users: [] }
-    const nuevosUsuarios = { users: [...usuariosGuardados.users, usuarioRegister] }
-    localStorage.setItem('usuarios', JSON.stringify(nuevosUsuarios))
-  
+   subirUsuario(usuarioRegister)
     // Después de registrar, se envia al login 
     navigate('/')
   }
-
-  // llamada http
-  useEffect(() => {obtenerUsuarios();}, [])
-
+   
   return <div className="formulario">
           <form className="form">
-          <InputFormulario title={"Nombre"} objeto={usuarioRegister} llave={"nombre"} setFn={setusuarioRegister} />
-          <InputFormulario title={"Apellido"} objeto={usuarioRegister} llave={"apellido"} setFn={setusuarioRegister} />
+          <InputFormulario title={"Nombre"} objeto={usuarioRegister} llave={"nombres"} setFn={setusuarioRegister} />
+          <InputFormulario title={"Apellido"} objeto={usuarioRegister} llave={"apellidos"} setFn={setusuarioRegister} />
           <InputFormulario title={"Codigo"} objeto={usuarioRegister} llave={"codigo"} setFn={setusuarioRegister} />
           <InputFormulario title={"Contraseña"} objeto={usuarioRegister} llave={"contrasena"} setFn={setusuarioRegister} variante="password" />
       

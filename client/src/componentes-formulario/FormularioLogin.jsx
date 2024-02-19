@@ -6,7 +6,7 @@ import Alert from '@mui/material/Alert'
 import { Typography, Container } from '@mui/material';
 
 import InputFormulario from './InputFormulario'
-
+//holaaaaaa
 const FormularioLogin = () => {
     // fondo
     document.body.classList.add("fondo-body")
@@ -20,50 +20,41 @@ const FormularioLogin = () => {
     const [usuariosJSON, setUsuariosJSON] = useState([])
 
     const navigate = useNavigate()
+    
+   
+    const handleLogin = async () => {
+        const dataUsername = {
+            codigo : usuario.codigo,
+            contrasenha : usuario.contrasena
+        }
 
-    const obtenerUsuarios = async () => {    
-        // const response = await fetch("http://localhost:3000/proyecto-progweb/usuarios.json")
-        const response = await fetch("https://raw.githubusercontent.com/JesuFrancesco/proyecto-progweb/main/public/usuarios.json")
+        const response = await fetch("http://localhost:8000/api/login", {
+            method : "post",
+            body : JSON.stringify(dataUsername)
+        })
         const data = await response.json()
-        setUsuariosJSON(data)
-    }
 
-    const handleLogin = (event) => {
-        event.preventDefault()
+        if (data.msg === "") {
+            // Login correcto
+            // Almacenando en localStorage
+            sessionStorage.setItem("usuario_objeto", JSON.stringify(dataUsername))
+            document.body.classList.remove("fondo-body")
+            navigate("/menu")
+        } else {
+            // Login incorrecto
+        setError(true)
         
-        try {
-            const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || { users: [] }
-            console.log("usuariosLocalStorage: ")
-            console.log(usuariosGuardados.users)
-            console.log("usuariosJSON: ")
-            console.log(usuariosJSON)
-            const todosLosUsuarios = [...usuariosGuardados.users, ...usuariosJSON]
-
-            // console.log(todosLosUsuarios.forEach(e => console.log(e)))
-
-            const user = todosLosUsuarios.find(usuActual => usuActual.codigo === usuario.codigo && usuActual.contrasena === usuario.contrasena)
-
-            if (user) {
-                document.body.classList.remove("fondo-body")
-                // console.log(`ola: ${user.nombre}`)
-                console.log(user)
-                sessionStorage.setItem("usuario_objeto", JSON.stringify(user));
-                
-                navigate('/menu')
-            } else {
-                setError('Usuario o contraseña incorrectos')
-            }
-        } 
-        catch (error) {
-            console.error('Error al procesar el inicio de sesión:', error)
-            setError('Error al procesar el inicio de sesión')
         }
     }
 
+
     // llamada http
     useEffect(() => {
-        obtenerUsuarios();
-    }, []);
+        if (sessionStorage.getItem("USERNAME") !== null) {
+            navigate("/menu")
+            return
+        }
+    }, [])
 
     return <>
     <div id="formulario">

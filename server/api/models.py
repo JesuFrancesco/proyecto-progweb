@@ -7,6 +7,7 @@ class Usuario(models.Model):
     apellidos = models.CharField(max_length=70)
     correo = models.CharField(max_length=120)
     contrasenha = models.CharField(max_length=70)
+    codigo = models.IntegerField()
 
 # Relativos a sala
 class Sala(models.Model):

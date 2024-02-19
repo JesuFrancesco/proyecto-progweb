@@ -31,7 +31,7 @@ const MenuPage = () => {
   console.log(busqueda)
 
   return <>
-    <Header title={"Bienvenido " + usuario.nombre} />
+    <Header title={"Bienvenido " + usuario.codigo} />
     <div className='py-5'>
 
 
