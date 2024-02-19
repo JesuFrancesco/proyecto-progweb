@@ -5,9 +5,19 @@ from django.db import models
 class Usuario(models.Model):
     nombres = models.CharField(max_length=70)
     apellidos = models.CharField(max_length=70)
-    correo = models.CharField(max_length=120)
     contrasenha = models.CharField(max_length=70)
     codigo = models.IntegerField()
+
+
+class Format(models.Model):
+    format = models.CharField(max_length=30)
+
+    def __str__(self) -> str:
+        return self.format
+
+class Window(models.Model):
+    date = models.DateField()
+    hour = models.TimeField()
 
 # Relativos a sala
 class Sala(models.Model):
@@ -20,20 +30,11 @@ class Sala(models.Model):
     description = models.CharField(max_length=200)
     path = models.CharField(max_length=150)
     img = models.CharField(max_length=150)
+    formats = models.ManyToManyField("Format", through="Sala_Format")
 
     def __str__(self) -> str:
         return self.name
-
-class Format(models.Model):
-    format = models.CharField(max_length=30)
-
-    def __str__(self) -> str:
-        return self.format
-
-class Window(models.Model):
-    date = models.DateField()
-    hour = models.TimeField()
-
+    
 # Relativos a pelicula
 class Movie(models.Model):
     title = models.CharField(max_length=100) # el mayor tiene 68 caracteres

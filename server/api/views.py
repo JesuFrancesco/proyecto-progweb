@@ -9,15 +9,25 @@ import json
 def obtenerSalas(request: RequestType):
     if request.method == "GET":
         if not request.GET.get("name") and not request.GET.get("format"):
-            return HttpResponse(json.dumps(list(Sala.objects.all().values())), content_type="application/json")
-        
-        filtroName = request.GET.get("name")
-        if filtroName:
-            return HttpResponse(json.dumps(list(Sala.objects.filter(name__contains=filtroName).values())), content_type="application/json")
-        filtroFormat = request.GET.get("format")
+            array_salas = [{
+                "name": sala.name,
+                "phoneNumber": sala.phoneNumber,
+                "emailAddress": sala.emailAddress,
+                "address": sala.address,
+                "secondAddress": sala.secondAddress,
+                "city": sala.city,
+                "description": sala.description,
+                "path": sala.path,
+                "img": sala.img,
+                "formats": list(sala.formats.values())
+            } for sala in Sala.objects.all() ]
+
+            print(array_salas)
+            return HttpResponse(json.dumps(array_salas), content_type="application/json")
+
 @csrf_exempt
 def loginEndPoint (request): 
-      if request.method == "POST":
+    if request.method == "POST":
         data = request.body
         usernameData = json.loads(data)
 
@@ -26,7 +36,7 @@ def loginEndPoint (request):
 
         # Interactuamos con la bd mediante el modelo (Query)
         listaUsuariosFiltrada = Usuario.objects.filter(
-           codigo = codigo, contrasenha = contrasena 
+            codigo = codigo, contrasenha = contrasena 
         )
 
         if len(listaUsuariosFiltrada) > 0 :
@@ -39,9 +49,10 @@ def loginEndPoint (request):
                 "msg" : "Error en el login"
             }
             return HttpResponse(json.dumps(respuesta))
+        
 @csrf_exempt
 def registerEndPoint (request):
-      if request.method == "POST":
+    if request.method == "POST":
         usuarios = request.body
         usuarioDict = json.loads(usuarios)
 
@@ -54,16 +65,13 @@ def registerEndPoint (request):
         usuario = Usuario(
             nombres=usuarioDict["nombres"], 
             apellidos = usuarioDict ["apellidos"],
-            correo = "correo",
             contrasenha = usuarioDict ["contrasena"],
             codigo = usuarioDict["codigo"],
         )
         print(usuario)
         usuario.save()
-     
 
         respDict = {
             "msg" : ""
         }
         return HttpResponse(json.dumps(respDict))
-   

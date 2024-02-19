@@ -65,7 +65,7 @@ const SalaIndex = () => {
                         salas.map(sala =>
                             <Sala salaName={sala.name} 
                                 salaAddress={sala.address}
-                                salaFormats={["falta implementar 👍"]}
+                                salaFormats={sala.formats}
                                 url={ sala.img } 
                                 id={ sala.path }
                             />

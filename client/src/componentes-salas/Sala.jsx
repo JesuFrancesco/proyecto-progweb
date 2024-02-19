@@ -22,8 +22,8 @@ const Sala = (props) => {
                 { 
                     (props.salaFormats.length < 5)?
                     props.salaFormats.map(
-                        (time) => <Chip variant="filled" label={time} style={{backgroundColor: "rgb(255, 216, 159)", marginRight: "1em"}} /> 
-                    ) : <Chip variant="filled" label={props.salaTimes.length + " horarios"} style={{backgroundColor: "rgb(255, 216, 159)", marginRight: "1em"}} />
+                        (formato) => <Chip variant="filled" label={formato.format} style={{backgroundColor: "rgb(255, 216, 159)", marginRight: "1em"}} /> 
+                    ) : <Chip variant="filled" label={props.salaFormats.length + " horarios"} style={{backgroundColor: "rgb(255, 216, 159)", marginRight: "1em"}} />
                 }
             </div>
         </div>
