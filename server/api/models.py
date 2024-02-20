@@ -8,9 +8,13 @@ class Usuario(models.Model):
     contrasenha = models.CharField(max_length=70)
     codigo = models.IntegerField()
 
+    def __str__(self) -> str:
+        return f"{self.nombres}, {self.apellidos}"
 
 class Format(models.Model):
     format = models.CharField(max_length=30)
+    def __str__(self) -> str:
+        return f"{self.format}"
 
 class Window(models.Model):
     date = models.DateField()
@@ -30,7 +34,6 @@ class Sala(models.Model):
     path = models.CharField(max_length=150)
     img = models.CharField(max_length=150)
     formats = models.ManyToManyField("Format", through="Sala_Format")
-
     def __str__(self) -> str:
         return self.name
     
@@ -54,17 +57,21 @@ class Cast(models.Model):
 
 class Genre(models.Model):
     name = models.CharField(max_length=80)
+    def __str__(self) -> str:
+        return self.name
 
 # == One to many
 class Funcion(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     sala = models.ForeignKey(Sala, on_delete=models.CASCADE)
     window = models.ForeignKey(Window, on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return f"{self.movie}: {self.sala} @ {self.window}"
 
+from datetime import datetime
 class Reserva(models.Model):
-    fecha = models.DateField(auto_now_add=True)
+    fecha = models.DateTimeField(default=datetime.now())
     entradas = models.IntegerField()
-    time = models.TimeField()
     funcion = models.ForeignKey(Funcion, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 

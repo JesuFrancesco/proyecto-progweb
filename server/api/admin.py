@@ -35,7 +35,7 @@ from .models import *
 # class MovieGAdmin(ImportExportModelAdmin):
 #     resource_class = MovieGResource
 #     list_display = ["movie", "genre"]
-    
+
 # class CastResource(resources.ModelResource):
 #     class Meta:
 #         model = Cast
@@ -52,25 +52,29 @@ from .models import *
 #     resource_class = GenreResource
 #     list_display = ["id", "name"]
 
-class SalaResource(resources.ModelResource):
-    class Meta:
-        model = Sala
+# class FuncionResource(resources.ModelResource):
+#     class Meta:
+#         model = Funcion
 
-class SalaAdmin(ImportExportModelAdmin):
-    resource_class = SalaResource
-    list_display = ["name", "address", "city"]
+# class FuncionAdmin(ImportExportModelAdmin):
+#     resource_class = FuncionResource
+#     list_display = ["id", "sala", "movie", "window"]
 
-class FuncionResource(resources.ModelResource):
-    class Meta:
-        model = Funcion
+# class SalaResource(resources.ModelResource):
+#     class Meta:
+#         model = Sala
 
-class FuncionAdmin(ImportExportModelAdmin):
-    resource_class = FuncionResource
-    list_display = ["id", "sala", "movie", "window"]
+# class SalaAdmin(ImportExportModelAdmin):
+#     resource_class = SalaResource
+#     list_display = ["name", "address", "city"]
+
 
 # Admin regular
-# class SalaAdmin(admin.ModelAdmin):
-#     list_display = ["id", "name", "address", "city"]
+class UsuarioAdmin(admin.ModelAdmin):
+    list_display = ["id", "codigo", "nombres", "apellidos"]
+
+class SalaAdmin(admin.ModelAdmin):
+    list_display = ["id", "name", "address", "city"]
 
 class GenreAdmin(admin.ModelAdmin):
     list_display = ["id", "name"]
@@ -96,20 +100,26 @@ class MovieGAdmin(admin.ModelAdmin):
 class FormatAdmin(admin.ModelAdmin):
     list_display = ["id", "format"]
     
+class FuncionAdmin(admin.ModelAdmin):
+    list_display = ["id", "sala", "movie", "window"]
+
+class ReservaAdmin(admin.ModelAdmin):
+    list_display = ["id", "usuario", "funcion"]
+
 # Registro de modelos
-admin.site.register(Usuario)
 
 admin.site.register(Sala, SalaAdmin)
 admin.site.register(Format, FormatAdmin)
-admin.site.register(Sala_Format, SFormatAdmin)
-
 admin.site.register(Window, WindowAdmin)
-
 admin.site.register(Movie, MovieAdmin)
 admin.site.register(Cast, CastAdmin)
 admin.site.register(Genre, GenreAdmin)
+
+admin.site.register(Sala_Format, SFormatAdmin)
 admin.site.register(Movie_Cast, MovieCAdmin)
 admin.site.register(Movie_Genre, MovieGAdmin)
 
 admin.site.register(Funcion, FuncionAdmin)
-admin.site.register(Reserva)
+admin.site.register(Reserva, ReservaAdmin)
+
+admin.site.register(Usuario, UsuarioAdmin)
