@@ -52,13 +52,13 @@ from .models import *
 #     resource_class = GenreResource
 #     list_display = ["id", "name"]
 
-# class SalaResource(resources.ModelResource):
-#     class Meta:
-#         model = Sala
+class SalaResource(resources.ModelResource):
+    class Meta:
+        model = Sala
 
-# class SalaAdmin(ImportExportModelAdmin):
-#     resource_class = SalaResource
-#     list_display = ["name", "address", "city"]
+class SalaAdmin(ImportExportModelAdmin):
+    resource_class = SalaResource
+    list_display = ["name", "address", "city"]
 
 class FuncionResource(resources.ModelResource):
     class Meta:
@@ -69,8 +69,8 @@ class FuncionAdmin(ImportExportModelAdmin):
     list_display = ["id", "sala", "movie", "window"]
 
 # Admin regular
-class SalaAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "address", "city"]
+# class SalaAdmin(admin.ModelAdmin):
+#     list_display = ["id", "name", "address", "city"]
 
 class GenreAdmin(admin.ModelAdmin):
     list_display = ["id", "name"]
