@@ -12,9 +12,6 @@ class Usuario(models.Model):
 class Format(models.Model):
     format = models.CharField(max_length=30)
 
-    def __str__(self) -> str:
-        return self.format
-
 class Window(models.Model):
     date = models.DateField()
     hour = models.TimeField()
@@ -45,9 +42,13 @@ class Movie(models.Model):
     thumbnail_width = models.IntegerField()
     thumbnail_height = models.IntegerField()
     path = models.CharField(max_length=120) # el mayor tiene 66 caracteres
+    def __str__(self) -> str:
+        return self.title
     
 class Cast(models.Model):
     name = models.CharField(max_length=80)
+    def __str__(self) -> str:
+        return self.name
 
 class Genre(models.Model):
     name = models.CharField(max_length=80)
