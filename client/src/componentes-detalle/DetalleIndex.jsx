@@ -8,11 +8,26 @@ import DetalleSinopsis from "./DetalleSinopsis";
 
 const DetalleIndex = () => {
   
+  const [pelicula, setPelicula] = useState([]);
+  const [filtro, setFiltro] = useState("");
+
   const errorComponent = <>
     <img src="https://http.cat/images/404.jpg" alt="" />
   </>
 
-  const movie = useParams();
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    const obtenerDetalleHTTP = async () => {
+      const response = await fetch(`http://localhost:8000/api/detalle/${filtro}`);
+      const json = await response.json();
+      setPelicula(json);
+    }
+    obtenerDetalleHTTP();
+  }, [filtro])
+  
+
+
+  /*const movie = useParams();
   const [peliculaActual, setPeliculaActual] = useState({
     id: "",
     path: "",
@@ -24,11 +39,11 @@ const DetalleIndex = () => {
     generos: [],
     url: []
   });
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(false);*/
   
   
   // Buscar peliculas...
-  useEffect(() => {
+  /*useEffect(() => {
     const buscarPeliculasHTTP = async () => {
       const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
       const peliculas = await response.json();
@@ -52,7 +67,7 @@ const DetalleIndex = () => {
       }
     }
     buscarPeliculasHTTP();
-  }, [movie]);
+  }, [movie]);*/
 
   if(error === true){
     return errorComponent
@@ -69,15 +84,15 @@ const DetalleIndex = () => {
         </div>
       </div>
 
-      <DetalleTitulo titulo={peliculaActual.titulo} year={peliculaActual.year} cast={peliculaActual.cast}/>
+    <DetalleTitulo titulo={pelicula.title} year={pelicula.year} /*cast={peliculaActual.cast}*//> 
       
       <div className="col-md-7">
-        <DetalleImagen url={peliculaActual.url}/>
+        <DetalleImagen url={pelicula.thumbnail}/>
         <p></p>
-        <DetalleSala titulo={peliculaActual.titulo} path={peliculaActual.path} url={peliculaActual.url}/>
+        <DetalleSala titulo={pelicula.title} path={pelicula.path} url={pelicula.thumbnail}/>
       </div>
 
-      <DetalleSinopsis extracto={peliculaActual.extract} generos={peliculaActual.generos}/>
+    {/*<DetalleSinopsis extracto={pelicula.extract} generos={pelicula.generos}/> */} 
     </div>
   );
 };
