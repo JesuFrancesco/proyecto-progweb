@@ -25,6 +25,27 @@ def obtenerSalas(request: RequestType):
             print(array_salas)
             return HttpResponse(json.dumps(array_salas), content_type="application/json")
 
+def obtenerPelicula_Detalle(request, filtro):
+    if request.method == "GET":
+        pathFiltro = filtro
+
+        if pathFiltro == "":
+            listaMovieFiltrada = Movie.objects.all()
+        else:
+            listaMovieFiltrada = Movie.objects.filter(pathFiltro)
+
+        dataResponse = []
+        for movie in listaMovieFiltrada:
+            dataResponse.append({
+                "title": movie.title,
+                "year": movie.year,
+                "extract": movie.extract,
+                "thumbnail": movie.thumbnail,
+                "path": movie.path
+        })
+
+        return HttpResponse(json.dumps(dataResponse))
+
 @csrf_exempt
 def loginEndPoint (request): 
     if request.method == "POST":

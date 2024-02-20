@@ -12,7 +12,7 @@ const Pelicula = (props) => {
         <Link style={ {marginRight: "1em"} }>&nbsp; {props.year}</Link>
 
         <PersonIcon />
-        <Link>&nbsp; {props.cast[0]}</Link>
+      {/*<Link>&nbsp; {props.cast[0]}</Link>*/}
         </div>
       </div>
     </div>
