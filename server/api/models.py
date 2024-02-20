@@ -15,6 +15,8 @@ class Format(models.Model):
 class Window(models.Model):
     date = models.DateField()
     hour = models.TimeField()
+    def __str__(self) -> str:
+        return f"{self.date}, {self.hour}"
 
 # Relativos a sala
 class Sala(models.Model):
