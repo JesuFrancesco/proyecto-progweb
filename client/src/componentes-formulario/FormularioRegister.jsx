@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from '@mui/material/Alert'
 import InputFormulario from './InputFormulario'
@@ -7,13 +7,15 @@ import Button from '@mui/material/Button'
 
 // Verificaciones de registro
 const FormularioRegister = () => {
-  
   const [usuarioRegister, setusuarioRegister] = useState({
     nombres: "",
     apellidos: "",
     codigo: "",
-    contrasena: "",
+    contrasenha: "",
   })
+  const [error, setError] = useState("")
+  const navigate = useNavigate()
+  
   const subirUsuario = async (usuario) => {
     const res = await fetch("http://127.0.0.1:8000/api/register", {
         method: "POST",
@@ -22,46 +24,40 @@ const FormularioRegister = () => {
     const data = await res.json();
 
     if(!data.msg){
-        alert("usuario registrado")
-      
+      alert("Usuario registrado");
+      return true;
     } else {
-        alert(data.msg)
+      setError(data.msg);
+      return false;
     }
-}
-  
-  const [usuariosData, setUsuariosData] = useState([])
-  const [error, setError] = useState("")
-  const navigate = useNavigate()
-  
-
-  const handleRegistrarse = async() => {
-    // validaciones
-    if (!usuarioRegister.nombres || !usuarioRegister.apellidos || !usuarioRegister.codigo || !usuarioRegister.contrasena) {
-      setError('Por favor, completa todos los campos.')
-      return
-    }
-  
-    if (usuarioRegister.codigo.length !== 8 || isNaN(usuarioRegister.codigo)) {
-      setError('El código debe ser un número de 8 dígitos.')
-      return
-    }
-  
-    if (usuariosData.some((usuario) => usuario.codigo === usuarioRegister.codigo)) {
-      setError('El código ingresado ya existe. Por favor, ingrese uno diferente.')
-      return
-    }
-    
-   subirUsuario(usuarioRegister)
-    // Después de registrar, se envia al login 
-    navigate('/')
   }
-   
+  
+  const handleRegistrarse = async () => {
+    // validaciones, ya se realizan mediante el backend
+    // if (!usuarioRegister.nombres || !usuarioRegister.apellidos || !usuarioRegister.codigo || !usuarioRegister.contrasenha) {
+    //   setError('Por favor, completa todos los campos.')
+    //   return
+    // }
+  
+    // if (usuarioRegister.codigo.length !== 8 || isNaN(usuarioRegister.codigo)) {
+    //   setError('El código debe ser un número de 8 dígitos.')
+    //   return
+    // }
+    
+    // Después de registrar, se envia al login 
+    console.log(usuarioRegister)
+    const res = await subirUsuario(usuarioRegister)
+    if (res)
+      navigate('/')
+
+  }
+
   return <div className="formulario">
           <form className="form">
           <InputFormulario title={"Nombre"} objeto={usuarioRegister} llave={"nombres"} setFn={setusuarioRegister} />
           <InputFormulario title={"Apellido"} objeto={usuarioRegister} llave={"apellidos"} setFn={setusuarioRegister} />
           <InputFormulario title={"Codigo"} objeto={usuarioRegister} llave={"codigo"} setFn={setusuarioRegister} />
-          <InputFormulario title={"Contraseña"} objeto={usuarioRegister} llave={"contrasena"} setFn={setusuarioRegister} variante="password" />
+          <InputFormulario title={"Contraseña"} objeto={usuarioRegister} llave={"contrasenha"} setFn={setusuarioRegister} variante="password" />
       
           {error && (
             () => {

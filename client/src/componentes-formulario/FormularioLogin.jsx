@@ -6,26 +6,24 @@ import Alert from '@mui/material/Alert'
 import { Typography, Container } from '@mui/material';
 
 import InputFormulario from './InputFormulario'
-//holaaaaaa
+
 const FormularioLogin = () => {
     // fondo
     document.body.classList.add("fondo-body")
 
     const [usuario, setUsuario] = useState({
         codigo: "",
-        contrasena: "",
+        contrasenha: "",
     })
     
     const [error, setError] = useState('')
-    const [usuariosJSON, setUsuariosJSON] = useState([])
 
     const navigate = useNavigate()
     
-   
     const handleLogin = async () => {
         const dataUsername = {
             codigo : usuario.codigo,
-            contrasenha : usuario.contrasena
+            contrasenha : usuario.contrasenha
         }
 
         const response = await fetch("http://localhost:8000/api/login", {
@@ -37,13 +35,12 @@ const FormularioLogin = () => {
         if (data.msg === "") {
             // Login correcto
             // Almacenando en localStorage
-            sessionStorage.setItem("usuario_objeto", JSON.stringify(dataUsername))
+            sessionStorage.setItem("usuario_objeto", JSON.stringify(data.usuario))
             document.body.classList.remove("fondo-body")
             navigate("/menu")
         } else {
             // Login incorrecto
-        setError(true)
-        
+            setError(data.msg)
         }
     }
 
@@ -54,7 +51,7 @@ const FormularioLogin = () => {
             navigate("/menu")
             return
         }
-    }, [])
+    }, [navigate])
 
     return <>
     <div id="formulario">
@@ -62,7 +59,7 @@ const FormularioLogin = () => {
             
             {/* Input */}
             <InputFormulario title={"Código"} objeto={usuario} llave={"codigo"} setFn={setUsuario} />
-            <InputFormulario title={"Contraseña"} objeto={usuario} llave={"contrasena"} setFn={setUsuario} variante="password" />
+            <InputFormulario title={"Contraseña"} objeto={usuario} llave={"contrasenha"} setFn={setUsuario} variante="password" />
             <Container className="text-center" style={{ marginTop: '40px' }}>
                 <Typography variant="body1" gutterBottom>
                     <p>¿Olvidaste tu contraseña?</p>

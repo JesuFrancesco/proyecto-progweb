@@ -11,12 +11,12 @@ const PanelHistoria = (props) => {
 
     return <>
         <div className="card p-4" style={ {backgroundColor: "white", boxShadow: "2px 4px 2px 1px rgba(0, 0, 0, 0.2)"} }>
-            <h4 className="card-title" style={{ fontWeight: 600 }}> Historia </h4>
+            <h4 className="card-title" style={{ fontWeight: 600 }}> Informacion </h4>
             <p style={{ textAlign: "left" }}>
                 {props.texto}
             </p>
             {
-                (props.chips)? props.chips.map(categoria => <Chip variant="outlined" label={categoria} style={estiloChip} />)
+                (props.chips)? props.chips.map(formato => <Chip variant="outlined" label={formato.format} style={estiloChip} />)
                 : <></>
             }
         </div>

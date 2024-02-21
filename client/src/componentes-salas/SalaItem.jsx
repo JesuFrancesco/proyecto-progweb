@@ -1,25 +1,26 @@
 import { Link } from "react-router-dom"
 import { LocationCity } from "@mui/icons-material"
 import PanelHistoria from "./PanelHistoria";
-import TarjetaPelicula from './TarjetaPelicula';
+import TarjetaFuncion from './TarjetaFuncion';
+import { Alert } from "@mui/material";
 
 const SalaItem = (props) => {
     // dependiendo de la sala que mediante el params proporcionado por el componente padre
     const sala = props.sala;
-    const peliculas = props.peliculas;
+    const funciones = sala.funciones;
 
     return <>
         <div className="row">
             {/* titulo y banner */}
             <div>
-                <h2 style={ {fontWeight: "600"} }>{sala.salaName}</h2>
+                <h2 style={ {fontWeight: "600"} }>{sala.name}</h2>
             </div>
             
             <div className="mb-3">
                 <div id="ubi">
                     <LocationCity sx={ {mr: 1} }/>
-                    <Link className="text-decoration-none" to={ sala.salaMapsRelativeLocation }>
-                        {sala.salaAddress}
+                    <Link className="text-decoration-none" to={ sala.img }>
+                        {sala.address}
                     </Link>
                 </div>
             </div>
@@ -27,7 +28,7 @@ const SalaItem = (props) => {
             <div className="col-md-8">
                 
                 <div style={ {textAlign: "center"} } className="mb-5">
-                    <img src={sala.url} className="w-100" style={ {borderRadius: "7px", width: "100%"} } alt="" />
+                    <img src={sala.img} className="w-100" style={ {borderRadius: "7px", width: "100%"} } alt="" />
                 </div>
                 
             
@@ -36,25 +37,21 @@ const SalaItem = (props) => {
                     Películas disponibles
                 </h3>
                 {
-                    peliculas.map((movie, index) => (index < 10)? <>
+                    (funciones)? (funciones.length !== 0)? funciones.map((funcion, index) =>
                             <div className="my-3">
-                                <TarjetaPelicula
-                                    sala_obj={ sala }
+                                <TarjetaFuncion
                                     index={index}
-                                    title={movie.title}
-                                    synopsis={movie.extract}
-                                    thumbnail={movie.thumbnail}
-                                    schedules={sala.salaTimes} />
+                                    sala_obj={ sala }
+                                    funcion_obj={ funcion } />
                             </div>
-                        </> : <></>
-                    )
+                    ) : <Alert severity="info">Esta sala no cuenta con funciones.</Alert> : <></>
                 }
             </div>
         
 
             {/* panel historia */}
             <div className="col-md">
-                <PanelHistoria texto={sala.salaHistory} chips={(sala.salaChips)? sala.salaChips : null}/>
+                <PanelHistoria texto={sala.address} chips={(sala.formats)? sala.formats : null}/>
             </div>
         </div>
     </>

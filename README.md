@@ -7,7 +7,7 @@ Repositorio para el proyecto del curso de Programación Web del ciclo 2024-0 en 
 # Deployment (Github Pages)
 - https://jesufrancesco.github.io/proyecto-progweb/
 
-# modelo de database
+# Modelo de base de datos
 <p align="center">
   <img src="modelo.png"/>
 </p>

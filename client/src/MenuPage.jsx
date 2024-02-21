@@ -31,22 +31,19 @@ const MenuPage = () => {
   console.log(busqueda)
 
   return <>
-    <Header title={"Bienvenido " + usuario.codigo} />
+    <Header title={`Bienvenido ${usuario.nombres} (${usuario.codigo})`} />
+
     <div className='py-5'>
-
-
       <Carrusel peliculas={peliculas} />
-
       <div className='mt-3' style={{ textAlign: 'center' }}>
         
         <div>
           <TextField label="Búsqueda" variant="standard" size="medium"
-
-          className="form-control my-3"
-          placeholder="Busca por título, actores, actrices, género, etc"
-          style={{width:"80%"}}
-          value={busqueda}
-          onChange={handleInputChange}/>
+            className="form-control my-3"
+            placeholder="Busca por título, actores, actrices, género, etc"
+            style={{width:"80%"}}
+            value={busqueda}
+            onChange={handleInputChange}/>
         </div>
       
         
@@ -70,6 +67,7 @@ const MenuPage = () => {
         </Box>
       </div>
     </div>
+
     <Footer />
     </>
 };
