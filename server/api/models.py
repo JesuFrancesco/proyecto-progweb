@@ -47,6 +47,8 @@ class Movie(models.Model):
     thumbnail_width = models.IntegerField()
     thumbnail_height = models.IntegerField()
     path = models.CharField(max_length=120) # el mayor tiene 66 caracteres
+    # cast = models.ManyToManyField("Format", through="Sala_Format")
+    # genres = models.ManyToManyField("Format", through="Sala_Format")
     def __str__(self) -> str:
         return self.title
     

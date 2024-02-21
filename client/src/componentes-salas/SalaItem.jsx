@@ -20,7 +20,7 @@ const SalaItem = (props) => {
                 <div id="ubi">
                     <LocationCity sx={ {mr: 1} }/>
                     <Link className="text-decoration-none" to={ sala.img }>
-                        {sala.address}
+                        {sala.city}, {sala.address}
                     </Link>
                 </div>
             </div>
@@ -51,7 +51,10 @@ const SalaItem = (props) => {
 
             {/* panel historia */}
             <div className="col-md">
-                <PanelHistoria texto={sala.address} chips={(sala.formats)? sala.formats : null}/>
+                <PanelHistoria location={sala.city} 
+                    texto={`${sala.description}. ${sala.address}, ${sala.secondAddress}. ${sala.phoneNumber}`} 
+                    chips={(sala.formats)? sala.formats : null}
+                    phone={sala.phoneNumber}/>
             </div>
         </div>
     </>

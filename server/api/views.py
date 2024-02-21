@@ -7,7 +7,7 @@ from django.core import serializers
 import json
 
 @csrf_exempt
-def obtenerSalas(request: RequestType):
+def obtenerSalasPreview(request: RequestType):
     if request.method == "GET":
         # Retorno
         response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=code)
@@ -44,7 +44,7 @@ def obtenerSalas(request: RequestType):
             if not nombre_filter:
                 array_salas = [to_sala_json(sala) for sala in Sala.objects.all() ]
             else:
-                array_salas = [to_sala_json(sala) for sala in Sala.objects.filter(name__contains=nombre_filter) ]
+                array_salas = [to_sala_json(sala) for sala in Sala.objects.filter(name__icontains=nombre_filter) ]
 
             if format_filter:
                 existeSala = lambda list_formatos: any(list(map(lambda formato: formato["id"] == int(format_filter), list_formatos))) # i luv programacion funcional
@@ -63,27 +63,28 @@ def obtenerSalas(request: RequestType):
 def obtenerSalaItem(request: RequestType, salapath: str):
     if request.method == "GET":
         # Retorno
-        response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=code)
+        response = lambda dictionary, codigo = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=codigo)
 
         try:
+            # formato de ventana a retornar
             to_window_json = lambda window: {
-                "id": window.pk,
                 "date": str(window.date),
                 "hour": str(window.hour),
             }
 
+            # formato de funcion a retornar
             to_movie_json = lambda movie: {
-                "id": movie.pk,
                 "title": movie.title,
                 "year": movie.year,
                 "extract": movie.extract,
                 "thumbnail": movie.thumbnail,
+                "cast": [Cast.objects.get(pk=movie_cast["cast_id"]).name for movie_cast in Movie_Cast.objects.filter(movie=movie.pk).values()],
+                "genres": [Genre.objects.get(pk=movie_genre["genre_id"]).name for movie_genre in Movie_Genre.objects.filter(movie=movie.pk).values()],
                 "path": movie.path
             }
 
             # formato de funcion a retornar
             to_funcion_json = lambda funcion: {
-                "id": funcion.pk,
                 "movie": to_movie_json(Movie.objects.get(pk=funcion.movie.pk)),
                 "window": to_window_json(Window.objects.get(pk=funcion.window.pk)),
             }
@@ -99,13 +100,14 @@ def obtenerSalaItem(request: RequestType, salapath: str):
                 "description": sala.description,
                 "path": sala.path,
                 "img": sala.img,
-                "formats": list(sala.formats.values()),
+                "formats": [formato_obj["format"] for formato_obj in sala.formats.values()],
                 "funciones": list(funciones),
             }
 
+            # Obtener la sala (lanza DoesNotExist excepcion)
             sala = Sala.objects.get(path=salapath)
-            if not sala: raise Exception("No existe dicha sala")
 
+            # Obtener las funciones relacionadas con la sala y agregarlas a cada sala
             funciones = Funcion.objects.filter(sala=sala.pk)
             salaDict = to_sala_json(sala=sala, funciones=[to_funcion_json(funcion=funcion) for funcion in funciones])
 
@@ -115,8 +117,12 @@ def obtenerSalaItem(request: RequestType, salapath: str):
             }
             return response(respDict)
         
+        except Sala.DoesNotExist:
+            return response({"msg": "No existe la sala buscada"}, 400)
+        
         except Exception as err:
-            return response({"msg": str(err)}, 400)
+            print(err.with_traceback())
+            return response({"msg": "Algo salio mal."}, codigo=500)
 
 
 def obtenerPelicula_Detalle(request, filtro):
