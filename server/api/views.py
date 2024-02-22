@@ -167,7 +167,7 @@ def obtenerPeliculas(request):
                 "extract": movie.extract,
                 "thumbnail": movie.thumbnail,
                 "path": movie.path,
-                "Genres":generos_lista
+                "genres":generos_lista
             })
 
         return HttpResponse(json.dumps(dataResponse))

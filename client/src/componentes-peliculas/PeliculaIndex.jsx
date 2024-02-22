@@ -117,7 +117,7 @@ const PeliculaIndex = () => {
                             <div key={i} className="col">
                                 <div key={i} className={`col`}>
                                     <Pelicula
-                                        peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.Genres} url={peli.thumbnail} id={peli.path} />
+                                        peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.genres} url={peli.thumbnail} id={peli.path} />
                                 </div>
                             </div>
                             )
