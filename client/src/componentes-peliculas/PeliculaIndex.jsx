@@ -13,27 +13,31 @@ const PeliculaIndex = () => {
     
     const [filtro, setFiltro] = useState("");
     const [pagina, setPagina] = useState(1);
+
+    const [filtroNombre, setFiltroNombre] = useState("");
+    
+
     
     const id = useParams();
     const pageRef = useRef(id.pagina);
 
     const [peliculasJSON, setPeliculasJSON] = useState([]);
     const [peliS,setPeli]=useState([]) // esta cosa es para mantener la lista origianl siempre 
-
+    const [errorHTTP, setErrorHTTP] = useState("");
+    /*
     const filtrarPeliculas = (keyword) => {
         const peliculasJSON = peliS //cada vez que se filtre lo hace desde la lista orginal ,de esta manera se vuelve a filtra cuando borras un caracter que ese era el problema xd
         const peliculasFiltradas = peliculasJSON.filter(
             peli => peli.title.toLowerCase().includes(keyword.toLowerCase())
         );
         return peliculasFiltradas;
-    };
+    };*/
     
     const handleInputChange = (evt) => {
         evt.preventDefault();
         const keyword = evt.target.value;
-        setFiltro(keyword);
-        const peliculasFiltradas = filtrarPeliculas(keyword);
-        setPeliculasJSON(peliculasFiltradas);
+        setFiltroNombre(keyword);
+        
         
     };
 
@@ -50,18 +54,35 @@ const PeliculaIndex = () => {
         return peliculasJSON.slice(startIndex, endIndex)
     }
     
+    useEffect(() => {
+        // Peticiones HTTP al backend
+        const obtenerSalasHTTP = async () => {
+            const response = await fetch(`
+                http://localhost:8000/api/peliculas?nombre=${filtroNombre}`)
+            const data = await response.json();
+            
+            setPeliculasJSON(data);
+            
+
+            // console.log("debug json")
+            // console.log(json)
+        }
+        obtenerSalasHTTP();
+    }, [filtroNombre]);
+
+    /*
     const buscarPeliculasHTTP = async () => {
         const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
         const json = await response.json();
         setPeliculasJSON(json);
         setPeli(json);
-    }
-    
+    }*/
+    /*
     useEffect(() => {
         // verificar si no se puso input directo al link, sino que si se ha logeado y ha llegado ahi
         
         // peticion http
-        buscarPeliculasHTTP();
+        obtenerSalasHTTP();
         
         const page = pageRef.current;
         console.log("pageParam=" + page)
@@ -72,7 +93,7 @@ const PeliculaIndex = () => {
             console.log("indefinido, redirigiendo...")
             navegar(`/peliculas-index/1`);
         }
-    }, [navegar, pagina])
+    }, [navegar, pagina])*/
 
     return (
         <div style={{ textAlign: "center" }}>
@@ -84,7 +105,7 @@ const PeliculaIndex = () => {
                 className="form-control my-3"
                 placeholder="Filtrar por nombre"
                 id="filtrarInput"
-                value={filtro}
+                value={filtroNombre}
                 onChange={handleInputChange}
                 style={{ display: "inline-block", width: "80%" }}
             />
@@ -96,7 +117,7 @@ const PeliculaIndex = () => {
                             <div key={i} className="col">
                                 <div key={i} className={`col`}>
                                     <Pelicula
-                                        peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.genres} url={peli.thumbnail} id={peli.path} />
+                                        peliName={peli.title} peliHora={"1hrs 30min"} peliGenres={peli.Genres} url={peli.thumbnail} id={peli.path} />
                                 </div>
                             </div>
                             )

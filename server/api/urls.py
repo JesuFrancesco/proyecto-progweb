@@ -10,5 +10,6 @@ urlpatterns = [
     path("sala/<str:salapath>", obtenerSalaItem),
 
     # Pelicula urls
-    path("detalle/<str:filtro>", obtenerPelicula_Detalle)
+    path("detalle/<str:filtro>", obtenerPelicula_Detalle),
+    path("peliculas", obtenerPeliculas)
 ]

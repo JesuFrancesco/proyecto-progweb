@@ -87,5 +87,6 @@ class Movie_Cast(models.Model):
     cast = models.ForeignKey(Cast, on_delete=models.CASCADE)
 
 class Movie_Genre(models.Model):
+    
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)

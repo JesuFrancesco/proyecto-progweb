@@ -18,6 +18,7 @@ const Pelicula = (props) => {
                 <p className="horario">{props.peliHora}</p>
                     <h4 className="card-title mb-3">{props.peliName}</h4>
                 <div className="card-footer">
+                    
                     {props.peliGenres.map((time, index) => (
                         <Chip label= {time} key={index}/>
                     ))}

@@ -136,6 +136,7 @@ def obtenerPelicula_Detalle(request, filtro):
 
         dataResponse = []
         for movie in listaMovieFiltrada:
+            
             dataResponse.append({
                 "title": movie.title,
                 "year": movie.year,
@@ -145,6 +146,33 @@ def obtenerPelicula_Detalle(request, filtro):
             })
 
         return HttpResponse(json.dumps(dataResponse))
+
+def obtenerPeliculas(request):
+    if request.method == "GET":
+        filtroNombre = request.GET.get("nombre")
+
+        if filtroNombre == "":
+            listaMovieFiltrada = Movie.objects.all()
+        else:
+            listaMovieFiltrada = Movie.objects.filter(title__icontains=filtroNombre)
+
+        dataResponse = []
+        for movie in listaMovieFiltrada:
+            generos = Movie_Genre.objects.filter(movie=movie.pk)
+            generos_lista = [genre.genre.name for genre in generos]
+            
+            dataResponse.append({
+                "title": movie.title,
+                "year": movie.year,
+                "extract": movie.extract,
+                "thumbnail": movie.thumbnail,
+                "path": movie.path,
+                "Genres":generos_lista
+            })
+
+        return HttpResponse(json.dumps(dataResponse))
+
+
 
 @csrf_exempt
 def loginEndPoint (request): 
