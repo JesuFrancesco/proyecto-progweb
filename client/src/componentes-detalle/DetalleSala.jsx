@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 
 const Salas = (props) => {
-  const [salas, setSalas] = useState([]);
+/*  const [salas, setSalas] = useState([]);
   const [salasUL, setSalasUL] = useState([]);
   const [contadorSala] = useState(1);
 
@@ -22,14 +22,14 @@ const Salas = (props) => {
   useEffect(() => {
     obtenerSalas();
     obtenerSalasUL();
-  }, []);
+  }, []);*/
 
   return (
     <div className="peli">
       <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
         <b style={{ marginLeft: "10px" }}>Salas disponibles</b>
       </Typography>
-      {salasUL.map((detalle, index) => (
+      {/*salasUL.map((detalle, index) => (
         <Detalle
           abrevia={`UL${contadorSala + index}`}
           key={index}
@@ -40,10 +40,10 @@ const Salas = (props) => {
           imagen={props.url}
           usuario_obj7={props.usuario_obj6}
         />
-      ))}
-      {salas.map((detalle, index) => (
+      ))*/}
+      {props.salas.map((detalle, index) => (
         <Detalle
-          abrevia={`CP${contadorSala + index}`}
+          abrevia={`CP`}
           key={index}
           sala={detalle.name}
           horarios={["11:00", "17:00", "18:00"]}
