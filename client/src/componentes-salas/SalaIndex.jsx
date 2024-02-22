@@ -21,7 +21,7 @@ const SalaIndex = () => {
         // Peticiones HTTP al backend
         const obtenerSalasHTTP = async () => {
             const response = await fetch(`
-                http://localhost:8000/api/salas?${(filtroNombre)? `name=${filtroNombre}`: ""}&${(filtroFormat)? `&format=${filtroFormat}` : ""}
+                http://pweb2024.azurewebsites.net/api/salas?${(filtroNombre)? `name=${filtroNombre}`: ""}&${(filtroFormat)? `&format=${filtroFormat}` : ""}
             `);
             const data = await response.json();
             if (!data.msg)

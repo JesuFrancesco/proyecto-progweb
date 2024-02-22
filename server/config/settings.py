@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-^8k2ja2frz5=z6_0q#^(im4i=vt_pt^0hty1x7%655qw4^%q!$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "cines20210109.postgres.database.azure.com",
+    "pweb2024.azurewebsites.net"
+]
 
 
 # Application definition
@@ -58,6 +62,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  
+    "https://jesufrancesco.github.io/proyecto-progweb/"  
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -89,10 +94,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'cinesdb',
 
-        'USER': 'ulima',
-        'PASSWORD': 'contra123', 
+        # 'USER': '(poner usuario !!!!)',
+        # 'PASSWORD': '(poner contraseña !!!!!!!!!!!)', 
 
-        'HOST': '127.0.0.1',
+        'HOST': 'cines20210109.postgres.database.azure.com',
         'PORT': '5432'
     }
 }
