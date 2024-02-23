@@ -1,6 +1,5 @@
 import Detalle from "./Detalle";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
 
 const Salas = (props) => {
 /*  const [salas, setSalas] = useState([]);

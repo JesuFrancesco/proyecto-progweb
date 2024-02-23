@@ -11,5 +11,8 @@ urlpatterns = [
 
     # Pelicula urls
     path("detalle", obtenerPelicula_Detalle),
-    path("peliculas", obtenerPeliculas)
+    path("peliculas", obtenerPeliculas),
+
+    # Funcion url
+    path("funciones", obtenerFuncionesPreview)
 ]

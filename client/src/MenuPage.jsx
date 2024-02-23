@@ -7,34 +7,46 @@ import TextField from '@mui/material/TextField';
 import Header from './componentes-buscador/Header'
 import Footer from './componentes-buscador/Footer';
 
-import { peliculas } from './componentes-detalle/Detalles';
 import Carrusel from './componentes-menu/Carrusel';
 
 const MenuPage = () => {
   const navegacion = useNavigate();
+  
   const [busqueda, setBusqueda] = useState('');
-  // const [usuario, setUsuario] = useState((sessionStorage.getItem('usuario_objeto')) ? JSON.parse(sessionStorage.getItem('usuario_objeto')): {});
+  const [funciones, setFunciones] = useState([]);
+
   const usu = sessionStorage.getItem('usuario_objeto');
   const usuario = (usu)? JSON.parse(usu) : {};
-  console.log("--- MenuPage.jsx");
-  console.log(usuario);
-  const handleInputChange = (event) => {
-    setBusqueda(event.target.value);
-  };
+  
+  // debug
+  // console.log("--- MenuPage.jsx");
+  // console.log(usuario);
 
   useEffect(() => {
     if (!checkLogin()) {
-        // alert("No has iniciado sesión.");
-        navegacion("/");
+      alert("No has iniciado sesión.");
+      navegacion("/");
     }
-})
-  console.log(busqueda)
+  });
+  
+  useEffect(() => {
+    const obtenerFuncionesHTTP = async () => {
+      const res = await fetch("http://localhost:8000/api/funciones?num=5");
+      const data = await res.json();
+
+      if(!data.msg)
+        setFunciones(data.funciones);
+    }
+
+    obtenerFuncionesHTTP();
+
+  }, []);
 
   return <>
     <Header title={`Bienvenido ${usuario.nombres} (${usuario.codigo})`} />
 
     <div className='py-5'>
-      <Carrusel peliculas={peliculas} />
+      <Carrusel funciones={ funciones } />
       <div className='mt-3' style={{ textAlign: 'center' }}>
         
         <div>
@@ -43,7 +55,7 @@ const MenuPage = () => {
             placeholder="Busca por título, actores, actrices, género, etc"
             style={{width:"80%"}}
             value={busqueda}
-            onChange={handleInputChange}/>
+            onChange={ e => setBusqueda(e.target.value)}/>
         </div>
       
         

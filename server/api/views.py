@@ -3,14 +3,14 @@ from django.http import *
 from .models import *
 from django.views.decorators.csrf import csrf_exempt #
 from django.core.handlers.wsgi import WSGIRequest as RequestType
-from django.core import serializers
 import json
+
+# Formato de retorno
+response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=code)
 
 @csrf_exempt
 def obtenerSalasPreview(request: RequestType):
     if request.method == "GET":
-        # Retorno
-        response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=code)
 
         try:
             array_salas = []
@@ -148,6 +148,54 @@ def obtenerPelicula_Detalle(request):
             })
 
         return HttpResponse(json.dumps(dataResponse))
+
+def obtenerFuncionesPreview(request):
+    if request.method == "GET":
+        # limitar busqueda a un numero de funciones random
+        num = request.GET.get("num")
+
+        try:
+            funciones = [{
+                "id": funcion.pk,
+
+                "sala": (lambda sala: {"name": sala.name}) (Sala.objects.get(pk=funcion.sala.pk)),
+
+                "movie": (lambda pelicula: {
+                    "title": pelicula.title, 
+                    "extract": pelicula.extract, 
+                    "thumbnail" : pelicula.thumbnail,
+                    "path" : pelicula.path if not "/" in pelicula.path else pelicula.path.replace("/", "-")
+                }) (Movie.objects.get(pk=funcion.movie.pk)),
+
+                "window": (lambda ventana: {
+                    "hour": str(ventana.hour), 
+                    "date": str(ventana.date)
+                }) (Window.objects.get(pk=funcion.window.pk))
+            } for funcion in Funcion.objects.all()]
+
+            funcionesRnd = None
+            if num:
+                # validacion de integer
+                if not num.isdigit(): raise ValueError("el numero debe ser de tipo integer.")
+                num = int(num)
+                if num > len(funciones): raise ValueError("el numero no puede ser mayor a la longitud de funciones")
+                
+                from random import sample
+                ids_pivot = sample(list(map(lambda o: o["id"], funciones)), num)
+                # print(ids_pivot)
+                funcionesRnd = list(filter(lambda dict: dict["id"] in ids_pivot, funciones))
+
+            respDict = {
+                "msg" : "",
+                "funciones" : funciones if not funcionesRnd else funcionesRnd
+            }
+            # print(respDict)
+            return response(respDict)
+        
+        except ValueError as err:
+            return response({"msg": str(err)}, code=400)
+
+
 
 def obtenerPeliculas(request):
     if request.method == "GET":
