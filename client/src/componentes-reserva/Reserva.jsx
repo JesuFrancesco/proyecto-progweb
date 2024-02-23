@@ -30,7 +30,7 @@ export default function Reserva()
     })
     
     const InsertarNombre = (event) => {
-        setReserva({...reserva, nombre: event.target.value})
+        setReserva({...reserva, nombres: event.target.value})
     }
     const InsertarApellido = (event) => {
         setReserva({...reserva, apellido: event.target.value})
@@ -75,7 +75,7 @@ export default function Reserva()
                                     className="form-control mb-3 d-grid gap-2 cajate" 
                                     placeholder="Nombre"
                                     //disabled readonly  
-                                    value={reserva.nombre}
+                                    value={reserva.nombres}
                                     onChange={InsertarNombre}/>
                                 <label>Apellido</label>
                                 <input type="text" 
@@ -99,7 +99,7 @@ export default function Reserva()
                                     value={reserva.cantidad}
                                     onChange={InsertarCantidad}/>
                                 <ReservaDialog
-                                    nombrese={reserva.nombre}
+                                    nombrese={reserva.nombres}
                                     apellidose={reserva.apellido}
                                     codigose={reserva.codigo}
                                     cantidadse={reserva.cantidad}/> 
