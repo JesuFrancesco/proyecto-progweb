@@ -201,15 +201,17 @@ def obtenerPeliculas(request):
         filtroNombre = request.GET.get("nombre")
 
         if filtroNombre == "":
-            listaMovieFiltrada = Movie.objects.all()
+            listaMovieFiltrada = Movie.objects.all()[:100]
         else:
-            listaMovieFiltrada = Movie.objects.filter(title__icontains=filtroNombre)
+            listaMovieFiltrada = Movie.objects.filter(title__icontains=filtroNombre)[:100]
 
         dataResponse = []
         for movie in listaMovieFiltrada:
             generos = Movie_Genre.objects.filter(movie=movie.pk)
             generos_lista = [genre.genre.name for genre in generos]
-            
+            #salas=[]
+            #salas=list([{"name": Sala.objects.get(pk=funcion["sala_id"]).name, "hour": Window.objects.get(pk=funcion["window_id"]).hour.strftime("%H:%M:%S")} for funcion in Funcion.objects.filter(movie=movie.pk).values()])
+            #if len(salas)!=0:
             dataResponse.append({
                 "title": movie.title,
                 "year": movie.year,
