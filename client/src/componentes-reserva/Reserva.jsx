@@ -33,7 +33,7 @@ export default function Reserva()
         setReserva({...reserva, nombres: event.target.value})
     }
     const InsertarApellido = (event) => {
-        setReserva({...reserva, apellido: event.target.value})
+        setReserva({...reserva, apellidos: event.target.value})
     }
     const InsertarCodigo = (event) => {
         setReserva({...reserva, codigo: event.target.value})
@@ -82,7 +82,7 @@ export default function Reserva()
                                     className="form-control mb-3 cajate" 
                                     placeholder="Apellido"
                                     //disabled readonly
-                                    value={reserva.apellido}
+                                    value={reserva.apellidos}
                                     onChange={InsertarApellido}/>
                                 <label>Código</label>
                                 <input type="text" 
@@ -100,7 +100,7 @@ export default function Reserva()
                                     onChange={InsertarCantidad}/>
                                 <ReservaDialog
                                     nombrese={reserva.nombres}
-                                    apellidose={reserva.apellido}
+                                    apellidose={reserva.apellidos}
                                     codigose={reserva.codigo}
                                     cantidadse={reserva.cantidad}/> 
                             </div>
