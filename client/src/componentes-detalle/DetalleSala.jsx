@@ -1,5 +1,6 @@
 import Detalle from "./Detalle";
 import Typography from "@mui/material/Typography";
+import {useState } from "react";
 
 const Salas = (props) => {
 /*  const [salas, setSalas] = useState([]);
@@ -22,7 +23,7 @@ const Salas = (props) => {
     obtenerSalas();
     obtenerSalasUL();
   }, []);*/
-
+  const [contadorSala] = useState(1);
   return (
     <div className="peli">
       <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
@@ -42,10 +43,10 @@ const Salas = (props) => {
       ))*/}
       {props.salas.map((detalle, index) => (
         <Detalle
-          abrevia={`CP`}
+          abrevia={`S${contadorSala + index}`}
           key={index}
           sala={detalle.name}
-          horarios={["11:00", "17:00", "18:00"]}
+          horarios={detalle.hour}
           titulo={props.titulo}
           id={props.path}
           imagen={props.url}

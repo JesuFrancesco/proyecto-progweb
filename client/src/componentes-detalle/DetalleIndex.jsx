@@ -48,7 +48,7 @@ const DetalleIndex = () => {
       {pelicula.map(peli => <DetalleImagen url={peli.thumbnail}/>)
       }
         <p></p>
-      {pelicula.map(peli => <DetalleSala titulo={peli.title} path={peli.path} url={peli.thumbnail} salas={peli.salas}/>)
+      {pelicula.map(peli => <DetalleSala titulo={peli.title} path={peli.path} url={peli.thumbnail} salas={peli.salas} key={peli.title}/>)
       }     
       </div>
 
@@ -59,4 +59,3 @@ const DetalleIndex = () => {
 };
 
 export default DetalleIndex;
-

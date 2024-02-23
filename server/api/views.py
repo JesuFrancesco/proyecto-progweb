@@ -135,7 +135,7 @@ def obtenerPelicula_Detalle(request):
             listaMovieFiltrada = Movie.objects.filter(path__icontains=pathFiltro)
 
         dataResponse = []
-        for movie in listaMovieFiltrada:  
+        for movie in listaMovieFiltrada:         
             dataResponse.append({
                 "title": movie.title,
                 "year": movie.year,
@@ -144,7 +144,7 @@ def obtenerPelicula_Detalle(request):
                 "path": movie.path,
                 "cast": [Cast.objects.get(pk=movie_cast["cast_id"]).name for movie_cast in Movie_Cast.objects.filter(movie=movie.pk).values()],
                 "genres": [Genre.objects.get(pk=movie_genre["genre_id"]).name for movie_genre in Movie_Genre.objects.filter(movie=movie.pk).values()],
-                "salas": [Sala.objects.get(pk=funcion["sala_id"]).name for funcion in Funcion.objects.filter(movie=movie.pk).values()]
+                "salas": [{"name": Sala.objects.get(pk=funcion["sala_id"]).name, "hour": Window.objects.get(pk=funcion["window_id"]).hour.strftime("%H:%M:%S")} for funcion in Funcion.objects.filter(movie=movie.pk).values()]
             })
 
         return HttpResponse(json.dumps(dataResponse))
