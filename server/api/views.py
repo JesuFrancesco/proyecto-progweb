@@ -58,7 +58,7 @@ def obtenerSalasPreview(request: RequestType):
         
         except Exception as err:
             return response({"msg": str(err)}, 400)
-        
+
 @csrf_exempt
 def obtenerSalaItem(request: RequestType, salapath: str):
     if request.method == "GET":
@@ -123,7 +123,6 @@ def obtenerSalaItem(request: RequestType, salapath: str):
         except Exception as err:
             print(err.with_traceback())
             return response({"msg": "Algo salio mal."}, codigo=500)
-
 
 def obtenerPelicula_Detalle(request):
     if request.method == "GET":
@@ -195,8 +194,6 @@ def obtenerFuncionesPreview(request):
         except ValueError as err:
             return response({"msg": str(err)}, code=400)
 
-
-
 def obtenerPeliculas(request):
     if request.method == "GET":
         filtroNombre = request.GET.get("nombre")
@@ -216,13 +213,11 @@ def obtenerPeliculas(request):
                 "year": movie.year,
                 "extract": movie.extract,
                 "thumbnail": movie.thumbnail,
-                "path": movie.path,
+                "path": movie.path if not "/" in movie.path else movie.path.replace("/", "-"),
                 "genres":generos_lista
             })
 
         return HttpResponse(json.dumps(dataResponse))
-
-
 
 @csrf_exempt
 def loginEndPoint (request): 
@@ -304,3 +299,22 @@ def registerEndPoint (request):
             "msg" : ""
         }
         return HttpResponse(json.dumps(respDict))
+
+def registroReserva (request):
+    if request.method == "POST":
+
+        try:
+            reservaPython = json.loads(request.body)
+
+            # por completar xd
+            # reservaORM = Reserva(
+            #     x = reservaPython["1"],
+            #     x = reservaPython["2"],
+            #     x = reservaPython["3"],
+            # )
+            # reservaORM.save()
+
+            return response({"msg": ""})
+
+        except Exception as err:
+            return response({"msg": str(err)}, code=400)

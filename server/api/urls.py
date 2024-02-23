@@ -14,5 +14,8 @@ urlpatterns = [
     path("peliculas", obtenerPeliculas),
 
     # Funcion url
-    path("funciones", obtenerFuncionesPreview)
+    path("funciones", obtenerFuncionesPreview),
+
+    # Reserva url
+    path("reserva-register", registroReserva)
 ]

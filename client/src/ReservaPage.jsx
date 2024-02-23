@@ -8,6 +8,19 @@ import './componentes-reserva/estilorese.css'
 
 export default function ReservaPage() {
     
+    const subirReservaHTTP = async (reserva) => {
+        const res = await fetch("", {
+            method: "POST",
+            body: JSON.stringify(reserva)
+        });
+        const data = await res.json();
+
+        if (!data.msg)
+            alert("reserva realizada con exito");
+        else alert("algo malio sal");
+        
+    }
+
     return <>
         <Header/>
         <div className='container' style={ { padding: "4em 0" }}>
