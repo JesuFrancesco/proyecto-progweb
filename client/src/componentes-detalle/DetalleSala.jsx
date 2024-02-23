@@ -40,6 +40,7 @@ const Salas = (props) => {
             key={index}
             sala={detalle.name}
             horarios={detalle.hour}
+            fechas={detalle.date}
             titulo={props.titulo}
             id={props.path}
             imagen={props.url}
@@ -52,3 +53,4 @@ const Salas = (props) => {
 };
 
 export default Salas;
+
