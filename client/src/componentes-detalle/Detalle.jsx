@@ -4,7 +4,6 @@ import { useNavigate} from "react-router-dom";
 
 const Detalle = (props) => 
 {
-  const [mostrarHorarios, setMostrarHorarios] = useState(false);
   const navigate = useNavigate();
 
   function botonreser(horario)
@@ -15,7 +14,6 @@ const Detalle = (props) =>
           hora : horario,
           titulo : props.titulo,
           imagen : props.imagen,
-          
       }})
   }
 
@@ -23,9 +21,9 @@ const Detalle = (props) =>
     <div className="contenido_salas" style={{ marginBottom: "20px" }}>
       <div className="mb-2" style={{ display: "flex", alignItems: "center" }}>
         <Button
+          style={{background: "#FA7525"}}
           variant="contained"
-          color="primary"
-          onClick={() => setMostrarHorarios(!mostrarHorarios)}
+          color="primary"    
         >
           {props.abrevia}
         </Button>
@@ -33,26 +31,19 @@ const Detalle = (props) =>
           {props.sala}
         </Typography>
       </div>
-      {mostrarHorarios && (
-        <>
           <Typography variant="body1" fontFamily="Roboto" fontSize="20px" marginBottom="15px" marginTop="15px">
             Horarios disponibles:
           </Typography>
           <div style={{ display: "flex" }}>
-            {props.horarios.map((horario, index) => (
               <Button
-                key={index}
-                style={{ marginLeft: "5px" }}
+                style={{ marginLeft: "5px"}}
                 className="horarios"
                 variant="outlined"
-                onClick={() => botonreser(horario)}
+                onClick={() => botonreser(props.horarios)}
               >
-                {horario}
+                {props.horarios}
               </Button>
-            ))}
           </div>
-        </>
-      )}
     </div>
   );
 };
