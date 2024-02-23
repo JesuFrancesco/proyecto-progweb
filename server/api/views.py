@@ -242,15 +242,16 @@ def loginEndPoint (request):
                 return HttpResponse(json.dumps(respuesta))
             else :
                 respuesta = {
-                    "msg" : "¡Error en login! Revisa tus credenciales"
+                    "msg" : "¡Error en login! Revisa tus credenciales e inténtalo de nuevo."
                 }
                 return HttpResponse(json.dumps(respuesta), status=400)
             
+        except ValueError:
+            if not codigo.isdigit():
+                return response({"msg": "El campo código debe ser un número de 8 dígitos."}, code=400)
+        
         except Exception:
-            respuesta = {
-                "msg" : "¡Error en el login!"
-            }
-            return HttpResponse(json.dumps(respuesta), status=400)
+            return response({"msg": "¡Error en el login!"}, code=400)
 
 @csrf_exempt
 def registerEndPoint (request):
