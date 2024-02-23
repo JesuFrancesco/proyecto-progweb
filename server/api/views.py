@@ -3,6 +3,8 @@ from django.http import *
 from .models import *
 from django.views.decorators.csrf import csrf_exempt #
 from django.core.handlers.wsgi import WSGIRequest as RequestType
+from datetime import datetime
+import locale
 import json
 
 # Formato de retorno
