@@ -14,6 +14,7 @@ const TarjetaFuncion = (props) =>
             state : {       
                 sala : sala.name,
                 hora : window.hour,
+                fecha : window.date,
                 titulo : movie.title,
                 imagen : movie.thumbnail
             }})
