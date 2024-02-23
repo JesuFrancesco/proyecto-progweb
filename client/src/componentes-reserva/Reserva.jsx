@@ -67,7 +67,11 @@ export default function Reserva()
                     <div className="card" style={carta}>
                         <div className="card-body">
                             <h6 className="card-title">Información de Reserva</h6>
-                            <span>Hora: </span> <b>{ruta.state.hora}</b>
+                            
+                            <span>
+                                {ruta.state.fecha} - {ruta.state.hora} hrs
+                            </span>
+                            
                             <div className="border-bottom mb-4 mt-2"></div>
                             <div className="card-text">
                                 <label>Nombre</label>
