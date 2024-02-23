@@ -14,6 +14,7 @@ const Detalle = (props) =>
           hora : horario,
           titulo : props.titulo,
           imagen : props.imagen,
+          fecha : props.fechas,
       }})
   }
 
