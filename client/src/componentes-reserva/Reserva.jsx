@@ -30,10 +30,10 @@ export default function Reserva()
     })
     
     const InsertarNombre = (event) => {
-        setReserva({...reserva, nombre: event.target.value})
+        setReserva({...reserva, nombres: event.target.value})
     }
     const InsertarApellido = (event) => {
-        setReserva({...reserva, apellido: event.target.value})
+        setReserva({...reserva, apellidos: event.target.value})
     }
     const InsertarCodigo = (event) => {
         setReserva({...reserva, codigo: event.target.value})
@@ -75,14 +75,14 @@ export default function Reserva()
                                     className="form-control mb-3 d-grid gap-2 cajate" 
                                     placeholder="Nombre"
                                     //disabled readonly  
-                                    value={reserva.nombre}
+                                    value={reserva.nombres}
                                     onChange={InsertarNombre}/>
                                 <label>Apellido</label>
                                 <input type="text" 
                                     className="form-control mb-3 cajate" 
                                     placeholder="Apellido"
                                     //disabled readonly
-                                    value={reserva.apellido}
+                                    value={reserva.apellidos}
                                     onChange={InsertarApellido}/>
                                 <label>Código</label>
                                 <input type="text" 
@@ -99,8 +99,8 @@ export default function Reserva()
                                     value={reserva.cantidad}
                                     onChange={InsertarCantidad}/>
                                 <ReservaDialog
-                                    nombrese={reserva.nombre}
-                                    apellidose={reserva.apellido}
+                                    nombrese={reserva.nombres}
+                                    apellidose={reserva.apellidos}
                                     codigose={reserva.codigo}
                                     cantidadse={reserva.cantidad}/> 
                             </div>

@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='reserva',
             name='fecha',
-            field=models.DateTimeField(default=datetime.datetime(2024, 2, 22, 11, 24, 4, 965903)),
+            field=models.DateTimeField(default=datetime.datetime(2024, 2, 22, 20, 52, 2, 583368)),
         ),
     ]

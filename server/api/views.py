@@ -3,14 +3,14 @@ from django.http import *
 from .models import *
 from django.views.decorators.csrf import csrf_exempt #
 from django.core.handlers.wsgi import WSGIRequest as RequestType
-from django.core import serializers
 import json
+
+# Formato de retorno
+response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=code)
 
 @csrf_exempt
 def obtenerSalasPreview(request: RequestType):
     if request.method == "GET":
-        # Retorno
-        response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=code)
 
         try:
             array_salas = []
@@ -58,7 +58,7 @@ def obtenerSalasPreview(request: RequestType):
         
         except Exception as err:
             return response({"msg": str(err)}, 400)
-        
+
 @csrf_exempt
 def obtenerSalaItem(request: RequestType, salapath: str):
     if request.method == "GET":
@@ -124,28 +124,75 @@ def obtenerSalaItem(request: RequestType, salapath: str):
             print(err.with_traceback())
             return response({"msg": "Algo salio mal."}, codigo=500)
 
-
-def obtenerPelicula_Detalle(request, filtro):
+def obtenerPelicula_Detalle(request):
     if request.method == "GET":
-        pathFiltro = filtro
+        pathFiltro = request.GET.get("path")
 
         if pathFiltro == "":
             listaMovieFiltrada = Movie.objects.all()
         else:
-            listaMovieFiltrada = Movie.objects.filter(pathFiltro)
+            listaMovieFiltrada = Movie.objects.filter(path__icontains=pathFiltro)
 
         dataResponse = []
-        for movie in listaMovieFiltrada:
-            
+        for movie in listaMovieFiltrada:         
             dataResponse.append({
                 "title": movie.title,
                 "year": movie.year,
                 "extract": movie.extract,
                 "thumbnail": movie.thumbnail,
-                "path": movie.path
+                "path": movie.path,
+                "cast": [Cast.objects.get(pk=movie_cast["cast_id"]).name for movie_cast in Movie_Cast.objects.filter(movie=movie.pk).values()],
+                "genres": [Genre.objects.get(pk=movie_genre["genre_id"]).name for movie_genre in Movie_Genre.objects.filter(movie=movie.pk).values()],
+                "salas": [{"name": Sala.objects.get(pk=funcion["sala_id"]).name, "hour": Window.objects.get(pk=funcion["window_id"]).hour.strftime("%H:%M:%S")} for funcion in Funcion.objects.filter(movie=movie.pk).values()]
             })
 
         return HttpResponse(json.dumps(dataResponse))
+
+def obtenerFuncionesPreview(request):
+    if request.method == "GET":
+        # limitar busqueda a un numero de funciones random
+        num = request.GET.get("num")
+
+        try:
+            funciones = [{
+                "id": funcion.pk,
+
+                "sala": (lambda sala: {"name": sala.name}) (Sala.objects.get(pk=funcion.sala.pk)),
+
+                "movie": (lambda pelicula: {
+                    "title": pelicula.title, 
+                    "extract": pelicula.extract, 
+                    "thumbnail" : pelicula.thumbnail,
+                    "path" : pelicula.path if not "/" in pelicula.path else pelicula.path.replace("/", "-")
+                }) (Movie.objects.get(pk=funcion.movie.pk)),
+
+                "window": (lambda ventana: {
+                    "hour": str(ventana.hour), 
+                    "date": str(ventana.date)
+                }) (Window.objects.get(pk=funcion.window.pk))
+            } for funcion in Funcion.objects.all()]
+
+            funcionesRnd = None
+            if num:
+                # validacion de integer
+                if not num.isdigit(): raise ValueError("el numero debe ser de tipo integer.")
+                num = int(num)
+                if num > len(funciones): raise ValueError("el numero no puede ser mayor a la longitud de funciones")
+                
+                from random import sample
+                ids_pivot = sample(list(map(lambda o: o["id"], funciones)), num)
+                # print(ids_pivot)
+                funcionesRnd = list(filter(lambda dict: dict["id"] in ids_pivot, funciones))
+
+            respDict = {
+                "msg" : "",
+                "funciones" : funciones if not funcionesRnd else funcionesRnd
+            }
+            # print(respDict)
+            return response(respDict)
+        
+        except ValueError as err:
+            return response({"msg": str(err)}, code=400)
 
 def obtenerPeliculas(request):
     if request.method == "GET":
@@ -166,13 +213,11 @@ def obtenerPeliculas(request):
                 "year": movie.year,
                 "extract": movie.extract,
                 "thumbnail": movie.thumbnail,
-                "path": movie.path,
+                "path": movie.path if not "/" in movie.path else movie.path.replace("/", "-"),
                 "genres":generos_lista
             })
 
         return HttpResponse(json.dumps(dataResponse))
-
-
 
 @csrf_exempt
 def loginEndPoint (request): 
@@ -197,15 +242,16 @@ def loginEndPoint (request):
                 return HttpResponse(json.dumps(respuesta))
             else :
                 respuesta = {
-                    "msg" : "¡Error en login! Revisa tus credenciales"
+                    "msg" : "¡Error en login! Revisa tus credenciales e inténtalo de nuevo."
                 }
                 return HttpResponse(json.dumps(respuesta), status=400)
             
+        except ValueError:
+            if not codigo.isdigit():
+                return response({"msg": "El campo código debe ser un número de 8 dígitos."}, code=400)
+        
         except Exception:
-            respuesta = {
-                "msg" : "¡Error en el login!"
-            }
-            return HttpResponse(json.dumps(respuesta), status=400)
+            return response({"msg": "¡Error en el login!"}, code=400)
 
 @csrf_exempt
 def registerEndPoint (request):
@@ -254,3 +300,22 @@ def registerEndPoint (request):
             "msg" : ""
         }
         return HttpResponse(json.dumps(respDict))
+
+def registroReserva (request):
+    if request.method == "POST":
+
+        try:
+            reservaPython = json.loads(request.body)
+
+            # por completar xd
+            # reservaORM = Reserva(
+            #     x = reservaPython["1"],
+            #     x = reservaPython["2"],
+            #     x = reservaPython["3"],
+            # )
+            # reservaORM.save()
+
+            return response({"msg": ""})
+
+        except Exception as err:
+            return response({"msg": str(err)}, code=400)

@@ -10,6 +10,12 @@ urlpatterns = [
     path("sala/<str:salapath>", obtenerSalaItem),
 
     # Pelicula urls
-    path("detalle/<str:filtro>", obtenerPelicula_Detalle),
-    path("peliculas", obtenerPeliculas)
+    path("detalle", obtenerPelicula_Detalle),
+    path("peliculas", obtenerPeliculas),
+
+    # Funcion url
+    path("funciones", obtenerFuncionesPreview),
+
+    # Reserva url
+    path("reserva-register", registroReserva)
 ]

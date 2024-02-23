@@ -42,7 +42,7 @@ const Rutas = () => {
             element: <PeliculasIndexPage />
         },
         {
-            path: "/peliculas-detalle/:id",
+            path: "/peliculas-detalle/:pathFiltro",
             element: <PeliculasDetallePage />
         },
         {

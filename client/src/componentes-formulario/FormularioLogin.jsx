@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
 import { Typography, Container } from '@mui/material';
+import PendingIcon from '@mui/icons-material/Pending';
 
 import InputFormulario from './InputFormulario'
 
@@ -17,10 +18,13 @@ const FormularioLogin = () => {
     })
     
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
     
     const handleLogin = async () => {
+        setError(''); setLoading(true);
+
         const dataUsername = {
             codigo : usuario.codigo,
             contrasenha : usuario.contrasenha
@@ -42,14 +46,15 @@ const FormularioLogin = () => {
             // Login incorrecto
             setError(data.msg)
         }
+
+        setLoading(false);
     }
 
 
-    // llamada http
+    // llamada verificar si el usuario ya esta logeado
     useEffect(() => {
         if (sessionStorage.getItem("USERNAME") !== null) {
             navigate("/menu")
-            return
         }
     }, [navigate])
 
@@ -68,16 +73,28 @@ const FormularioLogin = () => {
                     Recuperación de Contraseña
                 </Link>
             </Container>   
-            {error && 
-            (() => {
-                if (error) {
-                    return <Alert 
-                        severity="error"
-                        sx={ { mt : 2 } }>
-                        {error}
-                    </Alert>
-                }
-            })()}
+            {
+                error && 
+                (() => {
+                    if (error) {
+                        return <Alert 
+                            severity="error"
+                            sx={ { mt : 2 } }>
+                            {error}
+                        </Alert>
+                    }
+                })()
+            }
+            {
+                loading && 
+                (() => {
+                    if (loading) {
+                        return <center>
+                            <PendingIcon />
+                        </center>
+                    }
+                })()
+            }
         
             <div className='botones mt-3' style={ {textAlign: "center"} }>
                 <Button className='boton' variant='contained' sx={ {mr: "2em"} }  

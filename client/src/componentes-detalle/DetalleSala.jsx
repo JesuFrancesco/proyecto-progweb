@@ -1,9 +1,10 @@
 import Detalle from "./Detalle";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
+import {useState } from "react";
+import { Alert } from "@mui/material";
 
 const Salas = (props) => {
-  const [salas, setSalas] = useState([]);
+/*  const [salas, setSalas] = useState([]);
   const [salasUL, setSalasUL] = useState([]);
   const [contadorSala] = useState(1);
 
@@ -22,37 +23,30 @@ const Salas = (props) => {
   useEffect(() => {
     obtenerSalas();
     obtenerSalasUL();
-  }, []);
-
+  }, []);*/
+  const [contadorSala] = useState(1);
   return (
     <div className="peli">
       <Typography variant="h2" style={{ fontSize: "45px", fontFamily: "Roboto" }}>
         <b style={{ marginLeft: "10px" }}>Salas disponibles</b>
       </Typography>
-      {salasUL.map((detalle, index) => (
-        <Detalle
-          abrevia={`UL${contadorSala + index}`}
-          key={index}
-          sala={detalle.salaName}
-          horarios={detalle.salaTimes}
-          titulo={props.titulo}
-          id={props.path}
-          imagen={props.url}
-          usuario_obj7={props.usuario_obj6}
-        />
-      ))}
-      {salas.map((detalle, index) => (
-        <Detalle
-          abrevia={`CP${contadorSala + index}`}
-          key={index}
-          sala={detalle.name}
-          horarios={["11:00", "17:00", "18:00"]}
-          titulo={props.titulo}
-          id={props.path}
-          imagen={props.url}
-          usuario_obj7={props.usuario_obj6}
-        />
-      ))}
+
+      {props.salas.length === 0 ? (
+        <Alert style={{marginTop : "20px"}} severity="error">No hay funciones disponibles</Alert>
+      ) : (
+        props.salas.map((detalle, index) => (
+          <Detalle
+            abrevia={`S${contadorSala + index}`}
+            key={index}
+            sala={detalle.name}
+            horarios={detalle.hour}
+            titulo={props.titulo}
+            id={props.path}
+            imagen={props.url}
+            usuario_obj7={props.usuario_obj6}
+          />
+        ))
+      )}
     </div>
   );
 };

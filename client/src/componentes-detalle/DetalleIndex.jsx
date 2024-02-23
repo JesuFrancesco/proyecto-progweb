@@ -1,76 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import DetalleImagen from "./DetalleImagen";
 import DetalleTitulo from "./DetalleTitulo";
+import DetalleImagen from "./DetalleImagen";
 import DetalleSala from "./DetalleSala";
 import DetalleSinopsis from "./DetalleSinopsis";
 
 const DetalleIndex = () => {
-  
+  const { pathFiltro } = useParams(); // Obtiene el parámetro de la URL
   const [pelicula, setPelicula] = useState([]);
-  const [filtro, setFiltro] = useState("");
-
-  const errorComponent = <>
-    <img src="https://http.cat/images/404.jpg" alt="" />
-  </>
-
   const [error, setError] = useState(false);
+
+  const errorComponent = (
+    <>
+      <img src="https://http.cat/images/404.jpg" alt="" />
+    </>
+  );
+
   useEffect(() => {
     const obtenerDetalleHTTP = async () => {
-      const response = await fetch(`http://localhost:8000/api/detalle/${filtro}`);
-      const json = await response.json();
-      setPelicula(json);
-    }
+        const response = await fetch(`http://localhost:8000/api/detalle?path=${pathFiltro}`);
+        const json =await response.json();
+        setPelicula(json);
+    };
     obtenerDetalleHTTP();
-  }, [filtro])
-  
+  }, [pathFiltro]);
 
-
-  /*const movie = useParams();
-  const [peliculaActual, setPeliculaActual] = useState({
-    id: "",
-    path: "",
-    titulo: "",
-    year: "",
-    cast: [],
-    trailer: "",
-    extract: "",
-    generos: [],
-    url: []
-  });
-  const [error, setError] = useState(false);*/
-  
-  
-  // Buscar peliculas...
-  /*useEffect(() => {
-    const buscarPeliculasHTTP = async () => {
-      const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
-      const peliculas = await response.json();
-      const path = movie.id
-      
-      const peliculaActual = peliculas.find((pelicula) => pelicula.path === path);
-      if(peliculaActual){
-        setPeliculaActual({
-          id: peliculaActual.id,
-          path: peliculaActual.path,
-          titulo: peliculaActual.title,
-          year: peliculaActual.year,
-          cast: peliculaActual.cast,
-          trailer: peliculaActual.thumbnail,
-          extract: peliculaActual.extract,
-          generos: peliculaActual.genres,
-          url: peliculaActual.thumbnail
-        })
-      } else {
-        setError(true);
-      }
-    }
-    buscarPeliculasHTTP();
-  }, [movie]);*/
-
-  if(error === true){
-    return errorComponent
+  if (error) {
+    return errorComponent;
   }
 
   return (
@@ -83,16 +40,20 @@ const DetalleIndex = () => {
           </Typography>
         </div>
       </div>
-
-    <DetalleTitulo titulo={pelicula.title} year={pelicula.year} /*cast={peliculaActual.cast}*//> 
+      {pelicula.map(peli => 
+          <DetalleTitulo titulo={peli.title} year={peli.year} cast={peli.cast}/> 
+      )}
       
       <div className="col-md-7">
-        <DetalleImagen url={pelicula.thumbnail}/>
+      {pelicula.map(peli => <DetalleImagen url={peli.thumbnail}/>)
+      }
         <p></p>
-        <DetalleSala titulo={pelicula.title} path={pelicula.path} url={pelicula.thumbnail}/>
+      {pelicula.map(peli => <DetalleSala titulo={peli.title} path={peli.path} url={peli.thumbnail} salas={peli.salas} key={peli.title}/>)
+      }     
       </div>
 
-    {/*<DetalleSinopsis extracto={pelicula.extract} generos={pelicula.generos}/> */} 
+      {pelicula.map(peli => <DetalleSinopsis extracto={peli.extract} generos={peli.genres}/>)
+      }  
     </div>
   );
 };
