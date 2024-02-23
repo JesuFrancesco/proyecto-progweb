@@ -131,7 +131,7 @@ def obtenerPelicula_Detalle(request):
         if pathFiltro == "":
             listaMovieFiltrada = Movie.objects.all()
         else:
-            listaMovieFiltrada = Movie.objects.filter(path__icontains=pathFiltro)
+            listaMovieFiltrada = Movie.objects.filter(path=pathFiltro)
 
         dataResponse = []
         for movie in listaMovieFiltrada:         
@@ -147,6 +147,7 @@ def obtenerPelicula_Detalle(request):
             })
 
         return HttpResponse(json.dumps(dataResponse))
+
 
 def obtenerFuncionesPreview(request):
     if request.method == "GET":
