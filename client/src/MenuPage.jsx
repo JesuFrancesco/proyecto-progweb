@@ -31,7 +31,7 @@ const MenuPage = () => {
   
   useEffect(() => {
     const obtenerFuncionesHTTP = async () => {
-      const res = await fetch("http://localhost:8000/api/funciones?num=5");
+      const res = await fetch("http://pweb2024-api.azurewebsites.net/api/funciones?num=5");
       const data = await res.json();
 
       if(!data.msg)

@@ -30,7 +30,7 @@ const FormularioLogin = () => {
             contrasenha : usuario.contrasenha
         }
 
-        const response = await fetch("http://pweb2024.azurewebsites.net/api/login", {
+        const response = await fetch("http://pweb2024-api.azurewebsites.net/api/login", {
             method : "post",
             body : JSON.stringify(dataUsername)
         })

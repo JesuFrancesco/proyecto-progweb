@@ -28,8 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost",
-    os.environ['ALLOWED_HOST_1'], # "(nombre de postgresql azure).postgres.database.azure.com"
-    os.environ['ALLOWED_HOST_2'], # "(nombre de django deploy).azurewebsites.net"
+    os.environ['ALLOWED_HOST_1'],
 ]
 
 
@@ -42,9 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'whitenoise.runserver_nostatic',
 
     'import_export',
+
     'corsheaders',
+
     'api.apps.ApiConfig',
 ]
 
@@ -55,6 +58,8 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -62,8 +67,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    os.environ['CORS_ORIGIN_1'], # "http://localhost:3000"
-    os.environ['CORS_ORIGIN_2'], # "https://jesufrancesco.github.io/proyecto-progweb/"  
+    os.environ['CORS_ALLOWED_1'], # "http://localhost:3000"
+    os.environ['CORS_ALLOWED_2'], # "http://jesufrancesco.github.io"  
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -136,6 +141,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

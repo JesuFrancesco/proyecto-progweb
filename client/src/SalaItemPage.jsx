@@ -21,7 +21,7 @@ const SalaItemPage = () => {
     
     useEffect(() => {
         const obtenerSala = async () => {
-            const response = await fetch(`http://pweb2024.azurewebsites.net/api/sala/${salapath}`);
+            const response = await fetch(`http://pweb2024-api.azurewebsites.net/api/sala/${salapath}`);
             const data = await response.json();
             console.log(data)
             if (!data.msg)

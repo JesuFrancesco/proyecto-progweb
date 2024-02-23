@@ -17,7 +17,7 @@ const FormularioRegister = () => {
   const navigate = useNavigate()
   
   const subirUsuario = async (usuario) => {
-    const res = await fetch("http://pweb2024.azurewebsites.net/api/register", {
+    const res = await fetch("http://pweb2024-api.azurewebsites.net/api/register", {
         method: "POST",
         body: JSON.stringify(usuario)
     });
