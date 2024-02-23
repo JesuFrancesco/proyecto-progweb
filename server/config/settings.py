@@ -1,3 +1,4 @@
+import os
 """
 Django settings for config project.
 
@@ -27,8 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost",
-    "cines20210109.postgres.database.azure.com",
-    "pweb2024.azurewebsites.net"
+    os.environ['ALLOWED_HOST_1'], # "(nombre de postgresql azure).postgres.database.azure.com"
+    os.environ['ALLOWED_HOST_2'], # "(nombre de django deploy).azurewebsites.net"
 ]
 
 
@@ -61,8 +62,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  
-    "https://jesufrancesco.github.io/proyecto-progweb/"  
+    os.environ['CORS_ORIGIN_1'], # "http://localhost:3000"
+    os.environ['CORS_ORIGIN_2'], # "https://jesufrancesco.github.io/proyecto-progweb/"  
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -88,17 +89,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cinesdb',
-
-        # 'USER': '(poner usuario !!!!)',
-        # 'PASSWORD': '(poner contraseña !!!!!!!!!!!)', 
-
-        'HOST': 'cines20210109.postgres.database.azure.com',
-        'PORT': '5432'
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': os.environ['DATABASE_PORT'],
     }
 }
 
