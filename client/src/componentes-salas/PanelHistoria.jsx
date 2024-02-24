@@ -7,13 +7,12 @@ import { Box } from '@mui/material';
 const PanelHistoria = (props) => {
 
     const estiloChip = {
-        backgroundColor: "rgb(255, 208, 143)",
         display: "inline-flex",
         mr: "1em",
     }
 
     return <>
-        <div className="card p-4" style={ {backgroundColor: "white", boxShadow: "2px 4px 2px 1px rgba(0, 0, 0, 0.2)"} }>
+        <Box className="card p-4" style={ {backgroundColor: "white", boxShadow: "2px 4px 2px 1px rgba(0, 0, 0, 0.2)"} }>
             <h4 className="card-title" style={{ fontWeight: 600 }}> Información </h4>
             <p style={{ textAlign: "justify" }}>
                 {props.texto}
@@ -22,7 +21,7 @@ const PanelHistoria = (props) => {
             <Stack direction="row" spacing={1} sx={{my: 1}}>
                 {
                     (props.chips)? props.chips.map(formato =>
-                        <Chip variant="outlined" label={formato} sx={estiloChip} />
+                        <Chip variant="filled" label={formato} color='secondary' sx={estiloChip} />
                     )
                     : <></>
                 }
@@ -32,7 +31,7 @@ const PanelHistoria = (props) => {
                 <PlaceIcon /> {props.location} <br />
                 <LocalPhoneIcon /> {props.phone}
             </Box>
-        </div>
+        </Box>
     </>
 }
 

@@ -80,6 +80,7 @@ def obtenerSalaItem(request: RequestType, salapath: str):
             # formato de ventana a retornar
             to_window_json = lambda window: {
                 "date": fecha_actual.strftime("%A, %d de %B"),
+                "dateStr": str(window.date),
                 "hour": window.hour.strftime("%H:%M"),
             }
 

@@ -46,9 +46,9 @@
     font-size: 1em;
 }
 
-.offcanvas-body .nav-link{
+/* .offcanvas-body .nav-link{
     background-color: #ffd1b5;
-}
+} */
 
 /* SIDEBAR */
 #logo{
@@ -67,16 +67,13 @@
 }
 
 #buscador{
-    margin-left: 20px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: 1px solid rgb(216, 216, 216);
-    padding: 7px;
-    width: 75%;
-}
-
-#ubi{
-    color: rgb(0, 119, 255);
+    /* margin-left: 20px;
+    margin-right: 10px; */
+    /* border-radius: 5px; */
+    /* border: 1px solid rgb(216, 216, 216); */
+    /* padding: "0.5em"; */
+    height: 1em;
+    /* width: 75%; */
 }
 
 #confir{
@@ -107,8 +104,6 @@ ul{
 #imagensala{
     border-radius: 7px;
 }
-
-
 
 a {
     text-decoration: none;
