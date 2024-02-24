@@ -6,6 +6,9 @@ from django.core.handlers.wsgi import WSGIRequest as RequestType
 from datetime import datetime
 import locale
 import json
+import os 
+import resend 
+
 
 # Formato de retorno
 response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=code)
@@ -339,3 +342,55 @@ def registroReserva (request):
 
         except Exception as err:
             return response({"msg": str(err)}, code=400)
+#api key :
+#re_K1uTZPc7_5v1rNDgCSndewkywKMUxm5zD
+#no usar esa es mia xd
+#si quieren probar este code creense una cuenta en resend
+#creen una api key y pongala como variale de entorno (con nombre RESEND_API_KEY)
+#solo les deja enviar a su propio correo xd
+def correoConfirmado(request):#query parameter con el usuario
+    if request.method == "GET":
+        
+        #aca se hara el cambio en la base de datos 
+        #aunque este metodo es algo inseguro puesto que se muestra la contra en el path 
+        
+        return HttpResponse("gracias por usar nuestro servicio")
+        
+def enviarCorreo(request):
+    if request.method == "GET":
+        user="20211454"
+        resend.api_key = os.environ["RESEND_API_KEY"]
+        htmlS="""<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Confirmación de Cambio de Contraseña Cines Ulima</title>
+                    </head>
+                    <body>
+                        <p>Hola {{ nombre_usuario }},</p>
+                        <p>Has solicitado cambiar tu contraseña en nuestro sistema. Para confirmar este cambio, por favor haz clic en el siguiente botón:</p>
+                        <p>
+                            <a href="http://localhost:8000/api/confirmacion?nombre={}" style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 10px;">Confirmar Cambio de Contraseña</a>
+                        </p>
+                        <p>Si no has solicitado este cambio, por favor ignora este mensaje.</p>
+                        <p>Gracias,</p>
+                        <p>El Equipo de Tu Aplicación</p>
+                    </body>
+                    </html>""".format(user)
+        
+        params = {
+            "from": "Acme <uLima@resend.dev>",
+            "to": ["20211454@aloe.ulima.edu.pe"],#si lo prueban pongan su correo aca xd
+            "subject": "hello world",
+            "html": htmlS,
+            
+        }
+
+        email = resend.Emails.send(params)
+        print(email)
+        return HttpResponse("Exito")
+        
+        
+    

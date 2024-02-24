@@ -17,5 +17,9 @@ urlpatterns = [
     path("funciones", obtenerFuncionesPreview),
 
     # Reserva url
-    path("reserva-register", registroReserva)
+    path("reserva-register", registroReserva),
+    #correo
+    path("correo", enviarCorreo),
+    path("confirmacion", correoConfirmado)
+    
 ]
