@@ -8,8 +8,6 @@ import Alert from '@mui/material/Alert'
 import InputRecupera from './InputRecupera'
 
 const PantallaRecupera = () => {
-    // fondo
-    document.body.classList.add("fondo-body")
 
     const [usuario, setUsuario] = useState({
         codigo: "",
@@ -89,7 +87,7 @@ const PantallaRecupera = () => {
     return (
         <>
             <div id="formulario">
-                <form className="form needs-validation">
+                <form className="form-login needs-validation">
 
                     {/* Input */}
                     <InputRecupera title={"Código para recuperación"} objeto={usuario} llave={"codigo"} setFn={setUsuario} disabled={formEnviado} />

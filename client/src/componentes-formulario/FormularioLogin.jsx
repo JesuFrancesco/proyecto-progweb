@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import Button from '@mui/material/Button'
-import Alert from '@mui/material/Alert'
-import { Typography, Container } from '@mui/material';
+import { Alert, Button, Box } from '@mui/material'
+import { Stack, Typography, Container } from '@mui/material';
 import PendingIcon from '@mui/icons-material/Pending';
 
 import InputFormulario from './InputFormulario'
@@ -55,12 +54,13 @@ const FormularioLogin = () => {
     }, [navigate])
 
     return <>
-        <div id="formulario">
-            <form className="form needs-validation">
+        <Box id="formulario">
+            <form className="form-login needs-validation">
                 
                 {/* Input */}
                 <InputFormulario title={"Código"} objeto={usuario} llave={"codigo"} setFn={setUsuario} />
                 <InputFormulario title={"Contraseña"} objeto={usuario} llave={"contrasenha"} setFn={setUsuario} variante="password" />
+
                 <Container className="text-center" style={{ marginTop: '40px' }}>
                     <Typography variant="body1" gutterBottom>
                         <p>¿Olvidaste tu contraseña?</p>
@@ -91,17 +91,26 @@ const FormularioLogin = () => {
                         }
                     })()
                 }
-            
-                <div className='botones mt-3' style={ {textAlign: "center"} }>
-                    <Button className='boton' variant='contained' sx={ {mr: "2em"} }  
-                    onClick={ handleLogin }>Iniciar sesion</Button>
-                    
-                    <Link to={"/registro"}>
-                        <Button className='boton' variant='contained' >Registrarse</Button>
-                    </Link>
-                </div>
+
+                <Box id='botones' sx={{mt: "1em", textAlign: "center"}}>
+                    <Stack spacing={7} direction="row">
+                        <Button
+                            onClick={handleLogin}
+                            color='primary'
+                            variant="contained" sx={{ fontSize: '16px', color: 'white' }}>
+                            Iniciar sesion
+                        </Button>
+
+                        <Button 
+                            onClick={() => navigate("/registro")}
+                            color='primary'
+                            variant="contained" sx={{ fontSize: '16px', color: 'white' }}>
+                            Registrarse
+                        </Button>
+                    </Stack>
+                </Box>
             </form>
-        </div>
+        </Box>
     </>
 }
 

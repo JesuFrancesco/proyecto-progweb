@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-
 export const temaClaro = createTheme({
   palette: {
     mode: "light",
@@ -40,6 +39,37 @@ export const temaOscuro = createTheme({
     text: {
       primary: "#fafafa",
       secondary: "#fafafa",
+    }
+  }
+});
+
+export const temaLogin = createTheme({
+  palette: {
+    mode: "light",
+    primary: {
+      main: "#ff7b00"
+    },
+    secondary: {
+      main: "#ffb145"
+    },
+    error: {
+      main: "#ff7b00"
+    },
+    warning: {
+      main: "#e00707"
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundImage: "url(https://images.pexels.com/photos/7130557/pexels-photo-7130557.jpeg)",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }
+      }
     }
   }
 });

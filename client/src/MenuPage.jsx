@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { useNavigate, Link } from 'react-router-dom';
 
-import { Stack, Button, IconButton, Box } from '@mui/material';
+import { Stack, Button, Box } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
