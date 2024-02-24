@@ -72,14 +72,14 @@ def obtenerSalaItem(request: RequestType, salapath: str):
 
         try:
             # Establecer la configuración regional en español
-            locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+            #locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 
             # Obtener la fecha de pc local
-            fecha_actual = datetime.now()
+            #fecha_actual = datetime.now()
 
             # formato de ventana a retornar
             to_window_json = lambda window: {
-                "date": fecha_actual.strftime("%A, %d de %B"),
+            #    "date": fecha_actual.strftime("%A, %d de %B"),
                 "dateStr": str(window.date),
                 "hour": window.hour.strftime("%H:%M"),
             }
@@ -139,10 +139,10 @@ def obtenerSalaItem(request: RequestType, salapath: str):
 def obtenerPelicula_Detalle(request):
     if request.method == "GET":
          # Establecer la configuración regional en español
-        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+        #locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 
         # Obtener la fecha de pc local
-        fecha_actual = datetime.now()
+        #fecha_actual = datetime.now()
 
         pathFiltro = request.GET.get("path")
 
@@ -164,7 +164,7 @@ def obtenerPelicula_Detalle(request):
                 "salas": [{
                     "name": Sala.objects.get(pk=funcion["sala_id"]).name, 
                     "hour": Window.objects.get(pk=funcion["window_id"]).hour.strftime("%H:%M"), 
-                    "date": fecha_actual.strftime("%A, %d de %B")} for funcion in Funcion.objects.filter(movie=movie.pk).values()]
+                    "date": Window.objects.get(pk=funcion["window_id"]).date.strftime("%Y-%m-%d")} for funcion in Funcion.objects.filter(movie=movie.pk).values()]
             })
 
         return HttpResponse(json.dumps(dataResponse))
@@ -189,7 +189,7 @@ def obtenerFuncionesPreview(request):
                 }) (Movie.objects.get(pk=funcion.movie.pk)),
 
                 "window": (lambda ventana: {
-                    "hour": str(ventana.hour), 
+                    "hour": ventana.hour.strftime("%H:%M"), 
                     "date": str(ventana.date)
                 }) (Window.objects.get(pk=funcion.window.pk))
             } for funcion in Funcion.objects.all()]
