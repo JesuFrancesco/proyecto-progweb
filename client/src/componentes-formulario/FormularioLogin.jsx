@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { Alert, Button, Box } from '@mui/material'
 import { Stack, Typography, Container } from '@mui/material';
-import PendingIcon from '@mui/icons-material/Pending';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import InputFormulario from './InputFormulario'
 
@@ -86,7 +86,9 @@ const FormularioLogin = () => {
                     (() => {
                         if (loading) {
                             return <center>
-                                <PendingIcon />
+                                <Box sx={{py:"1em"}}>
+                                    <CircularProgress />
+                                </Box>
                             </center>
                         }
                     })()
