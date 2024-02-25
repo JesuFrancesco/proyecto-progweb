@@ -1,9 +1,5 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Box  } from '@mui/material';
 
 export default function ReservaDialog(props) 
 {
@@ -18,18 +14,20 @@ export default function ReservaDialog(props)
         boxShadow: "0px 2px 5px -2px rgb(0, 0, 0,7)"
       };
 
-      const cuadro ={
-        border : "1px dashed #ff6200",
-        backgroundColor: "#FA75250A",
-        borderRadius: "7px",
-        paddingLeft: "40px",
-        paddingTop: "8px",
-        paddingBottom: "8px",
-        color: "#FA7525"
-      };
-      const style ={
-        paddingLeft : "40em"
-      }
+    const cuadro ={
+      border : "1px dashed #ff6200",
+      backgroundColor: "#FA75250A",
+      borderRadius: "7px",
+      paddingLeft: "40px",
+      paddingTop: "8px",
+      paddingBottom: "8px",
+      color: "#FA7525"
+    };
+
+    const style = {
+      mt: "1em",
+      paddingLeft : "40em"
+    }
 
   const [open, setOpen] = React.useState(false);
 
@@ -48,12 +46,13 @@ export default function ReservaDialog(props)
   };
 
   return (
-    <div sx={style}>
-    <div className="d-grid gap-2">
-      <button type= "button" onClick={handleClickOpen} style={botoni}>
+    <Box sx={style}>
+      <div className="d-grid gap-2">
+        <button type= "button" onClick={handleClickOpen} style={botoni}>
           RESERVAR
         </button>
-    </div>
+      </div>
+
       <Dialog
         
         open={open}
@@ -77,6 +76,6 @@ export default function ReservaDialog(props)
             <Button style={{marginLeft : "auto"}} variant="text" onClick={handleClose}>ENTENDIDO</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 }

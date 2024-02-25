@@ -19,7 +19,8 @@ const Sidebar = () => {
     const enlaces = [
         {ruta: "/menu", label: "Menu page"},
         {ruta: "/salas", label: "Salas"},
-        {ruta: "/peliculas-index", label: "Peliculas"}
+        {ruta: "/peliculas-index", label: "Peliculas"},
+        {ruta: "/configuracion", label: "Configuración"}
     ]
 
     const [valorInput, setValorInput] = useState();

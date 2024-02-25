@@ -19,16 +19,19 @@ const MenuPage = () => {
   
   const [funcionesPreview, setFuncionesPreview] = useState([]);
 
+  const [usuario, setUsuario] = useState({});
   const [funciones, setFunciones] = useState([]);
   const [open, setOpen] = useState(false);
   const cargando = open && funciones.length === 0;
 
-  const usu = sessionStorage.getItem('usuario_objeto');
-  const usuario = (usu)? JSON.parse(usu) : {};
   
-  // debug
-  // console.log("--- MenuPage.jsx");
-  // console.log(usuario);
+  useEffect(() => {
+    const usu = sessionStorage.getItem('usuario_objeto');
+    // const usuario = (usu)? JSON.parse(usu) : {};
+    if(usu){
+      setUsuario(JSON.parse(usu))
+    }
+  }, [])
 
   // para el login
   useEffect(() => {

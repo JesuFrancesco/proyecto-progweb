@@ -35,7 +35,7 @@ const FormularioLogin = () => {
 
         if (data.msg === "") {
             // Login correcto
-            // Almacenando en localStorage
+            // Almacenando en sessionStorage
             sessionStorage.setItem("usuario_objeto", JSON.stringify(data.usuario))
             navigate("/menu")
         } else {

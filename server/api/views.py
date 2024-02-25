@@ -383,7 +383,7 @@ def enviarCorreo(request):
         
         params = {
             "from": "Acme <uLima@resend.dev>",
-            "to": ["20211454@aloe.ulima.edu.pe"],#si lo prueban pongan su correo aca xd
+            "to": ["20211454@aloe.ulima.edu.pe"], #si lo prueban pongan su correo aca xd
             "subject": "hello world",
             "html": htmlS,
             
@@ -393,5 +393,33 @@ def enviarCorreo(request):
         print(email)
         return HttpResponse("Exito")
         
+@csrf_exempt
+def cambiarNombre(request):
+    if request.method == "PUT":
+        try:
+            from operator import itemgetter
+            nombres, apellidos, codigo = itemgetter('nombres', 'apellidos', 'codigo')(json.loads(request.body))
+
+            usuario = Usuario.objects.get(codigo=codigo)
+            usuario.nombres = nombres
+            usuario.apellidos = apellidos
+            usuario.save()
+
+            return response({"msg": ""})
+        except Exception as err:
+            return response({"msg": str(err)}, code=500)
         
-    
+@csrf_exempt
+def cambiarContrasenha(request):
+    if request.method == "PUT":
+        try:
+            from operator import itemgetter
+            nuevacontrasenha, codigo = itemgetter('contrasenha', 'codigo')(json.loads(request.body))
+
+            usuario = Usuario.objects.get(codigo=codigo)
+            usuario.contrasenha = nuevacontrasenha
+            usuario.save()
+
+            return response({"msg": ""})
+        except Exception as err:
+            return response({"msg": str(err)}, code=500)
