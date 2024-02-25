@@ -10,11 +10,11 @@ const Pelicula = (props) => {
         <div className="mb-3">
           <div className="ubi">
             <DateRangeIcon />
-            <Link style={{ marginRight: "1em" }}>&nbsp; {props.year}</Link>
+            <a style={{ marginRight: "1em" }}>&nbsp; {props.year}</a>
             {props.cast.map((person, index) => (
-              <Link key={index}>
+              <a key={index}>
                 <PersonIcon /> {person} &nbsp; &nbsp;
-              </Link>
+              </a>
             ))}
           </div>
         </div>
