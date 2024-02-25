@@ -138,7 +138,7 @@ def obtenerSalaItem(request: RequestType, salapath: str):
 
 def obtenerPelicula_Detalle(request):
     if request.method == "GET":
-         # Establecer la configuración regional en español
+        # Establecer la configuración regional en español
         #locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 
         # Obtener la fecha de pc local
@@ -220,7 +220,7 @@ def obtenerPeliculas(request):
     if request.method == "GET":
         filtroNombre = request.GET.get("nombre")
 
-        if filtroNombre == "":
+        if not filtroNombre or filtroNombre == "":
             listaMovieFiltrada = Movie.objects.all()[:100]
         else:
             listaMovieFiltrada = Movie.objects.filter(title__icontains=filtroNombre)[:100]
@@ -241,7 +241,7 @@ def obtenerPeliculas(request):
                 "genres":generos_lista
             })
 
-        return HttpResponse(json.dumps(dataResponse))
+        return HttpResponse(json.dumps(dataResponse),content_type="application/json")
 
 @csrf_exempt
 def loginEndPoint (request): 

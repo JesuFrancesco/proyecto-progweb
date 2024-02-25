@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import ChatBot from 'react-simple-chatbot'
 import { ThemeProvider } from 'styled-components';
+import PeliculaCard from './BuscadorPeliculas';
+import SalaCard from './BuscadorSalas';
+
 const ModalDialogChat = () => {
-    const navegacion = useNavigate();
     const tema = {
         background: '#f5f8fb',
 
@@ -18,11 +19,7 @@ const ModalDialogChat = () => {
     };
 
     const usuario = JSON.parse(sessionStorage.getItem("usuario_objeto"));
-    const peliculas = JSON.parse(sessionStorage.getItem("peliculas"));
 
-    const rndIndex = Math.ceil(Math.random() * peliculas.length);
-    const peliRnd = peliculas[rndIndex];
-    const peliTitle = peliRnd.title, peliPath = peliRnd.path;
     
     return <ThemeProvider theme={tema}>
         <ChatBot
@@ -30,47 +27,37 @@ const ModalDialogChat = () => {
         steps={[
                 {
                     id: '1',
-                    message: `Hola ${usuario.nombre} 👋, ¿que es lo que estas buscando?`,
-                    trigger: '2',
+                    message: `Hola ${usuario.nombres} 👋, ¿que es lo que estas buscando?`,
+                    trigger: 'opciones',
                 },
                 {
-                    id: '2',
+                    id: 'repetir',
+                    message: `¿Deseas saber algo más?`,
+                    trigger: 'opciones',
+                },
+                {
+                    id: 'opciones',
                     options: [
                         { value: 'sala', label: 'Salas de cine', trigger: '3' },
-                        { value: 'peliculas', label: 'Películas', trigger: '4' },
-                        { value: 'random', label: 'Recomiendame una película', trigger: '5' },
+                        { value: 'random', label: 'Recomiéndame una película', trigger: '4' },
+                        { value: 'contactos', label: 'Contactos', trigger: '5' },
                     ],
                 },
                 {
                     id: '3',
-                    message: 'Hay varias salas, debes verlas 👍',
+                    component: <SalaCard />,
+                    trigger: 'repetir',
                 },
                 {
                     id: '4',
-                    message: 'Tenemos un extenso catalogo, revisalo 👍',
+                    component: <PeliculaCard />,
+                    trigger: 'repetir',
                 },
                 {
                     id: '5',
-                    message: `Te recomiendo ver ${peliTitle}`,
-                    trigger: '6'
+                    message: `Puedes llamar al teléfono (511) 4376767`,
+                    trigger: 'repetir',
                 },
-                {
-                    id: '6',
-                    options: [
-                        { value: 'sala', label: 'Okay', trigger: '7' },
-                        { value: 'peliculas', label: 'Llévame ahí!', trigger: '8' },
-                    ],
-                },
-                {
-                    id: '7',
-                    message: 'Tenemos un extenso catalogo, revisalo 👍',
-                    end: true
-                },
-                {
-                    id: '8',
-                    component: <button className='btn' onClick={ () => navegacion(`/peliculas-detalle/${peliPath}`)}>Link a la pelicula</button>
-                }
-                
             ]}/>
     </ThemeProvider>
 }

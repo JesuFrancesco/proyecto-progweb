@@ -53,6 +53,8 @@
 /* SIDEBAR */
 #logo{
     width: 50%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 
 .link-lateral{
