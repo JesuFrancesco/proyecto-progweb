@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ReservaDialog from "./ReservaDialog";
 import { checkLogin } from '../util/CheckLogin';
+import { Typography } from '@mui/material';
 
 export default function Reserva()
 {
@@ -60,17 +61,17 @@ export default function Reserva()
                     <div style={ {marginLeft : "20px", marginBottom : "10px"} }>
                         <h2>{ruta.state.titulo}</h2>
                         <div >
-                            <AccessTimeIcon /><span className="sali">&nbsp;1hrs 30min</span>
-                            <LocationOnIcon /><span className="sali">&nbsp;{ruta.state.sala}</span>
+                            <AccessTimeIcon /><a color={"text.primary"}>&nbsp;1hrs 30min &nbsp;</a>
+                            <LocationOnIcon /><a color={"text.primary"}>&nbsp;{ruta.state.sala}</a>
                         </div>
                     </div>
                     <div className="card" style={carta}>
                         <div className="card-body">
-                            <h6 className="card-title">Información de Reserva</h6>
+                            <Typography color={"text.primary"}>Información de Reserva</Typography >
                             
-                            <span>
+                            <Typography color={"text.primary"}>
                                 {ruta.state.fecha} - {ruta.state.hora} hrs
-                            </span>
+                            </Typography>
                             
                             <div className="border-bottom mb-4 mt-2"></div>
                             <div className="card-text">
