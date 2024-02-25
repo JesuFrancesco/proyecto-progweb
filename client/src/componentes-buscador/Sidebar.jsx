@@ -6,8 +6,13 @@ import ModalDialogChat from '../componentes-chat/ModalDialogChat';
 import { Box, TextField, Fab, IconButton } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 import LogoutIcon from '@mui/icons-material/Logout';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import MaterialUISwitch from './SwitchDark';
+
+import useLocalStorage from 'use-local-storage';
 
 const Sidebar = () => {
+    const [tema, setTema] = useLocalStorage('usuario_tema', 'dark')
     const navegar = useNavigate();
 
     // enlaces a distintas secciones de la pagina web
@@ -32,6 +37,8 @@ const Sidebar = () => {
         setValorInput(evt.target.value);
         filtrarLinks(evt.target.value);
     }
+
+
     
     return <>
         <Box sx={{textAlign:"center"}}>
@@ -53,12 +60,20 @@ const Sidebar = () => {
                 {
                     enlacesVisibles.map((enlace, i) =>
                         <li key={i} >
-                            <Link to={ enlace.ruta } >{enlace.label}</Link>
+                            <Link to={ enlace.ruta } >
+                                <Box sx={{display: "inline", color: "text.primary"}} >{enlace.label}</Box>
+                            </Link>
                         </li>
                     )
                 }
             </ul>
-            <Box sx={{textAlign: "right", mr: "2em"}}>
+            <Box sx={{textAlign: "left", ml: "3em", float: "left"}}>
+                <FormControlLabel
+                    control={<MaterialUISwitch checked={tema==='dark'} onChange={() => setTema(tema === 'dark'? 'light': 'dark')} sx={{ m: 1 }} />}
+                />
+            </Box>
+
+            <Box sx={{textAlign: "right", mr: "2em", float: "right"}}>
                 <IconButton  sx={ {mb: "2em"} }>
                     <LogoutIcon sx={{fontWeight: "600"}}
                         color='warning'
@@ -70,7 +85,9 @@ const Sidebar = () => {
             </Box>
         </Box>
 
+        {/*  */}
         <Box className='border mb-4'></Box>
+        {/*  */}
 
         <Box sx={ {textAlign: "center"} }>
             <Box className='mb-2'><b>Chatbot</b></Box>

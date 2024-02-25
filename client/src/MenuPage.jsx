@@ -130,6 +130,7 @@ const MenuPage = () => {
               <TextField
                 {...params}
                 label="Búsqueda"
+                InputLabelProps={{ sx: {color: "text.primary"} }}
                 InputProps={{
                   ...params.InputProps,
                   endAdornment: (

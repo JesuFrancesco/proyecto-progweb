@@ -13,6 +13,10 @@ export const temaClaro = createTheme({
     },
     warning: {
       main: "#e00707"
+    },
+    text: {
+      primary: "#000000",
+      secondary: "#ffffff",
     }
   }
 });
@@ -37,8 +41,8 @@ export const temaOscuro = createTheme({
       default: '#121212',
     },
     text: {
-      primary: "#fafafa",
-      secondary: "#fafafa",
+      primary: "#ffffff",
+      secondary: "#000000",
     }
   }
 });

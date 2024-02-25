@@ -14,7 +14,7 @@ const estilos = {
 const Footer = () => {
     return <footer style={ estilos }>
         <Box bgcolor={"white"} sx={{p: "1em"}} className="border d-flex align-items-center justify-content-between">
-            <Typography sx={{display: "inline", fontWeight: 500}} className='float-left'>
+            <Typography sx={{color: "text.secondary", display: "inline", fontWeight: 500}} className='float-left'>
                 &copy; ULIMA
             </Typography>
         

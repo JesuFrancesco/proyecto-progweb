@@ -1,9 +1,13 @@
+.card {
+    background-color: rgba(0, 0, 0, 0);
+}
+
 .card-deck .card{
     display: inline-block;
     width: 40%;
     margin-left: auto;
     margin-right: 30px;
-    
+    background-color: rgba(0, 0, 0, 0);
     margin-top: 30px;
     margin-bottom: 30px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -14,10 +18,6 @@
     /* border: 0px dotted; */
 }
 
-.card {
-    background-color: white;
-}
-
 .horario {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -26,7 +26,7 @@
 
 .btn {
     margin: 0;
-    background-color: rgb(255, 216, 159);
+    /* background-color: rgb(255, 216, 159); */
     color: black;
     margin-right: 0.5em;
     border: 1px solid black;
@@ -43,7 +43,7 @@
 
 .boton-index{
     margin-right: 1em;
-    background-color: rgb(165, 165, 165);
+    background-color: rgb(255, 115, 0);
     color: white;
     font-weight: bold;
 }
@@ -64,14 +64,8 @@
     padding: 1em;
 }
 
-
 .pelicula {
-    background-color: rgba(255, 255, 255, 0.615);
-}
-
-.pelicula:hover{
-    background-color: antiquewhite;
-    transition: background-color 0.3s;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .index-card .card-img-top{
@@ -84,6 +78,7 @@
     filter: brightness(80%);
 }
 
+/* iluminar la sala con hover */
 .index-card .card-img-top:hover{
     transition: transform 0.3s, filter 0.3s ease-in-out;
     transform-origin: center center;

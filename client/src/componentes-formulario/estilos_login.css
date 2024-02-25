@@ -1,7 +1,7 @@
 #titulo_front{
     animation: slideUp 1.5s ease;
     font-size: 6em;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Arial';
     text-align: center;
     margin:50px;
     color: rgb(255, 81, 0);

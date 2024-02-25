@@ -22,10 +22,10 @@ const TarjetaFuncion = (props) =>
     };
 
     return <>
-        <Box id={"pelicula_" + props.index} className="pelicula mb-3 card">
+        <Box id={"pelicula_" + props.index} className="pelicula mb-3 card border">
             <img className="carta-img card-img-top" src={movie.thumbnail} alt="" />
 
-            <Box className="card-body">
+            <Box className="card-body" sx={{color: "text.primary"}}>
                 <button type="button" className="boton-index btn rounded">
                     {props.index + 1}
                 </button>
@@ -57,7 +57,7 @@ const TarjetaFuncion = (props) =>
                 }
             </Box>
 
-            <Box className="border-top movie-footer">
+            <Box className="border-top movie-footer" sx={{color: "text.primary"}}>
                 Fecha &nbsp; &nbsp; <Chip clickable color="secondary" onClick={() => botonReserva()} 
                 label={`${window.dateStr} @ ${window.hour}`} />
             </Box>

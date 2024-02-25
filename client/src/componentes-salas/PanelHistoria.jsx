@@ -12,8 +12,8 @@ const PanelHistoria = (props) => {
     }
 
     return <>
-        <Box className="card p-4" style={ {backgroundColor: "white", boxShadow: "2px 4px 2px 1px rgba(0, 0, 0, 0.2)"} }>
-            <h4 className="card-title" style={{ fontWeight: 600 }}> Información </h4>
+        <Box className="card p-4 border" color={"text.primary"} sx={ {boxShadow: "2px 4px 2px 1px rgba(0, 0, 0, 0.2)"} }>
+            <h4 className="card-title" sx={{ fontWeight: 600 }}> Información </h4>
             <p style={{ textAlign: "justify" }}>
                 {props.texto}
             </p>
