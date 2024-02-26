@@ -6,7 +6,7 @@ import Pelicula from "./Pelicula"
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Pagination from '@mui/material/Pagination';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
-import { Typography } from "@mui/material";
+import { Typography, Box, TextField } from "@mui/material";
 
 const PeliculaIndex = () => {
     const navegar = useNavigate();
@@ -99,16 +99,16 @@ const PeliculaIndex = () => {
         <div style={{ textAlign: "center" }}>
             <LocalMoviesIcon />
             <h2>Peliculas</h2>
-            <FilterAltIcon style={{ marginRight: "0.5em" }} />
-            <input
-                type="text"
-                className="form-control my-3"
-                placeholder="Filtrar por nombre"
-                id="filtrarInput"
-                value={filtroNombre}
-                onChange={handleInputChange}
-                style={{ display: "inline-block", width: "80%" }}
-            />
+            <Box sx={{my: "2em"}}>
+                <FilterAltIcon sx={{ mt:1, fontSize: "2em", marginRight: "0.5em" }} />
+                <TextField
+                    type="text"
+                    placeholder="Filtrar por nombre"
+                    value={filtroNombre}
+                    onChange={handleInputChange}
+                    sx={{ width: "80%" }}
+                />
+            </Box>
 
             <div id="tarjetas" className="row row-cols-1 row-cols-md-3 g-4">
                 {

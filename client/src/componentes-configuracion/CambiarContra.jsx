@@ -40,7 +40,7 @@ const CambiarContraseña = () => {
     }
 
     return <>
-        <h2>Ingrese los campos a cambiar</h2> <br />
+        <h2>Ingrese su nueva contraseña</h2> <br />
 
         <Box sx={{mb: 3}}>
             <Typography>Contraseña</Typography>
