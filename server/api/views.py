@@ -8,7 +8,7 @@ import locale
 import json
 import os 
 import resend 
-
+import random
 
 # Formato de retorno
 response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=code)
@@ -356,7 +356,64 @@ def correoConfirmado(request):#query parameter con el usuario
         #aunque este metodo es algo inseguro puesto que se muestra la contra en el path 
         
         return HttpResponse("gracias por usar nuestro servicio")
+#este sera el oficial
+def correoXcodigo(request):
+    if request.method == "GET":
+        try:
+            #codigo_alumno = request.GET.get("codigo")
+            codigo_alumno="20211455"
+            print(codigo_alumno)
+            # Generar un código aleatorio de 6 dígitos
+            codigo_aleatorio = ''.join([str(random.randint(0, 9)) for _ in range(6)])
+            
+            # Buscar al usuario correspondiente
+            usuario = Usuario.objects.get(codigo=codigo_alumno)
+            
+            # Crear una instancia del modelo Code y guardarla en la base de datos
+            code = Code(codigo=codigo_aleatorio, user=usuario)
+            code.save()
+            
+            return HttpResponse("Código generado y guardado correctamente")
         
+        except Usuario.DoesNotExist:
+            return HttpResponse("No se encontró el usuario con el código proporcionado", status=404)
+        
+        except Exception as e:
+            return HttpResponse("Error al generar y guardar el código: " + str(e), status=500)
+        
+@csrf_exempt
+def verificarCodigo(request):
+    if request.method == "POST":
+        try:
+            # Obtener los datos de la solicitud
+            data = json.loads(request.body)
+            print(data)
+            codigo_usuario = data.get("codigo_usuario")
+            codigo = data.get("codigo")
+            nueva_contrasenha = data.get("nueva_contrasenha")
+            
+
+            # Buscar el código en la base de datos
+            code = Code.objects.filter(codigo=codigo, user__codigo=codigo_usuario).first()#esta parte esta media xd
+
+            if code:
+                # Cambiar la contraseña del usuario
+                usuario = Usuario.objects.get(codigo=codigo_usuario)
+                usuario.contrasenha = nueva_contrasenha
+                usuario.save()
+                
+                # Eliminar el código utilizado de la tabla Code
+                code.delete()
+
+                return HttpResponse("Contraseña cambiada correctamente")
+            else:
+                return HttpResponse("El código proporcionado no es válido para este usuario", status=400)
+        
+        except Exception as e:
+            return HttpResponse("Error al verificar y cambiar la contraseña: " + str(e), status=500)        
+        
+
+#este es de prueba 
 def enviarCorreo(request):
     if request.method == "GET":
         user="20211454"

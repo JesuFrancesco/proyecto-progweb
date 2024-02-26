@@ -7,7 +7,7 @@ class Usuario(models.Model):
     apellidos = models.CharField(max_length=70)
     contrasenha = models.CharField(max_length=70)
     codigo = models.IntegerField()
-
+    
     def __str__(self) -> str:
         return f"{self.nombres}, {self.apellidos}"
 
@@ -90,3 +90,8 @@ class Movie_Genre(models.Model):
     
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    
+class Code(models.Model):
+    codigo=models.CharField(max_length=6)
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    
