@@ -22,6 +22,7 @@ urlpatterns = [
     path("reserva-register", registroReserva),
     # correo
     path("correo", enviarCorreo),
+    path("correopostmark", enviarCorreoPostmark),
     path("confirmacion", correoConfirmado),
     path("correoCode",correoXcodigo),
     path("verificacion",verificarCodigo)

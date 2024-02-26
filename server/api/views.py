@@ -411,7 +411,6 @@ def verificarCodigo(request):
         
         except Exception as e:
             return HttpResponse("Error al verificar y cambiar la contraseña: " + str(e), status=500)        
-        
 
 #este es de prueba 
 def enviarCorreo(request):
@@ -449,7 +448,45 @@ def enviarCorreo(request):
         email = resend.Emails.send(params)
         print(email)
         return HttpResponse("Exito")
+    
+# este usa postmark
+#
+# Request tipo POST
+# {
+#     "codigo": 12345678
+# }
+@csrf_exempt
+def enviarCorreoPostmark(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+
+            if not data or data == None or data == "": raise Exception("No se ha enviado codigo de usuario.")
+
+            import requests
+            url = "https://api.postmarkapp.com/email/withTemplate"
+            headers = {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "X-Postmark-Server-Token": "" # completar token jeje
+            }
+            data = {
+                "From": "20210109@aloe.ulima.edu.pe", # no se puede cambiar, solo lo envia desde mi correo
+                "To": f"{data['codigo']}@aloe.ulima.edu.pe", # se puede cambiar a destinatarios ulima
+                "TemplateId": 35034773, # depende del api key creo
+                "TemplateModel": {
+                    "name": data["codigo"]
+                }
+            }
+
+            r = requests.post(url, headers=headers, json=data)
+            return response({"msg": "", "data": r.json()}, code=200)
+
+        except Exception as err:
+            return response({"msg": str(err)}, code=400)
         
+
+# PUT Requests para el cambio de credenciales
 @csrf_exempt
 def cambiarNombre(request):
     if request.method == "PUT":
