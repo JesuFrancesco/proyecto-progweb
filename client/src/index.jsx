@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
   // - Las alertas de login y register salen dos veces
   // etc.
 root.render(
-  <React.StrictMode>
+  <>
     <App/>
-  </React.StrictMode>
+  </>
 );

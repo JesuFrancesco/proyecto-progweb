@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import InputRecupera from './InputRecupera';
+import { useNavigate } from 'react-router-dom'
 
 const PantallaRecupera = () => {
     const [usuario, setUsuario] = useState({
@@ -10,7 +11,7 @@ const PantallaRecupera = () => {
         contrasena: "",
         codigoVerificacion: ""
     });
-    
+    const navegar = useNavigate()
     const [formEnviado, setFormEnviado] = useState(false);
     const [error, setAlerta] = useState('');
     const [aviso, setAviso] = useState('');
@@ -48,10 +49,14 @@ const PantallaRecupera = () => {
             });
             if (response.ok) {
                 const responseData = await response.text();
-                setAviso("Se ha cambiado su contraseña");
+                setAviso("Se ha cambiado su contraseña. Regresando al Login");
+                setTimeout(() => {
+                    navegar("/");
+                }, 2000);
+
             } else {
                 const responseData = await response.text();
-                setAlerta(responseData);
+                setAlerta("Codigo incorrecto");
             }
         } catch (error) {
             console.error('Error al verificar código:', error);

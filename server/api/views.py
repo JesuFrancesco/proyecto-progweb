@@ -218,31 +218,31 @@ def obtenerFuncionesPreview(request):
         
         except ValueError as err:
             return response({"msg": str(err)}, code=400)
-
+#ahora solo filtrara una vez aca y el resto se hara en el front 
 def obtenerPeliculas(request):
     if request.method == "GET":
-        filtroNombre = request.GET.get("nombre")
-
-        if not filtroNombre or filtroNombre == "":
-            listaMovieFiltrada = Movie.objects.all()[:100]
-        else:
-            listaMovieFiltrada = Movie.objects.filter(title__icontains=filtroNombre)[:100]
+        #filtroNombre = request.GET.get("nombre")
+        listaMovieFiltrada = Movie.objects.all()
+        #if not filtroNombre or filtroNombre == "":
+        #    listaMovieFiltrada = Movie.objects.all()[:100]
+        #else:
+        #    listaMovieFiltrada = Movie.objects.filter(title__icontains=filtroNombre)[:100]
 
         dataResponse = []
         for movie in listaMovieFiltrada:
             generos = Movie_Genre.objects.filter(movie=movie.pk)
             generos_lista = [genre.genre.name for genre in generos]
-            #salas=[]
-            #salas=list([{"name": Sala.objects.get(pk=funcion["sala_id"]).name, "hour": Window.objects.get(pk=funcion["window_id"]).hour.strftime("%H:%M:%S")} for funcion in Funcion.objects.filter(movie=movie.pk).values()])
-            #if len(salas)!=0:
-            dataResponse.append({
-                "title": movie.title,
-                "year": movie.year,
-                "extract": movie.extract,
-                "thumbnail": movie.thumbnail,
-                "path": movie.path if not "/" in movie.path else movie.path.replace("/", "-"),
-                "genres":generos_lista
-            })
+            
+            tiene_sala = Funcion.objects.filter(movie=movie.pk).exists()
+            if tiene_sala:
+                dataResponse.append({
+                    "title": movie.title,
+                    "year": movie.year,
+                    "extract": movie.extract,
+                    "thumbnail": movie.thumbnail,
+                    "path": movie.path if not "/" in movie.path else movie.path.replace("/", "-"),
+                    "genres":generos_lista
+                })
 
         return HttpResponse(json.dumps(dataResponse),content_type="application/json")
 
@@ -371,7 +371,7 @@ def correoXcodigo(request):
             # Crear una instancia del modelo Code y guardarla en la base de datos
             code = Code(codigo=codigo_aleatorio, user=usuario)
             code.save()
-            enviarCorreoPostmark2(codigo_alumno,codigo_aleatorio)
+            #enviarCorreoPostmark2(codigo_alumno,codigo_aleatorio)
             
             return HttpResponse("Código generado y guardado correctamente")
         
@@ -415,41 +415,7 @@ def verificarCodigo(request):
             return HttpResponse("Error al verificar y cambiar la contraseña: " + str(e), status=500)        
 
 #este es de prueba 
-def enviarCorreo(request):
-    if request.method == "GET":
-        user="20211454"
-        resend.api_key = os.environ["RESEND_API_KEY"]
-        htmlS="""<!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Confirmación de Cambio de Contraseña Cines Ulima</title>
-                    </head>
-                    <body>
-                        <p>Hola {{ nombre_usuario }},</p>
-                        <p>Has solicitado cambiar tu contraseña en nuestro sistema. Para confirmar este cambio, por favor haz clic en el siguiente botón:</p>
-                        <p>
-                            <a href="http://localhost:8000/api/confirmacion?nombre={}" style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 10px;">Confirmar Cambio de Contraseña</a>
-                        </p>
-                        <p>Si no has solicitado este cambio, por favor ignora este mensaje.</p>
-                        <p>Gracias,</p>
-                        <p>El Equipo de Tu Aplicación</p>
-                    </body>
-                    </html>""".format(user)
-        
-        params = {
-            "from": "Acme <uLima@resend.dev>",
-            "to": ["20211454@aloe.ulima.edu.pe"], #si lo prueban pongan su correo aca xd
-            "subject": "hello world",
-            "html": htmlS,
-            
-        }
 
-        email = resend.Emails.send(params)
-        print(email)
-        return HttpResponse("Exito")
     
 # este usa postmark
 #
@@ -546,16 +512,13 @@ def cambiarContrasenha(request):
         
 def verificarUsuario(request):
     if request.method == "GET":
-    # Obtener el código del usuario de los parámetros de consulta
         codigo_usuario = request.GET.get('codigo_usuario')
         if codigo_usuario:
             try:
-                # Intenta buscar un usuario con el código proporcionado
                 usuario = Usuario.objects.get(codigo=codigo_usuario)
-                # Si se encuentra el usuario, devuelve una respuesta afirmativa
                 return JsonResponse({'existe': True})
             except Usuario.DoesNotExist:
-                # Si el usuario no existe, devuelve una respuesta negativa
+                
                 return JsonResponse({'existe': False})
         else:
             # Si no se proporciona el código del usuario, devuelve un error
