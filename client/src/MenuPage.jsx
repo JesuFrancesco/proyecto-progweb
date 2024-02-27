@@ -44,21 +44,21 @@ const MenuPage = () => {
   // para el carousel
   useEffect(() => {
     const obtenerFuncionesHTTP = async () => {
-      const res = await fetch("http://pweb2024-api.azurewebsites.net/api/funciones?num=5");
+      const res = await fetch("https://pweb2024-api.azurewebsites.net/api/funciones?num=5");
       const data = await res.json();
 
       if(!data.msg){
         setFuncionesPreview(data.funciones);
       }
     }
-    obtenerPreviewFuncionesHTTP();
+    obtenerFuncionesHTTP();
 
   }, []);
 
   // para la busqueda
   useEffect(() => {
     const obtenerAllFuncionesHTTP = async () => {
-      const res = await fetch(`http://localhost:8000/api/funciones`);
+      const res = await fetch(`http://pweb2024-api.azurewebsites.net/api/funciones?num=5`);
       const data = await res.json();
 
       if(!data.msg){

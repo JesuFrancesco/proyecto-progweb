@@ -1,13 +1,9 @@
-from django.shortcuts import render
 from django.http import *
 from .models import *
 from django.views.decorators.csrf import csrf_exempt #
 from django.core.handlers.wsgi import WSGIRequest as RequestType
-from datetime import datetime
-import locale
 import json
 import os 
-import resend 
 import random
 
 # Formato de retorno
@@ -16,7 +12,6 @@ response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), c
 @csrf_exempt
 def obtenerSalasPreview(request: RequestType):
     if request.method == "GET":
-
         try:
             array_salas = []
             # formato de sala a retornar
@@ -67,16 +62,7 @@ def obtenerSalasPreview(request: RequestType):
 @csrf_exempt
 def obtenerSalaItem(request: RequestType, salapath: str):
     if request.method == "GET":
-        # Retorno
-        response = lambda dictionary, codigo = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=codigo)
-
         try:
-            # Establecer la configuración regional en español
-            #locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
-
-            # Obtener la fecha de pc local
-            #fecha_actual = datetime.now()
-
             # formato de ventana a retornar
             to_window_json = lambda window: {
             #    "date": fecha_actual.strftime("%A, %d de %B"),
@@ -137,14 +123,9 @@ def obtenerSalaItem(request: RequestType, salapath: str):
             print(err.with_traceback())
             return response({"msg": "Algo salio mal."}, codigo=500)
 
+@csrf_exempt
 def obtenerPelicula_Detalle(request):
     if request.method == "GET":
-        # Establecer la configuración regional en español
-        #locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
-
-        # Obtener la fecha de pc local
-        #fecha_actual = datetime.now()
-
         pathFiltro = request.GET.get("path")
 
         if pathFiltro == "":
@@ -172,7 +153,7 @@ def obtenerPelicula_Detalle(request):
 
         return HttpResponse(json.dumps(dataResponse))
 
-
+@csrf_exempt
 def obtenerFuncionesPreview(request):
     if request.method == "GET":
         # limitar busqueda a un numero de funciones random
@@ -218,15 +199,11 @@ def obtenerFuncionesPreview(request):
         
         except ValueError as err:
             return response({"msg": str(err)}, code=400)
-#ahora solo filtrara una vez aca y el resto se hara en el front 
+        
+@csrf_exempt
 def obtenerPeliculas(request):
     if request.method == "GET":
-        #filtroNombre = request.GET.get("nombre")
         listaMovieFiltrada = Movie.objects.all()
-        #if not filtroNombre or filtroNombre == "":
-        #    listaMovieFiltrada = Movie.objects.all()[:100]
-        #else:
-        #    listaMovieFiltrada = Movie.objects.filter(title__icontains=filtroNombre)[:100]
 
         dataResponse = []
         for movie in listaMovieFiltrada:
@@ -347,15 +324,7 @@ def registroReserva (request):
         except Exception as err:
             return response({"msg": str(err)}, code=400)
 
-
-#api key :
-#re_K1uTZPc7_5v1rNDgCSndewkywKMUxm5zD
-#no usar esa es mia xd
-#si quieren probar este code creense una cuenta en resend
-#creen una api key y pongala como variale de entorno (con nombre RESEND_API_KEY)
-#solo les deja enviar a su propio correo xd
-
-#este sera el oficial
+@csrf_exempt
 def correoXcodigo(request):
     if request.method == "GET":
         try:
@@ -414,46 +383,7 @@ def verificarCodigo(request):
         except Exception as e:
             return HttpResponse("Error al verificar y cambiar la contraseña: " + str(e), status=500)        
 
-#este es de prueba 
-
-    
-# este usa postmark
-#
-# Request tipo POST
-# {
-#     "codigo": 12345678
-# }
 @csrf_exempt
-def enviarCorreoPostmark(request):
-    if request.method == "POST":
-        try:
-            data = json.loads(request.body)
-
-            if not data or data == None or data == "": raise Exception("No se ha enviado codigo de usuario.")
-
-            import requests
-            url = "https://api.postmarkapp.com/email/withTemplate"
-            headers = {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "X-Postmark-Server-Token": "eda67731-f17b-460c-82e1-83207579c4fb" # completar token jeje
-            }#os.environ["API_KEY"]
-            data = {
-                "From": "20210109@aloe.ulima.edu.pe", # no se puede cambiar, solo lo envia desde mi correo
-                "To": f"{data['codigo']}@aloe.ulima.edu.pe", # se puede cambiar a destinatarios ulima
-                "TemplateId": 35034773, # depende del api key creo
-                "TemplateModel": {
-                    "name": data["codigo"]
-                }
-            }
-
-            r = requests.post(url, headers=headers, json=data)
-            return response({"msg": "", "data": r.json()}, code=200)
-
-        except Exception as err:
-            return response({"msg": str(err)}, code=400)
-
-#
 def enviarCorreoPostmark2(codigo,codigo_aleatorio):
     import requests
     url = "https://api.postmarkapp.com/email/withTemplate"
@@ -468,16 +398,13 @@ def enviarCorreoPostmark2(codigo,codigo_aleatorio):
         "TemplateId": 35034773, # depende del api key creo
         "TemplateModel": {
             "name": codigo,
-            "code":codigo_aleatorio,
+            "code": codigo_aleatorio,
         }
     }
 
     r = requests.post(url, headers=headers, json=data)
     return response({"msg": "", "data": r.json()}, code=200)
 
-   
-
-# PUT Requests para el cambio de credenciales
 @csrf_exempt
 def cambiarNombre(request):
     if request.method == "PUT":
@@ -509,7 +436,7 @@ def cambiarContrasenha(request):
         except Exception as err:
             return response({"msg": str(err)}, code=500)
         
-        
+@csrf_exempt        
 def verificarUsuario(request):
     if request.method == "GET":
         codigo_usuario = request.GET.get('codigo_usuario')

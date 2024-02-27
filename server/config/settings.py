@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     os.environ['ALLOWED_HOST_1'],
+    os.environ['DATABASE_HOST'],
 ]
 
 
@@ -67,8 +68,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    os.environ['CORS_ALLOWED_1'], # "http://localhost:3000"
-    os.environ['CORS_ALLOWED_2'], # "http://jesufrancesco.github.io"  
+    os.environ['CORS_ALLOWED_1'], 
+    os.environ['CORS_ALLOWED_2'],
 ]
 
 ROOT_URLCONF = 'config.urls'
