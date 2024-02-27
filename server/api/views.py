@@ -371,7 +371,7 @@ def correoXcodigo(request):
             # Crear una instancia del modelo Code y guardarla en la base de datos
             code = Code(codigo=codigo_aleatorio, user=usuario)
             code.save()
-            #enviarCorreoPostmark2(codigo_alumno,codigo_aleatorio)
+            enviarCorreoPostmark2(codigo_alumno,codigo_aleatorio)
             
             return HttpResponse("Código generado y guardado correctamente")
         

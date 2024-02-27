@@ -42,7 +42,7 @@ export const temaOscuro = createTheme({
       main: "#e00707"
     },
     background: {
-      default: '#121212',
+      default: '#1D1F20',
     },
     text: {
       primary: "#ffffff",
