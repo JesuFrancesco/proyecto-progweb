@@ -115,6 +115,7 @@ const MenuPage = () => {
                       label: `${funcion.movie.title} | ${funcion.sala.name} ${funcion.window.date} @ ${funcion.window.hour}`, 
                       path: funcion.movie.path,
                       state: {       
+                        id : funcion.id,
                         sala : funcion.sala.name,
                         hora : funcion.window.hour,
                         fecha : funcion.window.date,

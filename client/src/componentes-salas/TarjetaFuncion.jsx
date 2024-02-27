@@ -12,7 +12,8 @@ const TarjetaFuncion = (props) =>
 
     const botonReserva = () => {
         navigate(`/reserva/${movie.path}`, {
-            state : {       
+            state : {      
+                id: funcion.id,
                 sala : sala.name,
                 hora : window.hour,
                 fecha : window.dateStr,

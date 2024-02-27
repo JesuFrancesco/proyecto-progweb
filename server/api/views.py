@@ -97,6 +97,7 @@ def obtenerSalaItem(request: RequestType, salapath: str):
 
             # formato de funcion a retornar
             to_funcion_json = lambda funcion: {
+                "id": funcion.pk,
                 "movie": to_movie_json(Movie.objects.get(pk=funcion.movie.pk)),
                 "window": to_window_json(Window.objects.get(pk=funcion.window.pk)),
             }
@@ -162,9 +163,11 @@ def obtenerPelicula_Detalle(request):
                 "cast": [Cast.objects.get(pk=movie_cast["cast_id"]).name for movie_cast in Movie_Cast.objects.filter(movie=movie.pk).values()],
                 "genres": [Genre.objects.get(pk=movie_genre["genre_id"]).name for movie_genre in Movie_Genre.objects.filter(movie=movie.pk).values()],
                 "salas": [{
-                    "name": Sala.objects.get(pk=funcion["sala_id"]).name, 
-                    "hour": Window.objects.get(pk=funcion["window_id"]).hour.strftime("%H:%M"), 
-                    "date": Window.objects.get(pk=funcion["window_id"]).date.strftime("%Y-%m-%d")} for funcion in Funcion.objects.filter(movie=movie.pk).values()]
+                    "funcion_id": funcion.pk, 
+                    "name": Sala.objects.get(pk=funcion.sala.pk).name, 
+                    "hour": Window.objects.get(pk=funcion.window.pk).hour.strftime("%H:%M"), 
+                    "date": Window.objects.get(pk=funcion.window.pk).date.strftime("%Y-%m-%d")
+                } for funcion in Funcion.objects.filter(movie=movie.pk)]
             })
 
         return HttpResponse(json.dumps(dataResponse))
@@ -325,20 +328,19 @@ def registerEndPoint (request):
         }
         return HttpResponse(json.dumps(respDict))
 
-#@csrf_exempt
+@csrf_exempt
 def registroReserva (request):
     if request.method == "POST":
         try:
             reservaPython = json.loads(request.body)
 
             # por completar xd ola si
-            # reservaORM = Reserva(
-            #     fecha = reservaPython["fecha"],
-            #     entradas = reservaPython[],
-            #     funcion = reservaPython[],
-            #     usuario = reservaPython[Usuario.objects],
-            # )
-            # reservaORM.save()
+            reservaORM = Reserva(
+                entradas = reservaPython["entradas"],
+                funcion = Funcion.objects.get(pk=reservaPython["funcion"]),
+                usuario = Usuario.objects.get(codigo=reservaPython["codigo"]),
+            )
+            reservaORM.save()
 
             return response({"msg": ""})
 

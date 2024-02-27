@@ -17,7 +17,11 @@ export const temaClaro = createTheme({
     text: {
       primary: "#000000",
       secondary: "#ffffff",
-    }
+    },
+    action: {
+      disabledBackground: '#424242',
+      disabled: '#fafafa'
+    },
   }
 });
 
@@ -43,6 +47,10 @@ export const temaOscuro = createTheme({
     text: {
       primary: "#ffffff",
       secondary: "#000000",
+    },
+    action: {
+      disabledBackground: '#424242',
+      disabled: '#fafafa'
     }
   }
 });

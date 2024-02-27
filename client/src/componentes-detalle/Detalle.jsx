@@ -8,8 +8,9 @@ const Detalle = (props) =>
 
   function botonreser(horario)
   {
-    navigate(`/reserva/${props.id}`, {
+    navigate(`/reserva/${props.path}`, {
       state : {
+          id : props.id,
           sala : props.sala,
           hora : horario,
           titulo : props.titulo,

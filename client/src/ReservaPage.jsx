@@ -7,18 +7,18 @@ import ReservaIndex from "./componentes-reserva/ReservaIndex"
 import './componentes-reserva/estilorese.css'
 
 export default function ReservaPage() {
-    
     const subirReservaHTTP = async (reserva) => {
-        const res = await fetch("", {
+        console.log(JSON.stringify(reserva))
+        const res = await fetch("http://127.0.0.1:8000/api/reserva-register", {
             method: "POST",
             body: JSON.stringify(reserva)
         });
         const data = await res.json();
 
         if (!data.msg)
-            alert("reserva realizada con exito");
-        else alert("algo malio sal");
-        
+            return true;
+        else 
+            return false;
     }
 
     return <>
@@ -26,7 +26,7 @@ export default function ReservaPage() {
         <div className='container' style={ { padding: "4em 0" }}>
         
             <div className="mt-4 mx-auto mb-4" style={ {margin: "0 auto", float: "none"} }>
-                <ReservaIndex/>
+                <ReservaIndex reservaHTTP={subirReservaHTTP} />
             </div>
         
         <Footer/>
