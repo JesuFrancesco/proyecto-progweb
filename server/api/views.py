@@ -352,19 +352,13 @@ def registroReserva (request):
 #si quieren probar este code creense una cuenta en resend
 #creen una api key y pongala como variale de entorno (con nombre RESEND_API_KEY)
 #solo les deja enviar a su propio correo xd
-def correoConfirmado(request):#query parameter con el usuario
-    if request.method == "GET":
-        
-        #aca se hara el cambio en la base de datos 
-        #aunque este metodo es algo inseguro puesto que se muestra la contra en el path 
-        
-        return HttpResponse("gracias por usar nuestro servicio")
+
 #este sera el oficial
 def correoXcodigo(request):
     if request.method == "GET":
         try:
-            #codigo_alumno = request.GET.get("codigo")
-            codigo_alumno="20211455"
+            codigo_alumno = request.GET.get("codigo")
+            codigo_alumno="20211454"
             print(codigo_alumno)
             # Generar un código aleatorio de 6 dígitos
             codigo_aleatorio = ''.join([str(random.randint(0, 9)) for _ in range(6)])
@@ -375,6 +369,7 @@ def correoXcodigo(request):
             # Crear una instancia del modelo Code y guardarla en la base de datos
             code = Code(codigo=codigo_aleatorio, user=usuario)
             code.save()
+            enviarCorreoPostmark2(codigo_alumno)
             
             return HttpResponse("Código generado y guardado correctamente")
         
@@ -392,12 +387,14 @@ def verificarCodigo(request):
             data = json.loads(request.body)
             print(data)
             codigo_usuario = data.get("codigo_usuario")
+            
             codigo = data.get("codigo")
+            print(codigo)
             nueva_contrasenha = data.get("nueva_contrasenha")
             
 
             # Buscar el código en la base de datos
-            code = Code.objects.filter(codigo=codigo, user__codigo=codigo_usuario).first()#esta parte esta media xd
+            code = Code.objects.filter(codigo=codigo)#esta parte esta media xd
 
             if code:
                 # Cambiar la contraseña del usuario
@@ -408,7 +405,7 @@ def verificarCodigo(request):
                 # Eliminar el código utilizado de la tabla Code
                 code.delete()
 
-                return HttpResponse("Contraseña cambiada correctamente")
+                return JsonResponse({'ok': True})
             else:
                 return HttpResponse("El código proporcionado no es válido para este usuario", status=400)
         
@@ -471,7 +468,7 @@ def enviarCorreoPostmark(request):
             headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "X-Postmark-Server-Token": "" # completar token jeje
+                "X-Postmark-Server-Token": "eda67731-f17b-460c-82e1-83207579c4fb" # completar token jeje
             }
             data = {
                 "From": "20210109@aloe.ulima.edu.pe", # no se puede cambiar, solo lo envia desde mi correo
@@ -487,7 +484,29 @@ def enviarCorreoPostmark(request):
 
         except Exception as err:
             return response({"msg": str(err)}, code=400)
-        
+
+#
+def enviarCorreoPostmark2(codigo):
+    import requests
+    url = "https://api.postmarkapp.com/email/withTemplate"
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "X-Postmark-Server-Token": "eda67731-f17b-460c-82e1-83207579c4fb" # completar token jeje
+    }
+    data = {
+        "From": "20210109@aloe.ulima.edu.pe", # no se puede cambiar, solo lo envia desde mi correo
+        "To": f"{codigo}@aloe.ulima.edu.pe", # se puede cambiar a destinatarios ulima
+        "TemplateId": 35034773, # depende del api key creo
+        "TemplateModel": {
+            "name": codigo
+        }
+    }
+
+    r = requests.post(url, headers=headers, json=data)
+    return response({"msg": "", "data": r.json()}, code=200)
+
+   
 
 # PUT Requests para el cambio de credenciales
 @csrf_exempt
@@ -520,3 +539,21 @@ def cambiarContrasenha(request):
             return response({"msg": ""})
         except Exception as err:
             return response({"msg": str(err)}, code=500)
+        
+        
+def verificarUsuario(request):
+    if request.method == "GET":
+    # Obtener el código del usuario de los parámetros de consulta
+        codigo_usuario = request.GET.get('codigo_usuario')
+        if codigo_usuario:
+            try:
+                # Intenta buscar un usuario con el código proporcionado
+                usuario = Usuario.objects.get(codigo=codigo_usuario)
+                # Si se encuentra el usuario, devuelve una respuesta afirmativa
+                return JsonResponse({'existe': True})
+            except Usuario.DoesNotExist:
+                # Si el usuario no existe, devuelve una respuesta negativa
+                return JsonResponse({'existe': False})
+        else:
+            # Si no se proporciona el código del usuario, devuelve un error
+            return JsonResponse({'error': 'No se proporcionó el código del usuario'}, status=400)
