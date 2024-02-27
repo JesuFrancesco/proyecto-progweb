@@ -69,8 +69,8 @@ export default function Reserva(props)
                     <Box sx={ {ml : "20px", mb : "10px"} }>
                         <h2>{ruta.state.titulo} | Funcion n° {ruta.state.id}</h2>
                         <Box>
-                            <AccessTimeIcon /><a color={"text.primary"}>&nbsp;1hrs 30min &nbsp;</a>
-                            <LocationOnIcon /><a color={"text.primary"}>&nbsp;{ruta.state.sala}</a>
+                            <AccessTimeIcon /><Box sx={{display: "inline"}} color={"text.primary"}>&nbsp;1hrs 30min &nbsp;</Box>
+                            <LocationOnIcon /><Box sx={{display: "inline"}} color={"text.primary"}>&nbsp;{ruta.state.sala}</Box>
                         </Box>
                     </Box>
                     <Box className="card" sx={carta}>
