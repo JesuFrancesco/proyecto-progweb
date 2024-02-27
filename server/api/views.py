@@ -325,17 +325,18 @@ def registerEndPoint (request):
         }
         return HttpResponse(json.dumps(respDict))
 
+#@csrf_exempt
 def registroReserva (request):
     if request.method == "POST":
-
         try:
             reservaPython = json.loads(request.body)
 
             # por completar xd
             # reservaORM = Reserva(
-            #     x = reservaPython["1"],
-            #     x = reservaPython["2"],
-            #     x = reservaPython["3"],
+            #     fecha = reservaPython["fecha"],
+            #     entradas = reservaPython[],
+            #     funcion = reservaPython[],
+            #     usuario = reservaPython[],
             # )
             # reservaORM.save()
 
@@ -343,6 +344,8 @@ def registroReserva (request):
 
         except Exception as err:
             return response({"msg": str(err)}, code=400)
+
+
 #api key :
 #re_K1uTZPc7_5v1rNDgCSndewkywKMUxm5zD
 #no usar esa es mia xd

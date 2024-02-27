@@ -30,6 +30,15 @@ export default function ReservaDialog(props)
     }
 
   const [open, setOpen] = React.useState(false);
+  const [] = useState()
+
+//    const RegistrarReserva = async (reserva) =>{
+//        const reser = await fetch("http://127.0.0.1:8000/api/reserva-register", {
+//            method: "POST",
+//            body: JSON.stringify({})
+//        });
+//        const data = await reser.json();
+//    }
 
   const handleClickOpen = () => {
     if(props.nombrese !== "" && props.apellidose !== "" && props.codigose !== "" && (props.cantidadse  > 0 ))

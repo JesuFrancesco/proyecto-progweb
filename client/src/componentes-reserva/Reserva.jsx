@@ -29,6 +29,8 @@ export default function Reserva()
         ...usuario,
         cantidad: 1,
     })
+
+
     
     const InsertarNombre = (event) => {
         setReserva({...reserva, nombres: event.target.value})
@@ -52,6 +54,8 @@ export default function Reserva()
         border : "0px",
         boxShadow: "0px 2px 5px -2px"
     }
+
+
 
     return <div id="todo">
         <h2 className="border-bottom">Reserva</h2>
@@ -103,6 +107,7 @@ export default function Reserva()
                                     
                                     value={reserva.cantidad}
                                     onChange={InsertarCantidad}/>
+
                                 <ReservaDialog
                                     nombrese={reserva.nombres}
                                     apellidose={reserva.apellidos}
