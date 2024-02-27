@@ -48,7 +48,7 @@ const PantallaRecupera = () => {
             });
             if (response.ok) {
                 const responseData = await response.text();
-                setAviso(responseData);
+                setAviso("Se ha cambiado su contraseña");
             } else {
                 const responseData = await response.text();
                 setAlerta(responseData);

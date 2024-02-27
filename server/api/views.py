@@ -359,8 +359,8 @@ def registroReserva (request):
 def correoXcodigo(request):
     if request.method == "GET":
         try:
-            codigo_alumno = request.GET.get("codigo")
-            codigo_alumno="20211454"
+            codigo_alumno = request.GET.get("codigo_usuario")
+            
             print(codigo_alumno)
             # Generar un código aleatorio de 6 dígitos
             codigo_aleatorio = ''.join([str(random.randint(0, 9)) for _ in range(6)])
@@ -371,7 +371,7 @@ def correoXcodigo(request):
             # Crear una instancia del modelo Code y guardarla en la base de datos
             code = Code(codigo=codigo_aleatorio, user=usuario)
             code.save()
-            enviarCorreoPostmark2(codigo_alumno)
+            enviarCorreoPostmark2(codigo_alumno,codigo_aleatorio)
             
             return HttpResponse("Código generado y guardado correctamente")
         
@@ -471,7 +471,7 @@ def enviarCorreoPostmark(request):
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "X-Postmark-Server-Token": "eda67731-f17b-460c-82e1-83207579c4fb" # completar token jeje
-            }
+            }#os.environ["API_KEY"]
             data = {
                 "From": "20210109@aloe.ulima.edu.pe", # no se puede cambiar, solo lo envia desde mi correo
                 "To": f"{data['codigo']}@aloe.ulima.edu.pe", # se puede cambiar a destinatarios ulima
@@ -488,7 +488,7 @@ def enviarCorreoPostmark(request):
             return response({"msg": str(err)}, code=400)
 
 #
-def enviarCorreoPostmark2(codigo):
+def enviarCorreoPostmark2(codigo,codigo_aleatorio):
     import requests
     url = "https://api.postmarkapp.com/email/withTemplate"
     headers = {
@@ -501,7 +501,8 @@ def enviarCorreoPostmark2(codigo):
         "To": f"{codigo}@aloe.ulima.edu.pe", # se puede cambiar a destinatarios ulima
         "TemplateId": 35034773, # depende del api key creo
         "TemplateModel": {
-            "name": codigo
+            "name": codigo,
+            "code":codigo_aleatorio,
         }
     }
 
