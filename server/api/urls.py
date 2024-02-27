@@ -23,9 +23,9 @@ urlpatterns = [
     # correo
     path("correo", enviarCorreo),
     path("correopostmark", enviarCorreoPostmark),
-    path("confirmacion", correoConfirmado),
     path("correoCode",correoXcodigo),
-    path("verificacion",verificarCodigo)
+    path("verificacion",verificarCodigo),
+    path("verificar-usuario",verificarUsuario)
     
     
 ]
