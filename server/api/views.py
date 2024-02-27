@@ -331,12 +331,12 @@ def registroReserva (request):
         try:
             reservaPython = json.loads(request.body)
 
-            # por completar xd
+            # por completar xd ola si
             # reservaORM = Reserva(
             #     fecha = reservaPython["fecha"],
             #     entradas = reservaPython[],
             #     funcion = reservaPython[],
-            #     usuario = reservaPython[],
+            #     usuario = reservaPython[Usuario.objects],
             # )
             # reservaORM.save()
 
