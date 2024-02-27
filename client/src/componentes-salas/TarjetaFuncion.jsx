@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import Chip from '@mui/material/Chip'
+import { Box } from "@mui/material";
 const TarjetaFuncion = (props) => 
 {
     const navigate = useNavigate();
@@ -11,33 +12,35 @@ const TarjetaFuncion = (props) =>
 
     const botonReserva = () => {
         navigate(`/reserva/${movie.path}`, {
-            state : {       
+            state : {      
+                id: funcion.id,
                 sala : sala.name,
                 hora : window.hour,
+                fecha : window.dateStr,
                 titulo : movie.title,
                 imagen : movie.thumbnail
             }})
     };
 
     return <>
-        <div id={"pelicula_" + props.index} className="pelicula mb-3 card">
+        <Box id={"pelicula_" + props.index} className="pelicula mb-3 card border">
             <img className="carta-img card-img-top" src={movie.thumbnail} alt="" />
 
-            <div className="card-body">
+            <Box className="card-body" sx={{color: "text.primary"}}>
                 <button type="button" className="boton-index btn rounded">
                     {props.index + 1}
                 </button>
                 <b>{movie.title}</b>
-                <div className="movie-sinapsis">{movie.extract}</div>
+                <Box className="movie-sinapsis">{movie.extract}</Box>
 
-                <div className="movie-sinapsis">
+                <Box className="movie-sinapsis">
                     Género &nbsp;
                     {
                         movie.genres.map(genero => 
                             <Chip label={genero} sx={{mr:1}}/>
                             )
                         }
-                </div>
+                </Box>
                 
                 {
                     (() => {
@@ -53,14 +56,13 @@ const TarjetaFuncion = (props) =>
                         }
                     })()
                 }
-            </div>
+            </Box>
 
-            <div className="border-top movie-footer">
-                <button className="boton-hora btn rounded-pill" onClick={() => botonReserva()}>
-                    {window.hour}
-                </button>
-            </div>
-        </div>
+            <Box className="border-top movie-footer" sx={{color: "text.primary"}}>
+                Fecha &nbsp; &nbsp; <Chip clickable color="secondary" onClick={() => botonReserva()} 
+                label={`${window.dateStr} @ ${window.hour}`} />
+            </Box>
+        </Box>
     </>
 }
 

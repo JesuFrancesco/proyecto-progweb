@@ -1,19 +1,26 @@
 import logo from './assets/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import Fab from '@mui/material/Fab';
-import ChatIcon from '@mui/icons-material/Chat';
 import ModalDialogChat from '../componentes-chat/ModalDialogChat';
+import { Box, TextField, Fab, IconButton } from '@mui/material';
+import ChatIcon from '@mui/icons-material/Chat';
+import LogoutIcon from '@mui/icons-material/Logout';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import MaterialUISwitch from './SwitchDark';
+
+import useLocalStorage from 'use-local-storage';
 
 const Sidebar = () => {
+    const [tema, setTema] = useLocalStorage('usuario_tema', 'dark')
     const navegar = useNavigate();
 
     // enlaces a distintas secciones de la pagina web
     const enlaces = [
         {ruta: "/menu", label: "Menu page"},
         {ruta: "/salas", label: "Salas"},
-        {ruta: "/peliculas-index", label: "Peliculas"}
+        {ruta: "/peliculas-index", label: "Peliculas"},
+        {ruta: "/configuracion", label: "Configuración"}
     ]
 
     const [valorInput, setValorInput] = useState();
@@ -32,50 +39,63 @@ const Sidebar = () => {
         filtrarLinks(evt.target.value);
     }
 
-    const buscarPeliculasHTTP = async () => {
-        const response = await fetch("https://raw.githubusercontent.com/ulima-pw/data-20240/main/peliculas_limpio.json");
-        const json = await response.json();
-        sessionStorage.setItem("peliculas", JSON.stringify(json))
-    }
 
-    useEffect(() => {
-        buscarPeliculasHTTP();
-    })
-
+    
     return <>
-        <div className="text-center">
+        <Box sx={{textAlign:"center"}}>
             {/* Logo */}
-            <a href='https://www.ulima.edu.pe/'>
+            <Link to='https://www.ulima.edu.pe/'>
                 <img src={ logo } id="logo" alt='' className='mt-3'/>
-            </a>
+            </Link>
             {/* Buscador / filtro */}
-            <div>
-                <input type="text" className="my-4" placeholder="Buscar" id="buscador"
+            <Box>
+                <TextField type="text" className="my-4" placeholder="Buscar" id="buscador"
                 value={ valorInput } onChange={ handleInputChange } />
-            </div>
-        </div>
+            </Box>
+        </Box>
+
+
         {/* Conjunto de links */}
-        <div>
+        <Box>
             <ul className='link-lateral'>
                 {
                     enlacesVisibles.map((enlace, i) =>
-                        <li key={i} ><Link to={ enlace.ruta } >{enlace.label}</Link></li>
+                        <li key={i} >
+                            <Link to={ enlace.ruta } >
+                                <Box sx={{display: "inline", color: "text.primary"}} >{enlace.label}</Box>
+                            </Link>
+                        </li>
                     )
                 }
             </ul>
-            <div style={ {textAlign: "center", display: "block"} } className='mb-5'>
-                <button style={ {backgroundColor: "rgb(255, 102, 102)", fontWeight: "600"} } className='btn btn-danger' key={"cerrar-sesion"} onClick={ () => {sessionStorage.clear(); navegar("/")} } ><Link>Logout</Link></button>
-            </div>
-        </div>
+            <Box sx={{textAlign: "left", ml: "3em", float: "left"}}>
+                <FormControlLabel
+                    control={<MaterialUISwitch checked={tema==='dark'} onChange={() => setTema(tema === 'dark'? 'light': 'dark')} sx={{ m: 1 }} />}
+                />
+            </Box>
 
-        <div className='border mb-4'></div>
+            <Box sx={{textAlign: "right", mr: "2em", float: "right"}}>
+                <IconButton  sx={ {mb: "2em"} }>
+                    <LogoutIcon sx={{fontWeight: "600"}}
+                        color='warning'
+                        key={"cerrar-sesion"}
+                        onClick={ () => {sessionStorage.clear(); navegar("/")} } >
+                            <Link>Logout</Link>
+                    </LogoutIcon>
+                </IconButton>
+            </Box>
+        </Box>
 
-        <div style={ {textAlign: "center"} }>
-            <div className='mb-2'><b>Chatbot</b></div>
-            <Fab style={ {backgroundColor: "orangered"} } color="primary" aria-label="add" className='mb-4' onClick={() => setMostrarChat(!mostrarChat)} >
-                <ChatIcon />
+        {/*  */}
+        <Box className='border mb-4'></Box>
+        {/*  */}
+
+        <Box sx={ {textAlign: "center"} }>
+            <Box className='mb-2'><b>Chatbot</b></Box>
+            <Fab color="primary" className='mb-4' onClick={() => setMostrarChat(!mostrarChat)} >
+                <ChatIcon sx={{color: "white"}}/>
             </Fab>
-        </div>
+        </Box>
 
         {
             (mostrarChat)? <ModalDialogChat/> : <></>

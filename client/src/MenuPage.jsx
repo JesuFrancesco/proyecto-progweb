@@ -1,27 +1,39 @@
 import { useState, useEffect } from 'react';
-import { checkLogin } from './util/CheckLogin';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
+import { useNavigate, Link } from 'react-router-dom';
+
 import { Stack, Button, Box } from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import CircularProgress from '@mui/material/CircularProgress';
+import SearchIcon from '@mui/icons-material/Search';
+
+import { checkLogin } from './util/CheckLogin';
 import Header from './componentes-buscador/Header'
 import Footer from './componentes-buscador/Footer';
-
 import Carrusel from './componentes-menu/Carrusel';
 
+// ==
 const MenuPage = () => {
   const navegacion = useNavigate();
   
-  const [busqueda, setBusqueda] = useState('');
+  const [funcionesPreview, setFuncionesPreview] = useState([]);
+
+  const [usuario, setUsuario] = useState({});
   const [funciones, setFunciones] = useState([]);
+  const [open, setOpen] = useState(false);
+  const cargando = open && funciones.length === 0;
 
-  const usu = sessionStorage.getItem('usuario_objeto');
-  const usuario = (usu)? JSON.parse(usu) : {};
   
-  // debug
-  // console.log("--- MenuPage.jsx");
-  // console.log(usuario);
+  useEffect(() => {
+    const usu = sessionStorage.getItem('usuario_objeto');
+    // const usuario = (usu)? JSON.parse(usu) : {};
+    if(usu){
+      setUsuario(JSON.parse(usu))
+    }
+  }, [])
 
+  // para el login
   useEffect(() => {
     if (!checkLogin()) {
       alert("No has iniciado sesión.");
@@ -29,59 +41,142 @@ const MenuPage = () => {
     }
   });
   
+  // para el carousel
   useEffect(() => {
     const obtenerFuncionesHTTP = async () => {
       const res = await fetch("http://pweb2024-api.azurewebsites.net/api/funciones?num=5");
       const data = await res.json();
 
-      if(!data.msg)
-        setFunciones(data.funciones);
+      if(!data.msg){
+        setFuncionesPreview(data.funciones);
+      }
     }
-
-    obtenerFuncionesHTTP();
+    obtenerPreviewFuncionesHTTP();
 
   }, []);
+
+  // para la busqueda
+  useEffect(() => {
+    const obtenerAllFuncionesHTTP = async () => {
+      const res = await fetch(`http://localhost:8000/api/funciones`);
+      const data = await res.json();
+
+      if(!data.msg){
+        setFunciones(data.funciones);
+      }
+    }
+
+    obtenerAllFuncionesHTTP();
+
+  }, [cargando]);
+
+  // para la asincronia en busqueda
+  useEffect(() => {
+    if (!open) setFunciones([])
+  }, [open])
 
   return <>
     <Header title={`Bienvenido ${usuario.nombres} (${usuario.codigo})`} />
 
-    <div className='py-5'>
-      <Carrusel funciones={ funciones } />
-      <div className='mt-3' style={{ textAlign: 'center' }}>
+    <Box sx={{py: "4em"}}>
+      <Carrusel funciones={ funcionesPreview } />
+
+      {/* Elementos debajo del carrusel */}
+      <Box className='mt-3' sx={{ textAlign: 'center' }}>
         
-        <div>
-          <TextField label="Búsqueda" variant="standard" size="medium"
-            className="form-control my-3"
-            placeholder="Busca por título, actores, actrices, género, etc"
-            style={{width:"80%"}}
-            value={busqueda}
-            onChange={ e => setBusqueda(e.target.value)}/>
-        </div>
+        {/* Buscador */}
+        <Box sx={{display: "flex", justifyContent: "center"}}>
+
+          {/* icono buscador */}
+          <Box sx={{p: "1em"}}>
+            <SearchIcon color='inherit' />
+          </Box>
+          
+          {/* autocomplete input */}
+          <Autocomplete
+            id="autocompletado-async"
+            sx={{ width: "40%", mb: "1em" }}
+            open={open}
+            onOpen={() => {
+              setOpen(true);
+            }}
+            onClose={() => {
+              setOpen(false);
+            }}
+            onChange={
+              (_, value) => navegacion(`/reserva/${value.path}`, {state: value.state})
+            }
+            isOptionEqualToValue={(op, valor) => op.label === valor.label}
+            getOptionLabel={op => op.label}
+            options={
+              (funciones.map(funcion => 
+                  {
+                    return {
+                      label: `${funcion.movie.title} | ${funcion.sala.name} ${funcion.window.date} @ ${funcion.window.hour}`, 
+                      path: funcion.movie.path,
+                      state: {       
+                        id : funcion.id,
+                        sala : funcion.sala.name,
+                        hora : funcion.window.hour,
+                        fecha : funcion.window.date,
+                        titulo : funcion.movie.title,
+                        imagen : funcion.movie.thumbnail
+                      }
+                    }
+                  }
+                )
+              )
+            }
+
+            loading={cargando}
+            loadingText="Cargando funciones..."
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Búsqueda"
+                InputLabelProps={{ sx: {color: "text.primary"} }}
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <>
+                      {cargando ? <CircularProgress color="inherit" size={20} /> : null}
+                      {params.InputProps.endAdornment}
+                    </>
+                  ),
+                }}
+              />
+            )}
+          />
+
+        </Box>
       
-        
+        {/* Botóones de sala y película */}
         <Box display="flex" justifyContent="center">
           <Stack spacing={14} direction="row">
 
               <Link to={"/peliculas-index/1"}>
                 <Button
-                  variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
+                  color='primary'
+                  variant="contained" sx={{ fontSize: '16px', color: 'white', width: '7rem' }}>
                   Películas
                 </Button>
               </Link>
 
             <Link to="/salas">
-              <Button variant="contained" style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }}>
+              <Button 
+                color='primary'
+                variant="contained" sx={{ fontSize: '16px', color: 'white', width: '7rem' }}>
                 Salas
               </Button>
             </Link>
 
           </Stack>
         </Box>
-      </div>
-    </div>
+      </Box>
+    </Box>
 
     <Footer />
-    </>
+  </>
 };
 
 export default MenuPage;

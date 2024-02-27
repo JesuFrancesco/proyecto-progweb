@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom"
+import { Alert } from "@mui/material";
 import { LocationCity } from "@mui/icons-material"
+import { Box } from "@mui/material";
+
 import PanelHistoria from "./PanelHistoria";
 import TarjetaFuncion from './TarjetaFuncion';
-import { Alert } from "@mui/material";
 
 const SalaItem = (props) => {
     // dependiendo de la sala que mediante el params proporcionado por el componente padre
@@ -10,26 +11,26 @@ const SalaItem = (props) => {
     const funciones = sala.funciones;
 
     return <>
-        <div className="row">
+        <Box className="row">
             {/* titulo y banner */}
-            <div>
+            <Box>
                 <h2 style={ {fontWeight: "600"} }>{sala.name}</h2>
-            </div>
+            </Box>
             
-            <div className="mb-3">
-                <div id="ubi">
+            <Box className="mb-3">
+                <Box color="inherit">
                     <LocationCity sx={ {mr: 1} }/>
-                    <Link className="text-decoration-none" to={ sala.img }>
+                    <>
                         {sala.city}, {sala.address}
-                    </Link>
-                </div>
-            </div>
+                    </>
+                </Box>
+            </Box>
 
-            <div className="col-md-8">
+            <Box className="col-md-8">
                 
-                <div style={ {textAlign: "center"} } className="mb-5">
+                <Box style={ {textAlign: "center"} } className="mb-5">
                     <img src={sala.img} className="w-100" style={ {borderRadius: "7px", width: "100%"} } alt="" />
-                </div>
+                </Box>
                 
             
                 {/* peliculas */}
@@ -38,25 +39,25 @@ const SalaItem = (props) => {
                 </h3>
                 {
                     (funciones)? (funciones.length !== 0)? funciones.map((funcion, index) =>
-                            <div className="my-3">
+                            <Box className="my-3">
                                 <TarjetaFuncion
                                     index={index}
                                     sala_obj={ sala }
                                     funcion_obj={ funcion } />
-                            </div>
-                    ) : <Alert severity="info">Esta sala no cuenta con funciones.</Alert> : <></>
+                            </Box>
+                    ) : <Alert severity="error">Esta sala no cuenta con funciones.</Alert> : <></>
                 }
-            </div>
+            </Box>
         
 
             {/* panel historia */}
-            <div className="col-md">
+            <Box className="col-md">
                 <PanelHistoria location={sala.city} 
                     texto={`${sala.description}. ${sala.address}, ${sala.secondAddress}. ${sala.phoneNumber}`} 
                     chips={(sala.formats)? sala.formats : null}
                     phone={sala.phoneNumber}/>
-            </div>
-        </div>
+            </Box>
+        </Box>
     </>
 }
 

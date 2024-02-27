@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/material";
 import Alert from '@mui/material/Alert'
 import InputFormulario from './InputFormulario'
 import Button from '@mui/material/Button'
@@ -45,15 +46,15 @@ const FormularioRegister = () => {
     // }
     
     // Después de registrar, se envia al login 
-    console.log(usuarioRegister)
+    // console.log(usuarioRegister)
     const res = await subirUsuario(usuarioRegister)
     if (res)
       navigate('/')
 
   }
 
-  return <div className="formulario">
-          <form className="form">
+  return <Box className="formulario-center">
+          <form className="form-register">
           <InputFormulario title={"Nombre"} objeto={usuarioRegister} llave={"nombres"} setFn={setusuarioRegister} />
           <InputFormulario title={"Apellido"} objeto={usuarioRegister} llave={"apellidos"} setFn={setusuarioRegister} />
           <InputFormulario title={"Codigo"} objeto={usuarioRegister} llave={"codigo"} setFn={setusuarioRegister} />
@@ -71,12 +72,16 @@ const FormularioRegister = () => {
           }
 
           <center>
-            <Button variant='contained' style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white', width: '7rem' }} onClick={handleRegistrarse}>
+            <Button 
+              variant='contained' 
+              sx={{ fontSize: '16px', color: 'white', px: 2 }} 
+              onClick={handleRegistrarse}
+            >
               Registrarse
             </Button>
           </center>
           </form>
-        </div>;
+        </Box>;
 }
 
 export default FormularioRegister

@@ -1,120 +1,97 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-
-import Button from '@mui/material/Button'
-import Alert from '@mui/material/Alert'
-// import { Resend } from 'resend'
-
-import InputRecupera from './InputRecupera'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import InputRecupera from './InputRecupera';
+import { useNavigate } from 'react-router-dom'
 
 const PantallaRecupera = () => {
-    // fondo
-    document.body.classList.add("fondo-body")
-
     const [usuario, setUsuario] = useState({
         codigo: "",
         contrasena: "",
-    })
-
-    const [formEnviado, setFormEnviado] = useState(false); // Nuevo estado para controlar si el formulario ya se ha enviado
-    const [error, setAlerta] = useState('')
-    const [aviso, setAviso] = useState('')
-    const [usuariosJSON, setUsuariosJSON] = useState([])
-
-    const obtenerUsuarios = async () => {    
-        const response = await fetch("https://raw.githubusercontent.com/JesuFrancesco/proyecto-progweb/main/public/usuarios.json")
-        const data = await response.json()
-        setUsuariosJSON(data)
-    }
+        codigoVerificacion: ""
+    });
+    const navegar = useNavigate()
+    const [formEnviado, setFormEnviado] = useState(false);
+    const [error, setAlerta] = useState('');
+    const [aviso, setAviso] = useState('');
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        
         try {
-            const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || { users: [] }
-            const todosLosUsuarios = [...usuariosGuardados.users, ...usuariosJSON]
-            
-            const user = todosLosUsuarios.find((u) => u.codigo === usuario.codigo)
-            
-            if (user) {
-                // TODO: logica para la recuperacion
-                setFormEnviado(true); 
+            const response = await fetch(`http://localhost:8000/api/correoCode?codigo_usuario=${usuario.codigo}`);
+            if (response.ok) {
+                setFormEnviado(true);
                 setAlerta('');
-                setAviso("Se ha enviado un correo a " + usuario.codigo + "@aloe.ulima.edu.pe");
-                //const correoE= usuario.codigo + "@aloe.ulima.edu.pe"
-                //enviarEmail(correoE)
+                setAviso(`Se ha enviado un correo a ${usuario.codigo}@aloe.ulima.edu.pe con su código de verificación.`);
             } else {
-                setAlerta('Usuario incorrecto');
+                setAlerta('Usuario incorrecto o no registrado');
             }
         } catch (error) {
-            console.error('Error al procesar el inicio de sesión:', error)
-            setAlerta('Error al procesar el inicio de sesión')
+            console.error('Error al procesar el inicio de sesión:', error);
+            setAlerta('Error al procesar el inicio de sesión');
         }
-    }
+    };
 
-    // llamada http
-    useEffect(() => {
-        obtenerUsuarios();
-    }, []);
-    
-
-    // const apiKey = '' // poner api key
-    // const resend = new Resend(apiKey);
-    /*
-    const enviarEmail = async (correoE) => {
+    const handleVerification = async (event) => {
+        event.preventDefault();
+        console.log(usuario.codigo)
+        console.log(usuario.codigoVerificacion)
+        console.log(usuario.contrasena)
         try {
-            // LOGICA DE API: TODO: CORS
-            const { data, error } = await resend.emails.send({
-                from: 'Acme <onboarding@resend.dev>',
-                to: [correoE],
-                subject: "asunto",
-                html: "contenido",
+            const response = await fetch('http://localhost:8000/api/verificacion', {
+                method: 'POST',
+                body: JSON.stringify({
+                    codigo_usuario: usuario.codigo,
+                    codigo: usuario.codigoVerificacion,
+                    nueva_contrasenha: usuario.contrasena
+                })
             });
+            if (response.ok) {
+                const responseData = await response.text();
+                setAviso("Se ha cambiado su contraseña. Regresando al Login");
+                setTimeout(() => {
+                    navegar("/");
+                }, 2000);
 
-            if (error) {
-                console.error('Error sending email:', error);
-                setAlerta('Error al enviar el correo');
             } else {
-                console.log('Email sent successfully:', data);
-                setAviso('Correo enviado exitosamente');
+                const responseData = await response.text();
+                setAlerta("Codigo incorrecto");
             }
         } catch (error) {
-            console.error('Error sending email:', error);
-            setAlerta('Error al enviar el correo');
+            console.error('Error al verificar código:', error);
+            setAlerta('Error al verificar código');
         }
-
-        console.log("envio realizado")
-    }*/
+    };
 
     return (
         <>
             <div id="formulario">
-                <form className="form needs-validation">
-
-                    {/* Input */}
-                    <InputRecupera title={"Código para recuperación"} objeto={usuario} llave={"codigo"} setFn={setUsuario} disabled={formEnviado} />
-                    <InputRecupera title={"Ingrese contraseña nueva"} objeto={usuario} llave={"contrasena"} setFn={setUsuario} variante="password"  />
+                <form className="form-login needs-validation">
+                    <InputRecupera title={"Código de usuario"} objeto={usuario} llave={"codigo"} setFn={setUsuario} disabled={formEnviado} />
+                    <InputRecupera title={"Contraseña nueva"} objeto={usuario} llave={"contrasena"} setFn={setUsuario} variante="password" disabled={formEnviado} />
+                    {formEnviado && (
+                        <InputRecupera title={"Código de verificación"} objeto={usuario} llave={"codigoVerificacion"} setFn={setUsuario} />
+                    )}
                     {aviso && (
-                        <Alert
-                            severity="success"
-                            sx={{ mt: 2}}>
+                        <Alert severity="success" sx={{ mt: 2}}>
                             {aviso}
                         </Alert>
                     )}
-                    
-
                     {error && (
-                        <Alert
-                            severity="error"
-                            sx={{ mt: 2 }}>
+                        <Alert severity="error" sx={{ mt: 2 }}>
                             {error}
                         </Alert>
                     )}
-
                     <center className='mt-3'>
-                        <Button variant='contained' sx={{ mr: "2em" }} style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }}
-                            onClick={handleLogin} disabled={formEnviado} hidden={formEnviado}>Enviar</Button>
-
+                        {!formEnviado && (
+                            <Button variant='contained' sx={{ mr: "2em" }} style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }}
+                                onClick={handleLogin} disabled={formEnviado} hidden={formEnviado}>Enviar</Button>
+                        )}
+                        {formEnviado && (
+                            <Button variant='contained' sx={{ mr: "2em" }} style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }}
+                                onClick={handleVerification}>Verificar</Button>
+                        )}
                         <Link to={"/"}>
                             <Button variant='contained' style={{ backgroundColor: "#FA7900", fontSize: '16px', color: 'white' }} disabled={formEnviado}>Volver</Button>
                         </Link>

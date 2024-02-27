@@ -1,18 +1,19 @@
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { Typography, Box } from '@mui/material';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LinearProgress from '@mui/material/LinearProgress';
+
 import ReservaDialog from "./ReservaDialog";
 import { checkLogin } from '../util/CheckLogin';
 
-export default function Reserva()
+export default function Reserva(props)
 {
     const navegacion = useNavigate();
     const ruta = useLocation();
-
-    // console.log("--- debug: Reserva.jsx")
-    // console.log(ruta.state) // datos de la reserva
-    // console.log(sessionStorage.getItem("usuario_objeto")) // datos usuario
+    console.log(ruta.state)
 
     const usu = sessionStorage.getItem("usuario_objeto")
     const usuario = (usu)? JSON.parse(usu) : {};
@@ -28,6 +29,14 @@ export default function Reserva()
         ...usuario,
         cantidad: 1,
     })
+
+    const [loading, setLoading] = useState(false);
+
+    const useLoadingBar = {
+        loading,
+        setLoading
+    }
+
     
     const InsertarNombre = (event) => {
         setReserva({...reserva, nombres: event.target.value})
@@ -52,24 +61,32 @@ export default function Reserva()
         boxShadow: "0px 2px 5px -2px"
     }
 
-    return <div id="todo">
+    return <Box id="todo">
         <h2 className="border-bottom">Reserva</h2>
-        <div className="row">
-            <div className="col mt-4">
-                <div style={ qx }>
-                    <div style={ {marginLeft : "20px", marginBottom : "10px"} }>
-                        <h2>{ruta.state.titulo}</h2>
-                        <div >
-                            <AccessTimeIcon /><span className="sali">&nbsp;1hrs 30min</span>
-                            <LocationOnIcon /><span className="sali">&nbsp;{ruta.state.sala}</span>
-                        </div>
-                    </div>
-                    <div className="card" style={carta}>
-                        <div className="card-body">
-                            <h6 className="card-title">Información de Reserva</h6>
-                            <span>Hora: </span> <b>{ruta.state.hora}</b>
-                            <div className="border-bottom mb-4 mt-2"></div>
-                            <div className="card-text">
+        <Box className="row">
+            <Box className="col mt-4">
+                <Box sx={ qx }>
+                    <Box sx={ {ml : "20px", mb : "10px"} }>
+                        <h2>{ruta.state.titulo} | Funcion n° {ruta.state.id}</h2>
+                        <Box>
+                            <AccessTimeIcon /><Box sx={{display: "inline"}} color={"text.primary"}>&nbsp;1hrs 30min &nbsp;</Box>
+                            <LocationOnIcon /><Box sx={{display: "inline"}} color={"text.primary"}>&nbsp;{ruta.state.sala}</Box>
+                        </Box>
+                    </Box>
+                    <Box className="card" sx={carta}>
+                        {
+                            loading && <LinearProgress />
+                        }
+                        <Box className="card-body">
+                            <Typography color={"text.primary"}>Información de Reserva</Typography >
+                            
+                            <Typography color={"text.primary"}>
+                                {ruta.state.fecha} - {ruta.state.hora} hrs
+                            </Typography>
+                            
+                            <Box className="border-bottom mb-4 mt-2"></Box>
+                            
+                            <Box className="card-text">
                                 <label>Nombre</label>
                                 <input type="text" 
                                     className="form-control mb-3 d-grid gap-2 cajate" 
@@ -95,27 +112,28 @@ export default function Reserva()
                                 <input type="number" 
                                     className="form-control cajate" 
                                     placeholder="Cantidad"
-                                    
                                     value={reserva.cantidad}
                                     onChange={InsertarCantidad}/>
+
                                 <ReservaDialog
+                                    id={ruta.state.id}
+                                    reservaHTTP={props.reservaHTTP}
+                                    loadingbar={useLoadingBar}
                                     nombrese={reserva.nombres}
                                     apellidose={reserva.apellidos}
                                     codigose={reserva.codigo}
                                     cantidadse={reserva.cantidad}/> 
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div className="col-md-4">
-                <div style={{marginTop:"100px"}}>
-                    <img style={ {} } src={ruta.state.imagen} id="img" alt=""/>
-                </div>
-            </div>
-        </div>
-    </div>
+                            </Box>
+                        </Box>
+                    </Box>
+
+                </Box>
+            </Box>
+            <Box className="col-md-4">
+                <Box style={{marginTop:"100px"}}>
+                    <img src={ruta.state.imagen} id="img" alt=""/>
+                </Box>
+            </Box>
+        </Box>
+    </Box>
 }

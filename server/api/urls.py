@@ -4,6 +4,8 @@ urlpatterns = [
     # Login & register urls
     path("login", loginEndPoint),
     path("register", registerEndPoint),
+    path("cambio-nombres", cambiarNombre),
+    path("cambio-contrasenha", cambiarContrasenha),
 
     # Salas urls
     path("salas", obtenerSalasPreview),
@@ -17,5 +19,12 @@ urlpatterns = [
     path("funciones", obtenerFuncionesPreview),
 
     # Reserva url
-    path("reserva-register", registroReserva)
+    path("reserva-register", registroReserva),
+    # correo
+    path("correopostmark", enviarCorreoPostmark),
+    path("correoCode",correoXcodigo),
+    path("verificacion",verificarCodigo),
+    path("verificar-usuario",verificarUsuario)
+    
+    
 ]

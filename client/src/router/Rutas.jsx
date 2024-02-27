@@ -10,6 +10,7 @@ import MenuPage from "../MenuPage"
 import LoginPage from "../LoginPage"
 import RegistroPage from "../RegistroPage"
 import RecuperaPage from "../RecuperaPage"
+import ConfiguracionPage from "../ConfiguracionPage"
 
 const Rutas = () => {
     return createHashRouter([
@@ -28,6 +29,10 @@ const Rutas = () => {
         {
             path: "/salas",
             element: <SalaIndexPage />
+        },
+        {
+            path: "/configuracion",
+            element: <ConfiguracionPage />
         },
         {
             path: "/salas/:id",

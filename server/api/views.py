@@ -3,7 +3,12 @@ from django.http import *
 from .models import *
 from django.views.decorators.csrf import csrf_exempt #
 from django.core.handlers.wsgi import WSGIRequest as RequestType
+from datetime import datetime
+import locale
 import json
+import os 
+import resend 
+import random
 
 # Formato de retorno
 response = lambda dictionary, code = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=code)
@@ -66,10 +71,17 @@ def obtenerSalaItem(request: RequestType, salapath: str):
         response = lambda dictionary, codigo = 200: HttpResponse(json.dumps(dictionary), content_type="application/json", status=codigo)
 
         try:
+            # Establecer la configuración regional en español
+            #locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+
+            # Obtener la fecha de pc local
+            #fecha_actual = datetime.now()
+
             # formato de ventana a retornar
             to_window_json = lambda window: {
-                "date": str(window.date),
-                "hour": str(window.hour),
+            #    "date": fecha_actual.strftime("%A, %d de %B"),
+                "dateStr": str(window.date),
+                "hour": window.hour.strftime("%H:%M"),
             }
 
             # formato de funcion a retornar
@@ -85,6 +97,7 @@ def obtenerSalaItem(request: RequestType, salapath: str):
 
             # formato de funcion a retornar
             to_funcion_json = lambda funcion: {
+                "id": funcion.pk,
                 "movie": to_movie_json(Movie.objects.get(pk=funcion.movie.pk)),
                 "window": to_window_json(Window.objects.get(pk=funcion.window.pk)),
             }
@@ -126,12 +139,18 @@ def obtenerSalaItem(request: RequestType, salapath: str):
 
 def obtenerPelicula_Detalle(request):
     if request.method == "GET":
+        # Establecer la configuración regional en español
+        #locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+
+        # Obtener la fecha de pc local
+        #fecha_actual = datetime.now()
+
         pathFiltro = request.GET.get("path")
 
         if pathFiltro == "":
             listaMovieFiltrada = Movie.objects.all()
         else:
-            listaMovieFiltrada = Movie.objects.filter(path__icontains=pathFiltro)
+            listaMovieFiltrada = Movie.objects.filter(path=pathFiltro)
 
         dataResponse = []
         for movie in listaMovieFiltrada:         
@@ -143,10 +162,16 @@ def obtenerPelicula_Detalle(request):
                 "path": movie.path,
                 "cast": [Cast.objects.get(pk=movie_cast["cast_id"]).name for movie_cast in Movie_Cast.objects.filter(movie=movie.pk).values()],
                 "genres": [Genre.objects.get(pk=movie_genre["genre_id"]).name for movie_genre in Movie_Genre.objects.filter(movie=movie.pk).values()],
-                "salas": [{"name": Sala.objects.get(pk=funcion["sala_id"]).name, "hour": Window.objects.get(pk=funcion["window_id"]).hour.strftime("%H:%M:%S")} for funcion in Funcion.objects.filter(movie=movie.pk).values()]
+                "salas": [{
+                    "funcion_id": funcion.pk, 
+                    "name": Sala.objects.get(pk=funcion.sala.pk).name, 
+                    "hour": Window.objects.get(pk=funcion.window.pk).hour.strftime("%H:%M"), 
+                    "date": Window.objects.get(pk=funcion.window.pk).date.strftime("%Y-%m-%d")
+                } for funcion in Funcion.objects.filter(movie=movie.pk)]
             })
 
         return HttpResponse(json.dumps(dataResponse))
+
 
 def obtenerFuncionesPreview(request):
     if request.method == "GET":
@@ -167,7 +192,7 @@ def obtenerFuncionesPreview(request):
                 }) (Movie.objects.get(pk=funcion.movie.pk)),
 
                 "window": (lambda ventana: {
-                    "hour": str(ventana.hour), 
+                    "hour": ventana.hour.strftime("%H:%M"), 
                     "date": str(ventana.date)
                 }) (Window.objects.get(pk=funcion.window.pk))
             } for funcion in Funcion.objects.all()]
@@ -193,31 +218,33 @@ def obtenerFuncionesPreview(request):
         
         except ValueError as err:
             return response({"msg": str(err)}, code=400)
-
+#ahora solo filtrara una vez aca y el resto se hara en el front 
 def obtenerPeliculas(request):
     if request.method == "GET":
-        filtroNombre = request.GET.get("nombre")
-
-        if filtroNombre == "":
-            listaMovieFiltrada = Movie.objects.all()
-        else:
-            listaMovieFiltrada = Movie.objects.filter(title__icontains=filtroNombre)
+        #filtroNombre = request.GET.get("nombre")
+        listaMovieFiltrada = Movie.objects.all()
+        #if not filtroNombre or filtroNombre == "":
+        #    listaMovieFiltrada = Movie.objects.all()[:100]
+        #else:
+        #    listaMovieFiltrada = Movie.objects.filter(title__icontains=filtroNombre)[:100]
 
         dataResponse = []
         for movie in listaMovieFiltrada:
             generos = Movie_Genre.objects.filter(movie=movie.pk)
             generos_lista = [genre.genre.name for genre in generos]
             
-            dataResponse.append({
-                "title": movie.title,
-                "year": movie.year,
-                "extract": movie.extract,
-                "thumbnail": movie.thumbnail,
-                "path": movie.path if not "/" in movie.path else movie.path.replace("/", "-"),
-                "genres":generos_lista
-            })
+            tiene_sala = Funcion.objects.filter(movie=movie.pk).exists()
+            if tiene_sala:
+                dataResponse.append({
+                    "title": movie.title,
+                    "year": movie.year,
+                    "extract": movie.extract,
+                    "thumbnail": movie.thumbnail,
+                    "path": movie.path if not "/" in movie.path else movie.path.replace("/", "-"),
+                    "genres":generos_lista
+                })
 
-        return HttpResponse(json.dumps(dataResponse))
+        return HttpResponse(json.dumps(dataResponse),content_type="application/json")
 
 @csrf_exempt
 def loginEndPoint (request): 
@@ -301,21 +328,198 @@ def registerEndPoint (request):
         }
         return HttpResponse(json.dumps(respDict))
 
+@csrf_exempt
 def registroReserva (request):
     if request.method == "POST":
-
         try:
             reservaPython = json.loads(request.body)
 
-            # por completar xd
-            # reservaORM = Reserva(
-            #     x = reservaPython["1"],
-            #     x = reservaPython["2"],
-            #     x = reservaPython["3"],
-            # )
-            # reservaORM.save()
+            # por completar xd ola si
+            reservaORM = Reserva(
+                entradas = reservaPython["entradas"],
+                funcion = Funcion.objects.get(pk=reservaPython["funcion"]),
+                usuario = Usuario.objects.get(codigo=reservaPython["codigo"]),
+            )
+            reservaORM.save()
 
             return response({"msg": ""})
 
         except Exception as err:
             return response({"msg": str(err)}, code=400)
+
+
+#api key :
+#re_K1uTZPc7_5v1rNDgCSndewkywKMUxm5zD
+#no usar esa es mia xd
+#si quieren probar este code creense una cuenta en resend
+#creen una api key y pongala como variale de entorno (con nombre RESEND_API_KEY)
+#solo les deja enviar a su propio correo xd
+
+#este sera el oficial
+def correoXcodigo(request):
+    if request.method == "GET":
+        try:
+            codigo_alumno = request.GET.get("codigo_usuario")
+            
+            print(codigo_alumno)
+            # Generar un código aleatorio de 6 dígitos
+            codigo_aleatorio = ''.join([str(random.randint(0, 9)) for _ in range(6)])
+            
+            # Buscar al usuario correspondiente
+            usuario = Usuario.objects.get(codigo=codigo_alumno)
+            
+            # Crear una instancia del modelo Code y guardarla en la base de datos
+            code = Code(codigo=codigo_aleatorio, user=usuario)
+            code.save()
+            enviarCorreoPostmark2(codigo_alumno,codigo_aleatorio)
+            
+            return HttpResponse("Código generado y guardado correctamente")
+        
+        except Usuario.DoesNotExist:
+            return HttpResponse("No se encontró el usuario con el código proporcionado", status=404)
+        
+        except Exception as e:
+            return HttpResponse("Error al generar y guardar el código: " + str(e), status=500)
+        
+@csrf_exempt
+def verificarCodigo(request):
+    if request.method == "POST":
+        try:
+            # Obtener los datos de la solicitud
+            data = json.loads(request.body)
+            print(data)
+            codigo_usuario = data.get("codigo_usuario")
+            
+            codigo = data.get("codigo")
+            print(codigo)
+            nueva_contrasenha = data.get("nueva_contrasenha")
+            
+
+            # Buscar el código en la base de datos
+            code = Code.objects.filter(codigo=codigo)#esta parte esta media xd
+
+            if code:
+                # Cambiar la contraseña del usuario
+                usuario = Usuario.objects.get(codigo=codigo_usuario)
+                usuario.contrasenha = nueva_contrasenha
+                usuario.save()
+                
+                # Eliminar el código utilizado de la tabla Code
+                code.delete()
+
+                return JsonResponse({'ok': True})
+            else:
+                return HttpResponse("El código proporcionado no es válido para este usuario", status=400)
+        
+        except Exception as e:
+            return HttpResponse("Error al verificar y cambiar la contraseña: " + str(e), status=500)        
+
+#este es de prueba 
+
+    
+# este usa postmark
+#
+# Request tipo POST
+# {
+#     "codigo": 12345678
+# }
+@csrf_exempt
+def enviarCorreoPostmark(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+
+            if not data or data == None or data == "": raise Exception("No se ha enviado codigo de usuario.")
+
+            import requests
+            url = "https://api.postmarkapp.com/email/withTemplate"
+            headers = {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "X-Postmark-Server-Token": "eda67731-f17b-460c-82e1-83207579c4fb" # completar token jeje
+            }#os.environ["API_KEY"]
+            data = {
+                "From": "20210109@aloe.ulima.edu.pe", # no se puede cambiar, solo lo envia desde mi correo
+                "To": f"{data['codigo']}@aloe.ulima.edu.pe", # se puede cambiar a destinatarios ulima
+                "TemplateId": 35034773, # depende del api key creo
+                "TemplateModel": {
+                    "name": data["codigo"]
+                }
+            }
+
+            r = requests.post(url, headers=headers, json=data)
+            return response({"msg": "", "data": r.json()}, code=200)
+
+        except Exception as err:
+            return response({"msg": str(err)}, code=400)
+
+#
+def enviarCorreoPostmark2(codigo,codigo_aleatorio):
+    import requests
+    url = "https://api.postmarkapp.com/email/withTemplate"
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "X-Postmark-Server-Token": "eda67731-f17b-460c-82e1-83207579c4fb" # completar token jeje
+    }
+    data = {
+        "From": "20210109@aloe.ulima.edu.pe", # no se puede cambiar, solo lo envia desde mi correo
+        "To": f"{codigo}@aloe.ulima.edu.pe", # se puede cambiar a destinatarios ulima
+        "TemplateId": 35034773, # depende del api key creo
+        "TemplateModel": {
+            "name": codigo,
+            "code":codigo_aleatorio,
+        }
+    }
+
+    r = requests.post(url, headers=headers, json=data)
+    return response({"msg": "", "data": r.json()}, code=200)
+
+   
+
+# PUT Requests para el cambio de credenciales
+@csrf_exempt
+def cambiarNombre(request):
+    if request.method == "PUT":
+        try:
+            from operator import itemgetter
+            nombres, apellidos, codigo = itemgetter('nombres', 'apellidos', 'codigo')(json.loads(request.body))
+
+            usuario = Usuario.objects.get(codigo=codigo)
+            usuario.nombres = nombres
+            usuario.apellidos = apellidos
+            usuario.save()
+
+            return response({"msg": ""})
+        except Exception as err:
+            return response({"msg": str(err)}, code=500)
+        
+@csrf_exempt
+def cambiarContrasenha(request):
+    if request.method == "PUT":
+        try:
+            from operator import itemgetter
+            nuevacontrasenha, codigo = itemgetter('contrasenha', 'codigo')(json.loads(request.body))
+
+            usuario = Usuario.objects.get(codigo=codigo)
+            usuario.contrasenha = nuevacontrasenha
+            usuario.save()
+
+            return response({"msg": ""})
+        except Exception as err:
+            return response({"msg": str(err)}, code=500)
+        
+        
+def verificarUsuario(request):
+    if request.method == "GET":
+        codigo_usuario = request.GET.get('codigo_usuario')
+        if codigo_usuario:
+            try:
+                usuario = Usuario.objects.get(codigo=codigo_usuario)
+                return JsonResponse({'existe': True})
+            except Usuario.DoesNotExist:
+                
+                return JsonResponse({'existe': False})
+        else:
+            # Si no se proporciona el código del usuario, devuelve un error
+            return JsonResponse({'error': 'No se proporcionó el código del usuario'}, status=400)

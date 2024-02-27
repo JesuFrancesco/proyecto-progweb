@@ -1,10 +1,16 @@
 import { Link, useLocation } from "react-router-dom"
 import Reserva from "./Reserva"
 
-function ReservaIndex(){
+export default function ReservaIndex(props){
     const ruta = useLocation();
-    if(!ruta.state) return <div>No has iniciado sesion. Retorna a <Link style={ {backgroundColor: "orange"} } to={"/"}>login</Link></div>
-    return <Reserva/>
-}
+    const usu = sessionStorage.getItem("usuario_objeto");
+    const retorno = (usu)? "/menu" : "/";
+    const retornoStr = (usu)? "menu" : "login";
+    const msg = (usu)? "No se registró correctamente la reserva" : "No has iniciado sesión";
 
-export default ReservaIndex
+    if(!ruta.state) return <div>
+        {msg}. Retorna a <Link style={{backgroundColor: "orange"}} to={retorno}>{retornoStr}</Link>
+    </div>
+
+    return <Reserva reservaHTTP={props.reservaHTTP} />
+}
