@@ -340,7 +340,7 @@ def correoXcodigo(request):
             # Crear una instancia del modelo Code y guardarla en la base de datos
             code = Code(codigo=codigo_aleatorio, user=usuario)
             code.save()
-            enviarCorreoPostmark2(codigo_alumno,codigo_aleatorio)
+            enviarCorreoPostmark(codigo_alumno,codigo_aleatorio)
             
             return HttpResponse("Código generado y guardado correctamente")
         
@@ -384,13 +384,13 @@ def verificarCodigo(request):
             return HttpResponse("Error al verificar y cambiar la contraseña: " + str(e), status=500)        
 
 @csrf_exempt
-def enviarCorreoPostmark2(codigo,codigo_aleatorio):
+def enviarCorreoPostmark(codigo,codigo_aleatorio):
     import requests
     url = "https://api.postmarkapp.com/email/withTemplate"
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "X-Postmark-Server-Token": "eda67731-f17b-460c-82e1-83207579c4fb" # completar token jeje
+        "X-Postmark-Server-Token": os.environ["POSTMARK_APIKEY"]
     }
     data = {
         "From": "20210109@aloe.ulima.edu.pe", # no se puede cambiar, solo lo envia desde mi correo
@@ -450,3 +450,27 @@ def verificarUsuario(request):
         else:
             # Si no se proporciona el código del usuario, devuelve un error
             return JsonResponse({'error': 'No se proporcionó el código del usuario'}, status=400)
+
+def obtenerReserva(request):
+    if request.method == "GET":
+        usuario = request.GET.get("usuario_id")
+        usu = Usuario.objects.filter(codigo=usuario).first()  # Utilizamos .first() para obtener el primer objeto Usuario que coincida o None si no hay coincidencias
+
+        if usu:
+            reservas_usuario = Reserva.objects.filter(usuario=usu)
+        else:
+            reservas_usuario = Reserva.objects.all()
+
+        dataResponse = []
+
+        for reserva in reservas_usuario:
+            dataResponse.append({
+                "usuario_id": reserva.usuario.pk,
+                "fecha": reserva.fecha.strftime('%Y-%m-%d'),  # Convertir datetime a cadena de texto
+                "hora": reserva.fecha.strftime('%H:%M:%S'),
+                "entradas": reserva.entradas,
+                "funcion": reserva.funcion.movie.title , 
+                "sala" : reserva.funcion.sala.name
+            })
+
+        return HttpResponse(json.dumps(dataResponse))

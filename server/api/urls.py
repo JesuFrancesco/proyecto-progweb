@@ -51,10 +51,11 @@ urlpatterns = [
     path("funciones", obtenerFuncionesPreview),
     path("reserva-register", registroReserva),
 
-
     # =====================
     # correo urls
     # =====================
+    path("historial", obtenerReserva),
+    # correo
     path("correoCode",correoXcodigo),
     path("verificacion",verificarCodigo),
     path("verificar-usuario",verificarUsuario)

@@ -14,6 +14,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import BadgeIcon from '@mui/icons-material/Badge';
 import CambiarContraseña from "./CambiarContra";
 import CambiarNombres from "./CambiarNombres";
+import Historial from "./Historial";
 
 const ConfiguracionIndex = () => {
     const [open, setOpen] = useState(true);
@@ -61,6 +62,15 @@ const ConfiguracionIndex = () => {
                                     <LockIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Cambiar contraseña" />
+                            </ListItemButton>
+                        </List>
+
+                        <List component="div" disablePadding>
+                            <ListItemButton onClick={() => setSeccionActual(<Historial />)} sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <LockIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Historial de reservas" />
                             </ListItemButton>
                         </List>
                     </Collapse>

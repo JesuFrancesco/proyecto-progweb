@@ -20,7 +20,7 @@ const Sidebar = () => {
         {ruta: "/menu", label: "Menu page"},
         {ruta: "/salas", label: "Salas"},
         {ruta: "/peliculas-index", label: "Peliculas"},
-        {ruta: "/configuracion", label: "Configuración"}
+        {ruta: "/configuracion", label: "Mi cuenta"}
     ]
 
     const [valorInput, setValorInput] = useState();
