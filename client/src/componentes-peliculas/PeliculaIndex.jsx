@@ -31,7 +31,7 @@ const PeliculaIndex = () => {
     };
     const obtenerPeliculasHTTP = async () => {
         
-        const response = await fetch(`http://localhost:8000/api/peliculas?nombre=${filtroNombre}`);
+        const response = await fetch(` https://pweb2024-api.azurewebsites.net/api/peliculas?nombre=${filtroNombre}`);
         if (response.ok) {
             const data = await response.json();
             setPeliculasJSON(data);

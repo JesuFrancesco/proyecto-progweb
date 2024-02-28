@@ -12,7 +12,7 @@ const CambiarNombres = () => {
     const [apellidos, setApellidos] = useState(usuario.apellidos)
 
     const handleCambioNombres = async () => {
-        const res = await fetch("http://localhost:8000/api/cambio-nombres", 
+        const res = await fetch(" https://pweb2024-api.azurewebsites.net/api/cambio-nombres", 
             {
                 method: "PUT",
                 body: JSON.stringify({
