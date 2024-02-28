@@ -2,9 +2,13 @@ import { useState, useEffect } from "react";
 import Sala from "./Sala"
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
+import CircularProgress from '@mui/material/CircularProgress';
+
 import { TextField, Box, Alert, Select, MenuItem } from "@mui/material";
 
 const SalaIndex = () => {
+    const [loading, setLoading] = useState(false);
+
     const [salas, setSalas] = useState([]);
     const [filtroNombre, setFiltroNombre] = useState("");
     const [filtroFormat, setFiltroFormat] = useState("");
@@ -13,6 +17,7 @@ const SalaIndex = () => {
     useEffect(() => {
         // Peticiones HTTP al backend
         const obtenerSalasHTTP = async () => {
+            setLoading(true)
             const response = await fetch(`
                 https://pweb2024-api.azurewebsites.net/api/salas?${(filtroNombre)? `name=${filtroNombre}`: ""}&${(filtroFormat)? `&format=${filtroFormat}` : ""}
             `);
@@ -22,8 +27,7 @@ const SalaIndex = () => {
             else
                 setErrorHTTP(data.msg)
 
-            // console.log("debug json")
-            // console.log(json)
+            setLoading(false)
         }
         obtenerSalasHTTP();
     }, [filtroNombre, filtroFormat]);
@@ -65,6 +69,10 @@ const SalaIndex = () => {
                     <MenuItem value={"6"}>REGULAR</MenuItem>
                 </Select>
             </Box>
+
+            {
+                loading && <CircularProgress />
+            }
 
             <Box id="tarjetas" className="card-deck">
                 {

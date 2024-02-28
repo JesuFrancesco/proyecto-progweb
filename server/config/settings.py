@@ -71,11 +71,13 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     os.environ['CORS_ALLOWED_1'], 
     os.environ['CORS_ALLOWED_2'],
+    os.environ['CORS_ALLOWED_3'],
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     os.environ['CORS_ALLOWED_1'], 
     os.environ['CORS_ALLOWED_2'],
+    os.environ['CORS_ALLOWED_3'],
 ]
 
 ROOT_URLCONF = 'config.urls'
