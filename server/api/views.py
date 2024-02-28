@@ -523,3 +523,27 @@ def verificarUsuario(request):
         else:
             # Si no se proporciona el código del usuario, devuelve un error
             return JsonResponse({'error': 'No se proporcionó el código del usuario'}, status=400)
+
+def obtenerReserva(request):
+    if request.method == "GET":
+        usuario = request.GET.get("usuario_id")
+        usu = Usuario.objects.filter(codigo=usuario).first()  # Utilizamos .first() para obtener el primer objeto Usuario que coincida o None si no hay coincidencias
+
+        if usu:
+            reservas_usuario = Reserva.objects.filter(usuario=usu)
+        else:
+            reservas_usuario = Reserva.objects.all()
+
+        dataResponse = []
+
+        for reserva in reservas_usuario:
+            dataResponse.append({
+                "usuario_id": reserva.usuario.pk,
+                "fecha": reserva.fecha.strftime('%Y-%m-%d'),  # Convertir datetime a cadena de texto
+                "hora": reserva.fecha.strftime('%H:%M:%S'),
+                "entradas": reserva.entradas,
+                "funcion": reserva.funcion.movie.title , 
+                "sala" : reserva.funcion.sala.name
+            })
+
+        return HttpResponse(json.dumps(dataResponse))

@@ -20,6 +20,7 @@ urlpatterns = [
 
     # Reserva url
     path("reserva-register", registroReserva),
+    path("historial", obtenerReserva),
     # correo
     path("correopostmark", enviarCorreoPostmark),
     path("correoCode",correoXcodigo),
