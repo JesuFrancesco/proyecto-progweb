@@ -27,7 +27,7 @@ const FormularioLogin = () => {
             contrasenha : usuario.contrasenha
         }
 
-        const response = await fetch("http://pweb2024-api.azurewebsites.net/api/login", {
+        const response = await fetch("https://pweb2024-api.azurewebsites.net/api/login", {
             mode: "cors",
             headers: {
                 "Access-Control-Allow-Origin": "*"

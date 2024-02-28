@@ -11,8 +11,6 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Alert } from '@mui/material'
 
-// const error = <><img src="https://http.cat/images/404.jpg" alt="" /></>
-
 const SalaItemPage = () => {
     const { id: salapath } = useParams();
     const [sala, setSala] = useState({});
@@ -21,7 +19,7 @@ const SalaItemPage = () => {
     
     useEffect(() => {
         const obtenerSala = async () => {
-            const response = await fetch(`http://pweb2024-api.azurewebsites.net/api/sala/${salapath}`);
+            const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/sala/${salapath}`);
             const data = await response.json();
             console.log(data)
             if (!data.msg)
