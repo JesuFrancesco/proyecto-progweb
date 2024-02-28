@@ -9,26 +9,15 @@ import DetalleSinopsis from "./DetalleSinopsis";
 const DetalleIndex = () => {
   const { pathFiltro } = useParams(); // Obtiene el parámetro de la URL
   const [pelicula, setPelicula] = useState([]);
-  const [error, setError] = useState(false);
-
-  const errorComponent = (
-    <>
-      <img src="https://http.cat/images/404.jpg" alt="" />
-    </>
-  );
 
   useEffect(() => {
     const obtenerDetalleHTTP = async () => {
         const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/detalle?path=${pathFiltro}`);
-        const json =await response.json();
+        const json = await response.json();
         setPelicula(json);
     };
     obtenerDetalleHTTP();
   }, [pathFiltro]);
-
-  if (error) {
-    return errorComponent;
-  }
 
   return (
     <div className="row">

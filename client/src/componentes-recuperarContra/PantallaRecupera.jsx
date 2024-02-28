@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
@@ -48,14 +48,14 @@ const PantallaRecupera = () => {
                 })
             });
             if (response.ok) {
-                const responseData = await response.text();
+                // const responseData = await response.text();
                 setAviso("Se ha cambiado su contraseña. Regresando al Login");
                 setTimeout(() => {
                     navegar("/");
                 }, 2000);
 
             } else {
-                const responseData = await response.text();
+                // const responseData = await response.text();
                 setAlerta("Codigo incorrecto");
             }
         } catch (error) {

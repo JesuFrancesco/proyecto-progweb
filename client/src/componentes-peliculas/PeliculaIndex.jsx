@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Pelicula from "./Pelicula";
 
@@ -11,17 +11,11 @@ import { Typography, Box, TextField } from "@mui/material";
 const PeliculaIndex = () => {
     const navegar = useNavigate();
     
-    const [filtro, setFiltro] = useState("");
     const [pagina, setPagina] = useState(1);
-
     const [filtroNombre, setFiltroNombre] = useState("");
-    
-    const id = useParams();
-    const pageRef = useRef(id.pagina);
-
     const [peliculasJSON, setPeliculasJSON] = useState([]);
     const [peliS,setPeli]=useState([])
-    const [errorHTTP, setErrorHTTP] = useState("");
+    
     const filtrarPeliculas = (keyword) => {
         const peliculasJSON = peliS //cada vez que se filtre lo hace desde la lista orginal ,de esta manera se vuelve a filtra cuando borras un caracter que ese era el problema xd
         const peliculasFiltradas = peliculasJSON.filter(
@@ -29,28 +23,25 @@ const PeliculaIndex = () => {
         );
         return peliculasFiltradas;
     };
-    const obtenerPeliculasHTTP = async () => {
-        
-        const response = await fetch(` https://pweb2024-api.azurewebsites.net/api/peliculas?nombre=${filtroNombre}`);
-        if (response.ok) {
-            const data = await response.json();
-            setPeliculasJSON(data);
-            setPeli(data);
-            // Guardar los datos en sessionStorage
-            sessionStorage.setItem("peliculasJSON", JSON.stringify(data));
-        } else {
-            throw new Error("Error al obtener las películas");
-        }
-        
-    };
 
+    
     useEffect(() => {
-        // Verificar si hay datos en sessionStorage
-        
-        
-            // Si no hay datos almacenados, realizar la solicitud al servidor
+        const obtenerPeliculasHTTP = async () => {
+            // filtro en frontend, son demasiadas peliculas 
+            // const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/peliculas?nombre=${filtroNombre}`);
+            const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/peliculas`);
+            if (response.ok) {
+                const data = await response.json();
+                setPeliculasJSON(data);
+                setPeli(data);
+                // Guardar los datos en sessionStorage
+                sessionStorage.setItem("peliculasJSON", JSON.stringify(data));
+            } else {
+                throw new Error("Error al obtener las películas");
+            }
+            
+        };
         obtenerPeliculasHTTP();
-        
     },[]);
 
     const handleInputChange = (evt) => {

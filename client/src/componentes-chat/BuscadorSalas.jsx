@@ -8,7 +8,7 @@ const SalaCard = () => {
         resultado: '',
     });
     
-    const queryUrl = ` https://pweb2024-api.azurewebsites.net/api/salas`;
+    const queryUrl = `https://pweb2024-api.azurewebsites.net/api/salas`;
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -33,12 +33,12 @@ const SalaCard = () => {
     const { cargando, resultado } = state;
 
     return (
-        <Box>
+        <Box sx={{backgroundColor: "background.default"}}>
             Puedes ir al... 
             { cargando ? "cargando..." : 
                 <Link to={`/salas/${resultado.path}`}>
-                    <Box sx={{backgroundColor: "primary.main", textAlign: "center"}}>
-                        {resultado.name} <br />
+                    <Box color={'text.primary'} sx={{backgroundColor: "primary.main", textAlign: "center"}}>
+                        <Typography sx={{color: 'text.primary'}} >{resultado.name}</Typography> <br />
                         <img style={{width: "100%"}} src={resultado.img} alt="" />
                     </Box>
                 </Link>
@@ -46,10 +46,12 @@ const SalaCard = () => {
             
 
             <br />
-            Se encuentra en ...
-            {
-                cargando ? "cargando..." : <Typography>{resultado.address}</Typography>
-            }
+            <Box>
+                Se encuentra en ...
+                {
+                    cargando ? "cargando..." : <Typography>{resultado.address}</Typography>
+                }
+            </Box>
         </Box>
     );
 };
