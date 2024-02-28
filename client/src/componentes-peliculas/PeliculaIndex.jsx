@@ -6,11 +6,12 @@ import Pelicula from "./Pelicula";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Pagination from '@mui/material/Pagination';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
-import { Typography, Box, TextField } from "@mui/material";
+import { Typography, Box, TextField, CircularProgress } from "@mui/material";
 
 const PeliculaIndex = () => {
     const navegar = useNavigate();
     
+    const [loading, setLoading] = useState(false);
     const [pagina, setPagina] = useState(1);
     const [filtroNombre, setFiltroNombre] = useState("");
     const [peliculasJSON, setPeliculasJSON] = useState([]);
@@ -27,6 +28,7 @@ const PeliculaIndex = () => {
     
     useEffect(() => {
         const obtenerPeliculasHTTP = async () => {
+            setLoading(true)
             // filtro en frontend, son demasiadas peliculas 
             // const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/peliculas?nombre=${filtroNombre}`);
             const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/peliculas`);
@@ -37,9 +39,9 @@ const PeliculaIndex = () => {
                 // Guardar los datos en sessionStorage
                 sessionStorage.setItem("peliculasJSON", JSON.stringify(data));
             } else {
+                setLoading(false)
                 throw new Error("Error al obtener las películas");
             }
-            
         };
         obtenerPeliculasHTTP();
     },[]);
@@ -69,6 +71,11 @@ const PeliculaIndex = () => {
         <div style={{ textAlign: "center" }}>
             <LocalMoviesIcon />
             <h2>Peliculas</h2>
+
+            {
+                loading && <CircularProgress />
+
+            }
             <Box sx={{my: "2em"}}>
                 <FilterAltIcon sx={{ mt:1, fontSize: "2em", marginRight: "0.5em" }} />
                 <TextField

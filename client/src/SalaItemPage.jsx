@@ -9,19 +9,22 @@ import SalaItem from './componentes-salas/SalaItem.jsx'
 import './componentes-buscador/estilos-buscador.css'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Alert } from '@mui/material'
+import { Alert, LinearProgress } from '@mui/material'
 
 const SalaItemPage = () => {
     const { id: salapath } = useParams();
     const [sala, setSala] = useState({});
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
     
     useEffect(() => {
         const obtenerSala = async () => {
+            setLoading(true)
             const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/sala/${salapath}`);
             const data = await response.json();
-            console.log(data)
+            setLoading(false)
+            // console.log(data)
             if (!data.msg)
                 setSala(data.sala);
             else
@@ -32,11 +35,17 @@ const SalaItemPage = () => {
     }, [salapath]);
     
     return <>
+        {/* no existe sala */}
         {
             (() => {
                 if(error)
                     return <Alert severity="error">{error}</Alert>
             })()
+        }
+
+        {/* cargando */}
+        {
+            loading && <LinearProgress />
         }
         <Header />
         <div className='container' style={ { padding: "5em 0" } }>
