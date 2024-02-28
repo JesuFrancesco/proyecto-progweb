@@ -28,6 +28,10 @@ const FormularioLogin = () => {
         }
 
         const response = await fetch("http://pweb2024-api.azurewebsites.net/api/login", {
+            mode: "cors",
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            },
             method : "post",
             body : JSON.stringify(dataUsername)
         })

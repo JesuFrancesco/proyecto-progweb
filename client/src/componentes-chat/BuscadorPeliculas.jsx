@@ -8,7 +8,7 @@ const PeliculaCard = () => {
         resultado: '',
     });
     
-    const queryUrl = ` https://pweb2024-api.azurewebsites.net/api/peliculas`;
+    const queryUrl = `https://pweb2024-api.azurewebsites.net/api/peliculas`;
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -33,7 +33,7 @@ const PeliculaCard = () => {
     const { cargando, resultado } = state;
 
     return (
-        <Box>
+        <Box sx={{backgroundColor: "background.default"}}>
             Te recomiendo ver... 
             { cargando ? "cargando..." : 
                 <Link to={`/peliculas-detalle/${resultado.path}`}>

@@ -2,10 +2,13 @@ import ChatBot from 'react-simple-chatbot'
 import { ThemeProvider } from 'styled-components';
 import PeliculaCard from './BuscadorPeliculas';
 import SalaCard from './BuscadorSalas';
+import { useTheme } from '@emotion/react';
 
 const ModalDialogChat = () => {
+    const temaMUI = useTheme()
+
     const tema = {
-        background: '#f5f8fb',
+        background: temaMUI.palette.background.default,
 
         headerBgColor: '#EF6C00',
         headerFontColor: '#fff',
@@ -13,7 +16,7 @@ const ModalDialogChat = () => {
         botBubbleColor: '#EF6C00',
 
         fontFamily: 'Roboto',
-        botFontColor: '#fff',
+        botFontColor: "#fafafa",
         userBubbleColor: '#fff',
         userFontColor: '#4a4a4a',
     };

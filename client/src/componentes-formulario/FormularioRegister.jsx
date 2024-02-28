@@ -19,6 +19,9 @@ const FormularioRegister = () => {
   
   const subirUsuario = async (usuario) => {
     const res = await fetch("http://pweb2024-api.azurewebsites.net/api/register", {
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
         method: "POST",
         body: JSON.stringify(usuario)
     });
