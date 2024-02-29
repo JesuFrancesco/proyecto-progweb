@@ -8,7 +8,7 @@ const SalaCard = () => {
         resultado: '',
     });
     
-    const queryUrl = `https://pweb2024-api.azurewebsites.net/api/salas`;
+    const queryUrl = `http://localhost:8000/api/salas`;
     useEffect(() => {
         const fetchData = async () => {
             try {

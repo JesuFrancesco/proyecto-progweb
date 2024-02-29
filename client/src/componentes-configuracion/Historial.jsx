@@ -20,7 +20,7 @@ const Historial = () => {
     useEffect(() => {
         const obtenerReservas = async () => {
             setLoading(true);
-            const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/historial?usuario_id=${usuario.codigo}`);
+            const response = await fetch(`http://localhost:8000/api/historial?usuario_id=${usuario.codigo}`);
             const json = await response.json();
             SetdataReserva(json);
             setLoading(false);

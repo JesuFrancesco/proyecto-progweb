@@ -22,7 +22,7 @@ const SalaItemPage = () => {
     useEffect(() => {
         const obtenerSala = async () => {
             setLoading(true)
-            const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/sala/${salapath}`);
+            const response = await fetch(`http://localhost:8000/api/sala/${salapath}`);
             const data = await response.json();
             setLoading(false)
             // console.log(data)
@@ -42,13 +42,16 @@ const SalaItemPage = () => {
             <Button variant='contained' onClick={() => navigate("/")} > Ir a menu </Button>
         </Box>
     }
+
+    if(loading) {
+        return <Box sx={{my: "30rem"}}>
+            <LinearProgress />
+        </Box>
+    }
     
     return <>
         <Header />
         <div className='container' style={ { padding: "5em 0" } }>
-            {
-                loading && <LinearProgress />
-            }
             {
                 // si no encuentra deja un div en blanco
                 (sala)? <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>

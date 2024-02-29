@@ -19,7 +19,7 @@ const CambiarContraseña = () => {
         }
 
         const hacerCambio = async () => {
-            const res = await fetch(" https://pweb2024-api.azurewebsites.net/api/cambio-contrasenha", 
+            const res = await fetch(" http://localhost:8000/api/cambio-contrasenha", 
                 {
                     method: "PUT",
                     body: JSON.stringify({
