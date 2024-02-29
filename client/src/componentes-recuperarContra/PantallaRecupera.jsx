@@ -20,16 +20,23 @@ const PantallaRecupera = () => {
         event.preventDefault();
         try {
             const response = await fetch( `http://localhost:8000/api/correoCode?codigo_usuario=${usuario.codigo}`);
-            if (response.ok) {
+            const data = await response.json()
+            if (data.msg=="Aceptado") {
                 setFormEnviado(true);
                 setAlerta('');
                 setAviso(`Se ha enviado un correo a ${usuario.codigo}@aloe.ulima.edu.pe con su código de verificación.`);
-            } else {
-                setAlerta('Usuario incorrecto o no registrado');
+            }
+            else if (data.msg=="Error1"){
+                
+                setAlerta('Usuario incorrecto o no registrado')
+
+            }
+            else {
+                setAlerta('Error en el servicio de correos');
             }
         } catch (error) {
-            console.error('Error al procesar el inicio de sesión:', error);
-            setAlerta('Error al procesar el inicio de sesión');
+            console.error('Error al procesar el envio del correo:', error);
+            setAlerta('Error al procesar el envio del correo');
         }
     };
 
@@ -47,7 +54,8 @@ const PantallaRecupera = () => {
                     nueva_contrasenha: usuario.contrasena
                 })
             });
-            if (response.ok) {
+            const data = await response.json()
+            if (data.ok) {
                 // const responseData = await response.text();
                 setAviso("Se ha cambiado su contraseña. Regresando al Login");
                 setTimeout(() => {
