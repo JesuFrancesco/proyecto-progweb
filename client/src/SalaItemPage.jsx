@@ -42,13 +42,16 @@ const SalaItemPage = () => {
             <Button variant='contained' onClick={() => navigate("/")} > Ir a menu </Button>
         </Box>
     }
+
+    if(loading) {
+        return <Box sx={{my: "30rem"}}>
+            <LinearProgress />
+        </Box>
+    }
     
     return <>
         <Header />
         <div className='container' style={ { padding: "5em 0" } }>
-            {
-                loading && <LinearProgress />
-            }
             {
                 // si no encuentra deja un div en blanco
                 (sala)? <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>

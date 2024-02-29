@@ -3,15 +3,16 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 
 import ModalDialogChat from '../componentes-chat/ModalDialogChat';
-import { Box, TextField, Fab, IconButton } from '@mui/material';
+import { Box, Button, TextField, Fab, IconButton } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 import LogoutIcon from '@mui/icons-material/Logout';
+import CloseIcon from '@mui/icons-material/Close';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MaterialUISwitch from './SwitchDark';
 
 import useLocalStorage from 'use-local-storage';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
     const [tema, setTema] = useLocalStorage('usuario_tema', 'dark')
     const navegar = useNavigate();
 
@@ -39,9 +40,13 @@ const Sidebar = () => {
         filtrarLinks(evt.target.value);
     }
 
-
     
     return <>
+        <Box sx={{textAlign: "right", mt: 1}}>
+            <Button onClick={props.cerrar}>
+                <CloseIcon color='action' />
+            </Button>
+        </Box>
         <Box sx={{textAlign:"center"}}>
             {/* Logo */}
             <Link to='https://www.ulima.edu.pe/'>
