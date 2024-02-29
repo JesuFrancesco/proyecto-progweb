@@ -8,7 +8,7 @@ const PeliculaCard = () => {
         resultado: '',
     });
     
-    const queryUrl = `https://pweb2024-api.azurewebsites.net/api/peliculas`;
+    const queryUrl = `http://localhost:8000/api/peliculas`;
     useEffect(() => {
         const fetchData = async () => {
             try {

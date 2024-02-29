@@ -22,7 +22,7 @@ const SalaItemPage = () => {
     useEffect(() => {
         const obtenerSala = async () => {
             setLoading(true)
-            const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/sala/${salapath}`);
+            const response = await fetch(`http://localhost:8000/api/sala/${salapath}`);
             const data = await response.json();
             setLoading(false)
             // console.log(data)

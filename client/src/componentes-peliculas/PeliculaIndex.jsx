@@ -28,7 +28,7 @@ const PeliculaIndex = () => {
     useEffect(() => {
         const obtenerPeliculasHTTP = async () => {
             setLoading(true)
-            const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/peliculas`);
+            const response = await fetch(`http://localhost:8000/api/peliculas`);
             if (response.ok) {
                 const data = await response.json();
                 setPeliculasJSON(data);

@@ -9,7 +9,7 @@ import './componentes-reserva/estilorese.css'
 export default function ReservaPage() {
     const subirReservaHTTP = async (reserva) => {
         // console.log(JSON.stringify(reserva))
-        const res = await fetch("https://pweb2024-api.azurewebsites.net/api/reserva-register", {
+        const res = await fetch("http://localhost:8000/api/reserva-register", {
             method: "POST",
             body: JSON.stringify(reserva)
         });

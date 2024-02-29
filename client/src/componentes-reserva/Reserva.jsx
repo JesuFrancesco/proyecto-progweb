@@ -105,7 +105,7 @@ export default function Reserva(props)
                                 <input type="text" 
                                     className="form-control mb-3 cajate" 
                                     placeholder="Código"
-                                    style={{backgroundColor: "#9c9c9c"}}
+                                    style={{backgroundColor: "#b5b1b1"}}
                                     disabled readOnly
                                     value={reserva.codigo}
                                     onChange={InsertarCodigo}/>
