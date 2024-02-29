@@ -25,7 +25,6 @@ export const temaClaro = createTheme({
   }
 });
 
-// jejeje se ve feo no usar
 export const temaOscuro = createTheme({
   palette: {
     mode: 'dark',
