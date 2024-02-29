@@ -21,12 +21,12 @@ const PantallaRecupera = () => {
         try {
             const response = await fetch( `http://localhost:8000/api/correoCode?codigo_usuario=${usuario.codigo}`);
             const data = await response.json()
-            if (data.msg=="Aceptado") {
+            if (data.msg === "Aceptado") {
                 setFormEnviado(true);
                 setAlerta('');
                 setAviso(`Se ha enviado un correo a ${usuario.codigo}@aloe.ulima.edu.pe con su código de verificación.`);
             }
-            else if (data.msg=="Error1"){
+            else if (data.msg === "Error1"){
                 
                 setAlerta('Usuario incorrecto o no registrado')
 
