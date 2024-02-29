@@ -34,19 +34,6 @@ const FormularioRegister = () => {
   }
   
   const handleRegistrarse = async () => {
-    // validaciones, ya se realizan mediante el backend
-    // if (!usuarioRegister.nombres || !usuarioRegister.apellidos || !usuarioRegister.codigo || !usuarioRegister.contrasenha) {
-    //   setError('Por favor, completa todos los campos.')
-    //   return
-    // }
-  
-    // if (usuarioRegister.codigo.length !== 8 || isNaN(usuarioRegister.codigo)) {
-    //   setError('El código debe ser un número de 8 dígitos.')
-    //   return
-    // }
-    
-    // Después de registrar, se envia al login 
-    // console.log(usuarioRegister)
     const res = await subirUsuario(usuarioRegister)
     if (res)
       navigate('/')
