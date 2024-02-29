@@ -46,7 +46,7 @@ const PantallaRecupera = () => {
         // console.log(usuario.codigoVerificacion)
         // console.log(usuario.contrasena)
         try {
-            const response = await fetch('http://localhost:8000/api/verificacion', {
+            const response = await fetch('https://pweb2024-api.azurewebsites.net/api/verificacion', {
                 method: 'POST',
                 body: JSON.stringify({
                     codigo_usuario: usuario.codigo,
