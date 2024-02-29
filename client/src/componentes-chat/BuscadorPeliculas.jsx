@@ -33,7 +33,7 @@ const PeliculaCard = () => {
     const { cargando, resultado } = state;
 
     return (
-        <Box>
+        <Box sx={{backgroundColor: "background.default"}}>  
             Te recomiendo ver... 
             { cargando ? "cargando..." : 
                 <Link to={`/peliculas-detalle/${resultado.path}`}>

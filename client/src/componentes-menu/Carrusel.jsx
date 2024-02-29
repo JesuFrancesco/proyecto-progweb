@@ -32,6 +32,7 @@ const Carrusel = (props) => {
                             />
                             <Carousel.Caption>
                                 <Link to={`/reserva/${funcion.movie.path}`} state={{
+                                    id : funcion.id,
                                     sala : funcion.sala.name,
                                     hora : funcion.window.hour,
                                     titulo : funcion.movie.title,

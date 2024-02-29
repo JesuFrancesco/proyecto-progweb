@@ -33,7 +33,7 @@ const SalaCard = () => {
     const { cargando, resultado } = state;
 
     return (
-        <Box>
+        <Box sx={{backgroundColor: "background.default"}}>
             Puedes ir al... 
             { cargando ? "cargando..." : 
                 <Link to={`/salas/${resultado.path}`}>

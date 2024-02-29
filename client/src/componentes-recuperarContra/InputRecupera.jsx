@@ -1,6 +1,6 @@
 import { TextField, createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/material'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 const InputRecupera = (props) => {
     const tema = createTheme({
         palette: {

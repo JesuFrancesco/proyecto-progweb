@@ -7,13 +7,13 @@ import SalaItem from './componentes-salas/SalaItem.jsx'
 // import { salas } from './componentes-salas/Salas.js'
 
 import './componentes-buscador/estilos-buscador.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Alert } from '@mui/material'
+import { Alert, Button, Box } from '@mui/material'
 
-// const error = <><img src="https://http.cat/images/404.jpg" alt="" /></>
 
 const SalaItemPage = () => {
+    const navigate = useNavigate();
     const { id: salapath } = useParams();
     const [sala, setSala] = useState({});
     const [error, setError] = useState("");
@@ -23,7 +23,7 @@ const SalaItemPage = () => {
         const obtenerSala = async () => {
             const response = await fetch(`http://localhost:8000/api/sala/${salapath}`);
             const data = await response.json();
-            console.log(data)
+            // console.log(data)
             if (!data.msg)
                 setSala(data.sala);
             else
@@ -32,14 +32,16 @@ const SalaItemPage = () => {
 
         obtenerSala();
     }, [salapath]);
+
+    if(error){
+        return <Box sx={{display: "block", justifyContent: "center"}} >
+            <img src="https://http.cat/images/404.jpg" alt="" />
+            <Alert sx={{mt:"1em"}} severity="error">{error}</Alert>
+            <Button variant='contained' onClick={() => navigate("/")} > Ir a menu </Button>
+        </Box>
+    }
     
     return <>
-        {
-            (() => {
-                if(error)
-                    return <Alert severity="error">{error}</Alert>
-            })()
-        }
         <Header />
         <div className='container' style={ { padding: "5em 0" } }>
         

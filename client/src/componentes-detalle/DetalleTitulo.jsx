@@ -1,6 +1,5 @@
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import PersonIcon from '@mui/icons-material/Person';
-import { Link} from "react-router-dom";
 
 const Pelicula = (props) => {
   return (
@@ -10,11 +9,11 @@ const Pelicula = (props) => {
         <div className="mb-3">
           <div className="ubi">
             <DateRangeIcon />
-            <a style={{ marginRight: "1em" }}>&nbsp; {props.year}</a>
+            <span style={{ marginRight: "1em" }}>&nbsp; {props.year}</span>
             {props.cast.map((person, index) => (
-              <a key={index}>
+              <span key={index}>
                 <PersonIcon /> {person} &nbsp; &nbsp;
-              </a>
+              </span>
             ))}
           </div>
         </div>

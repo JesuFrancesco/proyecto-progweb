@@ -13,7 +13,7 @@ export default function Reserva(props)
 {
     const navegacion = useNavigate();
     const ruta = useLocation();
-    console.log(ruta.state)
+    // console.log(ruta.state)
 
     const usu = sessionStorage.getItem("usuario_objeto")
     const usuario = (usu)? JSON.parse(usu) : {};

@@ -13,7 +13,7 @@ const Historial = () => {
 
     const usu = sessionStorage.getItem("usuario_objeto")
     const usuario = (usu)? JSON.parse(usu) : {};
-    console.log(usuario.codigo)
+    // console.log(usuario.codigo)
 
     useEffect(() => {
         const obtenerReservas = async () => {
@@ -22,7 +22,7 @@ const Historial = () => {
             SetdataReserva(json);
         };
         obtenerReservas();
-      }, []);
+    }, [usuario.codigo]);
 
     return (
             <TableContainer component={Paper}>

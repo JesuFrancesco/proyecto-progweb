@@ -4,7 +4,7 @@ const InputFormulario = (props) => {
     const handleInputChange = (event) => {
         const nuevoObj = props.objeto
         nuevoObj[props.llave] = event.target.value;
-        console.log(nuevoObj)
+        // console.log(nuevoObj)
         props.setFn(nuevoObj);
     }
 

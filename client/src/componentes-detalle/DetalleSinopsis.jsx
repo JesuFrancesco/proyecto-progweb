@@ -1,6 +1,6 @@
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
-import { color } from "@mui/system";
+
 const DetalleSinopsis = (props) => {
     return  <div className="col-md">
         <div className="card" style={{ marginLeft: "130px"}}>

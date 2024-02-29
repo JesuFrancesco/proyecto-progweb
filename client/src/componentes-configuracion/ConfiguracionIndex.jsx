@@ -6,6 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Collapse from '@mui/material/Collapse';
 
+import HistoryRoundedIcon from '@mui/icons-material/HistoryRounded';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListItemButton from '@mui/material/ListItemButton';
 import ExpandLess from '@mui/icons-material/ExpandLess';
@@ -68,7 +69,7 @@ const ConfiguracionIndex = () => {
                         <List component="div" disablePadding>
                             <ListItemButton onClick={() => setSeccionActual(<Historial />)} sx={{ pl: 4 }}>
                                 <ListItemIcon>
-                                    <LockIcon />
+                                    <HistoryRoundedIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Historial de reservas" />
                             </ListItemButton>
