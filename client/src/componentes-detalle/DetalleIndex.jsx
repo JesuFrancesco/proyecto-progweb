@@ -9,18 +9,11 @@ import DetalleSinopsis from "./DetalleSinopsis";
 const DetalleIndex = () => {
   const { pathFiltro } = useParams(); // Obtiene el parámetro de la URL
   const [pelicula, setPelicula] = useState([]);
-  const [error, setError] = useState(false);
-
-  const errorComponent = <>
-      <img src="https://http.cat/images/404.jpg" alt="" />
-    </>
-  
 
   useEffect(() => {
     const obtenerDetalleHTTP = async () => {
         const response = await fetch(`http://localhost:8000/api/detalle?path=${pathFiltro}`);
         const json = await response.json();
-        if (json.length <= 0) setError(true);
         setPelicula(json);
     };
     obtenerDetalleHTTP();

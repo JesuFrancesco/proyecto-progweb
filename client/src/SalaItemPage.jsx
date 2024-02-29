@@ -9,7 +9,7 @@ import SalaItem from './componentes-salas/SalaItem.jsx'
 import './componentes-buscador/estilos-buscador.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Alert, Button, Box } from '@mui/material'
+import { Alert, Button, Box, LinearProgress } from '@mui/material'
 
 const SalaItemPage = () => {
     const navigate = useNavigate();
@@ -46,7 +46,9 @@ const SalaItemPage = () => {
     return <>
         <Header />
         <div className='container' style={ { padding: "5em 0" } }>
-        
+            {
+                loading && <LinearProgress />
+            }
             {
                 // si no encuentra deja un div en blanco
                 (sala)? <div className="mt-4 mx-auto" style={ {margin: "0 auto", float: "none"} }>
