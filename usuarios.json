@@ -1,8 +1,0 @@
-[
-    {"nombre": "korita", "codigo": "20204177", "contrasenha": "korita123","apellido":"Alfa"},
-    {"nombre": "Alberto", "codigo": "20295874", "contrasenha": "pass1","apellido":"Garrindo Quispe"},
-    {"nombre": "Italo", "codigo": "20210983", "contrasenha": "pass2","apellido":"Fernandez Falcon"},
-    {"nombre": "Pepe", "codigo": "20100785", "contrasenha": "pass3","apellido":"Valdivia"},
-    {"nombre": "Patrick", "codigo": "20211454", "contrasenha": "pass4","apellido":"Salicius Leon"},
-    {"nombre": "jesu", "codigo": "20210109", "contrasenha": "pass55","apellido":"amoretti"}
-]  
