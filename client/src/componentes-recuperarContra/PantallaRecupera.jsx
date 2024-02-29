@@ -19,7 +19,7 @@ const PantallaRecupera = () => {
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch( `http://localhost:8000/api/correoCode?codigo_usuario=${usuario.codigo}`);
+            const response = await fetch( `https://pweb2024-api.azurewebsites.net/api/correoCode?codigo_usuario=${usuario.codigo}`);
             if (response.ok) {
                 setFormEnviado(true);
                 setAlerta('');
@@ -39,7 +39,7 @@ const PantallaRecupera = () => {
         // console.log(usuario.codigoVerificacion)
         // console.log(usuario.contrasena)
         try {
-            const response = await fetch('http://localhost:8000/api/verificacion', {
+            const response = await fetch('https://pweb2024-api.azurewebsites.net/api/verificacion', {
                 method: 'POST',
                 body: JSON.stringify({
                     codigo_usuario: usuario.codigo,

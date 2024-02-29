@@ -12,7 +12,7 @@ const DetalleIndex = () => {
 
   useEffect(() => {
     const obtenerDetalleHTTP = async () => {
-        const response = await fetch(`http://localhost:8000/api/detalle?path=${pathFiltro}`);
+        const response = await fetch(`https://pweb2024-api.azurewebsites.net/api/detalle?path=${pathFiltro}`);
         const json = await response.json();
         setPelicula(json);
     };
