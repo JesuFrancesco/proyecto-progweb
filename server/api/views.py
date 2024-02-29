@@ -337,15 +337,19 @@ def correoXcodigo(request):
             # Buscar al usuario correspondiente
             usuario = Usuario.objects.get(codigo=codigo_alumno)
             
-            # Crear una instancia del modelo Code y guardarla en la base de datos
+            
             code = Code(codigo=codigo_aleatorio, user=usuario)
             code.save()
             enviarCorreoPostmark(codigo_alumno,codigo_aleatorio)
             
-            return HttpResponse("Código generado y guardado correctamente")
+            return HttpResponse(json.dumps({
+                "msg" : "Aceptado"
+            }))
         
         except Usuario.DoesNotExist:
-            return HttpResponse("No se encontró el usuario con el código proporcionado", status=404)
+            return HttpResponse(json.dumps({
+                "msg" : "Error1"
+            }))
         
         except Exception as e:
             return HttpResponse("Error al generar y guardar el código: " + str(e), status=500)
@@ -358,16 +362,18 @@ def verificarCodigo(request):
             data = json.loads(request.body)
             print(data)
             codigo_usuario = data.get("codigo_usuario")
+            UsuarioObject=Usuario.objects.get(codigo=codigo_usuario)
+            print(UsuarioObject.pk)
+            codigoV = data.get("codigo")
+            print(codigoV)
             
-            codigo = data.get("codigo")
-            print(codigo)
             nueva_contrasenha = data.get("nueva_contrasenha")
             
 
             # Buscar el código en la base de datos
-            code = Code.objects.filter(codigo=codigo)#esta parte esta media xd
-
-            if code:
+            code = Code.objects.filter(user_id=UsuarioObject.pk,codigo=codigoV)#esta parte esta media xd
+            print(len(list(code)))
+            if len(list(code))!=0:
                 # Cambiar la contraseña del usuario
                 usuario = Usuario.objects.get(codigo=codigo_usuario)
                 usuario.contrasenha = nueva_contrasenha
@@ -378,7 +384,7 @@ def verificarCodigo(request):
 
                 return JsonResponse({'ok': True})
             else:
-                return HttpResponse("El código proporcionado no es válido para este usuario", status=400)
+                return JsonResponse({'ok': False})
         
         except Exception as e:
             return HttpResponse("Error al verificar y cambiar la contraseña: " + str(e), status=500)        
@@ -390,7 +396,7 @@ def enviarCorreoPostmark(codigo,codigo_aleatorio):
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "X-Postmark-Server-Token": os.environ["POSTMARK_APIKEY"]
+        "X-Postmark-Server-Token": "eda67731-f17b-460c-82e1-83207579c4fb"#os.environ["POSTMARK_APIKEY"]
     }
     data = {
         "From": "20210109@aloe.ulima.edu.pe", # no se puede cambiar, solo lo envia desde mi correo
