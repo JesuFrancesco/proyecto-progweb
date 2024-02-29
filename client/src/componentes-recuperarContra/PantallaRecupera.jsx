@@ -19,7 +19,7 @@ const PantallaRecupera = () => {
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:8000/api/correoCode?codigo_usuario=${usuario.codigo}`);
+            const response = await fetch( `http://localhost:8000/api/correoCode?codigo_usuario=${usuario.codigo}`);
             if (response.ok) {
                 setFormEnviado(true);
                 setAlerta('');

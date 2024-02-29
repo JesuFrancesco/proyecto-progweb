@@ -37,8 +37,8 @@ const SalaCard = () => {
             Puedes ir al... 
             { cargando ? "cargando..." : 
                 <Link to={`/salas/${resultado.path}`}>
-                    <Box sx={{backgroundColor: "primary.main", textAlign: "center"}}>
-                        {resultado.name} <br />
+                    <Box color={'text.primary'} sx={{backgroundColor: "primary.main", textAlign: "center"}}>
+                        <Typography sx={{color: 'text.primary'}} >{resultado.name}</Typography> <br />
                         <img style={{width: "100%"}} src={resultado.img} alt="" />
                     </Box>
                 </Link>
@@ -46,10 +46,12 @@ const SalaCard = () => {
             
 
             <br />
-            Se encuentra en ...
-            {
-                cargando ? "cargando..." : <Typography>{resultado.address}</Typography>
-            }
+            <Box>
+                Se encuentra en ...
+                {
+                    cargando ? "cargando..." : <Typography>{resultado.address}</Typography>
+                }
+            </Box>
         </Box>
     );
 };

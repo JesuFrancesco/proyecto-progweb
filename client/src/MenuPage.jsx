@@ -43,15 +43,15 @@ const MenuPage = () => {
   
   // para el carousel
   useEffect(() => {
-    const obtenerPreviewFuncionesHTTP = async () => {
-      const res = await fetch(`http://localhost:8000/api/funciones?num=5`);
+    const obtenerFuncionesHTTP = async () => {
+      const res = await fetch("http://localhost:8000/api/funciones?num=5");
       const data = await res.json();
 
       if(!data.msg){
         setFuncionesPreview(data.funciones);
       }
     }
-    obtenerPreviewFuncionesHTTP();
+    obtenerFuncionesHTTP();
 
   }, []);
 

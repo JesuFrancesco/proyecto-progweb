@@ -18,7 +18,7 @@ const FormularioRegister = () => {
   const navigate = useNavigate()
   
   const subirUsuario = async (usuario) => {
-    const res = await fetch("http://127.0.0.1:8000/api/register", {
+    const res = await fetch("http://localhost:8000/api/register", {
         method: "POST",
         body: JSON.stringify(usuario)
     });

@@ -26,10 +26,6 @@ const DetalleIndex = () => {
     obtenerDetalleHTTP();
   }, [pathFiltro]);
 
-  if (error) {
-    return errorComponent;
-  }
-
   return (
     <div className="row">
       

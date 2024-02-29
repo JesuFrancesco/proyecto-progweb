@@ -10,14 +10,13 @@ import { Typography, Box, TextField, CircularProgress } from "@mui/material";
 
 const PeliculaIndex = () => {
     const navegar = useNavigate();
-        
-    const [loading, setLoading] = useState(true);
+    
+    const [loading, setLoading] = useState(false);
     const [pagina, setPagina] = useState(1);
     const [filtroNombre, setFiltroNombre] = useState("");
     const [peliculasJSON, setPeliculasJSON] = useState([]);
     const [peliS,setPeli]=useState([])
     
-
     const filtrarPeliculas = (keyword) => {
         const peliculasJSON = peliS //cada vez que se filtre lo hace desde la lista orginal ,de esta manera se vuelve a filtra cuando borras un caracter que ese era el problema xd
         const peliculasFiltradas = peliculasJSON.filter(
@@ -68,6 +67,11 @@ const PeliculaIndex = () => {
         <div style={{ textAlign: "center" }}>
             <LocalMoviesIcon />
             <h2>Peliculas</h2>
+
+            {
+                loading && <CircularProgress />
+
+            }
             <Box sx={{my: "2em"}}>
                 <FilterAltIcon sx={{ mt:1, fontSize: "2em", marginRight: "0.5em" }} />
                 <TextField
@@ -78,9 +82,6 @@ const PeliculaIndex = () => {
                     sx={{ width: "80%" }}
                     />
             </Box>
-            {
-                loading && <CircularProgress sx={{my: "2em"}} />
-            }
 
             <div id="tarjetas" className="row row-cols-1 row-cols-md-3 g-4">
                 {obtenerPeliculasPaginadas().map((peli, i) => (
