@@ -26,12 +26,7 @@ SECRET_KEY = 'django-insecure-^8k2ja2frz5=z6_0q#^(im4i=vt_pt^0hty1x7%655qw4^%q!$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "localhost",
-    os.environ['ALLOWED_HOST_1'],
-    os.environ['DATABASE_HOST'],
-    (os.environ['CORS_ALLOWED_2'])[8:], 
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -44,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'whitenoise.runserver_nostatic',
-
     'import_export',
 
     'corsheaders',
@@ -60,8 +53,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -69,16 +60,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    os.environ['CORS_ALLOWED_1'], 
-    os.environ['CORS_ALLOWED_2'],
-    os.environ['CORS_ALLOWED_3'],
+    "http://localhost:3000",
 ]
-
-CSRF_TRUSTED_ORIGINS = [
-    os.environ['CORS_ALLOWED_1'], 
-    os.environ['CORS_ALLOWED_2'],
-    os.environ['CORS_ALLOWED_3'],
-]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = 'config.urls'
 
@@ -106,11 +90,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DATABASE_NAME'],
-        'USER': os.environ['DATABASE_USER'],
-        'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'HOST': os.environ['DATABASE_HOST'],
-        'PORT': os.environ['DATABASE_PORT'],
+        'NAME': 'cinesdb',
+
+        'USER': 'ulima',
+        'PASSWORD': 'contra123', 
+
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
@@ -150,8 +136,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
