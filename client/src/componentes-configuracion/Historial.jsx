@@ -41,6 +41,7 @@ const Historial = () => {
                                 <TableCell>Sala</TableCell>
                                 <TableCell>Fecha</TableCell>
                                 <TableCell>Hora</TableCell>
+                                <TableCell>Fecha compra</TableCell>
                                 <TableCell>Cantidad de entradas</TableCell>
                             </TableRow>
                         </TableHead>
@@ -51,6 +52,7 @@ const Historial = () => {
                                     <TableCell>{reserva.sala}</TableCell>
                                     <TableCell>{reserva.fecha}</TableCell>
                                     <TableCell>{reserva.hora}</TableCell>
+                                    <TableCell>{reserva.fecha_compra}</TableCell>
                                     <TableCell>{reserva.entradas}</TableCell>
                                 </TableRow>
                             ))}

@@ -7,7 +7,7 @@ import useLocalStorage from 'use-local-storage'
 
 
 const App = () => {
-    const [tema, _] = useLocalStorage('usuario_tema', temaClaro)
+    const [tema, ] = useLocalStorage('usuario_tema', temaClaro)
 
     // Tema claro por defecto
     return <ThemeProvider theme={tema === 'dark'? temaOscuro: temaClaro}>

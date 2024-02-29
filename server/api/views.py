@@ -466,8 +466,9 @@ def obtenerReserva(request):
         for reserva in reservas_usuario:
             dataResponse.append({
                 "usuario_id": reserva.usuario.pk,
-                "fecha": reserva.fecha.strftime('%Y-%m-%d'),  # Convertir datetime a cadena de texto
-                "hora": reserva.fecha.strftime('%H:%M:%S'),
+                "fecha_compra": reserva.fecha.strftime('%Y-%m-%d'),  # Convertir datetime a cadena de texto
+                "fecha": str(reserva.funcion.window.date),
+                "hora": str(reserva.funcion.window.hour),
                 "entradas": reserva.entradas,
                 "funcion": reserva.funcion.movie.title , 
                 "sala" : reserva.funcion.sala.name
