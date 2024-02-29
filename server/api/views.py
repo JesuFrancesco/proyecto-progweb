@@ -340,7 +340,7 @@ def correoXcodigo(request):
             
             code = Code(codigo=codigo_aleatorio, user=usuario)
             code.save()
-            #enviarCorreoPostmark(codigo_alumno,codigo_aleatorio)
+            enviarCorreoPostmark(codigo_alumno,codigo_aleatorio)
             
             return HttpResponse(json.dumps({
                 "msg" : "Aceptado"
