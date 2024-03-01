@@ -75,6 +75,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://" + os.environ['ALLOWED_HOST_1'],
     os.environ['CORS_ALLOWED_1'], 
     os.environ['CORS_ALLOWED_2'],
     os.environ['CORS_ALLOWED_3'],
