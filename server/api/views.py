@@ -391,8 +391,10 @@ def verificarCodigo(request):
 
 @csrf_exempt
 def enviarCorreoPostmark(codigo,codigo_aleatorio):
-    import requests
+    import urllib.request
+    import urllib.error
     url = "https://api.postmarkapp.com/email/withTemplate"
+
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -408,8 +410,17 @@ def enviarCorreoPostmark(codigo,codigo_aleatorio):
         }
     }
 
-    r = requests.post(url, headers=headers, json=data)
-    return response({"msg": "", "data": r.json()}, code=200)
+    data = json.dumps(data).encode('utf-8')
+    
+    req = urllib.request.Request(url, data=data, headers=headers)
+
+    try:
+        with urllib.request.urlopen(req) as response:
+            response_data = response.read()
+            response_data_str = response_data.decode('utf-8')
+
+    except urllib.error.URLError as e:
+        print("Error:", e)
 
 @csrf_exempt
 def cambiarNombre(request):
